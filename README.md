@@ -100,15 +100,71 @@ runs server-side, so the API key never reaches the browser.
    validates input, blocks spam via a honeypot, and returns JSON the form
    uses to show an inline success or error state.
 
+## Blog (and connecting GetAutoSEO)
+
+The blog lives at `/blog` and is powered by Astro Content Collections:
+each post is a Markdown file in `src/content/blog/`. Posts are statically
+rendered (fast, SEO-friendly) and automatically get:
+
+- a listing page (`/blog`) and article pages (`/blog/<slug>/`)
+- `BlogPosting` JSON-LD structured data
+- an RSS feed at `/rss.xml`
+- inclusion in the sitemap
+
+Post frontmatter: `title`, `description`, `pubDate`, optional `updatedDate`,
+`author`, `tags` (array), `cover` (image URL) and `draft` (boolean).
+
+### Connecting GetAutoSEO
+
+GetAutoSEO publishes via API/Zapier. Because this is a static site, posts are
+stored as Markdown in the repo. There are two ways to connect it:
+
+**Option A — Webhook (recommended).** Point GetAutoSEO (or a Zapier
+"Webhooks → POST" step) at `https://<your-domain>/api/blog/ingest`. The
+endpoint writes a new Markdown post to the repo via the GitHub API, which
+triggers a Vercel redeploy. Configure these env vars in Vercel:
+
+| Variable | Purpose |
+| --- | --- |
+| `BLOG_INGEST_TOKEN` | Shared secret; send as `Authorization: Bearer <token>` |
+| `GITHUB_TOKEN` | GitHub PAT with write access to this repo's contents |
+| `GITHUB_REPO` | `owner/repo` (default `junalda/webmaister-website`) |
+| `GITHUB_BRANCH` | Branch to commit to (default `main`) |
+
+Expected JSON body:
+
+```json
+{
+  "title": "Post title",
+  "description": "Meta description",
+  "content": "# Markdown body...",
+  "tags": ["SEO", "Rotterdam"],
+  "pubDate": "2026-06-03",
+  "cover": "https://.../image.jpg"
+}
+```
+
+Use `"html"` instead of `"content"` to publish raw HTML. The endpoint returns
+`{ "ok": true, "slug", "url" }`.
+
+**Option B — Git (no custom secret).** Use a Zapier "GitHub → Create file"
+action to write the Markdown directly into `src/content/blog/`. Vercel
+redeploys on push.
+
 ## Project structure
 
 ```
 src/
-├── components/   # Header, Footer, Logo, Button, Icon, Schema,
-│                 # SectionHeading, BrainyDashboard, FaqAccordion, FinalCta
-├── data/site.ts  # single source of content + metadata
-├── layouts/      # Base.astro (head, SEO, schema, reveal script)
-├── pages/        # index, solutions, success-stories, contact
-└── styles/       # global.css (design tokens + utilities)
-public/           # favicon.svg, og.png, robots.txt
+├── components/        # Header, Footer, Logo, Button, Icon, Schema,
+│                      # SectionHeading, BrainyDashboard, FaqAccordion, FinalCta
+├── content/blog/      # blog posts (Markdown) + content.config.ts schema
+├── content.config.ts  # blog collection schema (Content Layer)
+├── data/site.ts       # single source of content + metadata
+├── layouts/           # Base.astro (head, SEO, schema, reveal script)
+├── pages/
+│   ├── index, solutions, success-stories, contact, blog/
+│   ├── rss.xml.js     # blog RSS feed
+│   └── api/           # contact.ts (Resend), blog/ingest.ts (auto-publish)
+└── styles/            # global.css (design tokens + utilities)
+public/                # favicon.svg, og.png, robots.txt
 ```
