@@ -60,7 +60,7 @@ const services = [
       <!-- Right: form -->
       <div class="form-wrap" data-reveal data-delay="120">
         <form id="contact-form" class="contact-form card" novalidate
-          action="https://formspree.io/f/your-form-id" method="POST">
+          action="/api/contact" method="POST">
           <h2>Book your strategy call</h2>
           <p class="form-sub">We reply within one business day.</p>
 
@@ -106,6 +106,7 @@ const services = [
             <span class="submit-label">Book my Growth Strategy Call</span>
             <Icon name="arrow" class="arrow" />
           </button>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
           <p class="form-fine">By submitting, you agree to be contacted about your enquiry. No spam, ever.</p>
 
           <div class="form-success" id="form-success" hidden>
@@ -181,6 +182,7 @@ const services = [
   .form-submit { width: 100%; margin-top: 0.5rem; }
   .form-submit :global(svg) { width: 18px; height: 18px; }
   .form-fine { font-size: 0.78rem; color: var(--text-faint); text-align: center; margin-top: 0.9rem; }
+  .form-error { font-size: 0.88rem; color: #e5484d; text-align: center; margin-top: 0.9rem; background: #fff0f1; border: 1px solid #ffd9db; border-radius: var(--r-sm); padding: 0.7rem 0.9rem; }
 
   .form-success[hidden] { display: none; }
   .form-success {
@@ -199,14 +201,15 @@ const services = [
 </style>
 
 <script>
-  // Progressive enhancement: validate, submit to the configured endpoint,
-  // and show an inline success state. If no real endpoint is configured
-  // (placeholder action), we still confirm gracefully so the UX is complete.
+  // Progressive enhancement: validate, submit to the /api/contact endpoint
+  // (which sends the email via Resend) and show an inline success or error state.
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const success = document.getElementById("form-success");
+  const errorBox = document.getElementById("form-error");
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (errorBox) errorBox.hidden = true;
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
@@ -219,27 +222,28 @@ const services = [
     btn.disabled = true;
     if (label) label.textContent = "Sending…";
 
-    const showSuccess = () => {
-      if (success) success.hidden = false;
-      form.reset();
+    const showError = (msg: string) => {
+      if (errorBox) {
+        errorBox.textContent = msg;
+        errorBox.hidden = false;
+      }
     };
 
-    const action = form.getAttribute("action") || "";
-    const isPlaceholder = action.includes("your-form-id");
-
     try {
-      if (!isPlaceholder) {
-        const res = await fetch(action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { Accept: "application/json" },
-        });
-        if (!res.ok) throw new Error("Request failed");
+      const res = await fetch(form.getAttribute("action") || "/api/contact", {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      const result = await res.json().catch(() => ({}));
+      if (res.ok && result.ok) {
+        if (success) success.hidden = false;
+        form.reset();
+      } else {
+        showError(result.error || "Something went wrong. Please try again or email us directly.");
       }
-      showSuccess();
     } catch {
-      // graceful fallback so the visitor is never stranded
-      showSuccess();
+      showError("We couldn't reach the server. Please check your connection or email us directly.");
     } finally {
       btn.disabled = false;
       if (label && original) label.textContent = original;

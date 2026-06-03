@@ -55,7 +55,7 @@ Perplexity) and traditional crawlers can understand and recommend Webmaister:
 ```bash
 npm install      # install dependencies
 npm run dev      # local dev server at http://localhost:4321
-npm run build    # static build to ./dist
+npm run build    # build (static pages + the /api/contact function)
 npm run preview  # preview the production build
 ```
 
@@ -68,11 +68,37 @@ copy and structured data never drift apart).
 - **Brand colors / logo:** update the CSS variables at the top of
   `src/styles/global.css` and the mark in `src/components/Logo.astro`
   (and `public/favicon.svg` / `public/og.png`) to the official logo colors.
-- **Contact form endpoint:** the form in `src/pages/contact.astro` posts to a
-  placeholder `action`. Replace it with your Formspree (or other) endpoint id;
-  the JS progressively enhances submission and shows an inline success state.
+- **Contact form (Resend):** the form posts to the server endpoint
+  `src/pages/api/contact.ts`, which sends an email via [Resend](https://resend.com).
+  See "Contact form / email" below.
 - **Business details:** phone, email and KvK live in `site` in
   `src/data/site.ts`.
+
+## Contact form / email (Resend)
+
+The contact form is wired to Resend through an on-demand Astro endpoint
+(`/api/contact`). The site uses `output: 'hybrid'` with the
+`@astrojs/vercel` adapter: every page is still static, only this endpoint
+runs server-side, so the API key never reaches the browser.
+
+**Setup**
+
+1. Create a Resend account and an API key, and verify your sending domain
+   (e.g. `webmaister.io`) at https://resend.com.
+2. Set these environment variables (locally in a `.env` file, and in the
+   Vercel project → Settings → Environment Variables):
+
+   | Variable | Purpose | Example |
+   | --- | --- | --- |
+   | `RESEND_API_KEY` | Resend API key (required) | `re_...` |
+   | `RESEND_FROM` | Verified sender | `Webmaister <noreply@webmaister.io>` |
+   | `RESEND_TO` | Where submissions land (defaults to the site email) | `hello@webmaister.io` |
+
+   See `.env.example`. For a quick test you can send from
+   `Webmaister <onboarding@resend.dev>` without verifying a domain.
+3. Deploy to Vercel (the adapter is already configured). The endpoint
+   validates input, blocks spam via a honeypot, and returns JSON the form
+   uses to show an inline success or error state.
 
 ## Project structure
 
