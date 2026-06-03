@@ -201,7 +201,14 @@ const pillarIcons: Record<string, string> = { "digital-presence": "globe", "grow
 
 <style>
   /* ---- Hero ---- */
-  .hero { position: relative; overflow: hidden; padding-block: clamp(70px, 11vw, 150px) clamp(60px, 8vw, 110px); }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    /* Extend the hero background up behind the (transparent) header, while
+       keeping the content in its original position. */
+    margin-top: calc(-1 * var(--nav-h));
+    padding-block: calc(var(--nav-h) + clamp(70px, 11vw, 150px)) clamp(60px, 8vw, 110px);
+  }
   .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
   .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
   .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #bfe3fb, transparent 70%); top: -180px; right: -120px; }
