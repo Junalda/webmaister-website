@@ -15,6 +15,15 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
     draft: z.boolean().default(false),
+    // Optional URL slug; when set it overrides the filename for the route, so
+    // files can be keyed by a stable id (used by the AutoSEO webhook).
+    slug: z.string().optional(),
+    // AutoSEO (getautoseo.com) integration fields.
+    autoseoId: z.number().optional(),
+    heroAlt: z.string().optional(),
+    lang: z.string().optional(),
+    keywords: z.array(z.string()).default([]),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
   }),
 });
 

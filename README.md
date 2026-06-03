@@ -114,42 +114,40 @@ rendered (fast, SEO-friendly) and automatically get:
 Post frontmatter: `title`, `description`, `pubDate`, optional `updatedDate`,
 `author`, `tags` (array), `cover` (image URL) and `draft` (boolean).
 
-### Connecting GetAutoSEO
+### Connecting AutoSEO
 
-GetAutoSEO publishes via API/Zapier. Because this is a static site, posts are
-stored as Markdown in the repo. There are two ways to connect it:
+AutoSEO (getautoseo.com) publishes via webhook. Point your AutoSEO project's
+webhook at:
 
-**Option A — Webhook (recommended).** Point GetAutoSEO (or a Zapier
-"Webhooks → POST" step) at `https://<your-domain>/api/blog/ingest`. The
-endpoint writes a new Markdown post to the repo via the GitHub API, which
-triggers a Vercel redeploy. Configure these env vars in Vercel:
+```
+https://<your-domain>/api/autoseo
+```
+
+The endpoint (`src/pages/api/autoseo.ts`):
+
+1. Requires `Authorization: Bearer <AUTOSEO_WEBHOOK_TOKEN>` (401 otherwise).
+2. Verifies the `X-AutoSEO-Signature` HMAC-SHA256 of the raw body when present.
+3. Handles `test` (acknowledges, creates nothing), `article.published` and
+   `article.updated`. Posts are keyed by the AutoSEO `id` (`aseo-<id>.md`), so
+   updates and re-deliveries upsert the same post instead of duplicating it.
+4. Downloads the hero and infographic images and stores them locally under
+   `public/blog-assets/<id>/` (no hotlinking; embedded references are rewritten).
+5. Commits the post + images in a single commit via the GitHub API, which
+   triggers a Vercel redeploy.
+6. Returns `{ "url": "https://<your-domain>/blog/<slug>/" }`, and `500` on
+   failure so AutoSEO retries.
+
+> No database is used: this is a static, git-backed site. The webhook only
+> **adds** files; it never deletes or modifies existing content.
+
+Configure these env vars in Vercel:
 
 | Variable | Purpose |
 | --- | --- |
-| `BLOG_INGEST_TOKEN` | Shared secret; send as `Authorization: Bearer <token>` |
+| `AUTOSEO_WEBHOOK_TOKEN` | Bearer token + HMAC secret (matches AutoSEO) |
 | `GITHUB_TOKEN` | GitHub PAT with write access to this repo's contents |
 | `GITHUB_REPO` | `owner/repo` (default `junalda/webmaister-website`) |
-| `GITHUB_BRANCH` | Branch to commit to (default `main`) |
-
-Expected JSON body:
-
-```json
-{
-  "title": "Post title",
-  "description": "Meta description",
-  "content": "# Markdown body...",
-  "tags": ["SEO", "Rotterdam"],
-  "pubDate": "2026-06-03",
-  "cover": "https://.../image.jpg"
-}
-```
-
-Use `"html"` instead of `"content"` to publish raw HTML. The endpoint returns
-`{ "ok": true, "slug", "url" }`.
-
-**Option B — Git (no custom secret).** Use a Zapier "GitHub → Create file"
-action to write the Markdown directly into `src/content/blog/`. Vercel
-redeploys on push.
+| `GITHUB_BRANCH` | Branch Vercel deploys from (default `main`) |
 
 ## Project structure
 
@@ -164,7 +162,7 @@ src/
 ├── pages/
 │   ├── index, solutions, success-stories, contact, blog/
 │   ├── rss.xml.js     # blog RSS feed
-│   └── api/           # contact.ts (Resend), blog/ingest.ts (auto-publish)
+│   └── api/           # contact.ts (Resend), autoseo.ts (AutoSEO webhook)
 └── styles/            # global.css (design tokens + utilities)
 public/                # favicon.svg, og.png, robots.txt
 ```

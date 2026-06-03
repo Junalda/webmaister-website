@@ -32,9 +32,9 @@ const fmt = (d: Date) =>
       ) : (
         <div class="posts grid grid-3">
           {posts.map((post, i) => (
-            <a href={`/blog/${post.id}/`} class="post-card card card-hover" data-reveal data-delay={i * 70}>
+            <a href={`/blog/${post.data.slug ?? post.id}/`} class="post-card card card-hover" data-reveal data-delay={i * 70}>
               {post.data.cover && (
-                <div class="post-cover"><img src={post.data.cover} alt="" loading="lazy" /></div>
+                <div class="post-cover"><img src={post.data.cover} alt={post.data.heroAlt ?? ""} loading="lazy" /></div>
               )}
               <div class="post-body">
                 <div class="post-meta">

@@ -7,31 +7,47 @@ import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post) => ({
+    params: { slug: post.data.slug ?? post.id },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const { title, description, pubDate, updatedDate, author, tags, cover } = post.data;
+const { title, description, pubDate, updatedDate, author, tags, cover, heroAlt, faq } = post.data;
+const routeSlug = post.data.slug ?? post.id;
 
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-const canonical = new URL(`/blog/${post.id}/`, site.url).href;
+const canonical = new URL(`/blog/${routeSlug}/`, site.url).href;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: title,
-  description,
-  datePublished: pubDate.toISOString(),
-  dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { "@type": "Organization", name: author, url: site.url },
-  publisher: { "@id": `${site.url}/#organization` },
-  mainEntityOfPage: canonical,
-  url: canonical,
-  ...(cover ? { image: cover } : {}),
-  ...(tags.length ? { keywords: tags.join(", ") } : {}),
-};
+const graph: object[] = [
+  {
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate ?? pubDate).toISOString(),
+    author: { "@type": "Organization", name: author, url: site.url },
+    publisher: { "@id": `${site.url}/#organization` },
+    mainEntityOfPage: canonical,
+    url: canonical,
+    ...(cover ? { image: new URL(cover, site.url).href } : {}),
+    ...(tags.length ? { keywords: tags.join(", ") } : {}),
+  },
+];
+if (faq && faq.length) {
+  graph.push({
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  });
+}
+const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 ---
 <Base title={`${title} · ${site.name} Blog`} description={description}>
   <article class="post">
@@ -48,11 +64,23 @@ const jsonLd = {
         <p class="post-byline">By {author}</p>
       </header>
 
-      {cover && <img class="post-hero-img" src={cover} alt="" data-reveal />}
+      {cover && <img class="post-hero-img" src={cover} alt={heroAlt ?? ""} data-reveal />}
 
       <div class="prose" data-reveal>
         <Content />
       </div>
+
+      {faq && faq.length > 0 && (
+        <section class="post-faq" data-reveal>
+          <h2>Frequently asked questions</h2>
+          {faq.map((f) => (
+            <details class="faq-item">
+              <summary>{f.question}</summary>
+              <div class="faq-answer"><p>{f.answer}</p></div>
+            </details>
+          ))}
+        </section>
+      )}
     </div>
   </article>
 
@@ -95,4 +123,13 @@ const jsonLd = {
   .prose :global(img) { width: 100%; border-radius: var(--r-md); margin: 1.6rem 0; }
   .prose :global(code) { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--bg-alt); padding: 0.15em 0.4em; border-radius: 6px; }
   .prose :global(hr) { border: none; border-top: 1px solid var(--line); margin: 2.4rem 0; }
+
+  /* FAQ */
+  .post-faq { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+  .post-faq h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 1.2rem; }
+  .post-faq .faq-item { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); margin-bottom: 0.7rem; overflow: hidden; }
+  .post-faq summary { padding: 1.05rem 1.3rem; font-weight: 580; cursor: pointer; list-style: none; }
+  .post-faq summary::-webkit-details-marker { display: none; }
+  .post-faq .faq-answer { padding: 0 1.3rem 1.2rem; }
+  .post-faq .faq-answer p { color: var(--text-muted); }
 </style>
