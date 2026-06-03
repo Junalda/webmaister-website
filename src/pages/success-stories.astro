@@ -1,38 +1,38 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
-import SectionHeading from "@/components/SectionHeading.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import { caseStudies } from "@/data/site";
 ---
 <Base
-  title="Success Stories · Measurable Growth & ROI"
-  description="See how Webmaister helps Rotterdam businesses grow: real case studies with measurable ROI across premium websites, SEO growth systems and Brainy AI automation."
+  title="Success Stories · Real Client Transformations"
+  description="Authentic transformation stories from Webmaister: how we build premium digital foundations that help businesses in healthcare recruitment, luxury events and commercial services grow with confidence."
 >
   <section class="page-hero">
-    <div class="container center" style="max-width:780px">
+    <div class="container center" style="max-width:820px">
       <span class="eyebrow" data-reveal>Success stories</span>
-      <h1 data-reveal data-delay="60">Proof that the right<br><span class="gradient-text">foundation pays off.</span></h1>
-      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:600px">
-        Every engagement is measured in business outcomes leads, hours saved and revenue.
-        Here's what that looks like in practice.
+      <h1 data-reveal data-delay="60">Real transformations.<br><span class="gradient-text">Built to last.</span></h1>
+      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:640px">
+        Every business we work with starts in a different place. What they share is the ambition
+        to grow and a digital foundation built to take them there. Here are a few of those journeys.
       </p>
-      <div class="roi-strip" data-reveal data-delay="180">
-        <div><strong>3.4×</strong><span>more qualified leads</span></div>
-        <div><strong>68%</strong><span>tickets auto-resolved</span></div>
-        <div><strong>€4.2k</strong><span>monthly cost saved</span></div>
-        <div><strong>+38%</strong><span>conversion lift</span></div>
+      <div class="story-industries" data-reveal data-delay="180">
+        {caseStudies.map((cs) => <span class="ind-chip">{cs.cardIndustry}</span>)}
       </div>
     </div>
   </section>
 
   {caseStudies.map((cs, i) => (
-    <section class:list={["section", { "section-alt": i % 2 === 1 }]}>
+    <section class:list={["section", { "section-alt": i % 2 === 1 }]} id={cs.slug}>
       <div class="container">
         <article class="case" data-reveal>
           <header class="case-head">
-            <span class="badge"><Icon name="layers" style="width:14px;height:14px" /> {cs.industry}</span>
-            <h2>{cs.company}</h2>
+            <span class="case-no" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            <div class="case-head-text">
+              <span class="badge"><Icon name="layers" style="width:14px;height:14px" /> {cs.industry}</span>
+              <p class="case-company">{cs.company}</p>
+              <h2>{cs.headline}</h2>
+            </div>
           </header>
 
           <div class="case-grid">
@@ -42,28 +42,27 @@ import { caseStudies } from "@/data/site";
                 <p>{cs.challenge}</p>
               </div>
               <div class="cn-block">
-                <span class="cn-label solution">Solution</span>
-                <p>{cs.solution}</p>
+                <span class="cn-label outcome">Outcome</span>
+                <p>{cs.outcome}</p>
               </div>
-              <blockquote class="case-quote">
-                <p>"{cs.quote}"</p>
-                <cite>{cs.author}, {cs.company}</cite>
-              </blockquote>
             </div>
 
-            <aside class="case-results card">
-              <span class="cn-label results">Results</span>
-              <ul>
-                {cs.results.map((r) => (
-                  <li>
-                    <strong class="gradient-text">{r.metric}</strong>
-                    <span>{r.label}</span>
-                  </li>
+            <aside class="case-solution card">
+              <span class="cn-label solution">Solution</span>
+              <p>{cs.solutionIntro}</p>
+              <ul class="case-points">
+                {cs.solutionPoints.map((pt) => (
+                  <li><Icon name="check" /> <span>{pt}</span></li>
                 ))}
               </ul>
-              <p class="results-note"><Icon name="trend" /> Measured ROI, not vanity metrics.</p>
             </aside>
           </div>
+
+          <blockquote class="case-quote">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <p>{cs.quote}</p>
+            <cite>{cs.company} · {cs.industry}</cite>
+          </blockquote>
         </article>
       </div>
     </section>
@@ -72,53 +71,85 @@ import { caseStudies } from "@/data/site";
   <section class="section section-dark">
     <div class="container center" style="max-width:720px">
       <span class="eyebrow" style="color:var(--accent)" data-reveal>Why it works</span>
-      <h2 data-reveal>The same playbook, applied to your business.</h2>
+      <h2 data-reveal>Different industries. One belief.</h2>
       <p class="lead" data-reveal>
-        Each result above came from the same approach: a premium digital foundation, growth
-        systems that bring the right customers in, and Brainy handling the repetitive work 24/7.
-        Different industries, same compounding outcome.
+        Growth starts with a digital foundation built on trust, clarity and craft. We don't begin
+        with design, we begin with where a business wants to go, then build the platform, systems
+        and automation to take it there. That's what we do, for every client.
       </p>
     </div>
   </section>
 
   <FinalCta
-    title="Your success story<br>starts with a conversation."
-    text="Book a free Growth Strategy Call and we'll map the fastest path to measurable results for your business."
+    title="Your transformation<br>starts with a conversation."
+    text="Book a free Growth Strategy Call and we'll map a clear path to the digital foundation your business needs to grow."
   />
 </Base>
 
 <style>
-  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 70px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
-  .roi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.8rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-  .roi-strip div { display: flex; flex-direction: column; }
-  .roi-strip strong { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: -0.03em; color: var(--ink); }
-  .roi-strip span { font-size: 0.84rem; color: var(--text-muted); }
-  @media (max-width: 620px) { .roi-strip { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; } }
+  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(48px, 6vw, 80px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .story-industries { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 2.4rem; }
+  .ind-chip {
+    font-size: 0.85rem; font-weight: 540; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-pill); padding: 0.45rem 1rem;
+  }
 
-  .case-head { margin-bottom: 2rem; }
-  .case-head h2 { margin-top: 0.8rem; }
-  .case-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  /* ---- Case header ---- */
+  .case-head { display: flex; gap: clamp(1rem, 3vw, 2rem); align-items: flex-start; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+  .case-no {
+    font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 700; line-height: 0.9;
+    letter-spacing: -0.04em; color: transparent;
+    background: var(--grad-brand); -webkit-background-clip: text; background-clip: text;
+    opacity: 0.85; flex-shrink: 0;
+  }
+  .case-company { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); margin: 0.9rem 0 0.3rem; letter-spacing: 0.01em; }
+  .case-head-text h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); max-width: 20ch; }
+
+  /* ---- Body grid ---- */
+  .case-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
   .cn-block { margin-bottom: 1.8rem; }
+  .cn-block:last-child { margin-bottom: 0; }
   .cn-label {
     display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-pill); margin-bottom: 0.7rem;
+    text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-pill); margin-bottom: 0.8rem;
   }
   .cn-label.challenge { color: #e5484d; background: #fff0f1; }
   .cn-label.solution { color: var(--brand-strong); background: var(--bg-tint); }
-  .cn-label.results { color: var(--accent); background: rgba(0,212,177,0.1); }
-  .cn-block p { font-size: 1.02rem; line-height: 1.6; }
-  .case-quote { margin-top: 2rem; padding: 1.4rem 1.6rem; background: var(--bg-alt); border-left: 3px solid var(--brand); border-radius: 0 var(--r-md) var(--r-md) 0; }
-  .case-quote p { color: var(--text); font-size: 1.05rem; font-style: italic; }
-  .case-quote cite { display: block; margin-top: 0.7rem; font-style: normal; font-size: 0.86rem; color: var(--text-faint); }
+  .cn-label.outcome { color: var(--brand-strong); background: rgba(6,207,232,0.12); }
+  .cn-block p { font-size: 1.02rem; line-height: 1.65; }
 
-  .case-results { position: sticky; top: calc(var(--nav-h) + 20px); }
-  .case-results ul { display: flex; flex-direction: column; gap: 1.3rem; margin: 1.2rem 0 1.5rem; }
-  .case-results li { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1.3rem; border-bottom: 1px solid var(--line); }
-  .case-results li:last-child { border-bottom: none; padding-bottom: 0; }
-  .case-results strong { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-  .case-results span { font-size: 0.92rem; color: var(--text-muted); }
-  .results-note { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-faint); }
-  .results-note :global(svg) { width: 16px; height: 16px; color: var(--accent); }
+  .case-solution { align-self: stretch; }
+  .case-solution p { color: var(--text-muted); margin-bottom: 1.2rem; }
+  .case-points { display: grid; gap: 0.7rem; }
+  .case-points li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.98rem; color: var(--text); font-weight: 500; }
+  .case-points :global(svg) { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
 
-  @media (max-width: 860px) { .case-grid { grid-template-columns: 1fr; } .case-results { position: static; } }
+  /* ---- Quote ---- */
+  .case-quote {
+    position: relative; margin-top: clamp(2rem, 5vw, 3.2rem);
+    padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.5rem, 4vw, 3rem);
+    background: var(--bg-alt); border: 1px solid var(--line);
+    border-radius: var(--r-lg); text-align: center; overflow: hidden;
+  }
+  .quote-mark {
+    position: absolute; top: -0.4em; left: 0.3em;
+    font-size: 8rem; line-height: 1; font-weight: 700;
+    color: transparent; background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; opacity: 0.12;
+  }
+  .case-quote p {
+    position: relative; z-index: 1;
+    font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.4;
+    font-weight: 500; letter-spacing: -0.01em; color: var(--text);
+    max-width: 26ch; margin-inline: auto;
+  }
+  .case-quote cite { display: block; margin-top: 1.1rem; font-style: normal; font-size: 0.85rem; font-weight: 600; color: var(--text-faint); letter-spacing: 0.04em; }
+
+  @media (max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .case-head { flex-direction: column; gap: 0.4rem; }
+  }
 </style>

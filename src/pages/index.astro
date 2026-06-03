@@ -150,30 +150,39 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
     </div>
   </section>
 
-  <!-- ============ RESULTS / SUCCESS STORIES ============ -->
+  <!-- ============ SUCCESS STORIES ============ -->
   <section class="section section-alt">
     <div class="container">
       <SectionHeading
-        eyebrow="Results & success stories"
-        title="Real businesses. Measurable outcomes."
-        text="We measure success in leads, hours saved and revenue not page views."
+        center
+        eyebrow="Client transformations"
+        title="Businesses don't need more websites.<br>They need better outcomes."
+        text="Every business has different challenges. Our job is to build the digital foundation that helps them move forward."
       />
-      <div class="results grid grid-3">
+      <div class="stories grid grid-3">
         {caseStudies.map((cs, i) => (
-          <article class="result-card card card-hover" data-reveal data-delay={i * 80}>
-            <span class="badge">{cs.industry}</span>
-            <div class="result-metrics">
-              {cs.results.map((r) => (
-                <div class="metric"><strong class="gradient-text">{r.metric}</strong><span>{r.label}</span></div>
-              ))}
-            </div>
-            <blockquote>"{cs.quote}"</blockquote>
-            <cite>{cs.author}, {cs.company}</cite>
-          </article>
+          <a href={`/success-stories/#${cs.slug}`} class="story-card card card-hover" data-reveal data-delay={i * 80}>
+            <span class="story-industry">{cs.cardIndustry}</span>
+            <h3>{cs.company}</h3>
+            <p>{cs.cardText}</p>
+            <span class="story-link">View story <Icon name="arrow" /></span>
+          </a>
         ))}
       </div>
-      <div class="center" style="margin-top:2.5rem" data-reveal>
-        <Button href="/success-stories/" variant="primary" arrow>Read the full case studies</Button>
+    </div>
+  </section>
+
+  <!-- ============ MORE THAN WEBSITES ============ -->
+  <section class="section more-than">
+    <div class="container">
+      <div class="mt-inner" data-reveal>
+        <h2 class="mt-title">More than websites.</h2>
+        <div class="mt-copy">
+          <p>At Webmaister, we don't start with design. We start with understanding where a business wants to go.</p>
+          <p>Every website, automation and growth system we build is designed to support that vision.</p>
+          <p>Whether it's attracting more customers, improving operations or preparing for scale, our goal is always the same:</p>
+        </div>
+        <p class="mt-statement gradient-text">Build the digital foundation that helps businesses grow.</p>
       </div>
     </div>
   </section>
@@ -276,13 +285,37 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
   .fw-arrow { position: absolute; top: 38px; right: -28px; color: var(--line-strong); z-index: 2; }
   .fw-arrow :global(svg) { width: 22px; height: 22px; }
 
-  /* ---- Results ---- */
-  .results { margin-top: 3rem; }
-  .result-card { display: flex; flex-direction: column; gap: 1.1rem; }
-  .result-metrics { display: flex; flex-direction: column; gap: 0.8rem; padding-block: 0.4rem; }
-  .metric { display: flex; align-items: baseline; gap: 0.6rem; }
-  .metric strong { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; min-width: 84px; }
-  .metric span { font-size: 0.88rem; color: var(--text-muted); }
-  .result-card blockquote { font-size: 0.98rem; color: var(--text); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 1.1rem; }
-  .result-card cite { font-size: 0.85rem; color: var(--text-faint); font-style: normal; }
+  /* ---- Success stories ---- */
+  .stories { margin-top: 3rem; }
+  .story-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 240px; }
+  .story-industry {
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--brand-strong);
+  }
+  .story-card h3 { font-size: 1.45rem; margin: 0.7rem 0 0.7rem; }
+  .story-card p { flex: 1; font-size: 1rem; line-height: 1.55; }
+  .story-link {
+    display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.4rem;
+    color: var(--brand); font-weight: 580; font-size: 0.95rem;
+  }
+  .story-link :global(svg) { width: 17px; height: 17px; transition: transform 0.2s ease; }
+  .story-card:hover .story-link :global(svg) { transform: translateX(4px); }
+
+  /* ---- More than websites (statement section) ---- */
+  .more-than { padding-block: clamp(80px, 12vw, 160px); }
+  .mt-inner { max-width: 940px; margin-inline: auto; text-align: center; }
+  .mt-title {
+    font-size: clamp(2.6rem, 7vw, 5rem); letter-spacing: -0.04em; line-height: 1;
+    margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+  }
+  .mt-copy { max-width: 720px; margin-inline: auto; }
+  .mt-copy p {
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem); line-height: 1.5; font-weight: 400;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .mt-copy p + p { margin-top: 1.1rem; }
+  .mt-statement {
+    font-size: clamp(1.8rem, 4.5vw, 3.2rem); font-weight: 680; letter-spacing: -0.03em;
+    line-height: 1.1; margin-top: clamp(1.8rem, 4vw, 2.8rem); max-width: 18ch; margin-inline: auto;
+  }
 </style>

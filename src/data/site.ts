@@ -129,54 +129,77 @@ export const solutionGroups = [
 ];
 
 // ---- Success stories / case studies ----
+// Authentic transformation stories. Intentionally qualitative: we describe the
+// challenge, strategic thinking and brand/digital transformation rather than
+// inventing statistics.
 export const caseStudies = [
   {
-    slug: "rotterdam-dental",
-    company: "Rotterdam dental clinic",
-    industry: "Healthcare",
+    slug: "nursitree",
+    company: "Nursitree",
+    industry: "Healthcare Recruitment",
+    cardIndustry: "Healthcare Recruitment",
+    cardText: "Building trust and credibility through a modern healthcare platform.",
+    headline: "Building a Digital Foundation for the Future of Healthcare Staffing",
     challenge:
-      "A growing clinic was losing new-patient enquiries: their dated website ranked poorly, the phone went unanswered after hours, and front-desk staff were buried in scheduling and FAQs.",
-    solution:
-      "A premium new website with local SEO for Rotterdam, plus Brainy as a 24/7 assistant that answers questions, qualifies enquiries and books appointments straight into the calendar.",
-    results: [
-      { metric: "+142%", label: "new-patient enquiries in 5 months" },
-      { metric: "73%", label: "of bookings now handled automatically" },
-      { metric: "< 30s", label: "average response time, day or night" },
+      "Nursitree had a strong vision for connecting healthcare professionals with opportunities but lacked a premium digital platform that reflected the quality of its mission. The business needed a professional online presence that could build trust with healthcare organizations and candidates while supporting future growth.",
+    solutionIntro:
+      "Webmaister designed and developed a modern digital platform focused on trust, clarity and user experience. The website was built with:",
+    solutionPoints: [
+      "Professional healthcare branding",
+      "Mobile-first design",
+      "Clear service positioning",
+      "Fast loading performance",
+      "SEO-ready architecture",
+      "Scalable infrastructure for future growth",
     ],
-    quote: "It feels like we hired a full-time receptionist who never sleeps and our calendar has never been fuller.",
-    author: "Practice Manager",
+    outcome:
+      "Nursitree now has a digital foundation that reflects its ambition and supports long-term growth. The platform positions the company as a credible healthcare recruitment partner while creating a better experience for healthcare professionals and employers.",
+    quote: "Growth starts with credibility. Before you can scale, people need to trust you.",
   },
   {
-    slug: "b2b-installer",
-    company: "Regional B2B installation firm",
-    industry: "Trades & Installation",
+    slug: "queenly-events",
+    company: "Queenly Events",
+    industry: "Luxury Events & Wedding Planning",
+    cardIndustry: "Luxury Events",
+    cardText: "Transforming a boutique event brand into a premium digital experience.",
+    headline: "Elevating a Boutique Brand into a Premium Experience",
     challenge:
-      "Quote requests trickled in through a slow contact form, follow-up was inconsistent, and the sales team spent evenings writing repetitive quotes instead of closing deals.",
-    solution:
-      "A conversion-focused website with an AI lead-qualification flow, plus Brainy automation that captures project details, drafts quotes and triggers timely follow-ups.",
-    results: [
-      { metric: "3.4×", label: "more qualified quote requests" },
-      { metric: "−61%", label: "time spent on manual quoting" },
-      { metric: "+38%", label: "quote-to-deal conversion" },
+      "Queenly Events delivered beautiful events but their online presence did not fully communicate the premium quality of their work. Potential clients needed to immediately feel confidence, elegance and professionalism.",
+    solutionIntro:
+      "Webmaister reimagined the digital experience around luxury, trust and emotion. The new platform focuses on:",
+    solutionPoints: [
+      "Premium storytelling",
+      "Elegant visual presentation",
+      "Luxury positioning",
+      "Conversion-focused inquiries",
+      "Mobile optimization",
+      "Strong brand consistency",
     ],
-    quote: "We stopped losing leads to slow follow-up. Brainy keeps every opportunity warm until we can close it.",
-    author: "Commercial Director",
+    outcome:
+      "Queenly Events now has a digital presence that reflects the quality and sophistication of the experiences they create. The website supports their goal of attracting higher-value clients and strengthening their market position.",
+    quote: "Luxury is not about saying you're premium. It's about making people feel it.",
   },
   {
-    slug: "ecom-retailer",
-    company: "Niche e-commerce retailer",
-    industry: "E-commerce & Retail",
+    slug: "yiska-cleaning",
+    company: "Yiska Cleaning",
+    industry: "Commercial Cleaning Services",
+    cardIndustry: "Commercial Services",
+    cardText: "Creating a professional online presence designed for long-term growth.",
+    headline: "Creating a Professional Brand Built for Growth",
     challenge:
-      "Support tickets spiked with the same questions, response times slipped, and the small team couldn't scale service without hiring squeezing already-thin margins.",
-    solution:
-      "An AI knowledge base and customer-support assistant trained on their catalogue and policies, deflecting routine tickets and escalating only what truly needs a human.",
-    results: [
-      { metric: "68%", label: "of tickets resolved without a human" },
-      { metric: "+22%", label: "repeat-purchase rate" },
-      { metric: "€4.2k", label: "monthly support cost saved" },
+      "Yiska Cleaning wanted to move beyond being seen as just another cleaning company. The company needed a professional online presence capable of building trust with businesses and supporting future expansion.",
+    solutionIntro:
+      "Webmaister created a modern business platform focused on professionalism, reliability and credibility. The website was designed to:",
+    solutionPoints: [
+      "Increase trust",
+      "Showcase services clearly",
+      "Support lead generation",
+      "Improve local visibility",
+      "Present the company professionally",
     ],
-    quote: "Our customers get answers instantly, and the team finally has room to focus on growth instead of inboxes.",
-    author: "Founder",
+    outcome:
+      "Yiska Cleaning now has a stronger digital presence that aligns with its ambition to become a trusted cleaning partner for businesses. The company is positioned to grow with confidence while presenting a more professional image to prospective clients.",
+    quote: "Professional companies deserve professional digital foundations.",
   },
 ];
 
