@@ -118,11 +118,20 @@ const CORS = {
 };
 
 // Health check / URL verification ping. Always 200 so the endpoint validates.
+// `rev` is a deploy marker: if you don't see it live, the new build isn't live.
 const health = () =>
-  new Response(JSON.stringify({ ok: true, service: "autoseo-webhook", methods: ["POST"] }), {
-    status: 200,
-    headers: { "Content-Type": "application/json", ...CORS },
-  });
+  new Response(
+    JSON.stringify({
+      ok: true,
+      service: "autoseo-webhook",
+      rev: "all-methods-v3",
+      methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
+    }),
+    { status: 200, headers: { "Content-Type": "application/json", ...CORS } }
+  );
+
+const preflight = () =>
+  new Response(null, { status: 204, headers: { Allow: "GET, POST, PUT, PATCH, OPTIONS", ...CORS } });
 
 const handleWebhook = async (request: Request): Promise<Response> => {
   // The token must be configured server-side.
@@ -258,20 +267,17 @@ const handleWebhook = async (request: Request): Promise<Response> => {
   }
 };
 
-// Single entry point for EVERY HTTP method, so the endpoint can never return
-// 405. Deliveries (POST/PUT/PATCH) are processed; verification pings and any
-// other method get a 200 health response; OPTIONS gets a CORS preflight.
+// Explicit handler for every HTTP method AutoSEO might use, plus an ALL
+// fallback, so the endpoint can never return 405 regardless of adapter quirks.
+export const GET: APIRoute = () => health();
+export const HEAD: APIRoute = () => health();
+export const OPTIONS: APIRoute = () => preflight();
+export const POST: APIRoute = ({ request }) => handleWebhook(request);
+export const PUT: APIRoute = ({ request }) => handleWebhook(request);
+export const PATCH: APIRoute = ({ request }) => handleWebhook(request);
 export const ALL: APIRoute = async ({ request }) => {
   const method = request.method.toUpperCase();
-  if (method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: { Allow: "GET, POST, PUT, PATCH, OPTIONS", ...CORS },
-    });
-  }
-  if (method === "POST" || method === "PUT" || method === "PATCH") {
-    return handleWebhook(request);
-  }
-  // GET, HEAD, and anything else: confirm the endpoint is alive.
+  if (method === "OPTIONS") return preflight();
+  if (method === "POST" || method === "PUT" || method === "PATCH") return handleWebhook(request);
   return health();
 };
