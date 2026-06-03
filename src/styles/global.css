@@ -11,13 +11,13 @@
   --ink-soft: #14161f;
   --bg: #ffffff;
   --bg-alt: #f6f7fb;         /* off-white surface */
-  --bg-tint: #f0f2ff;        /* faint brand tint */
+  --bg-tint: #e9f5fe;        /* faint brand tint */
   --surface: #ffffff;
 
-  --brand: #3a5bff;          /* electric indigo (signature) */
-  --brand-strong: #2540e6;
-  --brand-2: #8b5cf6;        /* violet */
-  --accent: #00d4b1;         /* growth teal/mint */
+  --brand: #0a8ef2;          /* logo azure blue (signature) */
+  --brand-strong: #0b78d4;   /* darker for hover/active */
+  --brand-2: #06cfe8;        /* logo cyan */
+  --accent: #06cfe8;         /* growth cyan */
 
   --text: #0a0b12;
   --text-muted: #565d70;
@@ -30,9 +30,9 @@
   --line-dark: rgba(255, 255, 255, 0.1);
 
   /* ---- Signature gradients ---- */
-  --grad-brand: linear-gradient(120deg, #3a5bff 0%, #8b5cf6 55%, #00d4b1 130%);
-  --grad-soft: linear-gradient(135deg, #f0f2ff 0%, #faf7ff 100%);
-  --grad-ink: radial-gradient(120% 120% at 50% 0%, #1a1d2e 0%, #0a0b12 60%);
+  --grad-brand: linear-gradient(140deg, #0a8ef2 0%, #06cfe8 100%);
+  --grad-soft: linear-gradient(135deg, #e9f5fe 0%, #f1fcff 100%);
+  --grad-ink: radial-gradient(120% 120% at 50% 0%, #131d30 0%, #0a0c14 60%);
 
   /* ---- Radii ---- */
   --r-sm: 10px;
@@ -45,7 +45,7 @@
   --shadow-sm: 0 1px 2px rgba(10, 11, 18, 0.05), 0 1px 3px rgba(10, 11, 18, 0.05);
   --shadow-md: 0 8px 24px -8px rgba(10, 11, 18, 0.12);
   --shadow-lg: 0 24px 60px -20px rgba(10, 11, 18, 0.22);
-  --shadow-brand: 0 18px 50px -16px rgba(58, 91, 255, 0.45);
+  --shadow-brand: 0 18px 50px -16px rgba(10, 142, 242, 0.45);
 
   /* ---- Type ---- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
@@ -185,7 +185,7 @@ p { color: var(--text-muted); }
   font-weight: 560;
   background: var(--bg-tint);
   color: var(--brand-strong);
-  border: 1px solid rgba(58,91,255,0.14);
+  border: 1px solid rgba(10,142,242,0.14);
 }
 .section-dark .badge { background: rgba(255,255,255,0.06); color: var(--on-dark); border-color: var(--line-dark); }
 
