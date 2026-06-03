@@ -135,25 +135,25 @@ export const solutionGroups = [
 export const caseStudies = [
   {
     slug: "nursitree",
-    company: "Nursitree",
-    industry: "Healthcare Recruitment",
-    cardIndustry: "Healthcare Recruitment",
-    cardText: "Building trust and credibility through a modern healthcare platform.",
-    headline: "Building a Digital Foundation for the Future of Healthcare Staffing",
+    company: "NursiTree",
+    industry: "Urban Greening & Green Infrastructure",
+    cardIndustry: "Green Infrastructure",
+    cardText: "Giving an innovative urban-greening concept a premium digital home.",
+    headline: "A Premium Digital Home for the Future of Urban Trees",
     challenge:
-      "Nursitree had a strong vision for connecting healthcare professionals with opportunities but lacked a premium digital platform that reflected the quality of its mission. The business needed a professional online presence that could build trust with healthcare organizations and candidates while supporting future growth.",
+      "NursiTree introduces a genuinely new idea: a reusable tree bunker that lets trees thrive in dense urban environments while capturing rainwater and cooling city streets. A concept this innovative has to be understood and trusted in seconds by municipalities, urban planners and landscaping partners. NursiTree needed a digital platform that could explain the innovation clearly and present the company with the credibility its mission deserves.",
     solutionIntro:
-      "Webmaister designed and developed a modern digital platform focused on trust, clarity and user experience. The website was built with:",
+      "Webmaister designed and developed a modern digital platform that makes an innovative, technical product easy to understand and inspires confidence. The website was built with:",
     solutionPoints: [
-      "Professional healthcare branding",
+      "Clear storytelling for an innovative product",
+      "A strong, sustainable brand identity",
       "Mobile-first design",
-      "Clear service positioning",
       "Fast loading performance",
       "SEO-ready architecture",
       "Scalable infrastructure for future growth",
     ],
     outcome:
-      "Nursitree now has a digital foundation that reflects its ambition and supports long-term growth. The platform positions the company as a credible healthcare recruitment partner while creating a better experience for healthcare professionals and employers.",
+      "NursiTree now has a digital foundation that matches the ambition of its mission: greener, more climate-resilient cities. The platform explains the tree bunker concept with clarity, positions NursiTree as a credible partner for municipalities and urban planners, and is ready to grow as the company scales.",
     quote: "Growth starts with credibility. Before you can scale, people need to trust you.",
   },
   {
