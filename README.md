@@ -71,7 +71,7 @@ copy and structured data never drift apart).
 - **Contact form endpoint:** the form in `src/pages/contact.astro` posts to a
   placeholder `action`. Replace it with your Formspree (or other) endpoint id;
   the JS progressively enhances submission and shows an inline success state.
-- **Business details:** phone, address and email live in `site` in
+- **Business details:** phone, email and KvK live in `site` in
   `src/data/site.ts`.
 
 ## Project structure

@@ -40,13 +40,13 @@ const services = [
             <span class="cc-ic"><Icon name="mail" /></span>
             <span><strong>Email us</strong><em>{site.email}</em></span>
           </a>
-          <a class="contact-card" href={`tel:${site.phone.replace(/\s/g, "")}`}>
+          <a class="contact-card" href={`tel:${site.phoneHref}`}>
             <span class="cc-ic"><Icon name="phone" /></span>
             <span><strong>Call us</strong><em>{site.phone}</em></span>
           </a>
           <div class="contact-card static">
-            <span class="cc-ic"><Icon name="pin" /></span>
-            <span><strong>Visit</strong><em>{site.street}, {site.city}</em></span>
+            <span class="cc-ic"><Icon name="shield" /></span>
+            <span><strong>KvK</strong><em>{site.kvk}</em></span>
           </div>
         </div>
 

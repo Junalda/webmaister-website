@@ -32,8 +32,8 @@ const seo = [
         <h4>Contact</h4>
         <ul class="contact-list">
           <li><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
-          <li><Icon name="phone" /> <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a></li>
-          <li><Icon name="pin" /> <span>{site.street}, {site.city}</span></li>
+          <li><Icon name="phone" /> <a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><Icon name="pin" /> <span>{site.city}, Netherlands</span></li>
         </ul>
       </div>
 
@@ -46,7 +46,7 @@ const seo = [
     </div>
 
     <div class="footer-bottom">
-      <span>© {year} {site.legalName}. All rights reserved.</span>
+      <span>© {year} {site.legalName}. All rights reserved. · KvK {site.kvk}</span>
       <span class="footer-locale">Proudly building from {site.city}, {site.country}</span>
     </div>
   </div>
