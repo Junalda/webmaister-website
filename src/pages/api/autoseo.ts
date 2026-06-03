@@ -118,17 +118,53 @@ const CORS = {
 };
 
 // Health check / URL verification ping. Always 200 so the endpoint validates.
-// `rev` is a deploy marker: if you don't see it live, the new build isn't live.
+// `rev` is a deploy marker; `config` reports (booleans only, no secrets)
+// whether the required env vars are present in the running deployment.
+const baseInfo = () => ({
+  ok: true,
+  service: "autoseo-webhook",
+  rev: "diag-v4",
+  methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
+  config: {
+    autoseoToken: Boolean(WEBHOOK_TOKEN),
+    githubToken: Boolean(env("GITHUB_TOKEN")),
+    repo: env("GITHUB_REPO") ?? "junalda/webmaister-website",
+    branch: env("GITHUB_BRANCH") ?? "main",
+  },
+});
+
 const health = () =>
-  new Response(
-    JSON.stringify({
-      ok: true,
-      service: "autoseo-webhook",
-      rev: "all-methods-v3",
-      methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
-    }),
-    { status: 200, headers: { "Content-Type": "application/json", ...CORS } }
-  );
+  new Response(JSON.stringify(baseInfo()), {
+    status: 200,
+    headers: { "Content-Type": "application/json", ...CORS },
+  });
+
+// Token-gated check that confirms whether GITHUB_TOKEN can actually reach the
+// repo (pinpoints the cause of a 500 at the commit step).
+const checkGithub = async () => {
+  const token = env("GITHUB_TOKEN");
+  if (!token) return { ok: false, reason: "GITHUB_TOKEN not set in this deployment" };
+  const repo = env("GITHUB_REPO") ?? "junalda/webmaister-website";
+  const branch = env("GITHUB_BRANCH") ?? "main";
+  try {
+    const res = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/${branch}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+        "User-Agent": "webmaister-autoseo-webhook",
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+    const text = await res.text();
+    return {
+      ok: res.ok,
+      status: res.status,
+      message: res.ok ? "token can read the repo ref" : text.slice(0, 300),
+    };
+  } catch (e) {
+    return { ok: false, reason: String(e) };
+  }
+};
 
 const preflight = () =>
   new Response(null, { status: 204, headers: { Allow: "GET, POST, PUT, PATCH, OPTIONS", ...CORS } });
@@ -269,7 +305,22 @@ const handleWebhook = async (request: Request): Promise<Response> => {
 
 // Explicit handler for every HTTP method AutoSEO might use, plus an ALL
 // fallback, so the endpoint can never return 405 regardless of adapter quirks.
-export const GET: APIRoute = () => health();
+export const GET: APIRoute = async ({ request }) => {
+  const url = new URL(request.url);
+  const info: Record<string, unknown> = baseInfo();
+  if (url.searchParams.get("check") === "github") {
+    const provided =
+      (request.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "") ||
+      url.searchParams.get("token") ||
+      "";
+    if (!WEBHOOK_TOKEN || provided !== WEBHOOK_TOKEN) {
+      info.github = { ok: false, reason: "unauthorized — append &token=YOUR_AUTOSEO_TOKEN" };
+    } else {
+      info.github = await checkGithub();
+    }
+  }
+  return json(info);
+};
 export const HEAD: APIRoute = () => health();
 export const OPTIONS: APIRoute = () => preflight();
 export const POST: APIRoute = ({ request }) => handleWebhook(request);
