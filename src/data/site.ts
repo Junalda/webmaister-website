@@ -8,7 +8,7 @@ export const site = {
   name: "Webmaister",
   legalName: "Webmaister",
   tagline: "Growth & AI Infrastructure Partner",
-  url: "https://webmaister.io",
+  url: "https://www.webmaister.io",
   email: "hello@webmaister.io",
   phone: "+31(0) 103072175",
   phoneHref: "+31103072175",

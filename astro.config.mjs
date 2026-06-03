@@ -4,7 +4,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build
 export default defineConfig({
-  site: 'https://webmaister.io',
+  site: 'https://www.webmaister.io',
   // Static by default; routes that opt out with `export const prerender = false`
   // (the contact API) are rendered on-demand as a serverless function.
   output: 'static',
