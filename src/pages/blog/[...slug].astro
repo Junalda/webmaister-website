@@ -83,6 +83,10 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
           ))}
         </section>
       )}
+
+      <div class="post-share-bottom">
+        <ShareButtons url={canonical} title={title} label="Vond je dit waardevol? Deel het" />
+      </div>
     </div>
   </article>
 
@@ -106,6 +110,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
   .post-head .lead { margin-top: 1.1rem; }
   .post-byline { margin-top: 1.1rem; font-size: 0.9rem; color: var(--text-faint); }
   .post-head :global(.share) { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+  .post-share-bottom { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.6rem; border-top: 1px solid var(--line); }
 
   .post-hero-img { width: 100%; border-radius: var(--r-lg); margin: clamp(2rem, 4vw, 3rem) 0 0; border: 1px solid var(--line); }
 
