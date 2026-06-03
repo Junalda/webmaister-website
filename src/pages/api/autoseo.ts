@@ -110,6 +110,25 @@ async function commitFiles(files: CommitFile[], message: string) {
   );
 }
 
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Authorization, Content-Type, X-AutoSEO-Signature, X-AutoSEO-Event, X-AutoSEO-Delivery",
+};
+
+// Health check / URL verification ping (many webhook providers GET the URL
+// before they let you save it). Always 200 so the endpoint validates.
+export const GET: APIRoute = () =>
+  new Response(JSON.stringify({ ok: true, service: "autoseo-webhook", methods: ["POST"] }), {
+    status: 200,
+    headers: { "Content-Type": "application/json", ...CORS },
+  });
+
+// CORS preflight.
+export const OPTIONS: APIRoute = () =>
+  new Response(null, { status: 204, headers: { Allow: "POST, GET, OPTIONS", ...CORS } });
+
 export const POST: APIRoute = async ({ request }) => {
   // The token must be configured server-side.
   if (!WEBHOOK_TOKEN) {
