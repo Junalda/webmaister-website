@@ -14,9 +14,10 @@ export const prerender = false;
 
 const env = (k: string): string | undefined => import.meta.env[k] ?? process.env[k];
 
-// The webhook token also doubles as the HMAC secret. Override via env in
-// production (recommended) and rotate if it leaks.
-const WEBHOOK_TOKEN = env("AUTOSEO_WEBHOOK_TOKEN") ?? "aseo_wh_06e2e1e031ab6724fb0b06f706745b51";
+// The webhook token also doubles as the HMAC secret. It is read only from the
+// environment (no secret committed to source). Set AUTOSEO_WEBHOOK_TOKEN in
+// Vercel to the value configured in AutoSEO.
+const WEBHOOK_TOKEN = env("AUTOSEO_WEBHOOK_TOKEN");
 
 const json = (data: unknown, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json" } });
@@ -110,6 +111,12 @@ async function commitFiles(files: CommitFile[], message: string) {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  // The token must be configured server-side.
+  if (!WEBHOOK_TOKEN) {
+    console.error("AUTOSEO_WEBHOOK_TOKEN is not set");
+    return json({ error: "Webhook not configured" }, 500);
+  }
+
   // Read the raw body ONCE: needed verbatim for the HMAC check.
   const raw = await request.text();
 
