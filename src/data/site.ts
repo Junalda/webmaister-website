@@ -1,5 +1,5 @@
 // =========================================================================
-// Webmaister — central content & metadata source.
+// Webmaister central content & metadata source.
 // One place for NAP, services, case studies and FAQ so that page copy and
 // structured data (JSON-LD) never drift apart.
 // =========================================================================
@@ -40,7 +40,7 @@ export const pillars = [
     name: "Digital Presence",
     short: "Premium websites that build trust and generate leads.",
     icon: "globe",
-    outcome: "A site customers trust in seconds — and one that turns visitors into qualified leads.",
+    outcome: "A site customers trust in seconds and one that turns visitors into qualified leads.",
   },
   {
     id: "growth-systems",
@@ -60,24 +60,24 @@ export const pillars = [
 
 // ---- The modern business problem ----
 export const problems = [
-  { title: "Your website doesn't generate leads", text: "Beautiful, maybe — but it isn't turning visitors into conversations or customers." },
+  { title: "Your website doesn't generate leads", text: "Beautiful, maybe but it isn't turning visitors into conversations or customers." },
   { title: "Processes are still manual", text: "Quotes, follow-ups and admin eat the hours that should go into growth." },
   { title: "Customers wait too long", text: "Slow replies cost trust and revenue while competitors answer instantly." },
   { title: "Teams waste time on repetitive work", text: "Skilled people stuck doing copy-paste tasks a system should handle." },
-  { title: "Growth depends entirely on people", text: "Every new customer means more headcount — so scaling stays expensive and fragile." },
+  { title: "Growth depends entirely on people", text: "Every new customer means more headcount so scaling stays expensive and fragile." },
 ];
 
 // ---- Growth framework ----
 export const framework = [
   { step: "01", name: "Discover", text: "We map your customers, funnel and bottlenecks to find the highest-leverage growth opportunities." },
   { step: "02", name: "Build", text: "We design a premium, fast digital foundation engineered to convert and built to last." },
-  { step: "03", name: "Automate", text: "Brainy takes over repetitive work — lead capture, support, follow-ups and admin — 24/7." },
+  { step: "03", name: "Automate", text: "Brainy takes over repetitive work lead capture, support, follow-ups and admin 24/7." },
   { step: "04", name: "Scale", text: "We optimize with real data so results compound and growth no longer depends on headcount." },
 ];
 
 // ---- What Brainy does ----
 export const brainyCapabilities = [
-  { title: "Capture & qualify leads", text: "Greets every visitor, asks the right questions and routes hot leads to your team — automatically." },
+  { title: "Capture & qualify leads", text: "Greets every visitor, asks the right questions and routes hot leads to your team automatically." },
   { title: "Answer questions 24/7", text: "Instant, accurate answers from your own knowledge base, day or night, in any language." },
   { title: "Book appointments & follow-ups", text: "Schedules calls, sends reminders and never lets a lead go cold." },
   { title: "Generate content", text: "Drafts on-brand copy, emails and product descriptions in minutes, not days." },
@@ -95,7 +95,7 @@ export const solutionGroups = [
     intro: "A premium website is your hardest-working salesperson. We build digital foundations that load instantly, look world-class and turn visitors into customers.",
     items: [
       { name: "Premium Website Design", outcome: "Win trust in seconds and convert more visitors with a fast, elegant site engineered around your customer's journey." },
-      { name: "Website Redesign", outcome: "Modernize an outdated site into a credibility and conversion engine — without losing your existing SEO." },
+      { name: "Website Redesign", outcome: "Modernize an outdated site into a credibility and conversion engine without losing your existing SEO." },
       { name: "Website Maintenance", outcome: "Stay fast, secure and up to date with proactive care, so your site never costs you a customer." },
     ],
   },
@@ -104,10 +104,10 @@ export const solutionGroups = [
     name: "Growth Systems",
     tag: "Predictable customer acquisition.",
     icon: "trend",
-    intro: "Traffic is only useful when it becomes revenue. We build acquisition and conversion systems that bring the right customers to you — and turn them into buyers.",
+    intro: "Traffic is only useful when it becomes revenue. We build acquisition and conversion systems that bring the right customers to you and turn them into buyers.",
     items: [
       { name: "SEO", outcome: "Get found by customers actively searching in Rotterdam and beyond, and own the rankings that drive demand." },
-      { name: "Conversion Optimization", outcome: "Turn more of your existing traffic into leads and sales — often the fastest ROI in your entire funnel." },
+      { name: "Conversion Optimization", outcome: "Turn more of your existing traffic into leads and sales often the fastest ROI in your entire funnel." },
       { name: "Lead Generation Systems", outcome: "A reliable pipeline of qualified leads, captured and nurtured automatically instead of by chance." },
     ],
   },
@@ -116,12 +116,12 @@ export const solutionGroups = [
     name: "Brainy AI Solutions",
     tag: "Your digital employee, working 24/7.",
     icon: "spark",
-    intro: "Brainy is the intelligent layer that runs the work you'd otherwise hire for — sales, support, admin and operations — around the clock, at a fraction of the cost.",
+    intro: "Brainy is the intelligent layer that runs the work you'd otherwise hire for sales, support, admin and operations around the clock, at a fraction of the cost.",
     items: [
-      { name: "AI Assistants", outcome: "A digital team member that handles routine work across sales, service and operations — 24/7." },
+      { name: "AI Assistants", outcome: "A digital team member that handles routine work across sales, service and operations 24/7." },
       { name: "AI Customer Support", outcome: "Instant, accurate answers that delight customers and cut support load and response times." },
       { name: "AI Lead Qualification", outcome: "Every inbound lead engaged, qualified and routed in seconds so your team only talks to buyers." },
-      { name: "AI Knowledge Bases", outcome: "Your company's expertise, searchable in plain language — for customers and staff alike." },
+      { name: "AI Knowledge Bases", outcome: "Your company's expertise, searchable in plain language for customers and staff alike." },
       { name: "AI Content Generation", outcome: "On-brand content at scale: pages, emails, descriptions and posts produced in minutes." },
       { name: "Business Process Automation", outcome: "Connect your tools and let the repetitive work run itself, eliminating manual handoffs and errors." },
     ],
@@ -143,7 +143,7 @@ export const caseStudies = [
       { metric: "73%", label: "of bookings now handled automatically" },
       { metric: "< 30s", label: "average response time, day or night" },
     ],
-    quote: "It feels like we hired a full-time receptionist who never sleeps — and our calendar has never been fuller.",
+    quote: "It feels like we hired a full-time receptionist who never sleeps and our calendar has never been fuller.",
     author: "Practice Manager",
   },
   {
@@ -167,7 +167,7 @@ export const caseStudies = [
     company: "Niche e-commerce retailer",
     industry: "E-commerce & Retail",
     challenge:
-      "Support tickets spiked with the same questions, response times slipped, and the small team couldn't scale service without hiring — squeezing already-thin margins.",
+      "Support tickets spiked with the same questions, response times slipped, and the small team couldn't scale service without hiring squeezing already-thin margins.",
     solution:
       "An AI knowledge base and customer-support assistant trained on their catalogue and policies, deflecting routine tickets and escalating only what truly needs a human.",
     results: [
@@ -184,11 +184,11 @@ export const caseStudies = [
 export const faqs = [
   {
     q: "Is Webmaister a web design agency?",
-    a: "No. Webmaister is a Growth & AI Infrastructure Partner. We build the complete digital foundation that helps businesses grow — premium websites, growth and SEO systems, and Brainy AI automation — not just websites.",
+    a: "No. Webmaister is a Growth & AI Infrastructure Partner. We build the complete digital foundation that helps businesses grow premium websites, growth and SEO systems, and Brainy AI automation not just websites.",
   },
   {
     q: "What is Brainy?",
-    a: "Brainy is the intelligent AI layer behind Webmaister. It works like a digital employee: capturing and qualifying leads, answering customer questions 24/7, booking appointments, generating content, analyzing data and automating administrative work — so businesses scale without hiring extra staff.",
+    a: "Brainy is the intelligent AI layer behind Webmaister. It works like a digital employee: capturing and qualifying leads, answering customer questions 24/7, booking appointments, generating content, analyzing data and automating administrative work so businesses scale without hiring extra staff.",
   },
   {
     q: "Do you work with businesses in Rotterdam?",
