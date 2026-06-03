@@ -112,24 +112,19 @@ async function commitFiles(files: CommitFile[], message: string) {
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, OPTIONS",
   "Access-Control-Allow-Headers":
     "Authorization, Content-Type, X-AutoSEO-Signature, X-AutoSEO-Event, X-AutoSEO-Delivery",
 };
 
-// Health check / URL verification ping (many webhook providers GET the URL
-// before they let you save it). Always 200 so the endpoint validates.
-export const GET: APIRoute = () =>
+// Health check / URL verification ping. Always 200 so the endpoint validates.
+const health = () =>
   new Response(JSON.stringify({ ok: true, service: "autoseo-webhook", methods: ["POST"] }), {
     status: 200,
     headers: { "Content-Type": "application/json", ...CORS },
   });
 
-// CORS preflight.
-export const OPTIONS: APIRoute = () =>
-  new Response(null, { status: 204, headers: { Allow: "POST, GET, OPTIONS", ...CORS } });
-
-export const POST: APIRoute = async ({ request }) => {
+const handleWebhook = async (request: Request): Promise<Response> => {
   // The token must be configured server-side.
   if (!WEBHOOK_TOKEN) {
     console.error("AUTOSEO_WEBHOOK_TOKEN is not set");
@@ -261,4 +256,22 @@ export const POST: APIRoute = async ({ request }) => {
     console.error("AutoSEO webhook failed", err);
     return json({ error: "Internal error while publishing the article" }, 500);
   }
+};
+
+// Single entry point for EVERY HTTP method, so the endpoint can never return
+// 405. Deliveries (POST/PUT/PATCH) are processed; verification pings and any
+// other method get a 200 health response; OPTIONS gets a CORS preflight.
+export const ALL: APIRoute = async ({ request }) => {
+  const method = request.method.toUpperCase();
+  if (method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: { Allow: "GET, POST, PUT, PATCH, OPTIONS", ...CORS },
+    });
+  }
+  if (method === "POST" || method === "PUT" || method === "PATCH") {
+    return handleWebhook(request);
+  }
+  // GET, HEAD, and anything else: confirm the endpoint is alive.
+  return health();
 };
