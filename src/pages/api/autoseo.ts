@@ -33,6 +33,12 @@ const slugify = (s: string) =>
 
 const yamlStr = (s: unknown) => `"${String(s ?? "").replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 
+// Safe ISO date: never throws on a bad/empty value (falls back to now).
+const toIso = (v: unknown): string => {
+  const d = new Date(String(v ?? ""));
+  return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
+};
+
 const extFor = (url: string, contentType: string) => {
   const m = url.split(/[?#]/)[0].match(/\.([a-zA-Z0-9]{2,5})$/);
   if (m) return m[1].toLowerCase();
@@ -123,7 +129,7 @@ const CORS = {
 const baseInfo = () => ({
   ok: true,
   service: "autoseo-webhook",
-  rev: "diag-v4",
+  rev: "diag-v5",
   methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
   config: {
     autoseoToken: Boolean(WEBHOOK_TOKEN),
@@ -146,21 +152,39 @@ const checkGithub = async () => {
   if (!token) return { ok: false, reason: "GITHUB_TOKEN not set in this deployment" };
   const repo = env("GITHUB_REPO") ?? "junalda/webmaister-website";
   const branch = env("GITHUB_BRANCH") ?? "main";
+  const ghHeaders = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json",
+    "User-Agent": "webmaister-autoseo-webhook",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
   try {
-    const res = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/${branch}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: "application/vnd.github+json",
-        "User-Agent": "webmaister-autoseo-webhook",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
+    // 1) Read test.
+    const readRes = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/${branch}`, {
+      headers: ghHeaders,
     });
-    const text = await res.text();
-    return {
-      ok: res.ok,
-      status: res.status,
-      message: res.ok ? "token can read the repo ref" : text.slice(0, 300),
+    const readText = await readRes.text();
+    const read = {
+      ok: readRes.ok,
+      status: readRes.status,
+      message: readRes.ok ? "can read repo ref" : readText.slice(0, 200),
     };
+
+    // 2) Write test: create a harmless dangling blob (no commit, no file).
+    //    Requires Contents: write. A dangling blob is garbage-collected.
+    const writeRes = await fetch(`https://api.github.com/repos/${repo}/git/blobs`, {
+      method: "POST",
+      headers: { ...ghHeaders, "Content-Type": "application/json" },
+      body: JSON.stringify({ content: "autoseo write probe", encoding: "utf-8" }),
+    });
+    const writeText = await writeRes.text();
+    const write = {
+      ok: writeRes.ok,
+      status: writeRes.status,
+      message: writeRes.ok ? "can write (Contents: write OK)" : writeText.slice(0, 200),
+    };
+
+    return { ok: read.ok && write.ok, read, write };
   } catch (e) {
     return { ok: false, reason: String(e) };
   }
@@ -228,8 +252,8 @@ const handleWebhook = async (request: Request): Promise<Response> => {
           .map((f: any) => ({ question: String(f.question ?? ""), answer: String(f.answer ?? "") }))
       : [];
     const lang = (body.languageCode ?? "en").toString();
-    const pubDate = (body.publishedAt ?? body.createdAt ?? new Date().toISOString()).toString();
-    const updatedDate = (body.updatedAt ?? pubDate).toString();
+    const pubDate = toIso(body.publishedAt ?? body.createdAt);
+    const updatedDate = toIso(body.updatedAt ?? body.publishedAt ?? body.createdAt);
 
     const files: CommitFile[] = [];
 
@@ -266,8 +290,8 @@ const handleWebhook = async (request: Request): Promise<Response> => {
       `title: ${yamlStr(title)}`,
       `description: ${yamlStr(description)}`,
       `slug: ${yamlStr(slug)}`,
-      `pubDate: ${new Date(pubDate).toISOString()}`,
-      `updatedDate: ${new Date(updatedDate).toISOString()}`,
+      `pubDate: ${pubDate}`,
+      `updatedDate: ${updatedDate}`,
       `autoseoId: ${Number(id)}`,
       `lang: ${yamlStr(lang)}`,
       `tags: [${keywords.map(yamlStr).join(", ")}]`,
