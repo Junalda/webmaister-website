@@ -42,11 +42,11 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
         We don't just build websites we build the digital foundation that helps businesses grow.
       </p>
 
-      <div class="hero-stats" data-reveal data-delay="300">
-        <div><strong>3.4×</strong><span>more qualified leads</span></div>
-        <div><strong>24/7</strong><span>AI working for you</span></div>
-        <div><strong>&lt;30s</strong><span>customer response</span></div>
-        <div><strong>−61%</strong><span>time on manual work</span></div>
+      <div class="hero-trust" data-reveal data-delay="300">
+        <div class="ht"><Icon name="check" /><div><strong>Premium websites</strong><span>that build trust and convert</span></div></div>
+        <div class="ht"><Icon name="check" /><div><strong>Growth systems</strong><span>that attract the right customers</span></div></div>
+        <div class="ht"><Icon name="check" /><div><strong>Brainy AI automation</strong><span>a digital employee, working 24/7</span></div></div>
+        <div class="ht"><Icon name="check" /><div><strong>Built to scale</strong><span>a foundation made to grow</span></div></div>
       </div>
     </div>
   </section>
@@ -228,15 +228,17 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
   .hero-sub { max-width: 620px; margin: 1.4rem auto 0; }
   .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
   .hero-note { font-size: 0.92rem; color: var(--text-faint); margin-top: 1.4rem; }
-  .hero-stats {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+  .hero-trust {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;
     margin-top: clamp(2.5rem, 5vw, 4rem);
     padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line);
+    text-align: left;
   }
-  .hero-stats div { display: flex; flex-direction: column; gap: 2px; }
-  .hero-stats strong { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 680; letter-spacing: -0.03em; color: var(--ink); }
-  .hero-stats span { font-size: 0.85rem; color: var(--text-muted); }
-  @media (max-width: 620px) { .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; } }
+  .hero-trust .ht { display: flex; align-items: flex-start; gap: 0.6rem; }
+  .hero-trust .ht :global(svg) { width: 19px; height: 19px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+  .hero-trust strong { display: block; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .hero-trust span { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+  @media (max-width: 620px) { .hero-trust { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; } }
 
   /* ---- Problem ---- */
   .problem-grid { margin-top: 3rem; }
