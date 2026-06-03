@@ -33,7 +33,6 @@ import { solutionGroups, framework } from "@/data/site";
     <section class:list={["section", { "section-alt": gi % 2 === 1 }]} id={group.id}>
       <div class="container">
         <div class="group-head" data-reveal>
-          <div class="icon-chip group-chip"><Icon name={group.icon} /></div>
           <div>
             <span class="eyebrow">{group.tag}</span>
             <h2>{group.name}</h2>
@@ -108,9 +107,7 @@ import { solutionGroups, framework } from "@/data/site";
   .sol-pill:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
   .sol-pill :global(svg) { width: 17px; height: 17px; color: var(--brand); }
 
-  .group-head { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1rem; }
-  .group-chip { width: 58px; height: 58px; border-radius: 16px; }
-  .group-chip :global(svg) { width: 28px; height: 28px; }
+  .group-head { margin-bottom: 1rem; }
   .group-intro { max-width: 70ch; margin-bottom: 2.5rem; }
   .sol-grid { margin-top: 0; }
   .sol-card { display: flex; flex-direction: column; }

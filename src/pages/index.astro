@@ -12,7 +12,6 @@ import {
 } from "@/data/site";
 
 const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
-const pillarIcons: Record<string, string> = { "digital-presence": "globe", "growth-systems": "trend", brainy: "spark" };
 ---
 <Base
   title="Webmaister · Premium Websites, Growth Systems & AI Automation in Rotterdam"
@@ -88,10 +87,8 @@ const pillarIcons: Record<string, string> = { "digital-presence": "globe", "grow
         text="Your website, your growth systems and your AI automation work as one. Each part feeds the next so the whole compounds instead of competing for attention."
       />
       <div class="ecosystem" data-reveal>
-        <div class="eco-line" aria-hidden="true"></div>
         {pillars.map((p, i) => (
           <article class="eco-card card card-hover" data-reveal data-delay={i * 80}>
-            <div class="icon-chip"><Icon name={pillarIcons[p.id]} /></div>
             <h3>{p.name}</h3>
             <p>{p.short}</p>
             <p class="eco-outcome"><Icon name="check" /> {p.outcome}</p>
@@ -247,16 +244,15 @@ const pillarIcons: Record<string, string> = { "digital-presence": "globe", "grow
 
   /* ---- Ecosystem ---- */
   .ecosystem { position: relative; margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem,2.5vw,1.6rem); }
-  .eco-line { position: absolute; top: 46px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--brand), var(--brand-2), var(--accent)); opacity: 0.25; z-index: 0; }
   .eco-card { position: relative; z-index: 1; }
-  .eco-card h3 { margin: 1.1rem 0 0.5rem; }
+  .eco-card h3 { margin: 0 0 0.5rem; }
   .eco-outcome { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--text); font-size: 0.92rem; }
   .eco-outcome :global(svg) { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
   .eco-foot { margin-top: 2.5rem; color: var(--text-muted); }
   .inline-link { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--brand); font-weight: 560; margin-left: 0.4rem; }
   .inline-link :global(svg) { width: 16px; height: 16px; transition: transform 0.2s ease; }
   .inline-link:hover :global(svg) { transform: translateX(3px); }
-  @media (max-width: 900px) { .ecosystem { grid-template-columns: 1fr; } .eco-line { display: none; } }
+  @media (max-width: 900px) { .ecosystem { grid-template-columns: 1fr; } }
 
   /* ---- Brainy ---- */
   .brainy-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
