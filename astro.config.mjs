@@ -8,7 +8,11 @@ export default defineConfig({
   // Static by default; routes that opt out with `export const prerender = false`
   // (the contact API) are rendered on-demand as a serverless function.
   output: 'static',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true
+    }
+  }),
   integrations: [sitemap()],
   compressHTML: true,
 });
