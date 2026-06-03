@@ -1,17 +1,14 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build
 export default defineConfig({
   site: 'https://webmaister.io',
-  // Pages are prerendered (static) by default; only routes that opt out with
-  // `export const prerender = false` (e.g. the contact API) run on-demand.
-  output: 'hybrid',
+  // Static by default; routes that opt out with `export const prerender = false`
+  // (the contact API) are rendered on-demand as a serverless function.
+  output: 'static',
   adapter: vercel(),
   integrations: [sitemap()],
   compressHTML: true,
-  build: {
-    inlineStylesheets: 'auto',
-  },
 });
