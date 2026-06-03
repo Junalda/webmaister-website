@@ -1,0 +1,39 @@
+---
+// Wordmark logo. A geometric "W" mark in the brand gradient + wordmark.
+// (Placeholder identity — swap the mark/colors to the official logo assets.)
+interface Props {
+  class?: string;
+  mono?: boolean; // single-color (for dark footer etc.)
+}
+const { class: className, mono = false } = Astro.props;
+const uid = Math.random().toString(36).slice(2, 8);
+---
+<span class={`logo ${className ?? ""}`} aria-label="Webmaister">
+  <svg class="logo-mark" viewBox="0 0 32 32" role="img" aria-hidden="true">
+    {!mono && (
+      <defs>
+        <linearGradient id={`g-${uid}`} x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#3a5bff" />
+          <stop offset="0.55" stop-color="#8b5cf6" />
+          <stop offset="1" stop-color="#00d4b1" />
+        </linearGradient>
+      </defs>
+    )}
+    <rect x="0" y="0" width="32" height="32" rx="8" fill={mono ? "currentColor" : `url(#g-${uid})`} />
+    <path
+      d="M7 10.5l2.7 11 3.3-8 3 8 2.8-11"
+      fill="none"
+      stroke={mono ? "var(--ink)" : "#fff"}
+      stroke-width="2.1"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+  <span class="logo-word">Webmaister</span>
+</span>
+
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 650; letter-spacing: -0.02em; }
+  .logo-mark { width: 30px; height: 30px; flex-shrink: 0; }
+  .logo-word { font-size: 1.18rem; }
+</style>

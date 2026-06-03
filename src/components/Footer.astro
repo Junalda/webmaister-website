@@ -1,0 +1,100 @@
+---
+import { site, nav, ctaPrimary } from "@/data/site";
+import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
+const year = new Date().getFullYear();
+const seo = [
+  "Website laten maken Rotterdam",
+  "Webdesign Rotterdam",
+  "SEO Rotterdam",
+  "AI Automatisering Rotterdam",
+  "AI Agent Rotterdam",
+  "Website Onderhoud Rotterdam",
+];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <Logo mono />
+        <p>{site.tagline}. We build the digital foundation that helps ambitious businesses grow — premium websites, growth systems and Brainy AI automation.</p>
+        <a href={ctaPrimary.href} class="btn btn-brand">{ctaPrimary.label}</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><Icon name="phone" /> <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a></li>
+          <li><Icon name="pin" /> <span>{site.street}, {site.city}</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-seo">
+        <h4>Rotterdam expertise</h4>
+        <ul>
+          {seo.map((s) => <li><span>{s}</span></li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.legalName}. All rights reserved.</span>
+      <span class="footer-locale">Proudly building from {site.city}, {site.country}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--grad-ink);
+    color: var(--on-dark);
+    padding-block: clamp(56px, 7vw, 88px) 32px;
+    margin-top: auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1.4fr;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+  .footer-brand p { color: var(--on-dark-muted); margin: 1.1rem 0 1.6rem; max-width: 38ch; font-size: 0.95rem; }
+  .footer-col h4 {
+    color: #fff;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+    font-weight: 600;
+  }
+  .footer-col ul { display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col a, .footer-col span { color: var(--on-dark-muted); font-size: 0.95rem; transition: color 0.2s ease; }
+  .footer-col a:hover { color: #fff; }
+  .contact-list li { display: flex; align-items: center; gap: 0.55rem; }
+  .contact-list :global(svg) { width: 17px; height: 17px; color: var(--brand-2); flex-shrink: 0; }
+  .footer-seo li span { font-size: 0.88rem; }
+  .footer-bottom {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line-dark);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--on-dark-muted);
+  }
+  @media (max-width: 860px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

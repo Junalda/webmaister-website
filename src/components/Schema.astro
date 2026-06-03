@@ -1,0 +1,75 @@
+---
+// JSON-LD structured data so AI search engines (ChatGPT, Gemini, Claude,
+// Perplexity) and traditional crawlers can reliably understand and recommend
+// Webmaister. Supports LocalBusiness, Service and FAQPage graphs.
+import { site, solutionGroups, faqs } from "@/data/site";
+
+interface Props {
+  faq?: boolean;        // include FAQPage
+  services?: boolean;   // include Service entities
+}
+const { faq = false, services = false } = Astro.props;
+
+const localBusiness = {
+  "@type": "ProfessionalService",
+  "@id": `${site.url}/#organization`,
+  name: site.name,
+  description:
+    "Webmaister is a Growth & AI Infrastructure Partner in Rotterdam. We help businesses grow with premium websites, SEO and growth systems, and Brainy AI automation that works 24/7.",
+  url: site.url,
+  email: site.email,
+  telephone: site.phone,
+  foundingDate: site.founded,
+  image: `${site.url}/og.png`,
+  logo: `${site.url}/logo.svg`,
+  priceRange: "€€€",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.street,
+    addressLocality: site.city,
+    addressRegion: site.region,
+    postalCode: site.postalCode,
+    addressCountry: site.country,
+  },
+  areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+  knowsAbout: [
+    "Website laten maken Rotterdam",
+    "Webdesign Rotterdam",
+    "SEO Rotterdam",
+    "AI Automatisering Rotterdam",
+    "AI Agent Rotterdam",
+    "Website Onderhoud Rotterdam",
+  ],
+  sameAs: [site.social.linkedin],
+};
+
+const serviceList = solutionGroups.flatMap((group) =>
+  group.items.map((item) => ({
+    "@type": "Service",
+    name: item.name,
+    serviceType: group.name,
+    description: item.outcome,
+    provider: { "@id": `${site.url}/#organization` },
+    areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+  }))
+);
+
+const faqPage = {
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const graph: object[] = [
+  { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, publisher: { "@id": `${site.url}/#organization` } },
+  localBusiness,
+];
+if (services) graph.push(...serviceList);
+if (faq) graph.push(faqPage);
+
+const data = { "@context": "https://schema.org", "@graph": graph };
+---
+<script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />

@@ -1,0 +1,48 @@
+---
+import Button from "./Button.astro";
+import { ctaPrimary } from "@/data/site";
+interface Props {
+  title: string;
+  text?: string;
+}
+const { title, text } = Astro.props;
+---
+<section class="section">
+  <div class="container">
+    <div class="cta-panel" data-reveal>
+      <div class="cta-orb cta-orb-1"></div>
+      <div class="cta-orb cta-orb-2"></div>
+      <div class="cta-content">
+        <span class="eyebrow" style="color:#fff;opacity:.9">Let's build your growth engine</span>
+        <h2 set:html={title} />
+        {text && <p class="lead">{text}</p>}
+        <div class="cta-actions">
+          <Button href={ctaPrimary.href} variant="brand" size="lg" arrow>{ctaPrimary.label}</Button>
+          <Button href="/solutions/" variant="ghost" size="lg">See what we do</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-panel {
+    position: relative;
+    overflow: hidden;
+    background: var(--grad-ink);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-xl);
+    padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+    color: var(--on-dark);
+  }
+  .cta-content { position: relative; z-index: 1; max-width: 680px; margin-inline: auto; }
+  .cta-content h2 { color: #fff; margin: 0.8rem 0 1rem; }
+  .cta-content p { color: var(--on-dark-muted); margin-bottom: 2rem; }
+  .cta-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .cta-content :global(.btn-ghost) { color: #fff; border-color: rgba(255,255,255,0.2); }
+  .cta-content :global(.btn-ghost:hover) { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.4); }
+  .cta-orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4; }
+  .cta-orb-1 { width: 360px; height: 360px; background: var(--brand); top: -120px; left: -60px; }
+  .cta-orb-2 { width: 320px; height: 320px; background: var(--brand-2); bottom: -140px; right: -40px; opacity: 0.35; }
+</style>

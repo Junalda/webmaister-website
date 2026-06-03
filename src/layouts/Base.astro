@@ -1,0 +1,103 @@
+---
+import "@/styles/global.css";
+import { site } from "@/data/site";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Schema from "@/components/Schema.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  faqSchema?: boolean;
+  serviceSchema?: boolean;
+}
+const { title, description, faqSchema = false, serviceSchema = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const ogImage = new URL("/og.png", site.url).href;
+const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0b12" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content={site.name} />
+    <meta name="geo.region" content="NL-ZH" />
+    <meta name="geo.placename" content="Rotterdam" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <Schema faq={faqSchema} services={serviceSchema} />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      body { display: flex; flex-direction: column; min-height: 100vh; }
+      main { flex: 1; }
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0.5rem;
+        z-index: 200;
+        background: var(--ink);
+        color: #fff;
+        padding: 0.6rem 1rem;
+        border-radius: var(--r-sm);
+      }
+      .skip-link:focus { left: 0.5rem; }
+    </style>
+
+    <script>
+      // Reveal-on-scroll, respecting reduced-motion.
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const els = document.querySelectorAll<HTMLElement>("[data-reveal]");
+      if (reduce || !("IntersectionObserver" in window)) {
+        els.forEach((el) => el.classList.add("is-visible"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                const el = e.target as HTMLElement;
+                const delay = el.dataset.delay ?? "0";
+                el.style.transitionDelay = `${delay}ms`;
+                el.classList.add("is-visible");
+                io.unobserve(el);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

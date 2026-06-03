@@ -1,0 +1,137 @@
+---
+import Base from "@/layouts/Base.astro";
+import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { solutionGroups, framework } from "@/data/site";
+---
+<Base
+  title="Solutions · Premium Websites, SEO & Brainy AI Automation"
+  description="Webmaister's solutions for Rotterdam businesses: premium website design and maintenance, SEO and conversion growth systems, and Brainy AI automation — focused on real business outcomes."
+  serviceSchema
+>
+  <!-- ===== Page hero ===== -->
+  <section class="page-hero">
+    <div class="container center" style="max-width:780px">
+      <span class="eyebrow" data-reveal>Solutions</span>
+      <h1 data-reveal data-delay="60">Everything you need to<br><span class="gradient-text">attract, convert and scale.</span></h1>
+      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:600px">
+        Three connected categories — one growth ecosystem. We focus on the outcome that matters:
+        more customers, less manual work and a business that scales.
+      </p>
+      <nav class="sol-nav" data-reveal data-delay="180" aria-label="Solution categories">
+        {solutionGroups.map((g) => (
+          <a href={`#${g.id}`} class="sol-pill"><Icon name={g.icon} /> {g.name}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== Solution groups ===== -->
+  {solutionGroups.map((group, gi) => (
+    <section class:list={["section", { "section-alt": gi % 2 === 1 }]} id={group.id}>
+      <div class="container">
+        <div class="group-head" data-reveal>
+          <div class="icon-chip group-chip"><Icon name={group.icon} /></div>
+          <div>
+            <span class="eyebrow">{group.tag}</span>
+            <h2>{group.name}</h2>
+          </div>
+        </div>
+        <p class="lead group-intro" data-reveal>{group.intro}</p>
+        <div class="grid grid-3 sol-grid">
+          {group.items.map((item, i) => (
+            <article class="card card-hover sol-card" data-reveal data-delay={i * 70}>
+              <span class="sol-dot" aria-hidden="true"></span>
+              <h3>{item.name}</h3>
+              <p>{item.outcome}</p>
+              <a href="/contact/" class="sol-link">Discuss this <Icon name="arrow" /></a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ===== Outcome-first banner ===== -->
+  <section class="section section-dark">
+    <div class="container center" style="max-width:760px">
+      <span class="eyebrow" style="color:var(--accent)" data-reveal>Outcomes, not features</span>
+      <h2 data-reveal>We sell results, not technology.</h2>
+      <p class="lead" data-reveal>
+        You don't buy a website, an SEO retainer or "an AI agent." You buy more qualified leads,
+        faster customer responses, hours back in your week and revenue that grows without your
+        payroll growing with it. The technology is just how we get you there.
+      </p>
+      <div class="outcome-row" data-reveal>
+        <div><Icon name="trend" /><span>More qualified leads</span></div>
+        <div><Icon name="clock" /><span>Hours saved every week</span></div>
+        <div><Icon name="users" /><span>Scale without hiring</span></div>
+        <div><Icon name="shield" /><span>A foundation built to last</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How we work (framework recap) ===== -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading center eyebrow="How we work" title="A simple, proven framework" />
+      <ol class="grid grid-4 process" data-reveal>
+        {framework.map((f) => (
+          <li class="card process-card">
+            <span class="fw-num">{f.step}</span>
+            <h3>{f.name}</h3>
+            <p>{f.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Not sure where to start?"
+    text="Tell us your goal and we'll recommend the highest-leverage combination of website, growth and Brainy AI — in one free strategy call."
+  />
+</Base>
+
+<style>
+  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 70px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .sol-nav { display: flex; gap: 0.7rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .sol-pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1.1rem; border-radius: var(--r-pill);
+    background: var(--surface); border: 1px solid var(--line);
+    font-size: 0.9rem; font-weight: 540; color: var(--text);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .sol-pill:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .sol-pill :global(svg) { width: 17px; height: 17px; color: var(--brand); }
+
+  .group-head { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1rem; }
+  .group-chip { width: 58px; height: 58px; border-radius: 16px; }
+  .group-chip :global(svg) { width: 28px; height: 28px; }
+  .group-intro { max-width: 70ch; margin-bottom: 2.5rem; }
+  .sol-grid { margin-top: 0; }
+  .sol-card { display: flex; flex-direction: column; }
+  .sol-card h3 { font-size: 1.22rem; margin-bottom: 0.6rem; }
+  .sol-card p { flex: 1; }
+  .sol-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--grad-brand); margin-bottom: 1.1rem; }
+  .sol-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.2rem; color: var(--brand); font-weight: 560; font-size: 0.92rem; }
+  .sol-link :global(svg) { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .sol-link:hover :global(svg) { transform: translateX(3px); }
+
+  .outcome-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2.8rem; }
+  .outcome-row div { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+  .outcome-row :global(svg) { width: 28px; height: 28px; color: var(--accent); }
+  .outcome-row span { font-size: 0.92rem; color: var(--on-dark-muted); }
+  @media (max-width: 620px) { .outcome-row { grid-template-columns: repeat(2, 1fr); } }
+
+  .process { margin-top: 3rem; }
+  .process-card .fw-num {
+    display: inline-grid; place-items: center; font-size: 0.9rem; font-weight: 700;
+    color: var(--brand); background: var(--bg-tint); width: 46px; height: 46px;
+    border-radius: 13px; margin-bottom: 1rem; border: 1px solid rgba(58,91,255,0.16);
+  }
+  .process-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+</style>

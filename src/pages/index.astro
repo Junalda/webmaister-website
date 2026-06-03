@@ -1,0 +1,289 @@
+---
+import Base from "@/layouts/Base.astro";
+import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import BrainyDashboard from "@/components/BrainyDashboard.astro";
+import FaqAccordion from "@/components/FaqAccordion.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import {
+  pillars, problems, framework, brainyCapabilities, caseStudies,
+  ctaPrimary, ctaSecondary,
+} from "@/data/site";
+
+const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
+const pillarIcons: Record<string, string> = { "digital-presence": "globe", "growth-systems": "trend", brainy: "spark" };
+---
+<Base
+  title="Webmaister · Premium Websites, Growth Systems & AI Automation in Rotterdam"
+  description="Webmaister is a Growth & AI Infrastructure Partner in Rotterdam. We build premium websites, growth systems and Brainy AI automation that generate more leads, save time and increase revenue."
+  faqSchema
+  serviceSchema
+>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="container hero-inner">
+      <span class="badge" data-reveal>
+        <Icon name="spark" style="width:15px;height:15px" /> Growth &amp; AI Infrastructure Partner · Rotterdam
+      </span>
+      <h1 data-reveal data-delay="60">
+        Build Faster.<br /><span class="gradient-text">Grow Smarter.</span>
+      </h1>
+      <p class="lead hero-sub" data-reveal data-delay="120">
+        Webmaister helps businesses grow through premium websites, AI-powered systems and
+        automation that generate more leads, save time and increase revenue.
+      </p>
+      <div class="hero-actions" data-reveal data-delay="180">
+        <Button href={ctaPrimary.href} variant="brand" size="lg" arrow>{ctaPrimary.label}</Button>
+        <Button href={ctaSecondary.href} variant="ghost" size="lg">{ctaSecondary.label}</Button>
+      </div>
+      <p class="hero-note" data-reveal data-delay="240">
+        We don't just build websites — we build the digital foundation that helps businesses grow.
+      </p>
+
+      <div class="hero-stats" data-reveal data-delay="300">
+        <div><strong>3.4×</strong><span>more qualified leads</span></div>
+        <div><strong>24/7</strong><span>AI working for you</span></div>
+        <div><strong>&lt;30s</strong><span>customer response</span></div>
+        <div><strong>−61%</strong><span>time on manual work</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE MODERN BUSINESS PROBLEM ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading
+        center
+        eyebrow="The modern business problem"
+        title="Growth shouldn't depend on doing<br>everything manually."
+        text="Most businesses don't have a marketing problem. They have an infrastructure problem — the systems behind the scenes can't keep up with their ambition."
+      />
+      <ul class="problem-grid grid grid-3">
+        {problems.map((p, i) => (
+          <li class="problem-card card" data-reveal data-delay={i * 60}>
+            <span class="problem-x" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ HOW WEBMAISTER SOLVES IT (ECOSYSTEM) ============ -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        center
+        eyebrow="How Webmaister solves it"
+        title="One connected growth ecosystem.<br>Not a pile of separate services."
+        text="Your website, your growth systems and your AI automation work as one. Each part feeds the next — so the whole compounds instead of competing for attention."
+      />
+      <div class="ecosystem" data-reveal>
+        <div class="eco-line" aria-hidden="true"></div>
+        {pillars.map((p, i) => (
+          <article class="eco-card card card-hover" data-reveal data-delay={i * 80}>
+            <div class="icon-chip"><Icon name={pillarIcons[p.id]} /></div>
+            <h3>{p.name}</h3>
+            <p>{p.short}</p>
+            <p class="eco-outcome"><Icon name="check" /> {p.outcome}</p>
+          </article>
+        ))}
+      </div>
+      <p class="eco-foot center" data-reveal>
+        Together they form the digital foundation your business grows on.
+        <a href="/solutions/" class="inline-link">Explore every solution <Icon name="arrow" /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ MEET BRAINY ============ -->
+  <section class="section section-dark brainy" id="brainy">
+    <div class="container brainy-inner">
+      <div class="brainy-copy">
+        <span class="eyebrow" style="color:var(--accent)">Meet Brainy</span>
+        <h2>Meet your next<br>team member.</h2>
+        <p class="lead">
+          Brainy is the intelligent AI layer behind Webmaister. Not a chatbot. Not a tool.
+          A <strong style="color:#fff">digital employee</strong> that works 24/7 across sales,
+          customer service, administration and operations — so you scale without hiring.
+        </p>
+        <ul class="brainy-caps">
+          {brainyCapabilities.map((c, i) => (
+            <li data-reveal data-delay={i * 50}>
+              <span class="cap-ic"><Icon name={capIcons[i]} /></span>
+              <span><strong>{c.title}</strong><em>{c.text}</em></span>
+            </li>
+          ))}
+        </ul>
+        <div class="brainy-actions">
+          <Button href="/solutions/#brainy" variant="brand" arrow>Explore Brainy AI</Button>
+          <Button href="/contact/" variant="ghost">Book a strategy call</Button>
+        </div>
+      </div>
+      <div class="brainy-visual">
+        <BrainyDashboard />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GROWTH FRAMEWORK ============ -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading
+        center
+        eyebrow="The growth framework"
+        title="A clear path from where you are<br>to a business that scales."
+      />
+      <ol class="framework grid grid-4">
+        {framework.map((f, i) => (
+          <li class="fw-step card card-hover" data-reveal data-delay={i * 70}>
+            <span class="fw-num">{f.step}</span>
+            <h3>{f.name}</h3>
+            <p>{f.text}</p>
+            {i < framework.length - 1 && <span class="fw-arrow hidden-mobile" aria-hidden="true"><Icon name="arrow" /></span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS / SUCCESS STORIES ============ -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Results & success stories"
+        title="Real businesses. Measurable outcomes."
+        text="We measure success in leads, hours saved and revenue — not page views."
+      />
+      <div class="results grid grid-3">
+        {caseStudies.map((cs, i) => (
+          <article class="result-card card card-hover" data-reveal data-delay={i * 80}>
+            <span class="badge">{cs.industry}</span>
+            <div class="result-metrics">
+              {cs.results.map((r) => (
+                <div class="metric"><strong class="gradient-text">{r.metric}</strong><span>{r.label}</span></div>
+              ))}
+            </div>
+            <blockquote>"{cs.quote}"</blockquote>
+            <cite>— {cs.author}, {cs.company}</cite>
+          </article>
+        ))}
+      </div>
+      <div class="center" style="margin-top:2.5rem" data-reveal>
+        <Button href="/success-stories/" variant="primary" arrow>Read the full case studies</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section">
+    <div class="container">
+      <SectionHeading center eyebrow="Questions, answered" title="Everything you might be wondering" />
+      <FaqAccordion />
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <FinalCta
+    title="Ready to build a business<br>that scales?"
+    text="Book a free Growth Strategy Call. We'll find your highest-leverage opportunities and outline a clear plan to attract more customers, automate work and grow."
+  />
+</Base>
+
+<style>
+  /* ---- Hero ---- */
+  .hero { position: relative; overflow: hidden; padding-block: clamp(70px, 11vw, 150px) clamp(60px, 8vw, 110px); }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
+  .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #c7d0ff, transparent 70%); top: -180px; right: -120px; }
+  .orb-2 { width: 480px; height: 480px; background: radial-gradient(circle, #e6d9ff, transparent 70%); top: 40px; left: -160px; opacity: 0.45; }
+  .grid-lines {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 75%);
+    opacity: 0.5;
+  }
+  .hero-inner { position: relative; z-index: 1; text-align: center; max-width: 880px; }
+  .hero-inner .badge { margin-bottom: 1.6rem; }
+  .hero-sub { max-width: 620px; margin: 1.4rem auto 0; }
+  .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .hero-note { font-size: 0.92rem; color: var(--text-faint); margin-top: 1.4rem; }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line);
+  }
+  .hero-stats div { display: flex; flex-direction: column; gap: 2px; }
+  .hero-stats strong { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 680; letter-spacing: -0.03em; color: var(--ink); }
+  .hero-stats span { font-size: 0.85rem; color: var(--text-muted); }
+  @media (max-width: 620px) { .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; } }
+
+  /* ---- Problem ---- */
+  .problem-grid { margin-top: 3rem; }
+  .problem-card h3 { font-size: 1.12rem; margin: 1rem 0 0.5rem; }
+  .problem-x {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px;
+    background: #fff0f1; color: #e5484d; border: 1px solid #ffd9db;
+  }
+  .problem-x svg { width: 20px; height: 20px; }
+
+  /* ---- Ecosystem ---- */
+  .ecosystem { position: relative; margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem,2.5vw,1.6rem); }
+  .eco-line { position: absolute; top: 46px; left: 12%; right: 12%; height: 2px; background: linear-gradient(90deg, var(--brand), var(--brand-2), var(--accent)); opacity: 0.25; z-index: 0; }
+  .eco-card { position: relative; z-index: 1; }
+  .eco-card h3 { margin: 1.1rem 0 0.5rem; }
+  .eco-outcome { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--text); font-size: 0.92rem; }
+  .eco-outcome :global(svg) { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+  .eco-foot { margin-top: 2.5rem; color: var(--text-muted); }
+  .inline-link { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--brand); font-weight: 560; margin-left: 0.4rem; }
+  .inline-link :global(svg) { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .inline-link:hover :global(svg) { transform: translateX(3px); }
+  @media (max-width: 900px) { .ecosystem { grid-template-columns: 1fr; } .eco-line { display: none; } }
+
+  /* ---- Brainy ---- */
+  .brainy-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .brainy-copy h2 { margin: 0.8rem 0 1.2rem; }
+  .brainy-caps { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
+  .brainy-caps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .cap-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: rgba(255,255,255,0.06); border: 1px solid var(--line-dark); color: var(--accent); flex-shrink: 0; }
+  .cap-ic :global(svg) { width: 20px; height: 20px; }
+  .brainy-caps strong { display: block; color: #fff; font-weight: 580; font-size: 0.98rem; }
+  .brainy-caps em { font-style: normal; color: var(--on-dark-muted); font-size: 0.9rem; }
+  .brainy-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+  @media (max-width: 940px) { .brainy-inner { grid-template-columns: 1fr; } .brainy-visual { order: -1; } }
+
+  /* ---- Framework ---- */
+  .framework { margin-top: 3rem; counter-reset: step; }
+  .fw-step { position: relative; }
+  .fw-num {
+    display: inline-grid; place-items: center;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em;
+    color: var(--brand); background: var(--bg-tint);
+    width: 46px; height: 46px; border-radius: 13px; margin-bottom: 1rem;
+    border: 1px solid rgba(58,91,255,0.16);
+  }
+  .fw-step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .fw-arrow { position: absolute; top: 38px; right: -28px; color: var(--line-strong); z-index: 2; }
+  .fw-arrow :global(svg) { width: 22px; height: 22px; }
+
+  /* ---- Results ---- */
+  .results { margin-top: 3rem; }
+  .result-card { display: flex; flex-direction: column; gap: 1.1rem; }
+  .result-metrics { display: flex; flex-direction: column; gap: 0.8rem; padding-block: 0.4rem; }
+  .metric { display: flex; align-items: baseline; gap: 0.6rem; }
+  .metric strong { font-size: 1.7rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; min-width: 84px; }
+  .metric span { font-size: 0.88rem; color: var(--text-muted); }
+  .result-card blockquote { font-size: 0.98rem; color: var(--text); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+  .result-card cite { font-size: 0.85rem; color: var(--text-faint); font-style: normal; }
+</style>
