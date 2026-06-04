@@ -3,8 +3,21 @@ import Base from "@/layouts/Base.astro";
 import Button from "@/components/Button.astro";
 import Icon from "@/components/Icon.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
+import FaqAccordion from "@/components/FaqAccordion.astro";
 import FinalCta from "@/components/FinalCta.astro";
-import { solutionGroups, framework } from "@/data/site";
+import { solutionGroups, framework, solutionsFaqs, site } from "@/data/site";
+
+// FAQPage schema for the answer-first Solutions FAQ.
+const solutionsFaqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${site.url}/solutions/#faq`,
+  mainEntity: solutionsFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 ---
 <Base
   title="Solutions · Premium Websites, SEO & Brainy AI Automation"
@@ -88,10 +101,19 @@ import { solutionGroups, framework } from "@/data/site";
     </div>
   </section>
 
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading center eyebrow="Questions, answered" title="Solutions FAQ" />
+      <FaqAccordion items={solutionsFaqs} />
+    </div>
+  </section>
+
   <FinalCta
     title="Not sure where to start?"
     text="Tell us your goal and we'll recommend the highest-leverage combination of website, growth and Brainy AI in one free strategy call."
   />
+
+  <script type="application/ld+json" set:html={JSON.stringify(solutionsFaqLd)} is:inline />
 </Base>
 
 <style>

@@ -1,8 +1,12 @@
 ---
-import { faqs } from "@/data/site";
+import { faqs as defaultFaqs } from "@/data/site";
+interface Props {
+  items?: { q: string; a: string }[];
+}
+const { items = defaultFaqs } = Astro.props;
 ---
 <div class="faq" data-reveal>
-  {faqs.map((f, i) => (
+  {items.map((f, i) => (
     <details class="faq-item" open={i === 0}>
       <summary>
         <span>{f.q}</span>
