@@ -9,6 +9,19 @@ import { caseStudies } from "@/data/site";
 const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].map(
   (ind) => ({ label: ind, value: ind.toLowerCase() })
 );
+
+// Turn founder names mentioned in the challenge copy into LinkedIn links.
+const linkFounders = (text: string, founders?: { name: string; href: string }[]) => {
+  if (!founders) return text;
+  let html = text;
+  for (const f of founders) {
+    html = html.replace(
+      f.name,
+      `<a href="${f.href}" target="_blank" rel="noopener noreferrer" class="inline-link">${f.name}</a>`
+    );
+  }
+  return html;
+};
 ---
 <Base
   title="Success Stories · Real Client Transformations"
@@ -45,7 +58,7 @@ const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].m
             <div class="case-narrative">
               <div class="cn-block">
                 <span class="cn-label challenge">Challenge</span>
-                <p>{cs.challenge}</p>
+                <p set:html={linkFounders(cs.challenge, cs.founders)} />
               </div>
               <div class="cn-block">
                 <span class="cn-label outcome">Outcome</span>
@@ -69,6 +82,35 @@ const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].m
             <p>{cs.quote}</p>
             <cite>{cs.company} · {cs.industry}</cite>
           </blockquote>
+
+          {(cs.website || cs.founders) && (
+            <div class="case-links" data-reveal>
+              {cs.website && (
+                <div class="cl-live">
+                  <span class="cl-eyebrow">See it live</span>
+                  <p>Explore the platform we designed and built for {cs.company}.</p>
+                  <a class="btn btn-brand" href={cs.website.href} target="_blank" rel="noopener noreferrer">
+                    Visit {cs.website.label} <Icon name="arrow" class="arrow" />
+                  </a>
+                </div>
+              )}
+              {cs.founders && (
+                <div class="cl-founders">
+                  <span class="cl-eyebrow">Founders</span>
+                  <ul>
+                    {cs.founders.map((f) => (
+                      <li>
+                        <a class="founder-link" href={f.href} target="_blank" rel="noopener noreferrer">
+                          <svg class="li-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" set:html={`<path d='M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z'/>`} />
+                          {f.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </article>
       </div>
     </section>
@@ -146,8 +188,39 @@ const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].m
   }
   .case-quote cite { display: block; margin-top: 1.1rem; font-style: normal; font-size: 0.85rem; font-weight: 600; color: var(--text-faint); letter-spacing: 0.04em; }
 
+  /* ---- Inline founder links inside challenge copy ---- */
+  .case-narrative :global(.inline-link) {
+    color: var(--brand-strong); font-weight: 600;
+    text-decoration: underline; text-underline-offset: 2px;
+    text-decoration-thickness: 1px; text-decoration-color: rgba(11,120,212,0.35);
+    transition: text-decoration-color .18s ease;
+  }
+  .case-narrative :global(.inline-link:hover) { text-decoration-color: var(--brand-strong); }
+
+  /* ---- Project credits: live site + founders ---- */
+  .case-links {
+    margin-top: clamp(1.8rem, 4vw, 2.6rem);
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.4rem, 4vw, 2.8rem); align-items: center;
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+    background: var(--bg-tint); border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+  }
+  .cl-eyebrow {
+    display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--brand-strong); margin-bottom: 0.7rem;
+  }
+  .cl-live p { color: var(--text-muted); margin-bottom: 1.3rem; font-size: 1rem; line-height: 1.6; }
+  .cl-founders { border-left: 1px solid var(--line); padding-left: clamp(1.4rem, 4vw, 2.8rem); }
+  .cl-founders ul { display: grid; gap: 0.7rem; }
+  .founder-link { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 600; color: var(--text); transition: color .18s ease; }
+  .founder-link:hover { color: var(--brand-strong); }
+  .li-icon { width: 19px; height: 19px; color: #0a66c2; flex-shrink: 0; }
+
   @media (max-width: 860px) {
     .case-grid { grid-template-columns: 1fr; }
+    .case-links { grid-template-columns: 1fr; gap: 1.6rem; }
+    .cl-founders { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 1.6rem; }
   }
   @media (max-width: 560px) {
     .case-head { flex-direction: column; gap: 0.4rem; }
