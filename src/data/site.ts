@@ -265,3 +265,90 @@ export const solutionsFaqs = [
     a: "Often, yes. We can redesign or optimize an existing site, add growth and SEO systems, or connect AI automation to what you already have. We start with where you want to go and recommend the smallest change that gets you there.",
   },
 ];
+
+// ---- Dutch local landing pages (hybrid i18n: English site + NL pages for
+// local commercial keywords). Rendered by src/pages/nl/[slug].astro in nl. ----
+export const nlLandings = [
+  {
+    slug: "website-laten-maken-rotterdam",
+    keyword: "Website laten maken Rotterdam",
+    title: "Website laten maken in Rotterdam · Premium webdesign",
+    description:
+      "Website laten maken in Rotterdam? Webmaister bouwt premium, razendsnelle en conversiegerichte websites die vertrouwen wekken en klanten opleveren. Plan een gratis strategiegesprek.",
+    h1: "Website laten maken in Rotterdam",
+    lead:
+      "Een premium, razendsnelle website die in seconden vertrouwen wekt en bezoekers omzet in klanten.",
+    intro: [
+      "Een website is je hardst werkende verkoper. Toch is een mooie website alleen niet genoeg: hij moet snel zijn, vertrouwen wekken en bezoekers omzetten in aanvragen. Daar bouwen wij voor.",
+      "Webmaister ontwerpt en bouwt premium websites voor ambitieuze ondernemers in Rotterdam en omgeving. We beginnen niet bij het ontwerp, maar bij waar jouw bedrijf naartoe wil, en bouwen daar de digitale fundering omheen.",
+    ],
+    includesTitle: "Wat je krijgt",
+    includes: [
+      "Maatwerk design dat past bij jouw merk",
+      "Mobiel-first en razendsnel (sterke Core Web Vitals)",
+      "Conversiegericht: duidelijke route naar de aanvraag",
+      "SEO-klaar opgebouwd voor vindbaarheid in Rotterdam",
+      "Schaalbaar, zodat de site met je meegroeit",
+      "Optioneel: onderhoud, SEO en AI-automatisering",
+    ],
+    faq: [
+      { q: "Wat kost een website laten maken in Rotterdam?", a: "Dat hangt af van de omvang en je doelen. We stellen elk project samen op maat en geven vooraf een heldere offerte. De snelste manier naar een prijs is een gratis strategiegesprek, waarin we de scope en de verwachte opbrengst in kaart brengen." },
+      { q: "Hoe lang duurt het om een website te bouwen?", a: "Een gerichte website staat doorgaans binnen enkele weken live. We starten met het meest waardevolle werk eerst, zodat je snel resultaat ziet, en bouwen daarna verder uit." },
+      { q: "Kunnen jullie mijn bestaande website verbeteren?", a: "Vaak wel. We kunnen een bestaande site herontwerpen of optimaliseren, groei- en SEO-systemen toevoegen of AI-automatisering koppelen aan wat je al hebt." },
+    ],
+  },
+  {
+    slug: "seo-rotterdam",
+    keyword: "SEO Rotterdam",
+    title: "SEO Rotterdam · Hoger in Google met een groeisysteem",
+    description:
+      "SEO in Rotterdam waarmee klanten je vinden die actief zoeken. Webmaister bouwt een SEO- en conversiesysteem dat verkeer omzet in aanvragen. Plan een gratis gesprek.",
+    h1: "SEO in Rotterdam",
+    lead:
+      "Word gevonden door klanten die nú zoeken, en zet dat verkeer om in aanvragen.",
+    intro: [
+      "Online zichtbaar zijn is niet hetzelfde als gevonden worden. Met de juiste SEO komen de mensen die actief zoeken in Rotterdam en omgeving bij jou terecht, en niet bij de concurrent.",
+      "Webmaister bouwt SEO niet als losse trucjes, maar als een groeisysteem: technische basis, sterke content en conversie-optimalisatie die samen voor een voorspelbare stroom aanvragen zorgen.",
+    ],
+    includesTitle: "Onze aanpak",
+    includes: [
+      "Technische SEO: snelheid, structuur en indexatie",
+      "Lokale SEO gericht op Rotterdam en Zuid-Holland",
+      "Content die antwoord geeft op echte klantvragen",
+      "Conversie-optimalisatie: meer aanvragen uit hetzelfde verkeer",
+      "Heldere rapportage op wat telt: leads en omzet",
+    ],
+    faq: [
+      { q: "Hoe snel zie ik resultaat met SEO?", a: "SEO is een investering die opbouwt. De eerste verbeteringen (techniek, conversie) merk je vaak snel; sterke organische posities groeien doorgaans over enkele maanden. We starten met de hoogste impact eerst." },
+      { q: "Werken jullie alleen voor bedrijven in Rotterdam?", a: "We zitten in Rotterdam en kennen de lokale markt, maar werken met ambitieuze bedrijven in heel Zuid-Holland, de rest van Nederland en op afstand." },
+      { q: "Wat kost SEO?", a: "Dat hangt af van je situatie en doelen. We scopen het werk op jouw budget en geven vooraf een duidelijke offerte. Plan een gratis gesprek voor een concreet voorstel." },
+    ],
+  },
+  {
+    slug: "ai-automatisering-rotterdam",
+    keyword: "AI Automatisering Rotterdam",
+    title: "AI Automatisering Rotterdam · Je digitale medewerker",
+    description:
+      "AI-automatisering voor bedrijven in Rotterdam. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden en administratie automatiseren. Plan een gesprek.",
+    h1: "AI-automatisering in Rotterdam",
+    lead:
+      "Laat repetitief werk over aan Brainy, je digitale medewerker die 24/7 doorwerkt.",
+    intro: [
+      "Groeien hoeft niet te betekenen dat je meer mensen aanneemt. Met AI-automatisering laat je het terugkerende werk over aan een systeem dat dag en nacht doorwerkt, tegen een fractie van de kosten.",
+      "Brainy is de intelligente laag achter Webmaister. Geen chatbot, maar een digitale medewerker die leads opvangt en kwalificeert, klantvragen 24/7 beantwoordt, afspraken inplant en administratie automatiseert, zodat jouw team zich op groei kan richten.",
+    ],
+    includesTitle: "Wat Brainy doet",
+    includes: [
+      "Leads opvangen en kwalificeren, automatisch",
+      "24/7 klantvragen beantwoorden uit je eigen kennisbank",
+      "Afspraken en opvolging inplannen",
+      "Administratief werk en handmatige taken automatiseren",
+      "Opschalen zonder dat je personeelskosten meegroeien",
+    ],
+    faq: [
+      { q: "Is Brainy een chatbot?", a: "Nee. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden, afspraken inplannen en administratie automatiseren. Het doel is repetitief werk weghalen, niet een chatbot op je site plakken." },
+      { q: "Waarmee kan ik beginnen?", a: "We beginnen met de ene taak die de meeste tijd of de meeste leads kost, bewijzen de waarde, en breiden daarna uit. Kleine, opeenstapelende winst werkt beter dan één grote risicovolle ingreep." },
+      { q: "Werkt dit ook voor mijn type bedrijf?", a: "AI-automatisering is breed toepasbaar, van dienstverleners tot e-commerce. In een gratis gesprek kijken we welke taken bij jou het meeste opleveren." },
+    ],
+  },
+];

@@ -11,8 +11,9 @@ interface Props {
   description: string;
   faqSchema?: boolean;
   serviceSchema?: boolean;
+  lang?: string;
 }
-const { title, description, faqSchema = false, serviceSchema = false } = Astro.props;
+const { title, description, faqSchema = false, serviceSchema = false, lang = "en" } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
@@ -24,7 +25,7 @@ const vercelEnv = process.env.VERCEL_ENV;
 const isPreview = !!vercelEnv && vercelEnv !== "production";
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
