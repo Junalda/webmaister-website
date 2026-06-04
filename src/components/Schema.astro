@@ -67,23 +67,23 @@ const faqPage = {
 };
 
 // Breadcrumbs derived from the URL path (Home › … › current page) so AI and
-// search engines understand the site hierarchy.
+// search engines understand the site hierarchy. Locale prefixes like /nl/ are
+// not real pages, so they are skipped as crumbs.
 const deslug = (s: string) => s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+const locales = new Set(["nl", "en"]);
 const parts = Astro.url.pathname.split("/").filter(Boolean);
-const breadcrumb = parts.length
-  ? {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
-        ...parts.map((seg, i) => ({
-          "@type": "ListItem",
-          position: i + 2,
-          name: i === parts.length - 1 && title ? title.split(" · ")[0] : deslug(seg),
-          item: `${site.url}/${parts.slice(0, i + 1).join("/")}/`,
-        })),
-      ],
-    }
-  : null;
+const crumbItems = [{ "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` }];
+parts.forEach((seg, i) => {
+  if (locales.has(seg)) return; // language prefix, not a navigable page
+  const isLast = i === parts.length - 1;
+  crumbItems.push({
+    "@type": "ListItem",
+    position: crumbItems.length + 1,
+    name: isLast && title ? title.split(" · ")[0] : deslug(seg),
+    item: `${site.url}/${parts.slice(0, i + 1).join("/")}/`,
+  });
+});
+const breadcrumb = crumbItems.length > 1 ? { "@type": "BreadcrumbList", itemListElement: crumbItems } : null;
 
 const graph: object[] = [
   { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, publisher: { "@id": `${site.url}/#organization` } },

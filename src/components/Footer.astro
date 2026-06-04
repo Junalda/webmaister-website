@@ -4,12 +4,12 @@ import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
 const year = new Date().getFullYear();
 const seo = [
-  "Website laten maken Rotterdam",
-  "Webdesign Rotterdam",
-  "SEO Rotterdam",
-  "AI Automatisering Rotterdam",
-  "AI Agent Rotterdam",
-  "Website Onderhoud Rotterdam",
+  { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
+  { label: "Webdesign Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
+  { label: "SEO Rotterdam", href: "/nl/seo-rotterdam/" },
+  { label: "AI Automatisering Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
+  { label: "AI Agent Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
+  { label: "Website Onderhoud Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
 ];
 ---
 <footer class="site-footer">
@@ -40,7 +40,7 @@ const seo = [
       <div class="footer-col footer-seo">
         <h4>Rotterdam expertise</h4>
         <ul>
-          {seo.map((s) => <li><span>{s}</span></li>)}
+          {seo.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
         </ul>
       </div>
     </div>
@@ -78,7 +78,7 @@ const seo = [
   .footer-col a:hover { color: #fff; }
   .contact-list li { display: flex; align-items: center; gap: 0.55rem; }
   .contact-list :global(svg) { width: 17px; height: 17px; color: var(--brand-2); flex-shrink: 0; }
-  .footer-seo li span { font-size: 0.88rem; }
+  .footer-seo li a, .footer-seo li span { font-size: 0.88rem; }
   .footer-bottom {
     margin-top: clamp(2.5rem, 5vw, 4rem);
     padding-top: 1.6rem;
