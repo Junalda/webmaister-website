@@ -38,7 +38,7 @@ const seo = [
       </div>
 
       <div class="footer-col footer-seo">
-        <h4>Rotterdam expertise</h4>
+        <h4><a href="/nl/">Rotterdam expertise</a></h4>
         <ul>
           {seo.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
         </ul>
@@ -73,6 +73,8 @@ const seo = [
     margin-bottom: 1.1rem;
     font-weight: 600;
   }
+  .footer-col h4 a { color: inherit; text-decoration: none; }
+  .footer-col h4 a:hover { color: var(--accent); }
   .footer-col ul { display: flex; flex-direction: column; gap: 0.7rem; }
   .footer-col a, .footer-col span { color: var(--on-dark-muted); font-size: 0.95rem; transition: color 0.2s ease; }
   .footer-col a:hover { color: #fff; }
