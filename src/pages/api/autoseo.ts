@@ -33,6 +33,12 @@ const slugify = (s: string) =>
 
 const yamlStr = (s: unknown) => `"${String(s ?? "").replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 
+// Safe ISO date: never throws on a bad/empty value (falls back to now).
+const toIso = (v: unknown): string => {
+  const d = new Date(String(v ?? ""));
+  return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString();
+};
+
 const extFor = (url: string, contentType: string) => {
   const m = url.split(/[?#]/)[0].match(/\.([a-zA-Z0-9]{2,5})$/);
   if (m) return m[1].toLowerCase();
@@ -118,17 +124,71 @@ const CORS = {
 };
 
 // Health check / URL verification ping. Always 200 so the endpoint validates.
-// `rev` is a deploy marker: if you don't see it live, the new build isn't live.
+// `rev` is a deploy marker; `config` reports (booleans only, no secrets)
+// whether the required env vars are present in the running deployment.
+const baseInfo = () => ({
+  ok: true,
+  service: "autoseo-webhook",
+  rev: "diag-v5",
+  methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
+  config: {
+    autoseoToken: Boolean(WEBHOOK_TOKEN),
+    githubToken: Boolean(env("GITHUB_TOKEN")),
+    repo: env("GITHUB_REPO") ?? "junalda/webmaister-website",
+    branch: env("GITHUB_BRANCH") ?? "main",
+  },
+});
+
 const health = () =>
-  new Response(
-    JSON.stringify({
-      ok: true,
-      service: "autoseo-webhook",
-      rev: "all-methods-v3",
-      methods: ["GET", "POST", "PUT", "PATCH", "OPTIONS"],
-    }),
-    { status: 200, headers: { "Content-Type": "application/json", ...CORS } }
-  );
+  new Response(JSON.stringify(baseInfo()), {
+    status: 200,
+    headers: { "Content-Type": "application/json", ...CORS },
+  });
+
+// Token-gated check that confirms whether GITHUB_TOKEN can actually reach the
+// repo (pinpoints the cause of a 500 at the commit step).
+const checkGithub = async () => {
+  const token = env("GITHUB_TOKEN");
+  if (!token) return { ok: false, reason: "GITHUB_TOKEN not set in this deployment" };
+  const repo = env("GITHUB_REPO") ?? "junalda/webmaister-website";
+  const branch = env("GITHUB_BRANCH") ?? "main";
+  const ghHeaders = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json",
+    "User-Agent": "webmaister-autoseo-webhook",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
+  try {
+    // 1) Read test.
+    const readRes = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/${branch}`, {
+      headers: ghHeaders,
+    });
+    const readText = await readRes.text();
+    const read = {
+      ok: readRes.ok,
+      status: readRes.status,
+      message: readRes.ok ? "can read repo ref" : readText.slice(0, 200),
+    };
+
+    // 2) Write test: create a harmless dangling blob (no commit, no file).
+    //    Requires Contents: write. A dangling blob is garbage-collected.
+    const writeRes = await fetch(`https://api.github.com/repos/${repo}/git/blobs`, {
+      method: "POST",
+      headers: { ...ghHeaders, "Content-Type": "application/json" },
+      body: JSON.stringify({ content: "autoseo write probe", encoding: "utf-8" }),
+    });
+    const writeText = await writeRes.text();
+    const write = {
+      ok: writeRes.ok,
+      status: writeRes.status,
+      message: writeRes.ok ? "can write (Contents: write OK)" : writeText.slice(0, 200),
+    };
+
+    return { ok: read.ok && write.ok, read, write };
+  } catch (e) {
+    return { ok: false, reason: String(e) };
+  }
+};
 
 const preflight = () =>
   new Response(null, { status: 204, headers: { Allow: "GET, POST, PUT, PATCH, OPTIONS", ...CORS } });
@@ -192,8 +252,8 @@ const handleWebhook = async (request: Request): Promise<Response> => {
           .map((f: any) => ({ question: String(f.question ?? ""), answer: String(f.answer ?? "") }))
       : [];
     const lang = (body.languageCode ?? "en").toString();
-    const pubDate = (body.publishedAt ?? body.createdAt ?? new Date().toISOString()).toString();
-    const updatedDate = (body.updatedAt ?? pubDate).toString();
+    const pubDate = toIso(body.publishedAt ?? body.createdAt);
+    const updatedDate = toIso(body.updatedAt ?? body.publishedAt ?? body.createdAt);
 
     const files: CommitFile[] = [];
 
@@ -230,8 +290,8 @@ const handleWebhook = async (request: Request): Promise<Response> => {
       `title: ${yamlStr(title)}`,
       `description: ${yamlStr(description)}`,
       `slug: ${yamlStr(slug)}`,
-      `pubDate: ${new Date(pubDate).toISOString()}`,
-      `updatedDate: ${new Date(updatedDate).toISOString()}`,
+      `pubDate: ${pubDate}`,
+      `updatedDate: ${updatedDate}`,
       `autoseoId: ${Number(id)}`,
       `lang: ${yamlStr(lang)}`,
       `tags: [${keywords.map(yamlStr).join(", ")}]`,
@@ -269,7 +329,22 @@ const handleWebhook = async (request: Request): Promise<Response> => {
 
 // Explicit handler for every HTTP method AutoSEO might use, plus an ALL
 // fallback, so the endpoint can never return 405 regardless of adapter quirks.
-export const GET: APIRoute = () => health();
+export const GET: APIRoute = async ({ request }) => {
+  const url = new URL(request.url);
+  const info: Record<string, unknown> = baseInfo();
+  if (url.searchParams.get("check") === "github") {
+    const provided =
+      (request.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "") ||
+      url.searchParams.get("token") ||
+      "";
+    if (!WEBHOOK_TOKEN || provided !== WEBHOOK_TOKEN) {
+      info.github = { ok: false, reason: "unauthorized — append &token=YOUR_AUTOSEO_TOKEN" };
+    } else {
+      info.github = await checkGithub();
+    }
+  }
+  return json(info);
+};
 export const HEAD: APIRoute = () => health();
 export const OPTIONS: APIRoute = () => preflight();
 export const POST: APIRoute = ({ request }) => handleWebhook(request);
