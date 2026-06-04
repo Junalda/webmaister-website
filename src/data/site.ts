@@ -208,6 +208,32 @@ export const caseStudies = [
       "Yiska Cleaning now has a stronger digital presence that aligns with its ambition to become a trusted cleaning partner for businesses. The company is positioned to grow with confidence while presenting a more professional image to prospective clients.",
     quote: "Professional companies deserve professional digital foundations.",
   },
+  {
+    slug: "capture-the-moment-solutions",
+    company: "Capture the Moment Solutions",
+    industry: "Visual Storytelling & Content Creation",
+    cardIndustry: "Visual Storytelling",
+    cardText: "Turning a creative vision into a strategic visual storytelling platform.",
+    headline: "A Premium Digital Platform for Strategic Visual Storytelling",
+    challenge:
+      "Founded by Gabriel, Capture the Moment Solutions had a strong creative vision and real talent for visual storytelling, but the offer lived mostly in a portfolio rather than in a structured online platform. The services spanned real estate photography and videography, personal branding and broader business content creation, so the website had to present multiple offers with clarity instead of overwhelming visitors. The real challenge was positioning: Capture the Moment Solutions needed to be seen as a premium storytelling partner that builds trust and long-term brand growth, not just another photographer or videographer for hire.",
+    solutionIntro:
+      "Webmaister turned Gabriel's creative vision into a clear, premium platform with structure, positioning and conversion logic. The website was designed and developed with:",
+    solutionPoints: [
+      "Clear positioning for multiple services",
+      "A premium visual storytelling identity",
+      "Dedicated pages for real estate and content creation",
+      "Portfolio structure for photography and video work",
+      "Mobile-first design",
+      "SEO-ready architecture",
+      "Conversion-focused calls to action",
+      "Google Business Profile support",
+      "Scalable structure for future growth",
+    ],
+    outcome:
+      "Capture the Moment Solutions now has a professional digital foundation that clearly presents Gabriel's services, story, process and portfolio. Visitors immediately understand the value of his work, the platform gives them the confidence to reach out, and the structure supports lead generation for both real estate and content-creation clients, ready to scale as the business grows.",
+    quote: "Trust starts before the first conversation. A strong digital foundation makes your work easier to believe, understand and buy.",
+  },
 ];
 
 // ---- FAQ (powers FAQPage schema + Contact/Home copy) ----
