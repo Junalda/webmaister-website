@@ -7,20 +7,27 @@ import { site } from "@/data/site";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
   return posts.map((post) => ({
     params: { slug: post.data.slug ?? post.id },
-    props: { post },
+    props: {
+      post,
+      // Most recent other posts, for internal linking (no dead-end articles).
+      related: posts.filter((p) => p.id !== post.id).slice(0, 3),
+    },
   }));
 }
 
-const { post } = Astro.props;
+const { post, related } = Astro.props;
 const { Content } = await render(post);
 const { title, description, pubDate, updatedDate, author, tags, cover, heroAlt, faq } = post.data;
 const routeSlug = post.data.slug ?? post.id;
 
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+const relSlug = (p: typeof post) => p.data.slug ?? p.id;
 const canonical = new URL(`/blog/${routeSlug}/`, site.url).href;
 
 const graph: object[] = [
@@ -90,6 +97,30 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
     </div>
   </article>
 
+  {related.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <div class="related-head">
+          <h2>Keep reading</h2>
+          <a href="/solutions/" class="related-solutions">Explore our solutions <Icon name="arrow" /></a>
+        </div>
+        <div class="related grid grid-3">
+          {related.map((p) => (
+            <a href={`/blog/${relSlug(p)}/`} class="related-card card card-hover">
+              <div class="related-meta">
+                <time datetime={p.data.pubDate.toISOString()}>{fmt(p.data.pubDate)}</time>
+                {p.data.tags[0] && <span class="related-tag">{p.data.tags[0]}</span>}
+              </div>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.description}</p>
+              <span class="related-link">Read article <Icon name="arrow" /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <FinalCta
     title="Ready to build a business<br>that scales?"
     text="Book a free Growth Strategy Call and we'll map a clear path to the digital foundation your business needs to grow."
@@ -140,4 +171,19 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
   .post-faq summary::-webkit-details-marker { display: none; }
   .post-faq .faq-answer { padding: 0 1.3rem 1.2rem; }
   .post-faq .faq-answer p { color: var(--text-muted); }
+
+  /* Related articles */
+  .related-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .related-head h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  .related-solutions { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--brand); font-weight: 580; font-size: 0.95rem; }
+  .related-solutions :global(svg) { width: 16px; height: 16px; transition: transform 0.2s ease; }
+  .related-solutions:hover :global(svg) { transform: translateX(4px); }
+  .related-card { display: flex; flex-direction: column; }
+  .related-meta { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--text-faint); margin-bottom: 0.6rem; }
+  .related-tag { color: var(--brand-strong); font-weight: 600; }
+  .related-card h3 { font-size: 1.15rem; line-height: 1.25; margin-bottom: 0.5rem; }
+  .related-card p { flex: 1; font-size: 0.93rem; line-height: 1.5; color: var(--text-muted); }
+  .related-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; color: var(--brand); font-weight: 560; font-size: 0.9rem; }
+  .related-link :global(svg) { width: 15px; height: 15px; transition: transform 0.2s ease; }
+  .related-card:hover .related-link :global(svg) { transform: translateX(4px); }
 </style>
