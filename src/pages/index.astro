@@ -169,6 +169,9 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
           </a>
         ))}
       </div>
+      <div class="stories-more" data-reveal>
+        <Button href="/success-stories/" variant="ghost" arrow>View more</Button>
+      </div>
     </div>
   </section>
 
@@ -289,6 +292,7 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
 
   /* ---- Success stories ---- */
   .stories { margin-top: 3rem; }
+  .stories-more { display: flex; justify-content: center; margin-top: clamp(2rem, 4vw, 2.6rem); }
   .story-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 240px; }
   .story-industry {
     font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
