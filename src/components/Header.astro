@@ -4,6 +4,8 @@ import Logo from "./Logo.astro";
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
+// The logo already links home, so drop the redundant "Home" item in the header.
+const headerNav = nav.filter((item) => item.href !== "/");
 ---
 <header class:list={["site-header", { "is-overlay": path === "/" }]} id="site-header">
   <div class="container header-inner">
@@ -12,7 +14,7 @@ const isActive = (href: string) =>
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
-      {nav.map((item) => (
+      {headerNav.map((item) => (
         <a href={item.href} class:list={["nav-link", { active: isActive(item.href) }]}>
           {item.label}
         </a>
@@ -29,7 +31,7 @@ const isActive = (href: string) =>
 
   <div class="mobile-menu" id="mobile-menu" hidden>
     <nav aria-label="Mobile">
-      {nav.map((item) => (
+      {headerNav.map((item) => (
         <a href={item.href} class:list={["mobile-link", { active: isActive(item.href) }]}>{item.label}</a>
       ))}
     </nav>
