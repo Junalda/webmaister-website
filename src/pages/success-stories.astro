@@ -2,7 +2,13 @@
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FinalCta from "@/components/FinalCta.astro";
+import FilterBar from "@/components/FilterBar.astro";
 import { caseStudies } from "@/data/site";
+
+// Filter pills, one per industry represented in the case studies.
+const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].map(
+  (ind) => ({ label: ind, value: ind.toLowerCase() })
+);
 ---
 <Base
   title="Success Stories · Real Client Transformations"
@@ -16,14 +22,14 @@ import { caseStudies } from "@/data/site";
         Every business we work with starts in a different place. What they share is the ambition
         to grow and a digital foundation built to take them there. Here are a few of those journeys.
       </p>
-      <div class="story-industries" data-reveal data-delay="180">
-        {caseStudies.map((cs) => <span class="ind-chip">{cs.cardIndustry}</span>)}
+      <div data-reveal data-delay="180" style="margin-top:2.4rem">
+        <FilterBar filters={industryFilters} scope="industry" allLabel="All industries" label="Filter stories by industry" />
       </div>
     </div>
   </section>
 
   {caseStudies.map((cs, i) => (
-    <section class:list={["section", { "section-alt": i % 2 === 1 }]} id={cs.slug}>
+    <section class:list={["section", { "section-alt": i % 2 === 1 }]} id={cs.slug} data-filter-group="industry" data-filter-values={cs.cardIndustry.toLowerCase()}>
       <div class="container">
         <article class="case" data-reveal>
           <header class="case-head">
@@ -88,12 +94,6 @@ import { caseStudies } from "@/data/site";
 
 <style>
   .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(48px, 6vw, 80px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
-  .story-industries { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 2.4rem; }
-  .ind-chip {
-    font-size: 0.85rem; font-weight: 540; color: var(--text);
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: var(--r-pill); padding: 0.45rem 1rem;
-  }
 
   /* ---- Case header ---- */
   .case-head { display: flex; gap: clamp(1rem, 3vw, 2rem); align-items: flex-start; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); }

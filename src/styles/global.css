@@ -61,6 +61,9 @@
 /* ---------------- Reset ---------------- */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
+/* Ensure the hidden attribute always wins over component display rules
+   (e.g. filtered cards/sections that set display: flex). */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
