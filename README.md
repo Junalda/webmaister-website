@@ -59,6 +59,42 @@ npm run build    # build (static pages + the /api/contact function)
 npm run preview  # preview the production build
 ```
 
+## Environments & deployment workflow
+
+The project uses two long-lived branches so nothing reaches production
+unreviewed:
+
+| Branch | Environment | Vercel | Notes |
+| --- | --- | --- | --- |
+| `main` | **Production** | `www.webmaister.io` (Production Branch) | What visitors see. AutoSEO blog posts auto-publish here. |
+| `staging` | **Staging** | preview URL (or `staging.webmaister.io`) | Test code changes here first. Shows a yellow "Staging" badge and is `noindex` so Google never indexes it. |
+
+**Flow for code changes:** develop on a feature branch → merge into
+`staging` → check the staging deploy → when happy, promote `staging` → `main`
+(production):
+
+```bash
+# promote staging to production
+git checkout staging && git pull
+git checkout main && git pull
+git merge staging --no-ff -m "release: promote staging to production"
+git push origin main
+```
+
+**Blog posts (AutoSEO)** publish straight to `main` (the webhook commits with
+`GITHUB_BRANCH=main`), so automatic publishing keeps working. Periodically
+merge `main` back into `staging` so staging includes the latest posts:
+`git checkout staging && git merge main`.
+
+**Vercel setup (one-time, dashboard):**
+1. Settings → Git → **Production Branch = `main`**.
+2. Push the `staging` branch — Vercel auto-creates a **preview deployment** for
+   it. (Optional: Settings → Domains → assign `staging.webmaister.io` to the
+   `staging` branch for a stable URL.)
+3. The staging badge + `noindex` switch on automatically via Vercel's
+   `VERCEL_ENV` (`preview` on staging, `production` on `main`).
+
+
 ## Customization points
 
 All content lives in **`src/data/site.ts`** — NAP details, navigation,
