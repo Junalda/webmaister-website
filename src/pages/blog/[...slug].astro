@@ -66,7 +66,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
         <ShareButtons url={canonical} title={title} />
       </header>
 
-      {cover && <img class="post-hero-img" src={cover} alt={heroAlt ?? ""} data-reveal />}
+      {cover && <img class="post-hero-img" src={cover} alt={heroAlt ?? ""} width="1200" height="675" loading="eager" decoding="async" data-reveal />}
 
       <div class="prose" data-reveal>
         <Content />
@@ -112,7 +112,7 @@ const jsonLd = { "@context": "https://schema.org", "@graph": graph };
   .post-head :global(.share) { margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
   .post-share-bottom { margin-top: clamp(2.5rem, 5vw, 3.5rem); padding-top: 1.6rem; border-top: 1px solid var(--line); }
 
-  .post-hero-img { width: 100%; border-radius: var(--r-lg); margin: clamp(2rem, 4vw, 3rem) 0 0; border: 1px solid var(--line); }
+  .post-hero-img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r-lg); margin: clamp(2rem, 4vw, 3rem) 0 0; border: 1px solid var(--line); }
 
   /* Article prose */
   .prose { margin-top: clamp(2rem, 4vw, 3rem); }

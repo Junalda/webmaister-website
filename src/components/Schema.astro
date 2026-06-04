@@ -7,8 +7,9 @@ import { site, solutionGroups, faqs } from "@/data/site";
 interface Props {
   faq?: boolean;        // include FAQPage
   services?: boolean;   // include Service entities
+  title?: string;       // current page title (for breadcrumb leaf)
 }
-const { faq = false, services = false } = Astro.props;
+const { faq = false, services = false, title } = Astro.props;
 
 const localBusiness = {
   "@type": "ProfessionalService",
@@ -19,7 +20,6 @@ const localBusiness = {
   url: site.url,
   email: site.email,
   telephone: site.phoneHref,
-  foundingDate: site.founded,
   image: `${site.url}/og.png`,
   logo: `${site.url}/logo.svg`,
   priceRange: "€€€",
@@ -66,12 +66,32 @@ const faqPage = {
   })),
 };
 
+// Breadcrumbs derived from the URL path (Home › … › current page) so AI and
+// search engines understand the site hierarchy.
+const deslug = (s: string) => s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+const parts = Astro.url.pathname.split("/").filter(Boolean);
+const breadcrumb = parts.length
+  ? {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` },
+        ...parts.map((seg, i) => ({
+          "@type": "ListItem",
+          position: i + 2,
+          name: i === parts.length - 1 && title ? title.split(" · ")[0] : deslug(seg),
+          item: `${site.url}/${parts.slice(0, i + 1).join("/")}/`,
+        })),
+      ],
+    }
+  : null;
+
 const graph: object[] = [
   { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, publisher: { "@id": `${site.url}/#organization` } },
   localBusiness,
 ];
 if (services) graph.push(...serviceList);
 if (faq) graph.push(faqPage);
+if (breadcrumb) graph.push(breadcrumb);
 
 const data = { "@context": "https://schema.org", "@graph": graph };
 ---
