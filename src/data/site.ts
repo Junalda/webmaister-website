@@ -139,7 +139,23 @@ export const solutionGroups = [
 // Authentic transformation stories. Intentionally qualitative: we describe the
 // challenge, strategic thinking and brand/digital transformation rather than
 // inventing statistics.
-export const caseStudies = [
+type CaseStudy = {
+  slug: string;
+  company: string;
+  industry: string;
+  cardIndustry: string;
+  cardText: string;
+  headline: string;
+  challenge: string;
+  solutionIntro: string;
+  solutionPoints: string[];
+  outcome: string;
+  quote: string;
+  website?: { label: string; href: string };
+  founders?: { name: string; href: string }[];
+};
+
+export const caseStudies: CaseStudy[] = [
   {
     slug: "nursitree",
     company: "NursiTree",
@@ -162,6 +178,11 @@ export const caseStudies = [
     outcome:
       "NursiTree now has a digital foundation that matches the ambition of its mission: greener, more climate-resilient cities. The platform explains the tree bunker concept with clarity, communicates its benefits for water management and urban cooling, and positions NursiTree as a credible partner for municipalities and urban planners, ready to grow as the company scales.",
     quote: "Growth starts with credibility. Before you can scale, people need to trust you.",
+    website: { label: "nursitree.com", href: "https://nursitree.com" },
+    founders: [
+      { name: "Tony Hoekstra", href: "https://www.linkedin.com/in/tonyhoekstra/" },
+      { name: "Gerbrand van de Weerd", href: "https://www.linkedin.com/in/gerbrand-van-de-weerd/" },
+    ],
   },
   {
     slug: "queenly-events",
