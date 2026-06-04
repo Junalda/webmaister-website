@@ -17,9 +17,14 @@ export const site = {
   region: "Zuid-Holland",
   country: "NL",
   areaServed: ["Rotterdam", "Zuid-Holland", "Netherlands"],
-  founded: "2021",
+  founded: "2023",
+  // Single canonical company description (boilerplate) reused in the
+  // Organization schema, the home meta description, the footer and About page,
+  // so AI/search engines always read the exact same definition.
+  description:
+    "Webmaister is a Growth & AI Infrastructure Partner based in Rotterdam, the Netherlands. We help ambitious businesses grow with premium websites, AI solutions and automation that attract more customers, save time and increase revenue.",
   social: {
-    linkedin: "https://www.linkedin.com/company/webmaister",
+    linkedin: "https://www.linkedin.com/company/112275381/",
   },
 };
 
@@ -28,6 +33,7 @@ export const nav = [
   { label: "Solutions", href: "/solutions/" },
   { label: "Success Stories", href: "/success-stories/" },
   { label: "Blog", href: "/blog/" },
+  { label: "About", href: "/about/" },
   { label: "Contact", href: "/contact/" },
 ];
 
@@ -229,5 +235,33 @@ export const faqs = [
   {
     q: "How do we get started?",
     a: "Book a free Growth Strategy Call. We'll review your current setup, identify the highest-leverage opportunities and outline a clear plan to attract more customers, automate work and grow.",
+  },
+];
+
+// ---- Solutions-page FAQ (answer-first, powers a second FAQPage) ----
+export const solutionsFaqs = [
+  {
+    q: "What does a premium website include?",
+    a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into qualified leads, not just to look good.",
+  },
+  {
+    q: "Is Brainy a chatbot?",
+    a: "No. Brainy is an AI layer that works like a digital employee: it captures and qualifies leads, answers customer questions 24/7, books appointments and follow-ups, generates content and automates administrative work. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
+  },
+  {
+    q: "How long does a project take?",
+    a: "A focused website typically takes a few weeks; growth systems and AI automation are then layered on in stages. We start with the highest-leverage work first so you see value early, then build out from there. Exact timing depends on scope, which we map in the first strategy call.",
+  },
+  {
+    q: "What does it cost?",
+    a: "It depends on what you need: a website, growth and SEO systems, AI automation, or a combination. We scope each project to your goals and budget and give you a clear quote up front. The fastest way to a price is a free Growth Strategy Call, where we map the work and the expected return.",
+  },
+  {
+    q: "Do you only work with businesses in Rotterdam?",
+    a: "Webmaister is based in Rotterdam and knows the local market, but we work with ambitious businesses across Zuid-Holland, the wider Netherlands and remotely. The same approach applies wherever you are.",
+  },
+  {
+    q: "Can you improve our existing website instead of rebuilding it?",
+    a: "Often, yes. We can redesign or optimize an existing site, add growth and SEO systems, or connect AI automation to what you already have. We start with where you want to go and recommend the smallest change that gets you there.",
   },
 ];

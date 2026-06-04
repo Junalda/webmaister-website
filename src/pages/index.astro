@@ -7,7 +7,7 @@ import BrainyDashboard from "@/components/BrainyDashboard.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import {
-  pillars, problems, framework, brainyCapabilities, caseStudies,
+  site, pillars, problems, framework, brainyCapabilities, caseStudies,
   ctaPrimary, ctaSecondary,
 } from "@/data/site";
 
@@ -15,7 +15,7 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
 ---
 <Base
   title="Webmaister · Premium Websites, Growth Systems & AI Automation in Rotterdam"
-  description="Webmaister is a Growth & AI Infrastructure Partner in Rotterdam. We build premium websites, growth systems and Brainy AI automation that generate more leads, save time and increase revenue."
+  description={site.description}
   faqSchema
   serviceSchema
 >
