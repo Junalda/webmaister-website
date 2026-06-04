@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Schema from "@/components/Schema.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title: string;
@@ -15,6 +16,12 @@ const { title, description, faqSchema = false, serviceSchema = false } = Astro.p
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+
+// Vercel sets VERCEL_ENV at build time: "production" for the production branch,
+// "preview" for any other (staging) branch. Show a badge on non-production so
+// staging is never mistaken for the live site.
+const vercelEnv = process.env.VERCEL_ENV;
+const isPreview = !!vercelEnv && vercelEnv !== "production";
 ---
 <!doctype html>
 <html lang="en">
@@ -26,7 +33,7 @@ const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#0a0b12" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={isPreview ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
     <meta name="author" content={site.name} />
     <meta name="geo.region" content="NL-ZH" />
     <meta name="geo.placename" content="Rotterdam" />
@@ -53,11 +60,17 @@ const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
+    {isPreview && (
+      <div class="env-badge" title={`Environment: ${vercelEnv}`}>
+        <span class="env-dot"></span> Staging · niet de live site
+      </div>
+    )}
     <Header />
     <main id="main">
       <slot />
     </main>
     <Footer />
+    <SpeedInsights />
 
     <style>
       body { display: flex; flex-direction: column; min-height: 100vh; }
@@ -73,6 +86,34 @@ const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`
         border-radius: var(--r-sm);
       }
       .skip-link:focus { left: 0.5rem; }
+
+      .env-badge {
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
+        z-index: 300;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #1c1300;
+        background: #ffce4d;
+        border: 1px solid #e0a500;
+        box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
+        pointer-events: none;
+      }
+      .env-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #1c1300;
+      }
+      @media (max-width: 600px) {
+        .env-badge { font-size: 0.72rem; padding: 6px 11px; bottom: 12px; left: 12px; }
+      }
     </style>
 
     <script>
