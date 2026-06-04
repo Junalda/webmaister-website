@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Schema from "@/components/Schema.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title: string;
@@ -69,6 +70,7 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
       <slot />
     </main>
     <Footer />
+    <SpeedInsights />
 
     <style>
       body { display: flex; flex-direction: column; min-height: 100vh; }
