@@ -5,6 +5,7 @@ import Icon from "@/components/Icon.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import FinalCta from "@/components/FinalCta.astro";
+import MeetBrainy from "@/components/MeetBrainy.astro";
 import { solutionGroups, framework, solutionsFaqs, site } from "@/data/site";
 
 // FAQPage schema for the answer-first Solutions FAQ.
@@ -65,6 +66,10 @@ const solutionsFaqLd = {
       </div>
     </section>
   ))}
+
+  <!-- ===== Brainy deep-dive (compact variant; unique id avoids clashing
+            with the #brainy solution group above) ===== -->
+  <MeetBrainy variant="compact" id="brainy-deep" />
 
   <!-- ===== Outcome-first banner ===== -->
   <section class="section section-dark">
