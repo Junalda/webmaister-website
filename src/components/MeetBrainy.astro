@@ -1,0 +1,499 @@
+---
+/* =========================================================================
+   MeetBrainy.astro — "Your business brain"
+   -------------------------------------------------------------------------
+   A self-contained section that introduces Brainy as ONE shared AI brain
+   powering both the front office (customers) and back office (team).
+
+   Drop-in usage:
+     import MeetBrainy from "@/components/MeetBrainy.astro";
+     <MeetBrainy />                 // full version (home page)
+     <MeetBrainy variant="compact"/> // shorter version (e.g. solutions page)
+
+   HOME vs SOLUTIONS:
+   - "full"    : pain + one-brain centerpiece + 6 cards + dashboard + CTAs.
+   - "compact" : drops the dashboard mockup and the pain paragraph for a
+                 tighter block when the page already has lots of context.
+   Search for `variant === "full"` below to see exactly what differs.
+
+   No external runtime deps. Icons are inline SVG (paths in `icons` below).
+   All editable copy lives in the EDITABLE COPY block — change text there
+   without touching the markup.
+   ========================================================================= */
+
+interface Props {
+  variant?: "full" | "compact";
+}
+const { variant = "full" } = Astro.props;
+
+/* ============================ EDITABLE COPY ============================ */
+const eyebrow = "Meet Brainy";
+const headline = "Your business brain.";
+const subhead =
+  "Not a chatbot. Not another tool. One AI that runs the front of your business and the back at the same time.";
+
+const pain =
+  "Leads arrive at midnight and wait until morning. The same questions get answered again and again. Your team loses hours to admin, meeting notes, and hunting for answers that already live somewhere in your files. And every bit of growth seems to need another hire.";
+const bridge = "Brainy takes all of that, on both sides of your business, at once.";
+
+// The two halves of the one-brain centerpiece.
+const front = {
+  tag: "Front office",
+  sub: "Facing your customers",
+  points: [
+    "Greets every visitor",
+    "Qualifies every lead",
+    "Answers 24/7, in any language",
+    "Books the meeting and follows up",
+  ],
+};
+const back = {
+  tag: "Back office",
+  sub: "Facing your team",
+  points: [
+    "Reads and summarizes documents",
+    "Writes meeting notes and actions",
+    "Finds answers across your knowledge",
+    "Automates repetitive admin",
+  ],
+};
+
+// Capability cards: 3 front + 3 back. Outcomes, not features.
+const cards = [
+  {
+    side: "Front office",
+    icon: "userCheck",
+    title: "Every visitor met, every lead qualified",
+    text: "Brainy welcomes each visitor, asks the right questions, and routes ready-to-buy leads straight to sales.",
+  },
+  {
+    side: "Front office",
+    icon: "globe",
+    title: "Instant answers, any hour, any language",
+    text: "Customers get accurate replies at 2am or in another language, with no one on your team awake.",
+  },
+  {
+    side: "Front office",
+    icon: "calendar",
+    title: "Meetings booked while intent is high",
+    text: "Brainy schedules the call and runs the follow-ups, so no lead cools off waiting for a reply.",
+  },
+  {
+    side: "Back office",
+    icon: "fileText",
+    title: "A 40-page report, distilled to its risks in 30 seconds",
+    text: "Brainy reads long documents and hands back the numbers, risks and next steps, not the noise.",
+  },
+  {
+    side: "Back office",
+    icon: "listCheck",
+    title: "Every meeting ends with owner-ready actions",
+    text: "Clear notes and action points are written the moment the call ends, so nothing slips.",
+  },
+  {
+    side: "Back office",
+    icon: "search",
+    title: "Your whole company's knowledge, one question away",
+    text: "Ask in plain language and Brainy finds the answer across your files, docs and past projects.",
+  },
+];
+
+// Coded dashboard mockup ("Brainy · Live workspace").
+const dashboard = {
+  title: "Brainy · Live workspace",
+  status: "Online · 24/7",
+  stats: [
+    { k: "Leads captured", v: "128", d: "▲ 24%" },
+    { k: "Avg. response", v: "12s", d: "▼ 4×" },
+    { k: "Auto-resolved", v: "68%", d: "▲ 11%" },
+  ],
+  chat: [
+    { from: "in", text: "Hi! Do you build websites with AI booking?" },
+    {
+      from: "out",
+      text: "Absolutely. I can show examples and book your free strategy call now. What's your business?",
+    },
+  ],
+  tasks: [
+    "Qualified lead · routed to sales",
+    "Meeting booked",
+    "Follow-up scheduled",
+  ],
+};
+
+// Closing differentiator + positioning line.
+const closingLead = "Other tools do one side.";
+const closing =
+  "A chatbot bolted on the front. Disconnected AI tricks in the back. Brainy is one brain that does both — so what your business knows, your customers feel instantly, and what your customers say flows straight to your team. That connection is exactly what an off-the-shelf chatbot can't replicate.";
+const positioning =
+  "Hire one digital employee, not ten disconnected tools — and scale without scaling headcount.";
+
+const ctas = {
+  primary: { label: "Explore Brainy AI", href: "/solutions/#brainy" },
+  secondary: { label: "Book a strategy call", href: "/contact/" },
+};
+
+/* ===================== INLINE ICONS (no icon library) ===================== */
+// 24×24 stroke paths, rendered with currentColor.
+const icons: Record<string, string> = {
+  userCheck: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/>`,
+  globe: `<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.6 6 3.6 9s-1.1 6.5-3.6 9c-2.5-2.5-3.6-6-3.6-9s1.1-6.5 3.6-9Z"/>`,
+  calendar: `<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>`,
+  fileText: `<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 13h6M9 17h4"/>`,
+  listCheck: `<path d="m3 7 1.6 1.6L8 5.2"/><path d="m3 16.4 1.6 1.6L8 14.6"/><path d="M12 7h9M12 17h9"/>`,
+  search: `<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>`,
+};
+// Brain glyph for the central node (two connected lobes).
+const brain = `<path d="M9.6 4.2A2.6 2.6 0 0 0 7 6.8c0 .3 0 .5.1.8A2.6 2.6 0 0 0 5.2 10a2.6 2.6 0 0 0 1 2 2.6 2.6 0 0 0 .5 3.4 2.6 2.6 0 0 0 2.9 3.6"/><path d="M14.4 4.2A2.6 2.6 0 0 1 17 6.8c0 .3 0 .5-.1.8A2.6 2.6 0 0 1 18.8 10a2.6 2.6 0 0 1-1 2 2.6 2.6 0 0 1-.5 3.4 2.6 2.6 0 0 1-2.9 3.6"/><path d="M12 4v16"/>`;
+const check = `<path d="M20 6 9 17l-5-5"/>`;
+---
+
+<section class="mb section-dark" id="brainy" aria-labelledby="mb-headline">
+  <div class="mb-bg" aria-hidden="true"></div>
+  <div class="container mb-inner">
+
+    <!-- 1 + 2 · Intro -->
+    <header class="mb-head" data-reveal>
+      <span class="mb-eyebrow">{eyebrow}</span>
+      <h2 id="mb-headline" class="mb-headline">Your business <span class="grad">brain.</span></h2>
+      <p class="mb-subhead">{subhead}</p>
+      {variant === "full" && (
+        <p class="mb-pain">{pain} <span class="mb-bridge">{bridge}</span></p>
+      )}
+    </header>
+
+    <!-- 3 · ONE BRAIN centerpiece: the connection is the hero -->
+    <div class="mb-stage" data-reveal aria-label="One brain connecting front office and back office">
+      <article class="wing wing-front">
+        <div class="wing-head">
+          <span class="wing-tag">{front.tag}</span>
+          <span class="wing-sub">{front.sub}</span>
+        </div>
+        <ul class="wing-list">
+          {front.points.map((p) => <li><span class="bullet" aria-hidden="true"></span>{p}</li>)}
+        </ul>
+      </article>
+
+      <div class="beam beam-l" aria-hidden="true"><span class="flow"></span></div>
+
+      <div class="core" aria-hidden="true">
+        <span class="core-glow"></span>
+        <span class="core-ring"></span>
+        <span class="core-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={brain} />
+        </span>
+        <span class="core-cap">One brain</span>
+      </div>
+
+      <div class="beam beam-r" aria-hidden="true"><span class="flow flow-2"></span></div>
+
+      <article class="wing wing-back">
+        <div class="wing-head">
+          <span class="wing-tag">{back.tag}</span>
+          <span class="wing-sub">{back.sub}</span>
+        </div>
+        <ul class="wing-list">
+          {back.points.map((p) => <li><span class="bullet" aria-hidden="true"></span>{p}</li>)}
+        </ul>
+      </article>
+    </div>
+
+    <!-- 4 · Capabilities grid (3 front + 3 back) -->
+    <div class="mb-cards">
+      {cards.map((c, i) => (
+        <article class="mb-card" data-side={c.side} data-reveal data-delay={i * 60}>
+          <span class="card-ic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.icon]} />
+          </span>
+          <span class="card-side">{c.side}</span>
+          <h3 class="card-title">{c.title}</h3>
+          <p class="card-text">{c.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <!-- 5 · Coded dashboard mockup (full variant only) -->
+    {variant === "full" && (
+      <div class="mb-dash" data-reveal aria-hidden="true">
+        <span class="dash-glow"></span>
+        <div class="dash-window">
+          <div class="dash-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="dash-title">{dashboard.title}</span>
+            <span class="dash-status"><span class="pulse"></span>{dashboard.status}</span>
+          </div>
+          <div class="dash-main">
+            <div class="stat-row">
+              {dashboard.stats.map((s) => (
+                <div class="stat">
+                  <span class="stat-k">{s.k}</span>
+                  <span class="stat-v">{s.v}</span>
+                  <span class="stat-d">{s.d}</span>
+                </div>
+              ))}
+            </div>
+            <div class="chat-card">
+              {dashboard.chat.map((m) => <div class={`msg ${m.from}`}><span>{m.text}</span></div>)}
+              <div class="msg typing"><i></i><i></i><i></i></div>
+            </div>
+            <div class="task-row">
+              {dashboard.tasks.map((t) => (
+                <div class="task done">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" set:html={check} />
+                  {t}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- 6 + 7 · Closing differentiator + CTAs -->
+    <div class="mb-close" data-reveal>
+      <p class="close-line"><span class="close-lead">{closingLead}</span> {closing}</p>
+      <p class="close-pos grad">{positioning}</p>
+      <div class="mb-cta">
+        <a class="mb-btn mb-btn-primary" href={ctas.primary.href}>
+          {ctas.primary.label}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={`<path d='M5 12h14M13 6l6 6-6 6'/>`} />
+        </a>
+        <a class="mb-btn mb-btn-ghost" href={ctas.secondary.href}>{ctas.secondary.label}</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* ---- Shell ---- */
+  .mb {
+    position: relative; overflow: hidden;
+    padding-block: clamp(70px, 9vw, 130px);
+    background: var(--ink);
+    color: var(--on-dark);
+  }
+  .mb-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(10,142,242,0.18), transparent 60%),
+      radial-gradient(90% 70% at 50% 120%, rgba(6,207,232,0.10), transparent 60%),
+      linear-gradient(180deg, #0a0b12 0%, #07080e 100%);
+  }
+  .mb-inner { position: relative; z-index: 1; }
+
+  /* ---- Intro ---- */
+  .mb-head { max-width: 780px; margin: 0 auto; text-align: center; }
+  .mb-eyebrow {
+    display: inline-block; font-size: 0.76rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .mb-headline {
+    font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: 1.04;
+    letter-spacing: -0.03em; color: #fff; margin: 0;
+  }
+  .grad {
+    background: var(--grad-brand);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .mb-subhead {
+    margin: 1.2rem auto 0; max-width: 620px;
+    font-size: clamp(1.02rem, 2vw, 1.2rem); line-height: 1.55; color: var(--on-dark-muted);
+  }
+  .mb-pain {
+    margin: 1.8rem auto 0; max-width: 660px;
+    font-size: 1rem; line-height: 1.7; color: #c4c9d8;
+  }
+  .mb-bridge { color: #fff; font-weight: 560; }
+
+  /* ---- 3 · One-brain centerpiece ---- */
+  .mb-stage {
+    margin-top: clamp(2.6rem, 6vw, 4rem);
+    display: grid;
+    grid-template-columns: 1fr clamp(48px, 7vw, 96px) auto clamp(48px, 7vw, 96px) 1fr;
+    align-items: center;
+    gap: 0;
+  }
+  .wing {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-lg);
+    padding: clamp(1.3rem, 2.5vw, 1.9rem);
+    backdrop-filter: blur(4px);
+  }
+  .wing-front { box-shadow: inset 0 0 0 1px rgba(29,155,246,0.12); }
+  .wing-back { box-shadow: inset 0 0 0 1px rgba(34,211,238,0.12); }
+  .wing-head { margin-bottom: 1.1rem; }
+  .wing-tag {
+    display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #fff;
+  }
+  .wing-front .wing-tag { color: #5ab7ff; }
+  .wing-back .wing-tag { color: #46e0f0; }
+  .wing-sub { font-size: 0.82rem; color: var(--on-dark-muted); }
+  .wing-list { display: grid; gap: 0.7rem; }
+  .wing-list li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; color: #d7dae6; }
+  .bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; box-shadow: 0 0 8px rgba(6,207,232,0.7); }
+
+  /* Connecting beams — the connection is the hero */
+  .beam { position: relative; height: 2px; align-self: center; }
+  .beam-l { background: linear-gradient(90deg, rgba(90,183,255,0) 0%, rgba(90,183,255,0.6) 100%); }
+  .beam-r { background: linear-gradient(90deg, rgba(70,224,240,0.6) 0%, rgba(70,224,240,0) 100%); }
+  .flow {
+    position: absolute; top: 50%; left: 0; width: 7px; height: 7px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 12px 2px var(--accent);
+    transform: translate(-50%, -50%); animation: flowR 2.4s linear infinite;
+  }
+  .flow-2 { animation-delay: 1.2s; }
+  @keyframes flowR {
+    0% { left: 0; opacity: 0; }
+    12% { opacity: 1; }
+    88% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  /* Central brain node */
+  .core { position: relative; display: grid; place-items: center; width: clamp(96px, 14vw, 132px); height: clamp(96px, 14vw, 132px); }
+  .core-glow {
+    position: absolute; inset: -30%; border-radius: 50%;
+    background: radial-gradient(circle, rgba(10,142,242,0.55), rgba(6,207,232,0.15) 55%, transparent 70%);
+    filter: blur(14px); animation: breathe 4s ease-in-out infinite;
+  }
+  .core-ring {
+    position: absolute; inset: 6%; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 0 0 1px rgba(10,142,242,0.25) inset;
+    animation: spin 14s linear infinite;
+  }
+  .core-ring::before {
+    content: ""; position: absolute; top: -3px; left: 50%; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent);
+    transform: translateX(-50%);
+  }
+  .core-node {
+    position: relative; z-index: 1; display: grid; place-items: center;
+    width: 62%; height: 62%; border-radius: 50%;
+    background: linear-gradient(150deg, #0c1a2e, #0a1220);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: var(--shadow-brand);
+  }
+  .core-node svg { width: 46%; height: 46%; color: #eaf4ff; }
+  .core-cap {
+    position: absolute; bottom: -1.7rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); white-space: nowrap;
+  }
+  @keyframes breathe { 0%,100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---- 4 · Capability cards ---- */
+  .mb-cards {
+    margin-top: clamp(3.4rem, 6vw, 5rem);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.4rem);
+  }
+  .mb-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-lg);
+    padding: clamp(1.3rem, 2.2vw, 1.7rem);
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .mb-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); }
+  .card-ic {
+    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 13px;
+    margin-bottom: 1.1rem; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .card-ic svg { width: 21px; height: 21px; }
+  .mb-card[data-side="Front office"] .card-ic { color: #5ab7ff; background: rgba(29,155,246,0.12); }
+  .mb-card[data-side="Back office"] .card-ic { color: #46e0f0; background: rgba(34,211,238,0.12); }
+  .card-side {
+    display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--on-dark-muted); margin-bottom: 0.5rem;
+  }
+  .card-title { font-size: 1.08rem; line-height: 1.3; color: #fff; margin: 0 0 0.6rem; letter-spacing: -0.01em; }
+  .card-text { font-size: 0.93rem; line-height: 1.6; color: var(--on-dark-muted); margin: 0; }
+
+  /* ---- 5 · Dashboard mockup ---- */
+  .mb-dash { position: relative; margin-top: clamp(3.4rem, 6vw, 5rem); max-width: 920px; margin-inline: auto; }
+  .dash-glow {
+    position: absolute; inset: -8% 8% auto 8%; height: 60%;
+    background: var(--grad-brand); filter: blur(70px); opacity: 0.22; border-radius: 50%;
+  }
+  .dash-window {
+    position: relative; z-index: 1; background: #0e1018;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: 0 40px 90px -34px rgba(0,0,0,0.7);
+  }
+  .dash-bar {
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: #2a2e3e; }
+  .dot:first-child { background: #ff5f57; } .dot:nth-child(2) { background: #febc2e; } .dot:nth-child(3) { background: #28c840; }
+  .dash-title { margin-left: 10px; color: #aab0c4; font-size: 0.82rem; font-weight: 500; }
+  .dash-status { margin-left: auto; display: flex; align-items: center; gap: 6px; color: #5fe3c0; font-size: 0.78rem; font-weight: 600; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #28c840; animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(40,200,64,0.5); } 70% { box-shadow: 0 0 0 8px rgba(40,200,64,0); } 100% { box-shadow: 0 0 0 0 rgba(40,200,64,0); } }
+
+  .dash-main { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .stat-k { color: #8a90a3; font-size: 0.72rem; }
+  .stat-v { color: #fff; font-size: 1.5rem; font-weight: 650; letter-spacing: -0.02em; }
+  .stat-d { font-size: 0.72rem; font-weight: 600; color: #5fe3c0; }
+
+  .chat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 10px 13px; border-radius: 14px; font-size: 0.84rem; line-height: 1.45; }
+  .msg.in { background: rgba(255,255,255,0.06); color: #d7dae6; border-bottom-left-radius: 4px; }
+  .msg.out { align-self: flex-end; background: var(--brand); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.typing { display: inline-flex; gap: 4px; background: rgba(255,255,255,0.06); border-bottom-left-radius: 4px; }
+  .msg.typing i { width: 6px; height: 6px; border-radius: 50%; background: #8a90a3; animation: blink 1.4s infinite both; }
+  .msg.typing i:nth-child(2) { animation-delay: .2s; } .msg.typing i:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%,80%,100% { opacity: .2; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-2px); } }
+
+  .task-row { display: flex; flex-direction: column; gap: 7px; }
+  .task { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #d7dae6; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 11px; padding: 9px 12px; }
+  .task svg { width: 15px; height: 15px; color: #5fe3c0; flex-shrink: 0; }
+
+  /* ---- 6 + 7 · Closing + CTAs ---- */
+  .mb-close { margin-top: clamp(3.4rem, 6vw, 5rem); max-width: 720px; margin-inline: auto; text-align: center; }
+  .close-line { font-size: clamp(1rem, 2vw, 1.12rem); line-height: 1.7; color: #c4c9d8; }
+  .close-lead { color: #fff; font-weight: 600; }
+  .close-pos { margin-top: 1.4rem; font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 650; line-height: 1.3; letter-spacing: -0.02em; }
+  .mb-cta { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  .mb-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.5rem; border-radius: var(--r-pill);
+    font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .mb-btn svg { width: 18px; height: 18px; }
+  .mb-btn-primary { background: var(--grad-brand); color: #fff; box-shadow: var(--shadow-brand); }
+  .mb-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 60px -18px rgba(10,142,242,0.6); }
+  .mb-btn-ghost { background: rgba(255,255,255,0.04); color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+  .mb-btn-ghost:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .mb-cards { grid-template-columns: repeat(2, 1fr); }
+    /* Stage becomes a vertical flow: front → brain → back */
+    .mb-stage { grid-template-columns: 1fr; justify-items: center; gap: 0; }
+    .wing { width: 100%; max-width: 440px; }
+    .beam { height: clamp(34px, 7vw, 48px); width: 2px; }
+    .beam-l { background: linear-gradient(180deg, rgba(90,183,255,0) 0%, rgba(90,183,255,0.6) 100%); }
+    .beam-r { background: linear-gradient(180deg, rgba(70,224,240,0.6) 0%, rgba(70,224,240,0) 100%); }
+    .flow { left: 50%; top: 0; animation-name: flowD; }
+    @keyframes flowD { 0% { top: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    .core-cap { bottom: -1.5rem; }
+  }
+  @media (max-width: 540px) {
+    .mb-cards { grid-template-columns: 1fr; }
+    .stat-v { font-size: 1.2rem; }
+    .dash-main { padding: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow, .core-glow, .core-ring, .pulse, .msg.typing i { animation: none; }
+  }
+</style>
