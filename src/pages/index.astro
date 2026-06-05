@@ -3,15 +3,13 @@ import Base from "@/layouts/Base.astro";
 import Button from "@/components/Button.astro";
 import Icon from "@/components/Icon.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
-import BrainyDashboard from "@/components/BrainyDashboard.astro";
+import MeetBrainy from "@/components/MeetBrainy.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import {
-  site, pillars, problems, framework, brainyCapabilities, caseStudies,
+  site, pillars, problems, framework, caseStudies,
   ctaPrimary, ctaSecondary,
 } from "@/data/site";
-
-const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
 ---
 <Base
   title="Webmaister · Premium Websites, Growth Systems & AI Automation in Rotterdam"
@@ -99,35 +97,8 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
     </div>
   </section>
 
-  <!-- ============ MEET BRAINY ============ -->
-  <section class="section section-dark brainy" id="brainy">
-    <div class="container brainy-inner">
-      <div class="brainy-copy">
-        <span class="eyebrow" style="color:var(--accent)">Meet Brainy</span>
-        <h2>Meet your next<br>team member.</h2>
-        <p class="lead">
-          Brainy is the intelligent AI layer behind Webmaister. Not a chatbot. Not a tool.
-          A <strong style="color:#fff">digital employee</strong> that works 24/7 across sales,
-          customer service, administration and operations so you scale without hiring.
-        </p>
-        <ul class="brainy-caps">
-          {brainyCapabilities.map((c, i) => (
-            <li data-reveal data-delay={i * 50}>
-              <span class="cap-ic"><Icon name={capIcons[i]} /></span>
-              <span><strong>{c.title}</strong><em>{c.text}</em></span>
-            </li>
-          ))}
-        </ul>
-        <div class="brainy-actions">
-          <Button href="/solutions/#brainy" variant="brand" arrow>Explore Brainy AI</Button>
-          <Button href="/contact/" variant="ghost">Book a strategy call</Button>
-        </div>
-      </div>
-      <div class="brainy-visual">
-        <BrainyDashboard />
-      </div>
-    </div>
-  </section>
+  <!-- ============ MEET BRAINY (your business brain) ============ -->
+  <MeetBrainy />
 
   <!-- ============ GROWTH FRAMEWORK ============ -->
   <section class="section">
@@ -263,18 +234,6 @@ const capIcons = ["users", "chat", "calendar", "doc", "chart", "gear"];
   .inline-link :global(svg) { width: 16px; height: 16px; transition: transform 0.2s ease; }
   .inline-link:hover :global(svg) { transform: translateX(3px); }
   @media (max-width: 900px) { .ecosystem { grid-template-columns: 1fr; } }
-
-  /* ---- Brainy ---- */
-  .brainy-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
-  .brainy-copy h2 { margin: 0.8rem 0 1.2rem; }
-  .brainy-caps { display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0; }
-  .brainy-caps li { display: flex; gap: 0.9rem; align-items: flex-start; }
-  .cap-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: rgba(255,255,255,0.06); border: 1px solid var(--line-dark); color: var(--accent); flex-shrink: 0; }
-  .cap-ic :global(svg) { width: 20px; height: 20px; }
-  .brainy-caps strong { display: block; color: #fff; font-weight: 580; font-size: 0.98rem; }
-  .brainy-caps em { font-style: normal; color: var(--on-dark-muted); font-size: 0.9rem; }
-  .brainy-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
-  @media (max-width: 940px) { .brainy-inner { grid-template-columns: 1fr; } .brainy-visual { order: -1; } }
 
   /* ---- Framework ---- */
   .framework { margin-top: 3rem; counter-reset: step; }
