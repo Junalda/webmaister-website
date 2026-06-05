@@ -23,8 +23,12 @@
 
 interface Props {
   variant?: "full" | "compact";
+  // Anchor id for the section. Defaults to "brainy" (home). Pass a unique id
+  // when another element on the same page already uses "brainy" (e.g. the
+  // Brainy solution group on /solutions/).
+  id?: string;
 }
-const { variant = "full" } = Astro.props;
+const { variant = "full", id = "brainy" } = Astro.props;
 
 /* ============================ EDITABLE COPY ============================ */
 const eyebrow = "Meet Brainy";
@@ -148,7 +152,7 @@ const brain = `<path d="M9.6 4.2A2.6 2.6 0 0 0 7 6.8c0 .3 0 .5.1.8A2.6 2.6 0 0 0
 const check = `<path d="M20 6 9 17l-5-5"/>`;
 ---
 
-<section class="mb section-dark" id="brainy" aria-labelledby="mb-headline">
+<section class="mb section-dark" id={id} aria-labelledby="mb-headline">
   <div class="mb-bg" aria-hidden="true"></div>
   <div class="container mb-inner">
 
