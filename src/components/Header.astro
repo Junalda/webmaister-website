@@ -1,6 +1,8 @@
 ---
-import { nav, ctaPrimary } from "@/data/site";
+import { nav, ctaPrimary, site } from "@/data/site";
 import Logo from "./Logo.astro";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+const whatsappHref = `https://wa.me/${site.whatsappHref}`;
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === "/" ? path === "/" : path.startsWith(href);
@@ -22,6 +24,9 @@ const headerNav = nav.filter((item) => item.href !== "/");
     </nav>
 
     <div class="header-actions">
+      <a href={whatsappHref} class="wa-btn hidden-mobile" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <WhatsAppIcon />
+      </a>
       <a href={ctaPrimary.href} class="btn btn-brand hidden-mobile">{ctaPrimary.label}</a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
@@ -36,6 +41,9 @@ const headerNav = nav.filter((item) => item.href !== "/");
       ))}
     </nav>
     <a href={ctaPrimary.href} class="btn btn-brand btn-lg">{ctaPrimary.label}</a>
+    <a href={whatsappHref} class="wa-btn-full" target="_blank" rel="noopener noreferrer">
+      <WhatsAppIcon /> Chat on WhatsApp
+    </a>
   </div>
 </header>
 
@@ -87,6 +95,26 @@ const headerNav = nav.filter((item) => item.href !== "/");
     background: var(--brand);
   }
   .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+  /* WhatsApp icon button (desktop) */
+  .wa-btn {
+    display: grid; place-items: center; width: 42px; height: 42px;
+    border-radius: 12px; color: #25d366;
+    background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.25);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .wa-btn:hover { background: #25d366; color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(37,211,102,0.6); }
+  .wa-btn :global(svg) { width: 21px; height: 21px; }
+
+  /* WhatsApp full-width button (mobile menu) */
+  .wa-btn-full {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    width: 100%; margin-top: 0.7rem; padding: 0.9rem 1.2rem;
+    border-radius: var(--r-pill); font-weight: 600; font-size: 1rem;
+    color: #06351a; background: #25d366;
+    box-shadow: 0 12px 30px -14px rgba(37,211,102,0.6);
+  }
+  .wa-btn-full :global(svg) { width: 20px; height: 20px; }
 
   .nav-toggle {
     display: none;
