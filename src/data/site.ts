@@ -12,6 +12,8 @@ export const site = {
   email: "hello@webmaister.io",
   phone: "+31(0) 103072175",
   phoneHref: "+31103072175",
+  whatsapp: "+31 6 43187444",
+  whatsappHref: "31643187444", // wa.me format: country code + number, no + or leading 0
   kvk: "87478889",
   city: "Rotterdam",
   region: "Zuid-Holland",
