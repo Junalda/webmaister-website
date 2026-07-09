@@ -2,6 +2,7 @@
 import { site, nav, ctaPrimary } from "@/data/site";
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
 const year = new Date().getFullYear();
 const seo = [
   { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
@@ -33,6 +34,7 @@ const seo = [
         <ul class="contact-list">
           <li><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><Icon name="phone" /> <a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li class="wa-li"><WhatsAppIcon /> <a href={`https://wa.me/${site.whatsappHref}`} target="_blank" rel="noopener noreferrer">{site.whatsapp}</a></li>
           <li><Icon name="pin" /> <span>{site.city}, Netherlands</span></li>
         </ul>
       </div>
@@ -80,6 +82,7 @@ const seo = [
   .footer-col a:hover { color: #fff; }
   .contact-list li { display: flex; align-items: center; gap: 0.55rem; }
   .contact-list :global(svg) { width: 17px; height: 17px; color: var(--brand-2); flex-shrink: 0; }
+  .contact-list .wa-li :global(svg) { color: #25d366; }
   .footer-seo li a, .footer-seo li span { font-size: 0.88rem; }
   .footer-bottom {
     margin-top: clamp(2.5rem, 5vw, 4rem);
