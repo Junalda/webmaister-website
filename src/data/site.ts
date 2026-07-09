@@ -206,6 +206,10 @@ export const caseStudies: CaseStudy[] = [
     outcome:
       "Queenly Events now has a digital presence that reflects the quality and sophistication of the experiences they create. The website supports their goal of attracting higher-value clients and strengthening their market position.",
     quote: "Luxury is not about saying you're premium. It's about making people feel it.",
+    website: { label: "queenlyevent.nl", href: "https://queenlyevent.nl" },
+    founders: [
+      { name: "Esther Macnack", href: "https://www.linkedin.com/in/esther-macnack-1a0332296/" },
+    ],
   },
   {
     slug: "yiska-cleaning",
