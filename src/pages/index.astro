@@ -187,20 +187,22 @@ import {
     padding-block: calc(var(--nav-h) + clamp(70px, 11vw, 150px)) clamp(60px, 8vw, 110px);
   }
   .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-  .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
-  .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #bfe3fb, transparent 70%); top: -180px; right: -120px; }
-  .orb-2 { width: 480px; height: 480px; background: radial-gradient(circle, #c6f2fb, transparent 70%); top: 40px; left: -160px; opacity: 0.45; }
+  .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.3; }
+  .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #cfe6f7, transparent 70%); top: -180px; right: -120px; }
+  .orb-2 { width: 480px; height: 480px; background: radial-gradient(circle, #d3eef5, transparent 70%); top: 40px; left: -160px; opacity: 0.26; }
   .grid-lines {
     position: absolute; inset: 0;
     background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 75%);
-    opacity: 0.5;
+    background-size: 82px 82px;
+    mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 72%);
+    -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 72%);
+    opacity: 0.28;
   }
   .hero-inner { position: relative; z-index: 1; text-align: center; max-width: 880px; }
-  .hero-sub { max-width: 620px; margin: 1.4rem auto 0; }
-  .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+  /* Calmer hero heading: a little smaller, lighter, more air. */
+  .hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.7rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; }
+  .hero-sub { max-width: 600px; margin: 1.8rem auto 0; }
+  .hero-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 2.4rem; }
   .hero-note { font-size: 0.92rem; color: var(--text-faint); margin-top: 1.4rem; }
   .hero-trust {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;

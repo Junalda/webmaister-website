@@ -9,7 +9,7 @@
   /* ---- Brand palette ----
      Calm & premium: warm off-white paper, warm charcoal text, softened lines.
      Brand blue/cyan kept for identity but used more sparingly. */
-  --ink: #0a0b12;            /* near-black base (dark sections) */
+  --ink: #14110f;            /* warm near-black base (dark sections) */
   --ink-soft: #14161f;
   --bg: #faf9f5;             /* warm off-white paper */
   --bg-alt: #f3f1ea;         /* warm alt surface */
@@ -34,7 +34,7 @@
   /* ---- Signature gradients ---- */
   --grad-brand: linear-gradient(140deg, #0a8ef2 0%, #06cfe8 100%);
   --grad-soft: linear-gradient(135deg, #f4f2eb 0%, #edf4f6 100%); /* warm, quiet */
-  --grad-ink: radial-gradient(120% 120% at 50% 0%, #131d30 0%, #0a0c14 60%);
+  --grad-ink: radial-gradient(120% 120% at 50% 0%, #221c1a 0%, #120f0d 60%);
 
   /* ---- Radii ---- */
   --r-sm: 10px;
@@ -118,11 +118,9 @@ p { color: var(--text-muted); }
 }
 
 .lead { font-size: clamp(1.05rem, 1.7vw, 1.28rem); color: var(--text-muted); line-height: 1.68; }
+/* Calm, solid brand color instead of a bright gradient. */
 .gradient-text {
-  background: var(--grad-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--brand-strong);
 }
 
 /* ---------------- Layout helpers ---------------- */
