@@ -347,9 +347,9 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
   .flow {
     position: absolute; top: 50%; left: 0; width: 7px; height: 7px; border-radius: 50%;
     background: #fff; box-shadow: 0 0 12px 2px var(--accent);
-    transform: translate(-50%, -50%); animation: flowR 2.4s linear infinite;
+    transform: translate(-50%, -50%); animation: flowR 4.5s linear infinite;
   }
-  .flow-2 { animation-delay: 1.2s; }
+  .flow-2 { animation-delay: 2.25s; }
   @keyframes flowR {
     0% { left: 0; opacity: 0; }
     12% { opacity: 1; }
@@ -361,14 +361,14 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
   .core { position: relative; display: grid; place-items: center; width: clamp(96px, 14vw, 132px); height: clamp(96px, 14vw, 132px); }
   .core-glow {
     position: absolute; inset: -30%; border-radius: 50%;
-    background: radial-gradient(circle, rgba(10,142,242,0.55), rgba(6,207,232,0.15) 55%, transparent 70%);
-    filter: blur(14px); animation: breathe 4s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(10,142,242,0.4), rgba(6,207,232,0.12) 55%, transparent 70%);
+    filter: blur(16px); animation: breathe 7s ease-in-out infinite;
   }
   .core-ring {
     position: absolute; inset: 6%; border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.18);
-    box-shadow: 0 0 0 1px rgba(10,142,242,0.25) inset;
-    animation: spin 14s linear infinite;
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 0 0 1px rgba(10,142,242,0.2) inset;
+    animation: spin 34s linear infinite;
   }
   .core-ring::before {
     content: ""; position: absolute; top: -3px; left: 50%; width: 6px; height: 6px;
@@ -388,7 +388,7 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
     font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--accent); white-space: nowrap;
   }
-  @keyframes breathe { 0%,100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+  @keyframes breathe { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 0.85; transform: scale(1.03); } }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ---- 4 · Capability cards ---- */
