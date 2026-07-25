@@ -6,32 +6,34 @@
    ========================================================================= */
 
 :root {
-  /* ---- Brand palette ---- */
-  --ink: #0a0b12;            /* near-black base */
+  /* ---- Brand palette ----
+     Calm & premium: warm off-white paper, warm charcoal text, softened lines.
+     Brand blue/cyan kept for identity but used more sparingly. */
+  --ink: #0a0b12;            /* near-black base (dark sections) */
   --ink-soft: #14161f;
-  --bg: #ffffff;
-  --bg-alt: #f6f7fb;         /* off-white surface */
-  --bg-tint: #e9f5fe;        /* faint brand tint */
-  --surface: #ffffff;
+  --bg: #faf9f5;             /* warm off-white paper */
+  --bg-alt: #f3f1ea;         /* warm alt surface */
+  --bg-tint: #eaf3f8;        /* faint, calmer brand tint */
+  --surface: #ffffff;        /* white cards lift gently off the warm bg */
 
   --brand: #0a8ef2;          /* logo azure blue (signature) */
   --brand-strong: #0b78d4;   /* darker for hover/active */
   --brand-2: #06cfe8;        /* logo cyan */
   --accent: #06cfe8;         /* growth cyan */
 
-  --text: #0a0b12;
-  --text-muted: #565d70;
-  --text-faint: #8a90a3;
+  --text: #1b1a17;           /* warm charcoal, softer than pure ink */
+  --text-muted: #5c5950;     /* warm grey */
+  --text-faint: #928e83;     /* warm faint */
   --on-dark: #f4f5fa;
   --on-dark-muted: #aab0c4;
 
-  --line: #e7e9f2;
-  --line-strong: #d6d9e6;
+  --line: #e8e4da;           /* warm hairline */
+  --line-strong: #dcd7cb;
   --line-dark: rgba(255, 255, 255, 0.1);
 
   /* ---- Signature gradients ---- */
   --grad-brand: linear-gradient(140deg, #0a8ef2 0%, #06cfe8 100%);
-  --grad-soft: linear-gradient(135deg, #e9f5fe 0%, #f1fcff 100%);
+  --grad-soft: linear-gradient(135deg, #f4f2eb 0%, #edf4f6 100%); /* warm, quiet */
   --grad-ink: radial-gradient(120% 120% at 50% 0%, #131d30 0%, #0a0c14 60%);
 
   /* ---- Radii ---- */
@@ -41,11 +43,11 @@
   --r-xl: 32px;
   --r-pill: 999px;
 
-  /* ---- Shadows ---- */
-  --shadow-sm: 0 1px 2px rgba(10, 11, 18, 0.05), 0 1px 3px rgba(10, 11, 18, 0.05);
-  --shadow-md: 0 8px 24px -8px rgba(10, 11, 18, 0.12);
-  --shadow-lg: 0 24px 60px -20px rgba(10, 11, 18, 0.22);
-  --shadow-brand: 0 18px 50px -16px rgba(10, 142, 242, 0.45);
+  /* ---- Shadows ---- (softer, warmer, calmer) */
+  --shadow-sm: 0 1px 2px rgba(28, 25, 20, 0.04), 0 1px 3px rgba(28, 25, 20, 0.04);
+  --shadow-md: 0 10px 28px -12px rgba(28, 25, 20, 0.10);
+  --shadow-lg: 0 26px 64px -26px rgba(28, 25, 20, 0.16);
+  --shadow-brand: 0 18px 50px -18px rgba(10, 142, 242, 0.28);
 
   /* ---- Type ---- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
@@ -88,13 +90,13 @@ ul { list-style: none; padding: 0; }
 
 /* ---------------- Typography ---------------- */
 h1, h2, h3, h4 {
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  font-weight: 650;
+  line-height: 1.14;          /* a touch more air */
+  letter-spacing: -0.015em;   /* less aggressive tracking = calmer */
+  font-weight: 600;           /* lighter, more refined */
   color: var(--text);
 }
-h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); letter-spacing: -0.035em; }
-h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; }
+h1 { font-size: clamp(2.5rem, 5.6vw, 4.3rem); letter-spacing: -0.022em; line-height: 1.06; }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); letter-spacing: -0.018em; }
 h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
 p { color: var(--text-muted); }
 
@@ -115,7 +117,7 @@ p { color: var(--text-muted); }
   display: inline-block;
 }
 
-.lead { font-size: clamp(1.05rem, 1.7vw, 1.28rem); color: var(--text-muted); line-height: 1.55; }
+.lead { font-size: clamp(1.05rem, 1.7vw, 1.28rem); color: var(--text-muted); line-height: 1.68; }
 .gradient-text {
   background: var(--grad-brand);
   -webkit-background-clip: text;
@@ -126,8 +128,8 @@ p { color: var(--text-muted); }
 /* ---------------- Layout helpers ---------------- */
 .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 .container-narrow { max-width: var(--maxw-narrow); }
-.section { padding-block: clamp(64px, 9vw, 120px); }
-.section-tight { padding-block: clamp(48px, 6vw, 80px); }
+.section { padding-block: clamp(80px, 10vw, 150px); }
+.section-tight { padding-block: clamp(56px, 7vw, 96px); }
 .center { text-align: center; }
 .measure { max-width: 64ch; }
 .measure-sm { max-width: 52ch; }
@@ -176,7 +178,7 @@ p { color: var(--text-muted); }
   padding: clamp(1.4rem, 3vw, 2rem);
   transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.25s ease;
 }
-.card-hover:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--line-strong); }
+.card-hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--line-strong); }
 
 .badge {
   display: inline-flex;
@@ -218,11 +220,11 @@ p { color: var(--text-muted); }
 }
 .icon-chip svg { width: 24px; height: 24px; }
 
-/* Reveal-on-scroll */
+/* Reveal-on-scroll (slower, gentler = calmer) */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform: translateY(14px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
 }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 
