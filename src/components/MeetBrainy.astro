@@ -280,9 +280,9 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
   .mb-bg {
     position: absolute; inset: 0; z-index: 0; pointer-events: none;
     background:
-      radial-gradient(120% 90% at 50% -10%, rgba(10,142,242,0.18), transparent 60%),
-      radial-gradient(90% 70% at 50% 120%, rgba(6,207,232,0.10), transparent 60%),
-      linear-gradient(180deg, #0a0b12 0%, #07080e 100%);
+      radial-gradient(120% 90% at 50% -10%, rgba(10,142,242,0.14), transparent 60%),
+      radial-gradient(90% 70% at 50% 120%, rgba(6,207,232,0.08), transparent 60%),
+      linear-gradient(180deg, #14110f 0%, #0c0a08 100%);
   }
   .mb-inner { position: relative; z-index: 1; }
 
@@ -297,10 +297,8 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
     font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: 1.04;
     letter-spacing: -0.03em; color: #fff; margin: 0;
   }
-  .grad {
-    background: var(--grad-brand);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
+  /* Calm solid tone on dark instead of a bright gradient. */
+  .grad { color: #6fb2ef; }
   .mb-subhead {
     margin: 1.2rem auto 0; max-width: 620px;
     font-size: clamp(1.02rem, 2vw, 1.2rem); line-height: 1.55; color: var(--on-dark-muted);
@@ -425,7 +423,7 @@ const check = `<path d="M20 6 9 17l-5-5"/>`;
     background: var(--grad-brand); filter: blur(70px); opacity: 0.22; border-radius: 50%;
   }
   .dash-window {
-    position: relative; z-index: 1; background: #0e1018;
+    position: relative; z-index: 1; background: #16130f;
     border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r-lg); overflow: hidden;
     box-shadow: 0 40px 90px -34px rgba(0,0,0,0.7);
   }
