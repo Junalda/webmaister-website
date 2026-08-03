@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { site } from "@/data/site";
 
-// On-demand (server) route (never prerendered, so  the Resend API key stays
+// On-demand (server) route, never prerendered, so the Resend API key stays
 // server-side only.
 export const prerender = false;
 
@@ -103,7 +103,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
   } catch (err) {
     console.error("Resend request failed", err);
-    return json({ ok: false, error: "We couldn't send your message right now. Please try again or email us directly." }, 502);
+    return json({ ok: false, error: "We konden uw bericht nu niet versturen. Probeer het opnieuw of mail ons direct." }, 502);
   }
 
   return json({ ok: true });
