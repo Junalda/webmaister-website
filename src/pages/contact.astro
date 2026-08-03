@@ -2,117 +2,110 @@
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
-import { site, framework } from "@/data/site";
+import { site, services } from "@/data/site";
 
-const services = [
-  "Premium website / redesign",
-  "SEO & growth systems",
-  "Brainy AI automation",
-  "Not sure yet help me decide",
+const interesses = [
+  ...services.map((s) => s.name),
+  "Iets anders / weet ik nog niet",
 ];
 ---
 <Base
-  title="Contact · Book Your Growth Strategy Call"
-  description="Let's build your growth engine. Book a free Growth Strategy Call with Webmaister in Rotterdam for premium websites, SEO and Brainy AI automation."
+  title="Contact · Vraag een offerte aan"
+  description="Neem contact op met HubIzi Schilderwerken in Waalwijk. Vraag een vrijblijvende offerte aan voor schilderwerk, spuitwerk of afwerken."
   faqSchema
 >
   <section class="contact-hero">
     <div class="orb" aria-hidden="true"></div>
     <div class="container contact-grid">
-      <!-- Left: pitch -->
+      <!-- Links: pitch -->
       <div class="contact-intro">
         <span class="eyebrow" data-reveal>Contact</span>
-        <h1 data-reveal data-delay="60">Let's build your<br><span class="gradient-text">growth engine.</span></h1>
+        <h1 data-reveal data-delay="60">Vraag een<br><span class="gradient-text">vrijblijvende offerte aan.</span></h1>
         <p class="lead" data-reveal data-delay="120">
-          Book a free Growth Strategy Call. We'll review your current setup, find the
-          highest-leverage opportunities and outline a clear plan to attract more customers,
-          automate work and grow no obligation.
+          Laat weten wat u in gedachten heeft. We reageren snel en komen graag langs om de
+          klus samen te bekijken. Zonder verplichtingen, met een heldere offerte.
         </p>
 
         <ul class="promise" data-reveal data-delay="180">
-          <li><Icon name="check" /> A clear, actionable growth plan</li>
-          <li><Icon name="check" /> Honest advice on what to do first</li>
-          <li><Icon name="check" /> A real conversation, not a sales pitch</li>
+          <li><Icon name="check" /> Een duidelijke offerte zonder verrassingen</li>
+          <li><Icon name="check" /> Eerlijk advies over de beste aanpak</li>
+          <li><Icon name="check" /> Snel en persoonlijk contact</li>
         </ul>
 
         <div class="contact-cards" data-reveal data-delay="240">
-          <a class="contact-card" href={`mailto:${site.email}`}>
-            <span class="cc-ic"><Icon name="mail" /></span>
-            <span><strong>Email us</strong><em>{site.email}</em></span>
-          </a>
           <a class="contact-card" href={`tel:${site.phoneHref}`}>
             <span class="cc-ic"><Icon name="phone" /></span>
-            <span><strong>Call us</strong><em>{site.phone}</em></span>
+            <span><strong>Bel of app ons</strong><em>{site.phone}</em></span>
+          </a>
+          <a class="contact-card" href={`mailto:${site.email}`}>
+            <span class="cc-ic"><Icon name="mail" /></span>
+            <span><strong>Mail ons</strong><em>{site.email}</em></span>
           </a>
           <div class="contact-card static">
-            <span class="cc-ic"><Icon name="shield" /></span>
-            <span><strong>KvK</strong><em>{site.kvk}</em></span>
+            <span class="cc-ic"><Icon name="pin" /></span>
+            <span><strong>Adres</strong><em>{site.street}, {site.postalCode} {site.city}</em></span>
           </div>
         </div>
 
-        <div class="mini-steps" data-reveal>
-          {framework.map((f) => (
-            <span class="mini-step"><b>{f.step}</b> {f.name}</span>
-          ))}
-        </div>
+        <p class="kvk-note" data-reveal>KvK {site.kvk} · Werkgebied: Waalwijk, Noord-Brabant en omgeving</p>
       </div>
 
-      <!-- Right: form -->
+      <!-- Rechts: formulier -->
       <div class="form-wrap" data-reveal data-delay="120">
         <form id="contact-form" class="contact-form card" novalidate
           action="/api/contact" method="POST">
-          <h2>Book your strategy call</h2>
-          <p class="form-sub">We reply within one business day.</p>
+          <h2>Stuur ons een bericht</h2>
+          <p class="form-sub">We reageren doorgaans binnen één werkdag.</p>
 
           <div class="field-row">
             <div class="field">
-              <label for="name">Name *</label>
-              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
+              <label for="name">Naam *</label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Uw naam" />
             </div>
             <div class="field">
-              <label for="company">Company</label>
-              <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" />
+              <label for="phone">Telefoon</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optioneel" />
             </div>
           </div>
 
           <div class="field-row">
             <div class="field">
-              <label for="email">Email *</label>
-              <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" />
+              <label for="email">E-mail *</label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="u@voorbeeld.nl" />
             </div>
             <div class="field">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Optional" />
+              <label for="company">Plaats</label>
+              <input id="company" name="company" type="text" autocomplete="address-level2" placeholder="Waar staat de klus?" />
             </div>
           </div>
 
           <div class="field">
-            <label for="interest">What can we help with? *</label>
+            <label for="interest">Waar kunnen we bij helpen? *</label>
             <select id="interest" name="interest" required>
-              <option value="" disabled selected>Select an option</option>
-              {services.map((s) => <option value={s}>{s}</option>)}
+              <option value="" disabled selected>Kies een optie</option>
+              {interesses.map((s) => <option value={s}>{s}</option>)}
             </select>
           </div>
 
           <div class="field">
-            <label for="message">Tell us about your goal</label>
-            <textarea id="message" name="message" rows="4" placeholder="What would success look like in the next 6 months?"></textarea>
+            <label for="message">Vertel over uw klus</label>
+            <textarea id="message" name="message" rows="4" placeholder="Bijvoorbeeld: buitenkozijnen schilderen, binnendeuren spuiten of muren sausklaar maken."></textarea>
           </div>
 
-          <!-- honeypot for spam bots -->
+          <!-- honeypot tegen spambots -->
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
 
           <button type="submit" class="btn btn-brand btn-lg form-submit">
-            <span class="submit-label">Book my Growth Strategy Call</span>
+            <span class="submit-label">Verstuur mijn aanvraag</span>
             <Icon name="arrow" class="arrow" />
           </button>
           <p class="form-error" id="form-error" role="alert" hidden></p>
-          <p class="form-fine">By submitting, you agree to be contacted about your enquiry. No spam, ever.</p>
+          <p class="form-fine">Door te versturen gaat u ermee akkoord dat we contact met u opnemen over uw aanvraag. Geen spam, nooit.</p>
 
           <div class="form-success" id="form-success" hidden>
             <span class="success-ic"><Icon name="check" /></span>
-            <h3>Thank you we've got it.</h3>
-            <p>We'll be in touch within one business day to schedule your free strategy call.</p>
+            <h3>Bedankt, we hebben uw bericht ontvangen.</h3>
+            <p>We nemen binnen één werkdag contact met u op om de klus te bespreken.</p>
           </div>
         </form>
       </div>
@@ -122,8 +115,8 @@ const services = [
   <section class="section section-alt">
     <div class="container">
       <div class="section-head center" data-reveal>
-        <span class="eyebrow">Before you ask</span>
-        <h2>Common questions</h2>
+        <span class="eyebrow">Voordat u het vraagt</span>
+        <h2>Veelgestelde vragen</h2>
       </div>
       <FaqAccordion />
     </div>
@@ -131,67 +124,52 @@ const services = [
 </Base>
 
 <style>
-  .contact-hero { position: relative; overflow: hidden; padding-block: clamp(56px, 8vw, 110px); background: var(--grad-soft); }
-  .contact-hero .orb { position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, #c6e8fc, transparent 70%); top: -160px; right: -120px; filter: blur(60px); opacity: 0.6; pointer-events: none; }
+  .contact-hero { position: relative; overflow: hidden; padding-block: clamp(56px, 8vw, 110px); background: var(--grad-baby); }
+  .contact-hero .orb { position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(143,210,239,0.6), transparent 70%); top: -160px; right: -120px; filter: blur(60px); opacity: 0.9; pointer-events: none; }
   .contact-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
   .contact-intro h1 { margin: 0.7rem 0 1.2rem; }
   .promise { display: flex; flex-direction: column; gap: 0.7rem; margin: 1.8rem 0; }
   .promise li { display: flex; align-items: center; gap: 0.6rem; color: var(--text); font-weight: 500; }
   .promise :global(svg) { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; }
 
-  .contact-cards { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .contact-cards { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.4rem; }
   .contact-card {
     display: flex; align-items: center; gap: 0.9rem;
     padding: 0.9rem 1.1rem; background: var(--surface);
     border: 1px solid var(--line); border-radius: var(--r-md);
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  a.contact-card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  a.contact-card:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-md); }
   .cc-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--grad-soft); border: 1px solid var(--line); color: var(--brand); flex-shrink: 0; }
   .cc-ic :global(svg) { width: 20px; height: 20px; }
-  .contact-card strong { display: block; font-size: 0.95rem; font-weight: 580; }
-  .contact-card em { font-style: normal; color: var(--text-muted); font-size: 0.9rem; }
+  .contact-card strong { display: block; color: var(--text); font-size: 0.98rem; }
+  .contact-card em { display: block; color: var(--text-muted); font-style: normal; font-size: 0.92rem; }
+  .kvk-note { font-size: 0.88rem; color: var(--text-faint); }
 
-  .mini-steps { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .mini-step { font-size: 0.82rem; color: var(--text-muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 0.4rem 0.9rem; }
-  .mini-step b { color: var(--brand); }
-
-  /* Form */
-  .form-wrap { position: relative; }
-  .contact-form { position: relative; padding: clamp(1.6rem, 3vw, 2.4rem); box-shadow: var(--shadow-lg); }
+  /* Formulier */
+  .contact-form { box-shadow: var(--shadow-lg); }
   .contact-form h2 { font-size: 1.5rem; }
-  .form-sub { margin: 0.4rem 0 1.6rem; font-size: 0.92rem; }
+  .form-sub { margin: 0.4rem 0 1.6rem; font-size: 0.95rem; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-  .field label { font-size: 0.85rem; font-weight: 560; color: var(--text); }
+  .field { margin-bottom: 1rem; display: flex; flex-direction: column; }
+  .field label { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
   .field input, .field select, .field textarea {
-    font: inherit; font-size: 0.95rem;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid var(--line-strong); border-radius: var(--r-sm);
-    background: var(--bg-alt); color: var(--text);
+    width: 100%; padding: 0.8rem 0.95rem; font: inherit; color: var(--text);
+    background: var(--bg); border: 1px solid var(--line-strong); border-radius: var(--r-sm);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    width: 100%;
   }
-  .field textarea { resize: vertical; min-height: 96px; }
+  .field textarea { resize: vertical; }
   .field input:focus, .field select:focus, .field textarea:focus {
-    outline: none; border-color: var(--brand); background: #fff;
-    box-shadow: 0 0 0 3px rgba(10,142,242,0.12);
+    outline: none; border-color: var(--brand); background: var(--surface);
+    box-shadow: 0 0 0 3px rgba(46,147,209,0.14);
   }
-  .field input:user-invalid, .field select:user-invalid { border-color: #e5484d; }
-  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
-  .form-submit { width: 100%; margin-top: 0.5rem; }
-  .form-submit :global(svg) { width: 18px; height: 18px; }
-  .form-fine { font-size: 0.78rem; color: var(--text-faint); text-align: center; margin-top: 0.9rem; }
-  .form-error { font-size: 0.88rem; color: #e5484d; text-align: center; margin-top: 0.9rem; background: #fff0f1; border: 1px solid #ffd9db; border-radius: var(--r-sm); padding: 0.7rem 0.9rem; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .form-submit { width: 100%; margin-top: 0.6rem; }
+  .form-error { margin-top: 0.9rem; color: #c0392b; font-size: 0.92rem; font-weight: 500; }
+  .form-fine { margin-top: 1rem; font-size: 0.82rem; color: var(--text-faint); }
 
-  .form-success[hidden] { display: none; }
-  .form-success {
-    position: absolute; inset: 0; z-index: 2;
-    background: var(--surface); border-radius: var(--r-lg);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 2rem; gap: 0.6rem;
-  }
-  .success-ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: rgba(0,212,177,0.12); color: var(--accent); margin-bottom: 0.6rem; }
+  .form-success { text-align: center; padding: 1.5rem 0 0.5rem; }
+  .success-ic { display: inline-grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: rgba(23,179,196,0.14); color: var(--accent); margin-bottom: 1rem; }
   .success-ic :global(svg) { width: 32px; height: 32px; }
 
   @media (max-width: 860px) {
@@ -201,8 +179,8 @@ const services = [
 </style>
 
 <script>
-  // Progressive enhancement: validate, submit to the /api/contact endpoint
-  // (which sends the email via Resend) and show an inline success or error state.
+  // Progressive enhancement: valideer, verstuur naar het /api/contact-endpoint
+  // (dat de e-mail via Resend verstuurt) en toon inline een succes- of foutstatus.
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const success = document.getElementById("form-success");
   const errorBox = document.getElementById("form-error");
@@ -220,7 +198,7 @@ const services = [
     const label = form.querySelector(".submit-label");
     const original = label?.textContent;
     btn.disabled = true;
-    if (label) label.textContent = "Sending…";
+    if (label) label.textContent = "Versturen…";
 
     const showError = (msg: string) => {
       if (errorBox) {
@@ -240,10 +218,10 @@ const services = [
         if (success) success.hidden = false;
         form.reset();
       } else {
-        showError(result.error || "Something went wrong. Please try again or email us directly.");
+        showError(result.error || "Er ging iets mis. Probeer het opnieuw of mail ons direct.");
       }
     } catch {
-      showError("We couldn't reach the server. Please check your connection or email us directly.");
+      showError("We konden de server niet bereiken. Controleer uw verbinding of mail ons direct.");
     } finally {
       btn.disabled = false;
       if (label && original) label.textContent = original;

@@ -1,204 +1,113 @@
-# Webmaister — Website
+# HubIzi Schilderwerken — Website
 
-A premium, fast, multi-page marketing site for **Webmaister**, a **Growth & AI
-Infrastructure Partner** for ambitious businesses in Rotterdam.
+Een premium, snelle website voor **HubIzi Schilderwerken**, een vakkundig
+schildersbedrijf uit Waalwijk.
 
-> We don't just build websites — we build the digital foundation that helps
-> businesses grow.
+> Alles wat wij aanpakken, tillen we naar een hoger niveau.
 
-Built with [Astro](https://astro.build) for static, enterprise-grade speed.
-Design language inspired by Apple, Stripe, Linear, Notion and Framer: premium,
-minimal, elegant and spacious.
+Gebouwd met [Astro](https://astro.build) voor statische, razendsnelle pagina's.
+De vormtaal is minimalistisch en rustig (in de geest van Apple), overzichtelijk
+opgebouwd en met veel witruimte voor een premium gevoel. Baby blue voert de
+boventoon, met de kleuren uit het logo als spaarzame accenten.
 
-## Pages
+## Pagina's
 
-| Page | Route | Purpose |
+| Pagina | Route | Doel |
 | --- | --- | --- |
-| Home | `/` | Positioning, the modern business problem, the 3-pillar ecosystem, **Meet Brainy**, the growth framework, results & FAQ. |
-| Solutions | `/solutions/` | Digital Presence, Growth Systems and Brainy AI Solutions — framed around business outcomes, not features. |
-| Success Stories | `/success-stories/` | ROI-focused case studies (Industry · Challenge · Solution · Results). |
-| Contact | `/contact/` | "Let's build your growth engine" — premium consultation form. |
+| Home | `/` | Positionering, diensten in het kort, werkwijze, waarden en FAQ. |
+| Diensten | `/diensten/` | Overzicht van de drie diensten. |
+| Schilderwerken | `/diensten/schilderwerken/` | Binnen- en buitenschilderwerk. |
+| Spuiten van objecten | `/diensten/spuiten-van-objecten/` | Spuitwerk voor een naadloze afwerking. |
+| Afwerken | `/diensten/afwerken/` | Wand- en sausklaar afwerken. |
+| Over ons | `/over-ons/` | Het verhaal van oprichter Hubert Isidora. |
+| Contact | `/contact/` | Offerte aanvragen via het contactformulier. |
 
-## The three pillars
+## De diensten
 
-1. **Digital Presence** — premium websites that build trust and generate leads.
-2. **Growth Systems** — SEO, conversion optimization and customer acquisition.
-3. **Brainy AI & Automation** — *your digital employee*, working 24/7.
+1. **Schilderwerken** — binnen- en buitenschilderwerk met een strakke,
+   duurzame afwerking.
+2. **Spuiten van objecten** — spuitwerk voor een naadloos gladde uitstraling.
+3. **Afwerken** — wand- en sausklaar afwerken voor een egaal eindresultaat.
 
-## Tech & performance
+## Techniek & performance
 
-- **Astro 4** — zero JS by default; only a few KB of hand-written island JS
-  (sticky header, mobile menu, scroll reveal, form handling).
-- **Custom design system** — design tokens in `src/styles/global.css`; all
-  brand color lives in CSS variables so it can be re-skinned in one place.
-- **Scoped component styles** — no CSS framework, no bloat.
-- HTML is minified and critical CSS is inlined at build time.
+- **Astro** — standaard geen JavaScript; alleen enkele KB's handgeschreven
+  island-JS (sticky header, mobiel menu, scroll-reveal, formulierafhandeling).
+- **Eigen design system** — design tokens in `src/styles/global.css`; alle
+  merkkleur staat in CSS-variabelen, zodat het in één plek te herstellen is.
+- **Scoped component-styles** — geen CSS-framework, geen ballast.
+- HTML wordt geminificeerd bij het bouwen.
 
-## AI search & SEO optimization
+## Vindbaarheid & SEO
 
-The site is structured so AI answer engines (ChatGPT, Gemini, Claude,
-Perplexity) and traditional crawlers can understand and recommend Webmaister:
+De site is zo opgebouwd dat zoekmachines en AI-antwoordmachines HubIzi goed
+begrijpen:
 
-- **Semantic HTML** throughout.
-- **Structured data (JSON-LD)** in `src/components/Schema.astro`:
-  - `ProfessionalService` / LocalBusiness (NAP, areaServed, knowsAbout)
-  - `Service` entities for every offering
-  - `FAQPage`
-  - `WebSite`
-- Per-page canonical, Open Graph and Twitter meta (`src/layouts/Base.astro`).
-- `robots.txt` explicitly welcomes AI crawlers; `sitemap-index.xml` is generated.
-- Geo meta + Rotterdam keyword targeting (website laten maken, webdesign, SEO,
-  AI automatisering, AI agent, website onderhoud).
+- **Semantische HTML** overal.
+- **Gestructureerde data (JSON-LD)** in `src/components/Schema.astro`:
+  - `PaintingContractor` / LocalBusiness (NAW-gegevens, areaServed)
+  - `Service` voor elke dienst
+  - `FAQPage` en `WebSite`
+- Per pagina canonical, Open Graph en Twitter-meta (`src/layouts/Base.astro`).
+- `robots.txt` verwelkomt crawlers; `sitemap-index.xml` wordt gegenereerd.
+- Geo-meta gericht op Waalwijk en Noord-Brabant.
 
-## Develop
-
-```bash
-npm install      # install dependencies
-npm run dev      # local dev server at http://localhost:4321
-npm run build    # build (static pages + the /api/contact function)
-npm run preview  # preview the production build
-```
-
-## Environments & deployment workflow
-
-The project uses two long-lived branches so nothing reaches production
-unreviewed:
-
-| Branch | Environment | Vercel | Notes |
-| --- | --- | --- | --- |
-| `main` | **Production** | `www.webmaister.io` (Production Branch) | What visitors see. AutoSEO blog posts auto-publish here. |
-| `staging` | **Staging** | preview URL (or `staging.webmaister.io`) | Test code changes here first. Shows a yellow "Staging" badge and is `noindex` so Google never indexes it. |
-
-**Flow for code changes:** develop on a feature branch → merge into
-`staging` → check the staging deploy → when happy, promote `staging` → `main`
-(production):
+## Ontwikkelen
 
 ```bash
-# promote staging to production
-git checkout staging && git pull
-git checkout main && git pull
-git merge staging --no-ff -m "release: promote staging to production"
-git push origin main
+npm install      # dependencies installeren
+npm run dev      # lokale dev-server op http://localhost:4321
+npm run build    # bouwen (statische pagina's + de /api/contact-functie)
+npm run preview  # de productie-build bekijken
 ```
 
-**Blog posts (AutoSEO)** publish straight to `main` (the webhook commits with
-`GITHUB_BRANCH=main`), so automatic publishing keeps working. Periodically
-merge `main` back into `staging` so staging includes the latest posts:
-`git checkout staging && git merge main`.
+## Aanpassen
 
-**Vercel setup (one-time, dashboard):**
-1. Settings → Git → **Production Branch = `main`**.
-2. Push the `staging` branch — Vercel auto-creates a **preview deployment** for
-   it. (Optional: Settings → Domains → assign `staging.webmaister.io` to the
-   `staging` branch for a stable URL.)
-3. The staging badge + `noindex` switch on automatically via Vercel's
-   `VERCEL_ENV` (`preview` on staging, `production` on `main`).
+Alle content staat in **`src/data/site.ts`** — NAW-gegevens, navigatie,
+diensten, werkwijze, waarden en FAQ (die ook de JSON-LD voeden, zodat tekst en
+gestructureerde data nooit uit elkaar lopen).
 
-
-## Customization points
-
-All content lives in **`src/data/site.ts`** — NAP details, navigation,
-pillars, solutions, case studies and FAQs (which also feed the JSON-LD, so
-copy and structured data never drift apart).
-
-- **Brand colors / logo:** update the CSS variables at the top of
-  `src/styles/global.css` and the mark in `src/components/Logo.astro`
-  (and `public/favicon.svg` / `public/og.png`) to the official logo colors.
-- **Contact form (Resend):** the form posts to the server endpoint
-  `src/pages/api/contact.ts`, which sends an email via [Resend](https://resend.com).
-  See "Contact form / email" below.
-- **Business details:** phone, email and KvK live in `site` in
+- **Merkkleuren:** pas de CSS-variabelen bovenaan `src/styles/global.css` aan.
+- **Logo:** het merk staat als inline-SVG in `src/components/Logo.astro`
+  (en `public/favicon.svg`).
+- **Bedrijfsgegevens:** telefoon, e-mail, adres en KvK staan in `site` in
   `src/data/site.ts`.
 
-## Contact form / email (Resend)
+## Contactformulier / e-mail (Resend)
 
-The contact form is wired to Resend through an on-demand Astro endpoint
-(`/api/contact`). The site uses `output: 'hybrid'` with the
-`@astrojs/vercel` adapter: every page is still static, only this endpoint
-runs server-side, so the API key never reaches the browser.
+Het contactformulier is gekoppeld aan Resend via een on-demand Astro-endpoint
+(`/api/contact`). De site gebruikt `output: 'static'` met de
+`@astrojs/vercel`-adapter: elke pagina blijft statisch, alleen dit endpoint
+draait server-side, zodat de API-sleutel nooit in de browser komt.
 
-**Setup**
+**Instellen**
 
-1. Create a Resend account and an API key, and verify your sending domain
-   (e.g. `webmaister.io`) at https://resend.com.
-2. Set these environment variables (locally in a `.env` file, and in the
-   Vercel project → Settings → Environment Variables):
+1. Maak een Resend-account en een API-sleutel aan en verifieer je
+   verzenddomein (bijv. `hubizi-schilderwerken.nl`) op https://resend.com.
+2. Stel deze omgevingsvariabelen in (lokaal in een `.env`-bestand en in het
+   Vercel-project → Settings → Environment Variables):
 
-   | Variable | Purpose | Example |
+   | Variabele | Doel | Voorbeeld |
    | --- | --- | --- |
-   | `RESEND_API_KEY` | Resend API key (required) | `re_...` |
-   | `RESEND_FROM` | Verified sender | `Webmaister <noreply@webmaister.io>` |
-   | `RESEND_TO` | Where submissions land (defaults to the site email) | `hello@webmaister.io` |
+   | `RESEND_API_KEY` | Resend API-sleutel (verplicht) | `re_...` |
+   | `RESEND_FROM` | Geverifieerde afzender | `HubIzi Schilderwerken <noreply@hubizi-schilderwerken.nl>` |
+   | `RESEND_TO` | Waar aanvragen binnenkomen (standaard het site-e-mailadres) | `info@hubizi-schilderwerken.nl` |
 
-   See `.env.example`. For a quick test you can send from
-   `Webmaister <onboarding@resend.dev>` without verifying a domain.
-3. Deploy to Vercel (the adapter is already configured). The endpoint
-   validates input, blocks spam via a honeypot, and returns JSON the form
-   uses to show an inline success or error state.
+   Zie `.env.example`. Voor een snelle test kun je versturen vanaf
+   `HubIzi <onboarding@resend.dev>` zonder een domein te verifiëren.
 
-## Blog (and connecting GetAutoSEO)
-
-The blog lives at `/blog` and is powered by Astro Content Collections:
-each post is a Markdown file in `src/content/blog/`. Posts are statically
-rendered (fast, SEO-friendly) and automatically get:
-
-- a listing page (`/blog`) and article pages (`/blog/<slug>/`)
-- `BlogPosting` JSON-LD structured data
-- an RSS feed at `/rss.xml`
-- inclusion in the sitemap
-
-Post frontmatter: `title`, `description`, `pubDate`, optional `updatedDate`,
-`author`, `tags` (array), `cover` (image URL) and `draft` (boolean).
-
-### Connecting AutoSEO
-
-AutoSEO (getautoseo.com) publishes via webhook. Point your AutoSEO project's
-webhook at:
-
-```
-https://<your-domain>/api/autoseo
-```
-
-The endpoint (`src/pages/api/autoseo.ts`):
-
-1. Requires `Authorization: Bearer <AUTOSEO_WEBHOOK_TOKEN>` (401 otherwise).
-2. Verifies the `X-AutoSEO-Signature` HMAC-SHA256 of the raw body when present.
-3. Handles `test` (acknowledges, creates nothing), `article.published` and
-   `article.updated`. Posts are keyed by the AutoSEO `id` (`aseo-<id>.md`), so
-   updates and re-deliveries upsert the same post instead of duplicating it.
-4. Downloads the hero and infographic images and stores them locally under
-   `public/blog-assets/<id>/` (no hotlinking; embedded references are rewritten).
-5. Commits the post + images in a single commit via the GitHub API, which
-   triggers a Vercel redeploy.
-6. Returns `{ "url": "https://<your-domain>/blog/<slug>/" }`, and `500` on
-   failure so AutoSEO retries.
-
-> No database is used: this is a static, git-backed site. The webhook only
-> **adds** files; it never deletes or modifies existing content.
-
-Configure these env vars in Vercel:
-
-| Variable | Purpose |
-| --- | --- |
-| `AUTOSEO_WEBHOOK_TOKEN` | Bearer token + HMAC secret (matches AutoSEO) |
-| `GITHUB_TOKEN` | GitHub PAT with write access to this repo's contents |
-| `GITHUB_REPO` | `owner/repo` (default `junalda/webmaister-website`) |
-| `GITHUB_BRANCH` | Branch Vercel deploys from (default `main`) |
-
-## Project structure
+## Projectstructuur
 
 ```
 src/
 ├── components/        # Header, Footer, Logo, Button, Icon, Schema,
-│                      # SectionHeading, BrainyDashboard, FaqAccordion, FinalCta
-├── content/blog/      # blog posts (Markdown) + content.config.ts schema
-├── content.config.ts  # blog collection schema (Content Layer)
-├── data/site.ts       # single source of content + metadata
-├── layouts/           # Base.astro (head, SEO, schema, reveal script)
+│                      # SectionHeading, FaqAccordion, FinalCta
+├── data/site.ts       # enige bron van content + metadata
+├── layouts/           # Base.astro (head, SEO, schema, reveal-script)
 ├── pages/
-│   ├── index, solutions, success-stories, contact, blog/
-│   ├── rss.xml.js     # blog RSS feed
-│   └── api/           # contact.ts (Resend), autoseo.ts (AutoSEO webhook)
+│   ├── index, over-ons, contact
+│   ├── diensten/      # overzicht + de drie dienstpagina's
+│   └── api/           # contact.ts (Resend)
 └── styles/            # global.css (design tokens + utilities)
-public/                # favicon.svg, og.png, robots.txt
+public/                # favicon.svg, logo.svg, og.png, robots.txt
 ```

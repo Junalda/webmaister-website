@@ -1,0 +1,115 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { services, ctaPrimary } from "@/data/site";
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const others = services.filter((s) => s.slug !== service.slug);
+---
+<Base
+  title={`${service.name} · HubIzi Schilderwerken`}
+  description={service.short}
+  serviceSchema
+>
+  <section class="s-hero">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="container s-hero-inner">
+      <nav class="crumbs" aria-label="Kruimelpad" data-reveal>
+        <a href="/diensten/">Diensten</a> <span aria-hidden="true">›</span> <span>{service.name}</span>
+      </nav>
+      <span class="s-icon" data-reveal data-delay="60"><Icon name={service.icon} /></span>
+      <h1 data-reveal data-delay="100">{service.name}</h1>
+      <p class="lead" data-reveal data-delay="160">{service.lead}</p>
+      <div class="s-actions" data-reveal data-delay="220">
+        <Button href={ctaPrimary.href} variant="brand" size="lg" arrow>{ctaPrimary.label}</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container s-body">
+      <div class="s-main" data-reveal>
+        {service.intro.map((para) => <p class="s-para">{para}</p>)}
+
+        <div class="outcome" data-reveal>
+          <span class="brand-stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+          <p>{service.outcome}</p>
+        </div>
+      </div>
+
+      <aside class="s-side" data-reveal data-delay="100">
+        <div class="side-card">
+          <h2>Wat wij verzorgen</h2>
+          <ul class="check-list">
+            {service.points.map((point) => (
+              <li><Icon name="check" /> {point}</li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Meer diensten</span>
+        <h2>Ook interessant voor u</h2>
+      </div>
+      <div class="grid grid-2 other-grid">
+        {others.map((s, i) => (
+          <a href={`/diensten/${s.slug}/`} class="card card-hover other-card" data-reveal data-delay={i * 80}>
+            <span class="icon-chip"><Icon name={s.icon} /></span>
+            <div>
+              <h3>{s.name}</h3>
+              <p>{s.short}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta
+    title={`Interesse in<br>${service.name.toLowerCase()}?`}
+    text="Vraag vrijblijvend een offerte aan. We komen graag langs om de klus samen te bekijken."
+  />
+</Base>
+
+<style>
+  .s-hero { position: relative; overflow: hidden; padding-block: clamp(88px, 13vw, 160px) clamp(48px, 7vw, 90px); background: var(--grad-baby); }
+  .s-hero .orb { position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(143,210,239,0.6), transparent 70%); top: -160px; right: -110px; filter: blur(60px); pointer-events: none; }
+  .s-hero-inner { position: relative; z-index: 1; max-width: 760px; }
+  .crumbs { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.6rem; }
+  .crumbs a { color: var(--brand-strong); font-weight: 600; }
+  .crumbs span[aria-hidden] { margin: 0 0.4rem; color: var(--text-faint); }
+  .s-icon { display: inline-grid; place-items: center; width: 60px; height: 60px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); color: var(--brand); box-shadow: var(--shadow-sm); margin-bottom: 1.3rem; }
+  .s-icon :global(svg) { width: 30px; height: 30px; }
+  .s-hero h1 { margin-bottom: 1.2rem; }
+  .s-actions { margin-top: 2rem; }
+
+  .s-body { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .s-para { margin-bottom: 1.2rem; max-width: 62ch; font-size: 1.05rem; }
+  .outcome { margin-top: 2rem; padding: 1.6rem 1.8rem; background: var(--bg-alt); border-radius: var(--r-lg); border: 1px solid var(--line); }
+  .outcome .brand-stripes { margin-bottom: 1rem; }
+  .outcome p { color: var(--text); font-size: 1.15rem; font-weight: 500; line-height: 1.5; }
+
+  .side-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.2rem); box-shadow: var(--shadow-md); position: sticky; top: calc(var(--nav-h) + 20px); }
+  .side-card h2 { font-size: 1.25rem; margin-bottom: 1.3rem; }
+  .check-list { display: flex; flex-direction: column; gap: 0.9rem; }
+  .check-list li { display: flex; align-items: flex-start; gap: 0.6rem; color: var(--text); font-size: 0.98rem; }
+  .check-list :global(svg) { width: 20px; height: 20px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+  .other-grid { margin-top: clamp(2rem, 4vw, 3rem); }
+  .other-card { display: flex; gap: 1.1rem; align-items: flex-start; }
+  .other-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .other-card p { font-size: 0.95rem; }
+
+  @media (max-width: 820px) { .s-body { grid-template-columns: 1fr; } .side-card { position: static; } }
+</style>

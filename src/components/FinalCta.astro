@@ -1,6 +1,6 @@
 ---
 import Button from "./Button.astro";
-import { ctaPrimary } from "@/data/site";
+import { ctaPrimary, site } from "@/data/site";
 interface Props {
   title: string;
   text?: string;
@@ -13,12 +13,12 @@ const { title, text } = Astro.props;
       <div class="cta-orb cta-orb-1"></div>
       <div class="cta-orb cta-orb-2"></div>
       <div class="cta-content">
-        <span class="eyebrow" style="color:#fff;opacity:.9">Let's build your growth engine</span>
+        <span class="eyebrow" style="color:#fff;opacity:.9">Klaar voor een frisse start?</span>
         <h2 set:html={title} />
         {text && <p class="lead">{text}</p>}
         <div class="cta-actions">
           <Button href={ctaPrimary.href} variant="brand" size="lg" arrow>{ctaPrimary.label}</Button>
-          <Button href="/solutions/" variant="ghost" size="lg">See what we do</Button>
+          <Button href={`tel:${site.phoneHref}`} variant="ghost" size="lg">Bel {site.phone}</Button>
         </div>
       </div>
     </div>

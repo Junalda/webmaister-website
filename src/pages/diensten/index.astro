@@ -1,0 +1,88 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { services, process } from "@/data/site";
+---
+<Base
+  title="Diensten · HubIzi Schilderwerken"
+  description="Binnen- en buitenschilderwerk, het spuiten van objecten en strak afwerken. Bekijk de diensten van HubIzi Schilderwerken uit Waalwijk."
+  serviceSchema
+>
+  <section class="d-hero">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="container d-hero-inner">
+      <span class="eyebrow" data-reveal>Onze diensten</span>
+      <h1 data-reveal data-delay="80">Alles voor een strak<br><span class="gradient-text">geschilderd resultaat</span></h1>
+      <p class="lead" data-reveal data-delay="140">
+        Drie specialismen onder één dak, met steeds dezelfde aandacht voor detail en een
+        nette afwerking. Ontdek wat wij voor uw woning of bedrijf kunnen betekenen.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="svc-list">
+        {services.map((s, i) => (
+          <a href={`/diensten/${s.slug}/`} class="svc-row card card-hover" data-reveal data-delay={i * 80}>
+            <span class="icon-chip"><Icon name={s.icon} /></span>
+            <div class="svc-body">
+              <h2>{s.name}</h2>
+              <p>{s.lead}</p>
+              <span class="svc-link">Bekijk deze dienst <Icon name="arrow" class="arrow" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Werkwijze</span>
+        <h2>Zo pakken wij het aan</h2>
+      </div>
+      <div class="grid grid-4 step-grid">
+        {process.map((p, i) => (
+          <div class="step-card" data-reveal data-delay={i * 70}>
+            <span class="step-num">{p.step}</span>
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Welke klus mogen<br>wij voor u klaren?"
+    text="Vertel ons over uw project. U ontvangt snel een heldere, vrijblijvende offerte."
+  />
+</Base>
+
+<style>
+  .d-hero { position: relative; overflow: hidden; padding-block: clamp(96px, 14vw, 170px) clamp(48px, 7vw, 90px); background: var(--grad-baby); }
+  .d-hero .orb { position: absolute; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(143,210,239,0.6), transparent 70%); top: -170px; right: -120px; filter: blur(60px); pointer-events: none; }
+  .d-hero-inner { position: relative; z-index: 1; max-width: 780px; }
+  .d-hero h1 { margin: 1rem 0 1.3rem; }
+
+  .svc-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .svc-row { display: flex; gap: clamp(1.2rem, 3vw, 2rem); align-items: flex-start; }
+  .svc-row .icon-chip { width: 60px; height: 60px; }
+  .svc-row .icon-chip :global(svg) { width: 28px; height: 28px; }
+  .svc-body h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 0.6rem; }
+  .svc-body p { max-width: 64ch; }
+  .svc-link { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; color: var(--brand-strong); font-weight: 600; font-size: 0.95rem; }
+  .svc-link :global(svg) { width: 17px; height: 17px; transition: transform 0.2s ease; }
+  .svc-row:hover .svc-link :global(svg) { transform: translateX(3px); }
+
+  .step-grid { margin-top: clamp(2rem, 4vw, 3rem); }
+  .step-card { padding: 1.6rem; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); }
+  .step-num { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: var(--grad-brand); color: #fff; font-weight: 700; font-size: 1.05rem; margin-bottom: 1rem; }
+  .step-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .step-card p { font-size: 0.95rem; }
+
+  @media (max-width: 560px) { .svc-row { flex-direction: column; } }
+</style>

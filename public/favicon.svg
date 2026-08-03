@@ -1,9 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Webmaister">
-  <defs>
-    <linearGradient id="g" x1="0" y1="14" x2="0" y2="114" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0a8ef2"/>
-      <stop offset="1" stop-color="#06cfe8"/>
-    </linearGradient>
-  </defs>
-  <path d="M14 34 L34 94 L54 44 L74 94 L94 44 L114 94" fill="none" stroke="url(#g)" stroke-width="15" stroke-linejoin="miter" stroke-linecap="butt"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 148" role="img" aria-label="HubIzi Schilderwerken">
+  <path d="M17 140 L17 91.5 Q17 84 24.5 84 L24.5 84 Q32 84 32 91.5 L32 140 Z" fill="#e8402c"/>
+  <path d="M37 140 L37 87.5 Q37 80 44.5 80 L44.5 80 Q52 80 52 87.5 L52 140 Z" fill="#f5a623"/>
+  <path d="M57 140 L57 103.5 Q57 96 64.5 96 L64.5 96 Q72 96 72 103.5 L72 140 Z" fill="#56b24a"/>
+  <path d="M77 140 L77 81.5 Q77 74 84.5 74 L84.5 74 Q92 74 92 81.5 L92 140 Z" fill="#2e93d1"/>
+  <path d="M97 140 L97 95.5 Q97 88 104.5 88 L104.5 88 Q112 88 112 95.5 L112 140 Z" fill="#17b3c4"/>
+  <path fill="#0e2a3f" fill-rule="evenodd" d="M64 10 C78 10 88 22 88 38 C88 50 82 58 76 64 L84 88 L64 78 L44 88 L52 64 C46 58 40 50 40 38 C40 22 50 10 64 10 Z M64 26 A8 8 0 1 0 64.01 26 Z"/>
 </svg>

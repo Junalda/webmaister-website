@@ -1,28 +1,29 @@
 ---
-// JSON-LD structured data so AI search engines (ChatGPT, Gemini, Claude,
-// Perplexity) and traditional crawlers can reliably understand and recommend
-// Webmaister. Supports LocalBusiness, Service and FAQPage graphs.
-import { site, solutionGroups, faqs } from "@/data/site";
+// Gestructureerde data (JSON-LD) zodat AI-zoekmachines (ChatGPT, Gemini,
+// Claude, Perplexity) en klassieke crawlers HubIzi Schilderwerken betrouwbaar
+// begrijpen. Ondersteunt LocalBusiness (PaintingContractor), Service en FAQPage.
+import { site, services, faqs } from "@/data/site";
 
 interface Props {
-  faq?: boolean;        // include FAQPage
-  services?: boolean;   // include Service entities
-  title?: string;       // current page title (for breadcrumb leaf)
+  faq?: boolean;        // FAQPage toevoegen
+  services?: boolean;   // Service-entiteiten toevoegen
+  title?: string;       // huidige paginatitel (voor breadcrumb)
 }
-const { faq = false, services = false, title } = Astro.props;
+const { faq = false, services: withServices = false, title } = Astro.props;
 
 const localBusiness = {
-  "@type": "ProfessionalService",
+  "@type": "PaintingContractor",
   "@id": `${site.url}/#organization`,
-  name: site.name,
+  name: site.legalName,
   description: site.description,
   url: site.url,
   email: site.email,
   telephone: site.phoneHref,
   foundingDate: site.founded,
+  founder: { "@type": "Person", name: site.founder },
   image: `${site.url}/og.png`,
   logo: `${site.url}/logo.svg`,
-  priceRange: "€€€",
+  priceRange: "€€",
   identifier: {
     "@type": "PropertyValue",
     propertyID: "KvK",
@@ -30,32 +31,31 @@ const localBusiness = {
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.street,
+    postalCode: site.postalCode,
     addressLocality: site.city,
     addressRegion: site.region,
     addressCountry: site.country,
   },
   areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
   knowsAbout: [
-    "Website laten maken Rotterdam",
-    "Webdesign Rotterdam",
-    "SEO Rotterdam",
-    "AI Automatisering Rotterdam",
-    "AI Agent Rotterdam",
-    "Website Onderhoud Rotterdam",
+    "Schilderwerken Waalwijk",
+    "Buitenschilderwerk",
+    "Binnenschilderwerk",
+    "Spuiten van objecten",
+    "Wanden afwerken",
   ],
-  sameAs: [site.social.linkedin],
 };
 
-const serviceList = solutionGroups.flatMap((group) =>
-  group.items.map((item) => ({
-    "@type": "Service",
-    name: item.name,
-    serviceType: group.name,
-    description: item.outcome,
-    provider: { "@id": `${site.url}/#organization` },
-    areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
-  }))
-);
+const serviceList = services.map((s) => ({
+  "@type": "Service",
+  name: s.name,
+  serviceType: "Schilderwerk",
+  description: s.short,
+  url: `${site.url}/diensten/${s.slug}/`,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+}));
 
 const faqPage = {
   "@type": "FAQPage",
@@ -66,15 +66,11 @@ const faqPage = {
   })),
 };
 
-// Breadcrumbs derived from the URL path (Home › … › current page) so AI and
-// search engines understand the site hierarchy. Locale prefixes like /nl/ are
-// not real pages, so they are skipped as crumbs.
+// Breadcrumbs afgeleid van het URL-pad (Home › … › huidige pagina).
 const deslug = (s: string) => s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-const locales = new Set(["nl", "en"]);
 const parts = Astro.url.pathname.split("/").filter(Boolean);
 const crumbItems = [{ "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` }];
 parts.forEach((seg, i) => {
-  if (locales.has(seg)) return; // language prefix, not a navigable page
   const isLast = i === parts.length - 1;
   crumbItems.push({
     "@type": "ListItem",
@@ -86,10 +82,10 @@ parts.forEach((seg, i) => {
 const breadcrumb = crumbItems.length > 1 ? { "@type": "BreadcrumbList", itemListElement: crumbItems } : null;
 
 const graph: object[] = [
-  { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, publisher: { "@id": `${site.url}/#organization` } },
+  { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.legalName, inLanguage: "nl-NL", publisher: { "@id": `${site.url}/#organization` } },
   localBusiness,
 ];
-if (services) graph.push(...serviceList);
+if (withServices) graph.push(...serviceList);
 if (faq) graph.push(faqPage);
 if (breadcrumb) graph.push(breadcrumb);
 

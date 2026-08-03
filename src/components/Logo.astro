@@ -1,39 +1,63 @@
 ---
-// Webmaister wordmark = the "WM" monogram (blue→cyan gradient, matching the
-// brand logo) + the wordmark text. Set `mono` to render the mark in a single
-// light color for use on dark backgrounds (e.g. the footer).
+// HubIzi-merk = het penseel-/huismotief (zwarte penseel met oog boven de vijf
+// gekleurde borstelharen) plus het woordmerk "HubIzi Schilderwerken".
+// Zet `mono` om het penseel en de tekst in één lichte kleur te tonen op een
+// donkere achtergrond. De gekleurde balken blijven altijd kleur houden.
 interface Props {
   class?: string;
   mono?: boolean;
 }
 const { class: className, mono = false } = Astro.props;
-const uid = Math.random().toString(36).slice(2, 8);
-const markPath = "M14 20 L34 80 L54 30 L74 80 L94 30 L114 80";
+
+// Vijf borstelharen (skyline): x-positie, bovenkant, kleur.
+const bars = [
+  { x: 17, top: 84, color: "var(--c-red)" },
+  { x: 37, top: 80, color: "var(--c-yellow)" },
+  { x: 57, top: 96, color: "var(--c-green)" },
+  { x: 77, top: 74, color: "var(--c-blue)" },
+  { x: 97, top: 88, color: "var(--c-teal)" },
+];
+const w = 15;
+const r = 7.5;
+const b = 140;
+const barPath = (x: number, t: number) =>
+  `M${x} ${b} L${x} ${t + r} Q${x} ${t} ${x + r} ${t} L${x + w - r} ${t} Q${x + w} ${t} ${x + w} ${t + r} L${x + w} ${b} Z`;
+
+const brushFill = mono ? "#ffffff" : "var(--ink)";
 ---
-<span class={`logo ${className ?? ""}`} aria-label="Webmaister">
-  <svg class="logo-mark" viewBox="0 0 128 100" role="img" aria-hidden="true">
-    {!mono && (
-      <defs>
-        <linearGradient id={`g-${uid}`} x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#0a8ef2" />
-          <stop offset="1" stop-color="#06cfe8" />
-        </linearGradient>
-      </defs>
-    )}
+<span class={`logo ${mono ? "is-mono" : ""} ${className ?? ""}`} aria-label="HubIzi Schilderwerken">
+  <svg class="logo-mark" viewBox="0 0 128 148" role="img" aria-hidden="true">
+    {bars.map((bar) => <path d={barPath(bar.x, bar.top)} fill={bar.color} />)}
     <path
-      d={markPath}
-      fill="none"
-      stroke={mono ? "#ffffff" : `url(#g-${uid})`}
-      stroke-width="15"
-      stroke-linejoin="miter"
-      stroke-linecap="butt"
+      fill={brushFill}
+      fill-rule="evenodd"
+      d="M64 10 C78 10 88 22 88 38 C88 50 82 58 76 64 L84 88 L64 78 L44 88 L52 64 C46 58 40 50 40 38 C40 22 50 10 64 10 Z M64 26 A8 8 0 1 0 64.01 26 Z"
     />
   </svg>
-  <span class="logo-word">Webmaister</span>
+  <span class="logo-word">
+    <span class="logo-name">HubIzi</span>
+    <span class="logo-sub">Schilderwerken</span>
+  </span>
 </span>
 
 <style>
-  .logo { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 650; letter-spacing: -0.02em; }
-  .logo-mark { height: 26px; width: auto; flex-shrink: 0; }
-  .logo-word { font-size: 1.18rem; }
+  .logo { display: inline-flex; align-items: center; gap: 0.6rem; }
+  .logo-mark { height: 40px; width: auto; flex-shrink: 0; }
+  .logo-word { display: flex; flex-direction: column; line-height: 1; }
+  .logo-name {
+    font-size: 1.34rem;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .logo-sub {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-red);
+    margin-top: 0.22rem;
+  }
+  .is-mono .logo-name { color: #fff; }
+  .is-mono .logo-sub { color: var(--baby-strong); }
 </style>

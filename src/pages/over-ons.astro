@@ -1,0 +1,120 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { site, values, ctaPrimary } from "@/data/site";
+---
+<Base
+  title="Over ons · HubIzi Schilderwerken"
+  description="Maak kennis met HubIzi Schilderwerken en oprichter Hubert Isidora. Sinds 2017 vakkundig schilderwerk uit Waalwijk, altijd met een oog voor detail."
+>
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="container about-hero-inner">
+      <span class="eyebrow" data-reveal>Over ons</span>
+      <h1 data-reveal data-delay="80">Vakmanschap met<br><span class="gradient-text">een oog voor detail</span></h1>
+      <p class="lead" data-reveal data-delay="140">
+        HubIzi Schilderwerken is het schildersbedrijf van Hubert Isidora uit Waalwijk.
+        Sinds 2017 zorgen wij voor strak schilderwerk dat jaren mooi blijft.
+      </p>
+    </div>
+  </section>
+
+  <!-- VERHAAL -->
+  <section class="section">
+    <div class="container story-grid">
+      <div class="story-text" data-reveal>
+        <h2>Het verhaal achter HubIzi</h2>
+        <p>
+          HubIzi Schilderwerken werd opgericht door Hubert Isidora, die sinds 2017 met veel
+          plezier het schildersvak uitoefent. Wat begon als een passie voor mooi en netjes
+          werk, groeide uit tot een schildersbedrijf waar kwaliteit en betrouwbaarheid
+          voorop staan.
+        </p>
+        <p>
+          Hubert staat bekend om zijn oog voor detail. Dat begint bij een goede voorbereiding:
+          zorgvuldig schuren, plamuren en gronden. Want alleen met een strakke basis wordt de
+          eindlaag echt mooi. Die aandacht ziet u terug in elk project, groot of klein.
+        </p>
+        <p>
+          Of het nu gaat om binnen- of buitenschilderwerk, het spuiten van objecten of het
+          strak afwerken van wanden: wij pakken het aan alsof het onze eigen woning is.
+          Netjes, eerlijk en met een resultaat waar u jaren van geniet.
+        </p>
+        <div class="story-actions">
+          <Button href={ctaPrimary.href} variant="brand" arrow>{ctaPrimary.label}</Button>
+          <Button href="/diensten/" variant="ghost">Bekijk onze diensten</Button>
+        </div>
+      </div>
+
+      <aside class="story-side" data-reveal data-delay="120">
+        <div class="side-card">
+          <h3>HubIzi in het kort</h3>
+          <ul class="fact-list">
+            <li><span>Oprichter</span><strong>{site.founder}</strong></li>
+            <li><span>Actief sinds</span><strong>{site.founded}</strong></li>
+            <li><span>Vestiging</span><strong>{site.city}</strong></li>
+            <li><span>Werkgebied</span><strong>Noord-Brabant en omgeving</strong></li>
+            <li><span>KvK</span><strong>{site.kvk}</strong></li>
+          </ul>
+          <a href={`tel:${site.phoneHref}`} class="side-contact"><Icon name="phone" /> {site.phone}</a>
+          <a href={`mailto:${site.email}`} class="side-contact"><Icon name="mail" /> {site.email}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WAARDEN -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Waar wij voor staan</span>
+        <h2>De aanpak die het verschil maakt</h2>
+      </div>
+      <div class="grid grid-4 val-grid">
+        {values.map((v, i) => (
+          <div class="val-card" data-reveal data-delay={i * 70}>
+            <span class="icon-chip"><Icon name={v.icon} /></span>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Benieuwd wat wij<br>voor u kunnen betekenen?"
+    text="Neem gerust contact op. We denken graag met u mee over het mooiste resultaat voor uw woning."
+  />
+</Base>
+
+<style>
+  .about-hero { position: relative; overflow: hidden; padding-block: clamp(96px, 14vw, 170px) clamp(48px, 7vw, 90px); background: var(--grad-baby); }
+  .about-hero .orb { position: absolute; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(143,210,239,0.6), transparent 70%); top: -170px; right: -120px; filter: blur(60px); pointer-events: none; }
+  .about-hero-inner { position: relative; z-index: 1; max-width: 780px; }
+  .about-hero h1 { margin: 1rem 0 1.3rem; }
+
+  .story-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .story-text h2 { margin-bottom: 1.3rem; }
+  .story-text p { margin-bottom: 1.1rem; max-width: 60ch; }
+  .story-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.8rem; }
+
+  .side-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.2rem); box-shadow: var(--shadow-md); position: sticky; top: calc(var(--nav-h) + 20px); }
+  .side-card h3 { font-size: 1.2rem; margin-bottom: 1.3rem; }
+  .fact-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.6rem; }
+  .fact-list li { display: flex; flex-direction: column; gap: 2px; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
+  .fact-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .fact-list span { font-size: 0.82rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
+  .fact-list strong { color: var(--text); font-size: 1.02rem; font-weight: 600; }
+  .side-contact { display: flex; align-items: center; gap: 0.55rem; padding: 0.6rem 0; color: var(--brand-strong); font-weight: 600; font-size: 0.98rem; }
+  .side-contact :global(svg) { width: 18px; height: 18px; }
+
+  .val-grid { margin-top: clamp(2rem, 4vw, 3rem); }
+  .val-card h3 { margin: 1rem 0 0.55rem; font-size: 1.2rem; }
+  .val-card p { font-size: 0.96rem; }
+
+  @media (max-width: 820px) { .story-grid { grid-template-columns: 1fr; } .side-card { position: static; } }
+</style>

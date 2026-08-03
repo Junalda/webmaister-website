@@ -13,7 +13,7 @@ interface Props {
   serviceSchema?: boolean;
   lang?: string;
 }
-const { title, description, faqSchema = false, serviceSchema = false, lang = "en" } = Astro.props;
+const { title, description, faqSchema = false, serviceSchema = false, lang = "nl" } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
@@ -32,12 +32,12 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#0a0b12" />
+    <meta name="theme-color" content="#bfe6f7" />
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content={isPreview ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
-    <meta name="author" content={site.name} />
-    <meta name="geo.region" content="NL-ZH" />
-    <meta name="geo.placename" content="Rotterdam" />
+    <meta name="author" content={site.legalName} />
+    <meta name="geo.region" content="NL-NB" />
+    <meta name="geo.placename" content="Waalwijk" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -46,7 +46,7 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="nl_NL" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -60,9 +60,9 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
     <Schema faq={faqSchema} services={serviceSchema} title={fullTitle} />
   </head>
   <body>
-    <a href="#main" class="skip-link">Skip to content</a>
+    <a href="#main" class="skip-link">Naar de inhoud</a>
     {isPreview && (
-      <div class="env-badge" title={`Environment: ${vercelEnv}`}>
+      <div class="env-badge" title={`Omgeving: ${vercelEnv}`}>
         <span class="env-dot"></span> Staging · niet de live site
       </div>
     )}

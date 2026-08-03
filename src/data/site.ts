@@ -1,407 +1,154 @@
 // =========================================================================
-// Webmaister central content & metadata source.
-// One place for NAP, services, case studies and FAQ so that page copy and
-// structured data (JSON-LD) never drift apart.
+// HubIzi Schilderwerken - centrale content- en metadatabron.
+// Eén plek voor NAW-gegevens, diensten, waarden en FAQ, zodat de teksten op
+// de pagina's en de gestructureerde data (JSON-LD) nooit uit elkaar lopen.
 // =========================================================================
 
 export const site = {
-  name: "Webmaister",
-  legalName: "Webmaister",
-  tagline: "Growth & AI Infrastructure Partner",
-  url: "https://www.webmaister.io",
-  email: "hello@webmaister.io",
-  phone: "+31(0) 103072175",
-  phoneHref: "+31103072175",
-  whatsapp: "+31 6 43187444",
-  whatsappHref: "31643187444", // wa.me format: country code + number, no + or leading 0
-  kvk: "87478889",
-  city: "Rotterdam",
-  region: "Zuid-Holland",
+  name: "HubIzi",
+  legalName: "HubIzi Schilderwerken",
+  tagline: "Alles wat wij aanpakken, tillen we naar een hoger niveau.",
+  url: "https://www.hubizi-schilderwerken.nl",
+  email: "info@hubizi-schilderwerken.nl",
+  emailDisplay: "Info@hubizi-schilderwerken.nl",
+  phone: "06 21 40 32 33",
+  phoneHref: "+31621403233",
+  kvk: "70206244",
+  founder: "Hubert Isidora",
+  founded: "2017",
+  street: "Willaertpark 8",
+  postalCode: "5144 VM",
+  city: "Waalwijk",
+  region: "Noord-Brabant",
   country: "NL",
-  areaServed: ["Rotterdam", "Zuid-Holland", "Netherlands"],
-  founded: "2023",
-  // Single canonical company description (boilerplate) reused in the
-  // Organization schema, the home meta description, the footer and About page,
-  // so AI/search engines always read the exact same definition.
+  areaServed: ["Waalwijk", "Noord-Brabant", "Nederland"],
+  // Eén vaste bedrijfsomschrijving die terugkomt in de Organization-schema,
+  // de home-metabeschrijving, de footer en de Over-onspagina, zodat zoek- en
+  // AI-machines altijd exact dezelfde definitie lezen.
   description:
-    "Webmaister is a Growth & AI Infrastructure Partner based in Rotterdam, the Netherlands. We help ambitious businesses grow with premium websites, AI solutions and automation that attract more customers, save time and increase revenue.",
-  social: {
-    linkedin: "https://www.linkedin.com/company/112275381/",
-  },
+    "HubIzi Schilderwerken is een vakkundig schildersbedrijf uit Waalwijk. Sinds 2017 verzorgt oprichter Hubert Isidora binnen- en buitenschilderwerk, het spuiten van objecten en strak afwerkwerk, altijd met een oog voor detail.",
 };
 
 export const nav = [
   { label: "Home", href: "/" },
-  { label: "Solutions", href: "/solutions/" },
-  { label: "Success Stories", href: "/success-stories/" },
-  { label: "Blog", href: "/blog/" },
-  { label: "About", href: "/about/" },
+  { label: "Diensten", href: "/diensten/" },
+  { label: "Over ons", href: "/over-ons/" },
   { label: "Contact", href: "/contact/" },
 ];
 
-export const ctaPrimary = { label: "Book a Growth Strategy Call", href: "/contact/" };
-export const ctaSecondary = { label: "Explore Solutions", href: "/solutions/" };
+export const ctaPrimary = { label: "Vraag een offerte aan", href: "/contact/" };
+export const ctaSecondary = { label: "Bekijk onze diensten", href: "/diensten/" };
 
-// ---- The three pillars (ecosystem) ----
-export const pillars = [
+// ---- Diensten (aangedreven op home, dienstenoverzicht en Service-schema) ----
+export const services = [
   {
-    id: "digital-presence",
-    name: "Digital Presence",
-    short: "Premium websites that build trust and generate leads.",
-    icon: "globe",
-    outcome: "A site customers trust in seconds and one that turns visitors into qualified leads.",
-  },
-  {
-    id: "growth-systems",
-    name: "Growth Systems",
-    short: "SEO, conversion optimization and customer-acquisition systems.",
-    icon: "trend",
-    outcome: "A predictable engine that brings the right customers to you, month after month.",
-  },
-  {
-    id: "brainy",
-    name: "Brainy AI & Automation",
-    short: "AI that automates repetitive work and helps you scale without extra hires.",
-    icon: "spark",
-    outcome: "A digital employee that handles the busywork 24/7 so your team can focus on growth.",
-  },
-];
-
-// ---- The modern business problem ----
-export const problems = [
-  { title: "Your website doesn't generate leads", text: "Beautiful, maybe but it isn't turning visitors into conversations or customers." },
-  { title: "Processes are still manual", text: "Quotes, follow-ups and admin eat the hours that should go into growth." },
-  { title: "Customers wait too long", text: "Slow replies cost trust and revenue while competitors answer instantly." },
-  { title: "Teams waste time on repetitive work", text: "Skilled people stuck doing copy-paste tasks a system should handle." },
-  { title: "Growth depends entirely on people", text: "Every new customer means more headcount so scaling stays expensive and fragile." },
-];
-
-// ---- Growth framework ----
-export const framework = [
-  { step: "01", name: "Discover", text: "We map your customers, funnel and bottlenecks to find the highest-leverage growth opportunities." },
-  { step: "02", name: "Build", text: "We design a premium, fast digital foundation engineered to convert and built to last." },
-  { step: "03", name: "Automate", text: "Brainy takes over repetitive work lead capture, support, follow-ups and admin 24/7." },
-  { step: "04", name: "Scale", text: "We optimize with real data so results compound and growth no longer depends on headcount." },
-];
-
-// ---- What Brainy does ----
-export const brainyCapabilities = [
-  { title: "Capture & qualify leads", text: "Greets every visitor, asks the right questions and routes hot leads to your team automatically." },
-  { title: "Answer questions 24/7", text: "Instant, accurate answers from your own knowledge base, day or night, in any language." },
-  { title: "Book appointments & follow-ups", text: "Schedules calls, sends reminders and never lets a lead go cold." },
-  { title: "Generate content", text: "Drafts on-brand copy, emails and product descriptions in minutes, not days." },
-  { title: "Analyze business data", text: "Turns scattered numbers into clear answers you can act on." },
-  { title: "Automate admin work", text: "Handles repetitive back-office tasks so your team reclaims hours every week." },
-];
-
-// ---- Solutions catalogue ----
-export const solutionGroups = [
-  {
-    id: "digital-presence",
-    name: "Digital Presence",
-    tag: "Build trust. Generate leads.",
-    icon: "globe",
-    intro: "A premium website is your hardest-working salesperson. We build digital foundations that load instantly, look world-class and turn visitors into customers.",
-    items: [
-      { name: "Premium Website Design", outcome: "Win trust in seconds and convert more visitors with a fast, elegant site engineered around your customer's journey." },
-      { name: "Website Redesign", outcome: "Modernize an outdated site into a credibility and conversion engine without losing your existing SEO." },
-      { name: "Website Maintenance", outcome: "Stay fast, secure and up to date with proactive care, so your site never costs you a customer." },
-    ],
-  },
-  {
-    id: "growth-systems",
-    name: "Growth Systems",
-    tag: "Predictable customer acquisition.",
-    icon: "trend",
-    intro: "Traffic is only useful when it becomes revenue. We build acquisition and conversion systems that bring the right customers to you and turn them into buyers.",
-    items: [
-      { name: "SEO", outcome: "Get found by customers actively searching in Rotterdam and beyond, and own the rankings that drive demand." },
-      { name: "Conversion Optimization", outcome: "Turn more of your existing traffic into leads and sales often the fastest ROI in your entire funnel." },
-      { name: "Lead Generation Systems", outcome: "A reliable pipeline of qualified leads, captured and nurtured automatically instead of by chance." },
-    ],
-  },
-  {
-    id: "brainy",
-    name: "Brainy AI Solutions",
-    tag: "Your digital employee, working 24/7.",
-    icon: "spark",
-    intro: "Brainy is the intelligent layer that runs the work you'd otherwise hire for sales, support, admin and operations around the clock, at a fraction of the cost.",
-    items: [
-      { name: "AI Assistants", outcome: "A digital team member that handles routine work across sales, service and operations 24/7." },
-      { name: "AI Customer Support", outcome: "Instant, accurate answers that delight customers and cut support load and response times." },
-      { name: "AI Lead Qualification", outcome: "Every inbound lead engaged, qualified and routed in seconds so your team only talks to buyers." },
-      { name: "AI Knowledge Bases", outcome: "Your company's expertise, searchable in plain language for customers and staff alike." },
-      { name: "AI Content Generation", outcome: "On-brand content at scale: pages, emails, descriptions and posts produced in minutes." },
-      { name: "Business Process Automation", outcome: "Connect your tools and let the repetitive work run itself, eliminating manual handoffs and errors." },
-    ],
-  },
-];
-
-// ---- Success stories / case studies ----
-// Authentic transformation stories. Intentionally qualitative: we describe the
-// challenge, strategic thinking and brand/digital transformation rather than
-// inventing statistics.
-type CaseStudy = {
-  slug: string;
-  company: string;
-  industry: string;
-  cardIndustry: string;
-  cardText: string;
-  headline: string;
-  challenge: string;
-  solutionIntro: string;
-  solutionPoints: string[];
-  outcome: string;
-  quote: string;
-  website?: { label: string; href: string };
-  founders?: { name: string; href: string }[];
-};
-
-export const caseStudies: CaseStudy[] = [
-  {
-    slug: "nursitree",
-    company: "NursiTree",
-    industry: "Urban Greening & Green Infrastructure",
-    cardIndustry: "Green Infrastructure",
-    cardText: "Giving an innovative urban-greening concept a premium digital home.",
-    headline: "A Premium Digital Home for the Future of Urban Trees",
-    challenge:
-      "Founded in 2024 by urban-tree specialists Tony Hoekstra and Gerbrand van de Weerd, NursiTree (a name that fuses Nursery, City and Tree) introduces a genuinely new idea: a reusable tree bunker that lets trees thrive in dense urban environments while capturing rainwater and cooling city streets. A concept this innovative has to be understood and trusted in seconds by municipalities, urban planners and landscaping partners. NursiTree needed a digital platform that could explain the innovation clearly and present the company with the credibility its mission deserves.",
-    solutionIntro:
-      "Webmaister designed and developed a modern digital platform that makes an innovative, technical product easy to understand and inspires confidence. The website was built with:",
-    solutionPoints: [
-      "Clear storytelling for an innovative product",
-      "A strong, sustainable brand identity",
-      "Mobile-first design",
-      "Fast loading performance",
-      "SEO-ready architecture",
-      "Scalable infrastructure for future growth",
-    ],
+    slug: "schilderwerken",
+    icon: "brush",
+    name: "Schilderwerken",
+    short: "Binnen- en buitenschilderwerk met een strakke, duurzame afwerking.",
+    lead:
+      "Een frisse laag verf beschermt uw woning en tilt het geheel naar een hoger niveau. Wij schilderen binnen en buiten met oog voor elk detail.",
     outcome:
-      "NursiTree now has a digital foundation that matches the ambition of its mission: greener, more climate-resilient cities. The platform explains the tree bunker concept with clarity, communicates its benefits for water management and urban cooling, and positions NursiTree as a credible partner for municipalities and urban planners, ready to grow as the company scales.",
-    quote: "Growth starts with credibility. Before you can scale, people need to trust you.",
-    website: { label: "nursitree.com", href: "https://nursitree.com" },
-    founders: [
-      { name: "Tony Hoekstra", href: "https://www.linkedin.com/in/tonyhoekstra/" },
-      { name: "Gerbrand van de Weerd", href: "https://www.linkedin.com/in/gerbrand-van-de-weerd/" },
+      "Een strak resultaat dat jaren meegaat, netjes afgeplakt en zonder gedoe opgeleverd.",
+    intro: [
+      "Schilderwerk is meer dan een kleurtje kiezen. Goede voorbereiding bepaalt hoe lang het resultaat mooi blijft. Wij nemen de tijd voor schuren, plamuren en gronden, zodat de eindlaag perfect hecht en egaal wordt.",
+      "Of het nu gaat om kozijnen, deuren, plafonds, wanden of de complete gevel: wij werken netjes, beschermen uw meubels en vloeren en laten uw woning schoon achter.",
+    ],
+    points: [
+      "Buitenschilderwerk voor kozijnen, deuren en gevels",
+      "Binnenschilderwerk voor wanden, plafonds en trappen",
+      "Grondig voorwerk: schuren, plamuren en gronden",
+      "Houtrotherstel waar dat nodig is",
+      "Duurzame, milieubewuste verfsystemen",
+      "Netjes afgeplakt en schoon opgeleverd",
     ],
   },
   {
-    slug: "queenly-events",
-    company: "Queenly Events",
-    industry: "Luxury Events & Wedding Planning",
-    cardIndustry: "Luxury Events",
-    cardText: "Transforming a boutique event brand into a premium digital experience.",
-    headline: "Elevating a Boutique Brand into a Premium Experience",
-    challenge:
-      "Queenly Events delivered beautiful events but their online presence did not fully communicate the premium quality of their work. Potential clients needed to immediately feel confidence, elegance and professionalism.",
-    solutionIntro:
-      "Webmaister reimagined the digital experience around luxury, trust and emotion. The new platform focuses on:",
-    solutionPoints: [
-      "Premium storytelling",
-      "Elegant visual presentation",
-      "Luxury positioning",
-      "Conversion-focused inquiries",
-      "Mobile optimization",
-      "Strong brand consistency",
-    ],
+    slug: "spuiten-van-objecten",
+    icon: "spray",
+    name: "Spuiten van objecten",
+    short: "Spuitwerk voor een naadloos gladde, fabrieksmatige afwerking.",
+    lead:
+      "Voor een egaal en naadloos resultaat spuiten wij deuren, kozijnen, meubels en objecten. Geen streken, geen structuur, alleen een strakke laag.",
     outcome:
-      "Queenly Events now has a digital presence that reflects the quality and sophistication of the experiences they create. The website supports their goal of attracting higher-value clients and strengthening their market position.",
-    quote: "Luxury is not about saying you're premium. It's about making people feel it.",
-    website: { label: "queenlyevent.nl", href: "https://queenlyevent.nl" },
-    founders: [
-      { name: "Esther Macnack", href: "https://www.linkedin.com/in/esther-macnack-1a0332296/" },
+      "Een gladde, fabrieksmatige uitstraling die u met de kwast niet bereikt.",
+    intro: [
+      "Spuiten geeft een egaliteit die kwasten en rollers niet kunnen evenaren. Perfect voor deuren, keukens, trapleuningen, radiatoren en losse objecten die er als nieuw uit moeten zien.",
+      "Wij werken in een stofarme omgeving, plakken alles zorgvuldig af en kiezen de juiste lak per ondergrond. Zo krijgt u een naadloze afwerking die lang mooi blijft.",
+    ],
+    points: [
+      "Deuren en kozijnen in spuitkwaliteit",
+      "Keukenkastjes en meubels een nieuwe look geven",
+      "Radiatoren, trapleuningen en lijstwerk",
+      "Losse objecten in onze werkplaats gespoten",
+      "Zorgvuldig afplakken en stofarm werken",
+      "De juiste lak per ondergrond en gebruik",
     ],
   },
   {
-    slug: "yiska-cleaning",
-    company: "Yiska Cleaning",
-    industry: "Commercial Cleaning Services",
-    cardIndustry: "Commercial Services",
-    cardText: "Creating a professional online presence designed for long-term growth.",
-    headline: "Creating a Professional Brand Built for Growth",
-    challenge:
-      "Yiska Cleaning wanted to move beyond being seen as just another cleaning company. The company needed a professional online presence capable of building trust with businesses and supporting future expansion.",
-    solutionIntro:
-      "Webmaister created a modern business platform focused on professionalism, reliability and credibility. The website was designed to:",
-    solutionPoints: [
-      "Increase trust",
-      "Showcase services clearly",
-      "Support lead generation",
-      "Improve local visibility",
-      "Present the company professionally",
-    ],
+    slug: "afwerken",
+    icon: "finish",
+    name: "Afwerken",
+    short: "Wand- en sausklaar afwerken voor een strak, egaal eindresultaat.",
+    lead:
+      "De laatste stap bepaalt het gevoel van een ruimte. Wij maken wanden en plafonds sausklaar en werken alles strak en egaal af.",
     outcome:
-      "Yiska Cleaning now has a stronger digital presence that aligns with its ambition to become a trusted cleaning partner for businesses. The company is positioned to grow with confidence while presenting a more professional image to prospective clients.",
-    quote: "Professional companies deserve professional digital foundations.",
-  },
-  {
-    slug: "capture-the-moment-solutions",
-    company: "Capture the Moment Solutions",
-    industry: "Visual Storytelling & Content Creation",
-    cardIndustry: "Visual Storytelling",
-    cardText: "Turning a creative vision into a strategic visual storytelling platform.",
-    headline: "A Premium Digital Platform for Strategic Visual Storytelling",
-    challenge:
-      "Founded by Gabriel, Capture the Moment Solutions had a strong creative vision and real talent for visual storytelling, but the offer lived mostly in a portfolio rather than in a structured online platform. The services spanned real estate photography and videography, personal branding and broader business content creation, so the website had to present multiple offers with clarity instead of overwhelming visitors. The real challenge was positioning: Capture the Moment Solutions needed to be seen as a premium storytelling partner that builds trust and long-term brand growth, not just another photographer or videographer for hire.",
-    solutionIntro:
-      "Webmaister turned Gabriel's creative vision into a clear, premium platform with structure, positioning and conversion logic. The website was designed and developed with:",
-    solutionPoints: [
-      "Clear positioning for multiple services",
-      "A premium visual storytelling identity",
-      "Dedicated pages for real estate and content creation",
-      "Portfolio structure for photography and video work",
-      "Mobile-first design",
-      "SEO-ready architecture",
-      "Conversion-focused calls to action",
-      "Google Business Profile support",
-      "Scalable structure for future growth",
+      "Wanden en plafonds die kant en klaar zijn voor het mooiste eindresultaat.",
+    intro: [
+      "Een strakke muur begint met een goede voorbereiding. Wij vullen naden, herstellen beschadigingen en maken wanden en plafonds sausklaar, zodat de eindlaag egaal en zonder oneffenheden wordt.",
+      "Van spachtelputz en structuurwerk tot glad pleisterwerk en behangklaar maken: wij zorgen voor een basis die klopt en een afwerking waar u jaren van geniet.",
     ],
-    outcome:
-      "Capture the Moment Solutions now has a professional digital foundation that clearly presents Gabriel's services, story, process and portfolio. Visitors immediately understand the value of his work, the platform gives them the confidence to reach out, and the structure supports lead generation for both real estate and content-creation clients, ready to scale as the business grows.",
-    quote: "Trust starts before the first conversation. A strong digital foundation makes your work easier to believe, understand and buy.",
+    points: [
+      "Wanden en plafonds sausklaar maken",
+      "Naden vullen en beschadigingen herstellen",
+      "Glad pleisterwerk en structuurwerk",
+      "Behangklaar maken van muren",
+      "Egaal en strak eindresultaat",
+      "Nette voorbereiding voor een langdurig mooi resultaat",
+    ],
   },
 ];
 
-// ---- FAQ (powers FAQPage schema + Contact/Home copy) ----
+// ---- Werkwijze in vier stappen ----
+export const process = [
+  { step: "01", name: "Kennismaking", text: "We bespreken uw wensen en komen langs om de situatie op locatie te bekijken." },
+  { step: "02", name: "Heldere offerte", text: "U ontvangt een duidelijke offerte zonder verrassingen, met een reële planning." },
+  { step: "03", name: "Vakkundig aan de slag", text: "We werken netjes, beschermen uw interieur en houden u onderweg op de hoogte." },
+  { step: "04", name: "Nette oplevering", text: "We leveren schoon op en lopen samen het resultaat na, tot in het detail." },
+];
+
+// ---- Waarden / redenen om te kiezen voor HubIzi ----
+export const values = [
+  { icon: "eye", title: "Oog voor detail", text: "De afwerking maakt het verschil. Wij zien de kleine dingen die het geheel af maken." },
+  { icon: "shield", title: "Vakmanschap sinds 2017", text: "Ervaren schilderwerk met een resultaat dat jaren meegaat." },
+  { icon: "chat", title: "Duidelijk en eerlijk", text: "Heldere afspraken, een reële planning en een offerte zonder verrassingen." },
+  { icon: "broom", title: "Netjes en schoon", text: "We beschermen uw interieur en leveren uw woning schoon en opgeruimd op." },
+];
+
+// ---- FAQ (voedt de FAQPage-schema en de teksten op home en contact) ----
 export const faqs = [
   {
-    q: "Is Webmaister a web design agency?",
-    a: "No. Webmaister is a Growth & AI Infrastructure Partner. We build the complete digital foundation that helps businesses grow premium websites, growth and SEO systems, and Brainy AI automation not just websites.",
+    q: "In welke regio werkt HubIzi Schilderwerken?",
+    a: "Wij zijn gevestigd in Waalwijk en werken in Waalwijk, Noord-Brabant en de wijde omgeving. Neem gerust contact op om te vragen of we ook bij u langskomen.",
   },
   {
-    q: "What is Brainy?",
-    a: "Brainy is the intelligent AI layer behind Webmaister. It works like a digital employee: capturing and qualifying leads, answering customer questions 24/7, booking appointments, generating content, analyzing data and automating administrative work so businesses scale without hiring extra staff.",
+    q: "Verzorgen jullie zowel binnen- als buitenschilderwerk?",
+    a: "Ja. Wij verzorgen binnen- en buitenschilderwerk, het spuiten van objecten en het strak afwerken van wanden en plafonds. Zowel voor particulieren als voor bedrijven.",
   },
   {
-    q: "Do you work with businesses in Rotterdam?",
-    a: "Yes. Webmaister is based in Rotterdam and works with ambitious businesses across Rotterdam, Zuid-Holland and the wider Netherlands, as well as remotely. We offer local expertise in website design, SEO and AI automation for the Rotterdam market.",
+    q: "Is een offerte gratis en vrijblijvend?",
+    a: "Zeker. We komen graag langs om de situatie te bekijken en stellen daarna een heldere, vrijblijvende offerte op zonder verrassingen achteraf.",
   },
   {
-    q: "How is this different from hiring more staff?",
-    a: "Instead of adding headcount to handle repetitive work, Brainy automates it 24/7 at a fraction of the cost. Your existing team is freed to focus on high-value work, and your capacity scales without your payroll scaling with it.",
+    q: "Werken jullie met duurzame verf?",
+    a: "Wij kiezen per klus het juiste verfsysteem en werken waar mogelijk met duurzame, milieubewuste producten die lang mooi blijven.",
   },
   {
-    q: "What does a project look like?",
-    a: "We follow a simple four-step framework: Discover (map your funnel and bottlenecks), Build (a premium, fast digital foundation), Automate (deploy Brainy on the repetitive work), and Scale (optimize with real data so results compound).",
+    q: "Wat maakt HubIzi anders dan andere schilders?",
+    a: "Oprichter Hubert Isidora is sinds 2017 actief met een uitgesproken oog voor detail. Goede voorbereiding, netjes werken en een strakke afwerking staan bij ons voorop.",
   },
   {
-    q: "How do we get started?",
-    a: "Book a free Growth Strategy Call. We'll review your current setup, identify the highest-leverage opportunities and outline a clear plan to attract more customers, automate work and grow.",
-  },
-];
-
-// ---- Solutions-page FAQ (answer-first, powers a second FAQPage) ----
-export const solutionsFaqs = [
-  {
-    q: "What does a premium website include?",
-    a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into qualified leads, not just to look good.",
-  },
-  {
-    q: "Is Brainy a chatbot?",
-    a: "No. Brainy is an AI layer that works like a digital employee: it captures and qualifies leads, answers customer questions 24/7, books appointments and follow-ups, generates content and automates administrative work. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
-  },
-  {
-    q: "How long does a project take?",
-    a: "A focused website typically takes a few weeks; growth systems and AI automation are then layered on in stages. We start with the highest-leverage work first so you see value early, then build out from there. Exact timing depends on scope, which we map in the first strategy call.",
-  },
-  {
-    q: "What does it cost?",
-    a: "It depends on what you need: a website, growth and SEO systems, AI automation, or a combination. We scope each project to your goals and budget and give you a clear quote up front. The fastest way to a price is a free Growth Strategy Call, where we map the work and the expected return.",
-  },
-  {
-    q: "Do you only work with businesses in Rotterdam?",
-    a: "Webmaister is based in Rotterdam and knows the local market, but we work with ambitious businesses across Zuid-Holland, the wider Netherlands and remotely. The same approach applies wherever you are.",
-  },
-  {
-    q: "Can you improve our existing website instead of rebuilding it?",
-    a: "Often, yes. We can redesign or optimize an existing site, add growth and SEO systems, or connect AI automation to what you already have. We start with where you want to go and recommend the smallest change that gets you there.",
-  },
-];
-
-// ---- Dutch local landing pages (hybrid i18n: English site + NL pages for
-// local commercial keywords). Rendered by src/pages/nl/[slug].astro in nl. ----
-export const nlLandings = [
-  {
-    slug: "website-laten-maken-rotterdam",
-    keyword: "Website laten maken Rotterdam",
-    title: "Website laten maken in Rotterdam · Premium webdesign",
-    description:
-      "Website laten maken in Rotterdam? Webmaister bouwt premium, razendsnelle en conversiegerichte websites die vertrouwen wekken en klanten opleveren. Plan een gratis strategiegesprek.",
-    h1: "Website laten maken in Rotterdam",
-    lead:
-      "Een premium, razendsnelle website die in seconden vertrouwen wekt en bezoekers omzet in klanten.",
-    intro: [
-      "Een website is je hardst werkende verkoper. Toch is een mooie website alleen niet genoeg: hij moet snel zijn, vertrouwen wekken en bezoekers omzetten in aanvragen. Daar bouwen wij voor.",
-      "Webmaister ontwerpt en bouwt premium websites voor ambitieuze ondernemers in Rotterdam en omgeving. We beginnen niet bij het ontwerp, maar bij waar jouw bedrijf naartoe wil, en bouwen daar de digitale fundering omheen.",
-    ],
-    includesTitle: "Wat je krijgt",
-    includes: [
-      "Maatwerk design dat past bij jouw merk",
-      "Mobiel-first en razendsnel (sterke Core Web Vitals)",
-      "Conversiegericht: duidelijke route naar de aanvraag",
-      "SEO-klaar opgebouwd voor vindbaarheid in Rotterdam",
-      "Schaalbaar, zodat de site met je meegroeit",
-      "Optioneel: onderhoud, SEO en AI-automatisering",
-    ],
-    faq: [
-      { q: "Wat kost een website laten maken in Rotterdam?", a: "Dat hangt af van de omvang en je doelen. We stellen elk project samen op maat en geven vooraf een heldere offerte. De snelste manier naar een prijs is een gratis strategiegesprek, waarin we de scope en de verwachte opbrengst in kaart brengen." },
-      { q: "Hoe lang duurt het om een website te bouwen?", a: "Een gerichte website staat doorgaans binnen enkele weken live. We starten met het meest waardevolle werk eerst, zodat je snel resultaat ziet, en bouwen daarna verder uit." },
-      { q: "Kunnen jullie mijn bestaande website verbeteren?", a: "Vaak wel. We kunnen een bestaande site herontwerpen of optimaliseren, groei- en SEO-systemen toevoegen of AI-automatisering koppelen aan wat je al hebt." },
-    ],
-  },
-  {
-    slug: "seo-rotterdam",
-    keyword: "SEO Rotterdam",
-    title: "SEO Rotterdam · Hoger in Google met een groeisysteem",
-    description:
-      "SEO in Rotterdam waarmee klanten je vinden die actief zoeken. Webmaister bouwt een SEO- en conversiesysteem dat verkeer omzet in aanvragen. Plan een gratis gesprek.",
-    h1: "SEO in Rotterdam",
-    lead:
-      "Word gevonden door klanten die nú zoeken, en zet dat verkeer om in aanvragen.",
-    intro: [
-      "Online zichtbaar zijn is niet hetzelfde als gevonden worden. Met de juiste SEO komen de mensen die actief zoeken in Rotterdam en omgeving bij jou terecht, en niet bij de concurrent.",
-      "Webmaister bouwt SEO niet als losse trucjes, maar als een groeisysteem: technische basis, sterke content en conversie-optimalisatie die samen voor een voorspelbare stroom aanvragen zorgen.",
-    ],
-    includesTitle: "Onze aanpak",
-    includes: [
-      "Technische SEO: snelheid, structuur en indexatie",
-      "Lokale SEO gericht op Rotterdam en Zuid-Holland",
-      "Content die antwoord geeft op echte klantvragen",
-      "Conversie-optimalisatie: meer aanvragen uit hetzelfde verkeer",
-      "Heldere rapportage op wat telt: leads en omzet",
-    ],
-    faq: [
-      { q: "Hoe snel zie ik resultaat met SEO?", a: "SEO is een investering die opbouwt. De eerste verbeteringen (techniek, conversie) merk je vaak snel; sterke organische posities groeien doorgaans over enkele maanden. We starten met de hoogste impact eerst." },
-      { q: "Werken jullie alleen voor bedrijven in Rotterdam?", a: "We zitten in Rotterdam en kennen de lokale markt, maar werken met ambitieuze bedrijven in heel Zuid-Holland, de rest van Nederland en op afstand." },
-      { q: "Wat kost SEO?", a: "Dat hangt af van je situatie en doelen. We scopen het werk op jouw budget en geven vooraf een duidelijke offerte. Plan een gratis gesprek voor een concreet voorstel." },
-    ],
-  },
-  {
-    slug: "ai-automatisering-rotterdam",
-    keyword: "AI Automatisering Rotterdam",
-    title: "AI Automatisering Rotterdam · Je digitale medewerker",
-    description:
-      "AI-automatisering voor bedrijven in Rotterdam. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden en administratie automatiseren. Plan een gesprek.",
-    h1: "AI-automatisering in Rotterdam",
-    lead:
-      "Laat repetitief werk over aan Brainy, je digitale medewerker die 24/7 doorwerkt.",
-    intro: [
-      "Groeien hoeft niet te betekenen dat je meer mensen aanneemt. Met AI-automatisering laat je het terugkerende werk over aan een systeem dat dag en nacht doorwerkt, tegen een fractie van de kosten.",
-      "Brainy is de intelligente laag achter Webmaister. Geen chatbot, maar een digitale medewerker die leads opvangt en kwalificeert, klantvragen 24/7 beantwoordt, afspraken inplant en administratie automatiseert, zodat jouw team zich op groei kan richten.",
-    ],
-    includesTitle: "Wat Brainy doet",
-    includes: [
-      "Leads opvangen en kwalificeren, automatisch",
-      "24/7 klantvragen beantwoorden uit je eigen kennisbank",
-      "Afspraken en opvolging inplannen",
-      "Administratief werk en handmatige taken automatiseren",
-      "Opschalen zonder dat je personeelskosten meegroeien",
-    ],
-    faq: [
-      { q: "Is Brainy een chatbot?", a: "Nee. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden, afspraken inplannen en administratie automatiseren. Het doel is repetitief werk weghalen, niet een chatbot op je site plakken." },
-      { q: "Waarmee kan ik beginnen?", a: "We beginnen met de ene taak die de meeste tijd of de meeste leads kost, bewijzen de waarde, en breiden daarna uit. Kleine, opeenstapelende winst werkt beter dan één grote risicovolle ingreep." },
-      { q: "Werkt dit ook voor mijn type bedrijf?", a: "AI-automatisering is breed toepasbaar, van dienstverleners tot e-commerce. In een gratis gesprek kijken we welke taken bij jou het meeste opleveren." },
-    ],
+    q: "Hoe vraag ik een offerte aan?",
+    a: "Bel of mail ons, of vul het contactformulier in. We reageren snel en plannen een moment om langs te komen en de klus op te nemen.",
   },
 ];
