@@ -259,6 +259,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     outcome:
       "Capture the Moment Solutions now has a professional digital foundation that clearly presents Gabriel's services, story, process and portfolio. Visitors immediately understand the value of his work, the platform gives them the confidence to reach out, and the structure supports lead generation for both real estate and content-creation clients, ready to scale as the business grows.",
+    quote: "Trust starts before the first conversation. A strong digital foundation makes your work easier to believe, understand and buy.",
     website: { label: "capturethemomentsolutions.nl", href: "https://capturethemomentsolutions.nl" },
     founders: [
       { name: "Gabriel Snijders", href: "https://www.linkedin.com/in/gabriel-snijders-2956461bb/" },
