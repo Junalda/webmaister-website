@@ -265,6 +265,33 @@ export const caseStudies: CaseStudy[] = [
       { name: "Gabriel Snijders", href: "https://www.linkedin.com/in/gabriel-snijders-2956461bb/" },
     ],
   },
+  {
+    slug: "hope-love-foundation",
+    company: "Hope & Love Foundation",
+    industry: "Nonprofit & Children's Foundation",
+    cardIndustry: "Nonprofit",
+    cardText: "Giving a children's foundation a digital home as warm and hopeful as its mission.",
+    headline: "A Digital Home Built on Hope and Trust",
+    challenge:
+      "Founded by Esther Macnack, Hope & Love Foundation exists to help children growing up in poverty, broken families and hard circumstances discover who they are, what they are worth, and that they belong. A mission this personal has to be felt in seconds, not just read. The foundation needed a digital home that could carry the warmth and hope of its work, explain its programs with clarity, and give donors, partners and families the confidence to get involved.",
+    solutionIntro:
+      "Webmaister designed and developed a warm, trustworthy platform that turns a deeply human mission into a clear, moving experience. The website was built with:",
+    solutionPoints: [
+      "A warm, emotive brand identity",
+      "Clear storytelling of the mission and programs",
+      "A donation-ready structure that invites giving",
+      "Mobile-first design",
+      "SEO-ready architecture",
+      "A scalable base for campaigns and mission trips",
+    ],
+    outcome:
+      "Hope & Love Foundation now has a digital home that feels as warm and hopeful as its mission. The platform makes the impact easy to understand, presents its programs and values with clarity, and gives donors and partners the confidence to support the work, ready to grow with every new campaign and mission trip.",
+    quote: "People give to a mission they can feel. Clarity and warmth turn belief into support.",
+    website: { label: "hopelovefoundation.nl", href: "https://hopelovefoundation.nl" },
+    founders: [
+      { name: "Esther Macnack", href: "https://www.linkedin.com/in/esther-macnack-1a0332296/" },
+    ],
+  },
 ];
 
 // ---- FAQ (powers FAQPage schema + Contact/Home copy) ----
