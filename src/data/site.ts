@@ -294,6 +294,76 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
+// ---- Instagram self-segmentation landing page (/start/) + subpages
+// (/start/[slug]/). Visitors pick the buyer type that fits them. ----
+export const startOptions = [
+  {
+    slug: "website",
+    choice: "I need a website",
+    priceLine: "Starting at €500",
+    tagline: "For a fresh, simple online presence",
+    title: "A Website, Starting at €500 · Webmaister",
+    description:
+      "Need a website? Webmaister builds clean, professional one-page websites that get you online and taken seriously. Starting at €500. Message us on WhatsApp.",
+    price: "€500",
+    priceNote: "one-time · starting price",
+    lead: "A clean, professional one-page website that gets you online and taken seriously, fast.",
+    forText:
+      "Perfect if you don't have a website yet, or your needs are simple. You want a sharp, credible online presence without the overhead.",
+    includes: [
+      "A polished one-page website",
+      "Mobile-first, fast-loading design",
+      "Your story, services and contact in one clear flow",
+      "A clear call-to-action that turns visitors into messages",
+      "Built to be found on Google",
+    ],
+  },
+  {
+    slug: "upgrade",
+    choice: "My current website needs an upgrade",
+    priceLine: "Full websites from €2.700",
+    tagline: "For a serious business ready to level up",
+    title: "A Full Website Upgrade, From €2.700 · Webmaister",
+    description:
+      "Website outdated? Webmaister rebuilds it into a premium, conversion-focused website that reflects the quality of your business. From €2.700. Message us on WhatsApp.",
+    price: "€2.700",
+    priceNote: "from · full custom website",
+    lead: "A full, premium website rebuild for a business that's ready to be taken seriously.",
+    forText:
+      "Your current site is outdated or holding you back, and your business has outgrown it. You want a website that reflects the quality of what you actually deliver.",
+    includes: [
+      "A custom, multi-page premium website",
+      "A refreshed, consistent brand experience",
+      "Conversion-focused structure that turns visitors into leads",
+      "Mobile-first, fast and SEO-ready",
+      "A scalable foundation you can grow on",
+      "Optional: SEO, content and Brainy AI automation",
+    ],
+  },
+  {
+    slug: "growth",
+    choice: "I need more growth / leads",
+    priceLine: "Growth strategy · €1.600/mo",
+    tagline: "For an existing business that wants to scale",
+    title: "Growth Strategy · €1.600 per month · Webmaister",
+    description:
+      "Already have a business and want more leads? Webmaister's growth partnership turns your website and marketing into a steady stream of leads. €1.600/month. Message us on WhatsApp.",
+    price: "€1.600",
+    priceNote: "per month · growth partnership",
+    lead: "An ongoing growth partnership that turns your website and marketing into a steady stream of leads.",
+    forText:
+      "You already have a business and a website, but you want more visibility, more leads and more revenue. You want a partner who owns the growth, not just another tool.",
+    includes: [
+      "A clear growth strategy tied to your goals",
+      "SEO and content that attract the right customers",
+      "Conversion optimization: more leads from the same traffic",
+      "Brainy AI automation to capture and follow up leads 24/7",
+      "Ongoing optimization with clear reporting",
+      "A dedicated growth partner, month after month",
+    ],
+  },
+];
+
 // ---- FAQ (powers FAQPage schema + Contact/Home copy) ----
 export const faqs = [
   {
