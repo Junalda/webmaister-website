@@ -1,0 +1,31 @@
+---
+// Reusable green WhatsApp call-to-action button. Links to the configured
+// WhatsApp number and opens in a new tab.
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+import { site } from "@/data/site";
+interface Props {
+  label?: string;
+  class?: string;
+}
+const { label = "WhatsApp us", class: className } = Astro.props;
+---
+<a
+  class:list={["wa-button", className]}
+  href={`https://wa.me/${site.whatsappHref}`}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <WhatsAppIcon /> {label}
+</a>
+
+<style>
+  .wa-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    padding: 0.95rem 1.7rem; border-radius: var(--r-pill);
+    background: #25d366; color: #06351a; font-weight: 650; font-size: 1rem;
+    box-shadow: 0 14px 34px -14px rgba(37,211,102,0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .wa-button:hover { transform: translateY(-2px); box-shadow: 0 20px 44px -14px rgba(37,211,102,0.7); }
+  .wa-button :global(svg) { width: 20px; height: 20px; }
+</style>
