@@ -46,6 +46,12 @@ const jsonLd = {
         <span class="eyebrow">Onze diensten</span>
         <h2>Waarmee we je helpen groeien</h2>
       </div>
+      <a class="nl-featured card" href="/nl/acquisitiesysteem/" data-reveal>
+        <span class="nl-featured-tag">Onze kernaanpak</span>
+        <h3>Een acquisitiesysteem: website, positionering en leadgeneratie als één geheel</h3>
+        <p>Geen losse onderdelen, maar één systeem dat structureel de juiste klanten aantrekt.</p>
+        <span class="nl-card-link">Ontdek het acquisitiesysteem <Icon name="arrow" /></span>
+      </a>
       <div class="nl-grid">
         {nlLandings.map((p) => (
           <a class="nl-card card" href={`/nl/${p.slug}/`} data-reveal>
@@ -72,7 +78,12 @@ const jsonLd = {
 <style>
   .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(48px, 6vw, 80px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
   .hero-cta { margin-top: 2rem; }
-  .nl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; margin-top: 2.5rem; }
+  .nl-featured { display: block; margin-top: 2.5rem; text-decoration: none; color: inherit; border-color: rgba(10,142,242,0.28); background: var(--bg-tint); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .nl-featured:hover { transform: translateY(-3px); border-color: var(--brand); box-shadow: var(--shadow-md); }
+  .nl-featured-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-strong); margin-bottom: 0.6rem; }
+  .nl-featured h3 { font-size: clamp(1.2rem, 2.4vw, 1.5rem); margin-bottom: 0.5rem; max-width: 30ch; }
+  .nl-featured p { color: var(--text-muted); margin-bottom: 0.9rem; }
+  .nl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.4rem; margin-top: 1.4rem; }
   .nl-card { display: flex; flex-direction: column; gap: 0.7rem; text-decoration: none; color: inherit; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
   .nl-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
   .nl-card h3 { font-size: 1.2rem; }
