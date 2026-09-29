@@ -1,0 +1,246 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import FaqAccordion from "@/components/FaqAccordion.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import { site } from "@/data/site";
+
+const url = `${site.url}/nl/acquisitiesysteem/`;
+const title = "Acquisitiesysteem laten bouwen — structureel klanten werven | Webmaister";
+const description =
+  "Geen losse website, ads of SEO, maar één acquisitiesysteem: positionering, website en leadgeneratie die samen structureel de juiste klanten aantrekken. Plan een gratis strategiegesprek.";
+
+// The three parts of the system.
+const parts = [
+  { icon: "search", title: "Positionering", text: "Eerst helder maken wat je aanbiedt, voor wie en waarom jij. Zonder scherpe positionering werkt geen enkel kanaal." },
+  { icon: "globe", title: "Website", text: "Een website die vertrouwen wekt en bezoekers omzet in aanvragen. Het fundament waar de rest op rust." },
+  { icon: "trend", title: "Leadgeneratie", text: "SEO, LinkedIn-acquisitie en opvolging die de juiste bedrijven naar je toe brengen en warm houden." },
+];
+
+// How we build it.
+const steps = [
+  { n: "01", title: "Analyse", text: "We brengen je huidige situatie, doelgroep en cijfers in kaart: waar komen aanvragen vandaan, en waar lekt het weg?" },
+  { n: "02", title: "Positionering", text: "We maken je aanbod en verhaal scherp, zodat de juiste klanten zich meteen herkennen." },
+  { n: "03", title: "Fundament", text: "We bouwen of verbeteren de website tot een platform dat vertrouwen wekt en converteert." },
+  { n: "04", title: "Leadgeneratie", text: "We zetten de kanalen op die bij jou passen: SEO, LinkedIn-acquisitie en opvolging, als één geheel." },
+  { n: "05", title: "Optimalisatie", text: "We meten wat werkt en sturen bij, maand na maand, zodat de instroom voorspelbaarder wordt." },
+];
+
+const includes = [
+  "Scherpe positionering en boodschap",
+  "Een converterende website als fundament",
+  "SEO en vindbaarheid voor de juiste zoekopdrachten",
+  "LinkedIn-acquisitie en outreach zonder spam",
+  "Opvolging zodat geen aanvraag koud wordt",
+  "Heldere rapportage op leads en omzet",
+];
+
+const faq = [
+  { q: "Wat is een acquisitiesysteem?", a: "Een acquisitiesysteem is het geheel van positionering, website en leadgeneratie dat samenwerkt om structureel de juiste klanten aan te trekken en om te zetten in aanvragen, in plaats van losse tools die langs elkaar heen werken." },
+  { q: "Waarin verschilt dit van een website of van SEO?", a: "Een website en SEO zijn onderdelen; een acquisitiesysteem is het geheel. We bouwen of verbeteren de website waar nodig, maar het draait om de samenhang tussen positionering, vindbaarheid, kanalen en opvolging, zodat er daadwerkelijk klanten uit komen." },
+  { q: "Wat levert een acquisitiesysteem op?", a: "Het doel is een voorspelbaardere stroom van de juiste aanvragen en minder afhankelijkheid van toeval of losse acties. We beloven geen vaste aantallen, we bouwen het systeem en sturen bij op wat aantoonbaar werkt." },
+  { q: "Voor welk type bedrijf is dit bedoeld?", a: "Voor ondernemers en bedrijven die zijn gegroeid, maar waarvan de website, positionering of acquisitie niet is meegegroeid. Je hebt vaak al klanten, maar de instroom is te afhankelijk van bestaande contacten of toeval." },
+  { q: "Wat kost een acquisitiesysteem?", a: "Dat hangt af van wat er nodig is. Onze Growth Strategist-samenwerking, waarin we het volledige acquisitiesysteem aansturen, start vanaf €1.600 per maand. In een gratis strategiegesprek bepalen we de scope en de verwachte opbrengst." },
+  { q: "Hoe snel zie ik resultaat?", a: "De eerste verbeteringen (positionering, conversie) merk je vaak snel; een voorspelbare instroom bouwt over enkele maanden op. We starten altijd met de hoogste impact eerst." },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      name: "Acquisitiesysteem laten bouwen",
+      serviceType: "Acquisitiesysteem, leadgeneratie en groeistrategie",
+      description:
+        "Eén systeem van positionering, website en leadgeneratie dat structureel de juiste klanten aantrekt en omzet in aanvragen.",
+      provider: { "@id": `${site.url}/#organization` },
+      areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+      url,
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
+};
+---
+<Base lang="nl" title={title} description={description}>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container center" style="max-width:840px">
+      <span class="eyebrow" data-reveal>Acquisitiesysteem</span>
+      <h1 data-reveal data-delay="60">Een acquisitiesysteem dat structureel klanten oplevert</h1>
+      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:660px">
+        Niet los een website, los wat advertenties en los wat SEO. Eén systeem waarin positionering,
+        website en leadgeneratie samenwerken om de juiste klanten aan te trekken en om te zetten in aanvragen.
+      </p>
+      <div class="hero-actions" data-reveal data-delay="180">
+        <Button href="/contact/" variant="brand" size="lg" arrow>Plan een gratis strategiegesprek</Button>
+        <WhatsAppButton label="WhatsApp us" />
+      </div>
+    </div>
+  </section>
+
+  <!-- The problem -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Het probleem</span>
+        <h2>Losse onderdelen werken langs elkaar heen</h2>
+      </div>
+      <p class="lead" data-reveal>
+        De meeste bedrijven kopen los een website, los een SEO-pakket en soms wat advertenties. Ieder
+        onderdeel doet zijn eigen ding, maar niemand stuurt het geheel. Het gevolg: een mooie site die
+        geen aanvragen oplevert, verkeer dat niet converteert, en groei die te afhankelijk is van
+        bestaande contacten en toeval.
+      </p>
+    </div>
+  </section>
+
+  <!-- What is an acquisition system (the quotable definition) -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">De oplossing</span>
+        <h2>Wat een acquisitiesysteem is</h2>
+        <p class="lead" style="margin:1rem auto 0;max-width:640px">
+          Een acquisitiesysteem is het geheel van <strong>positionering, website en leadgeneratie</strong>
+          dat samenwerkt om structureel de juiste klanten aan te trekken, in plaats van losse tools die
+          langs elkaar heen werken.
+        </p>
+      </div>
+      <div class="parts">
+        {parts.map((p, i) => (
+          <article class="part card" data-reveal data-delay={i * 70}>
+            <span class="part-ic"><Icon name={p.icon} /></span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How we build it -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Onze aanpak</span>
+        <h2>Hoe we het bouwen</h2>
+      </div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step" data-reveal data-delay={i * 50}>
+            <span class="step-n">{s.n}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- For whom -->
+  <section class="section section-alt">
+    <div class="container container-narrow">
+      <div class="whofor card" data-reveal>
+        <div>
+          <span class="eyebrow">Voor wie</span>
+          <h2>Gegroeid bedrijf, achtergebleven acquisitie</h2>
+          <p>
+            Dit is voor ondernemers en bedrijven die zijn gegroeid, maar waarvan de website, positionering
+            of acquisitie niet is meegegroeid. Je hebt vaak al klanten, maar de instroom is te afhankelijk
+            van bestaande contacten of toeval en je wilt er een systeem onder.
+          </p>
+        </div>
+        <ul class="whofor-list">
+          {includes.map((item) => (
+            <li><Icon name="check" /> <span>{item}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="section">
+    <div class="container center" style="max-width:680px">
+      <span class="eyebrow" data-reveal>Bewijs</span>
+      <h2 data-reveal>Echte bedrijven, echte fundamenten</h2>
+      <p class="lead" data-reveal style="margin:1rem auto 1.8rem">
+        We bouwen digitale fundamenten voor ambitieuze bedrijven, van groene infrastructuur tot luxe events
+        en visual storytelling. Bekijk hoe we dat aanpakken.
+      </p>
+      <Button href="/success-stories/" variant="ghost" arrow data-reveal>Bekijk de success stories</Button>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Veelgestelde vragen</span>
+        <h2>Goed om te weten</h2>
+      </div>
+      <FaqAccordion items={faq} />
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container center" style="max-width:680px">
+      <h2 data-reveal>Klaar om je acquisitie een systeem te geven?</h2>
+      <p class="lead" data-reveal style="margin:1rem auto 1.8rem">
+        Plan een gratis strategiegesprek. We bekijken je situatie en maken een helder plan om structureel
+        meer van de juiste klanten aan te trekken.
+      </p>
+      <div class="hero-actions" data-reveal>
+        <Button href="/contact/" variant="brand" size="lg" arrow>Plan een gratis strategiegesprek</Button>
+        <WhatsAppButton label="WhatsApp us" />
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+</Base>
+
+<style>
+  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(48px, 6vw, 80px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .hero-actions { display: flex; gap: 0.8rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 2rem; }
+  .section-head { max-width: 720px; margin-bottom: 2rem; }
+  .section-head.center { margin-inline: auto; text-align: center; }
+  .section-head h2 { margin-top: 0.4rem; }
+
+  .parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: 2.6rem; }
+  .part { display: flex; flex-direction: column; gap: 0.6rem; }
+  .part-ic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: var(--bg-tint); color: var(--brand-strong); border: 1px solid rgba(10,142,242,0.16); margin-bottom: 0.4rem; }
+  .part-ic :global(svg) { width: 22px; height: 22px; }
+  .part h3 { font-size: 1.2rem; }
+  .part p { color: var(--text-muted); font-size: 0.97rem; line-height: 1.6; }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(1.2rem, 3vw, 2rem); margin-top: 2.8rem; counter-reset: none; }
+  .step { display: flex; gap: 1rem; align-items: flex-start; }
+  .step-n { font-size: 1.1rem; font-weight: 700; color: var(--brand-strong); background: var(--bg-tint); width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; flex-shrink: 0; border: 1px solid rgba(10,142,242,0.16); }
+  .step h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .step p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; }
+
+  .whofor { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: center; }
+  .whofor h2 { margin: 0.4rem 0 0.9rem; }
+  .whofor p { color: var(--text-muted); line-height: 1.65; }
+  .whofor-list { display: grid; gap: 0.7rem; }
+  .whofor-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.98rem; color: var(--text); font-weight: 500; }
+  .whofor-list :global(svg) { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+
+  @media (max-width: 780px) {
+    .parts { grid-template-columns: 1fr; }
+    .whofor { grid-template-columns: 1fr; }
+  }
+</style>
