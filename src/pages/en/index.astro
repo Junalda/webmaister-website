@@ -1,0 +1,12 @@
+---
+import Base from "@/layouts/Base.astro";
+import HomeView from "@/components/HomeView.astro";
+import { homeEN } from "@/data/home";
+import { alternatesFor } from "@/i18n";
+
+const t = homeEN;
+const links = { contact: "/en/contact/", solutions: "/en/solutions/", cases: "/en/work/" };
+---
+<Base title={t.meta.title} description={t.meta.description} lang="en" alternates={alternatesFor("/", "/en/")}>
+  <HomeView t={t} links={links} />
+</Base>

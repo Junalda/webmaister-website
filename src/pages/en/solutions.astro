@@ -7,12 +7,13 @@ import FaqAccordion from "@/components/FaqAccordion.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import MeetBrainy from "@/components/MeetBrainy.astro";
 import { solutionGroups, framework, solutionsFaqs, site } from "@/data/site";
+import { alternatesFor } from "@/i18n";
 
 // FAQPage schema for the answer-first Solutions FAQ.
 const solutionsFaqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": `${site.url}/solutions/#faq`,
+  "@id": `${site.url}/en/solutions/#faq`,
   mainEntity: solutionsFaqs.map((f) => ({
     "@type": "Question",
     name: f.q,
@@ -24,6 +25,8 @@ const solutionsFaqLd = {
   title="Solutions · Premium Websites, SEO & Brainy AI Automation"
   description="Webmaister's solutions for Rotterdam businesses: premium website design and maintenance, SEO and conversion growth systems, and Brainy AI automation focused on real business outcomes."
   serviceSchema
+  lang="en"
+  alternates={alternatesFor("/diensten/", "/en/solutions/")}
 >
   <!-- ===== Page hero ===== -->
   <section class="page-hero">
@@ -59,7 +62,7 @@ const solutionsFaqLd = {
               <span class="sol-dot" aria-hidden="true"></span>
               <h3>{item.name}</h3>
               <p>{item.outcome}</p>
-              <a href="/contact/" class="sol-link">Discuss this <Icon name="arrow" /></a>
+              <a href="/en/contact/" class="sol-link">Discuss this <Icon name="arrow" /></a>
             </article>
           ))}
         </div>
@@ -116,6 +119,9 @@ const solutionsFaqLd = {
   <FinalCta
     title="Not sure where to start?"
     text="Tell us your goal and we'll recommend the highest-leverage combination of website, growth and Brainy AI in one free strategy call."
+    ctaHref="/en/contact/"
+    secondaryHref="/en/work/"
+    secondaryLabel="See our work"
   />
 
   <script type="application/ld+json" set:html={JSON.stringify(solutionsFaqLd)} is:inline />

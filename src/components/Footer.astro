@@ -1,16 +1,21 @@
 ---
-import { site, nav, ctaPrimary } from "@/data/site";
+import { site, navNL, navEN, ctaNL, ctaEN } from "@/data/site";
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
 import WhatsAppIcon from "./WhatsAppIcon.astro";
+import type { Lang } from "@/i18n";
+interface Props { lang?: Lang; }
+const { lang = "en" } = Astro.props;
 const year = new Date().getFullYear();
+const footerNav = lang === "nl" ? navNL : navEN;
+const cta = lang === "nl" ? ctaNL : ctaEN;
+const boilerplate = lang === "nl" ? site.descriptionNL : site.description;
+// Service links (expanded to all 7 pages in onderdeel 5; existing pages for now).
 const seo = [
   { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
-  { label: "Webdesign Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
   { label: "SEO Rotterdam", href: "/nl/seo-rotterdam/" },
-  { label: "AI Automatisering Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
-  { label: "AI Agent Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
-  { label: "Website Onderhoud Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
+  { label: "AI-automatisering Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
+  { label: "Acquisitiesysteem", href: "/nl/acquisitiesysteem/" },
 ];
 ---
 <footer class="site-footer">
@@ -18,29 +23,30 @@ const seo = [
     <div class="footer-grid">
       <div class="footer-brand">
         <Logo mono />
-        <p>{site.description}</p>
-        <a href={ctaPrimary.href} class="btn btn-brand">{ctaPrimary.label}</a>
+        <p>{boilerplate}</p>
+        <a href={cta.href} class="btn btn-brand">{cta.label}</a>
       </div>
 
       <div class="footer-col">
-        <h4>Navigate</h4>
+        <h4>{lang === "nl" ? "Navigatie" : "Navigate"}</h4>
         <ul>
-          {nav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+          {footerNav.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>Contact</h4>
         <ul class="contact-list">
-          <li><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><Icon name="pin" /> <span>{site.streetAddress}, {site.postalCode} {site.city}, {lang === "nl" ? "Nederland" : "The Netherlands"}</span></li>
           <li><Icon name="phone" /> <a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+          <li><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li class="wa-li"><WhatsAppIcon /> <a href={`https://wa.me/${site.whatsappHref}`} target="_blank" rel="noopener noreferrer">{site.whatsapp}</a></li>
-          <li><Icon name="pin" /> <span>{site.city}, Netherlands</span></li>
+          <li><Icon name="shield" /> <span>KvK {site.kvk}</span></li>
         </ul>
       </div>
 
       <div class="footer-col footer-seo">
-        <h4><a href="/nl/">Rotterdam expertise</a></h4>
+        <h4><a href={lang === "nl" ? "/diensten/" : "/en/solutions/"}>Rotterdam expertise</a></h4>
         <ul>
           {seo.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
         </ul>
@@ -48,8 +54,8 @@ const seo = [
     </div>
 
     <div class="footer-bottom">
-      <span>© {year} {site.legalName}. All rights reserved. · KvK {site.kvk}</span>
-      <span class="footer-locale">Proudly building from {site.city}, {site.country}</span>
+      <span>© {year} {site.legalName}. {lang === "nl" ? "Alle rechten voorbehouden." : "All rights reserved."} · KvK {site.kvk}</span>
+      <span class="footer-locale">{lang === "nl" ? "Gebouwd vanuit" : "Proudly building from"} {site.city}, {site.country}</span>
     </div>
   </div>
 </footer>

@@ -1,0 +1,110 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { homeNL } from "@/data/home";
+import { alternatesFor } from "@/i18n";
+
+const pillars = homeNL.whatWeDo.pillars;
+const servicePages = [
+  { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },
+  { label: "SEO Rotterdam", href: "/nl/seo-rotterdam/" },
+  { label: "AI-automatisering Rotterdam", href: "/nl/ai-automatisering-rotterdam/" },
+  { label: "Acquisitiesysteem", href: "/nl/acquisitiesysteem/" },
+];
+const offers = homeNL.services.offers;
+---
+<Base
+  title="Diensten · Websites, leadgeneratie & AI-automatisering in Rotterdam | Webmaister"
+  description="De diensten van Webmaister: websites, leadgeneratie, SEO en AI-automatisering voor groeiende bedrijven in Rotterdam. One-page website vanaf €500 setup + €150/mnd."
+  lang="nl"
+  alternates={alternatesFor("/diensten/", "/en/solutions/")}
+>
+  <section class="page-hero">
+    <div class="container center" style="max-width:780px">
+      <span class="eyebrow" data-reveal>Diensten</span>
+      <h1 data-reveal data-delay="60">Alles om te <span class="gradient-text">groeien.</span></h1>
+      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:620px">
+        Strategie, websites, acquisitie en automatisering, los van elkaar nuttig, samen een fundament voor groei.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2 pillar-grid" data-reveal>
+        {pillars.map((p: any) => (
+          <article class="card">
+            <h3>{p.title}</h3>
+            <p class="pillar-desc">{p.desc}</p>
+            <ul class="tags">{p.items.map((it: string) => <li>{it}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Dienstpagina's</span>
+        <h2>Bekijk per onderwerp</h2>
+      </div>
+      <ul class="svc-links" data-reveal>
+        {servicePages.map((s) => (
+          <li><a href={s.href}>{s.label} <Icon name="arrow" /></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Investering</span>
+        <h2>Heldere instappunten</h2>
+      </div>
+      <div class="grid grid-2 price-grid" data-reveal>
+        {offers.map((o: any) => (
+          <article class="card price-card">
+            <h3>{o.name}</h3>
+            <p class="price"><strong>{o.price}</strong> {o.unit} · {o.recurring}</p>
+            <p class="who">{o.who}</p>
+            <a href="/contact/" class="sol-link">{o.cta} <Icon name="arrow" /></a>
+          </article>
+        ))}
+      </div>
+      <p class="price-note" data-reveal>Typische levertijd: {"2 tot 4 weken"} per pakket. Aanvullend: onderhoud vanaf €150/mnd, ads-beheer vanaf €449/mnd, e-commerce vanaf €2.500, betaalde strategiesessie €350.</p>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Niet zeker waar te<br>beginnen?"
+    text="Vertel ons je doel en we adviseren de combinatie van website, groei en acquisitie met de meeste impact, in één gratis gesprek."
+    eyebrow="Laten we groeien"
+    ctaHref="/contact/"
+    ctaLabel="Plan een gesprek"
+    secondaryHref="/cases/"
+    secondaryLabel="Bekijk onze cases"
+  />
+</Base>
+
+<style>
+  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 70px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .pillar-grid { margin-top: 1rem; }
+  .pillar-desc { color: var(--text-muted); margin-bottom: 1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tags li { font-size: 0.85rem; color: var(--text); padding: 0.25rem 0.7rem; border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .svc-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 2rem; margin-top: 2rem; max-width: 820px; margin-inline: auto; }
+  .svc-links a { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--brand-strong); }
+  .svc-links :global(svg) { width: 16px; height: 16px; }
+  .price-grid { margin-top: 1rem; }
+  .price-card .price { margin: 0.4rem 0 0.8rem; color: var(--text); }
+  .price-card .price strong { font-size: 1.2rem; }
+  .price-card .who { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+  .sol-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--brand); font-weight: 560; font-size: 0.92rem; }
+  .sol-link :global(svg) { width: 16px; height: 16px; }
+  .price-note { margin-top: 2rem; color: var(--text-muted); font-size: 0.92rem; max-width: 70ch; }
+  @media (max-width: 620px) { .svc-links { grid-template-columns: 1fr; } }
+</style>

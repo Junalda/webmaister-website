@@ -80,11 +80,11 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
         <span class="env-dot"></span> Staging · niet de live site
       </div>
     )}
-    <Header />
+    <Header lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
     <SpeedInsights />
 
     <style>
