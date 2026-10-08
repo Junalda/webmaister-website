@@ -4,6 +4,7 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import { homeNL } from "@/data/home";
+import { site } from "@/data/site";
 import { alternatesFor } from "@/i18n";
 
 const pillars = homeNL.whatWeDo.pillars;
@@ -18,6 +19,28 @@ const servicePages = [
   { label: "Acquisitiesysteem", href: "/nl/acquisitiesysteem/" },
 ];
 const offers = homeNL.services.offers;
+
+// Service-with-Offer JSON-LD that mirrors the prices shown on this page. The
+// NL price format uses "." as thousands separator (€2.700), so stripping all
+// non-digits yields the plain euro amount. "vanaf €1.600" becomes 1600 (the
+// starting price); the full human-readable price stays in the Offer
+// description so nothing is overstated.
+const priceToNumber = (p: string) => p.replace(/[^0-9]/g, "");
+const serviceOffers = offers.map((o: any) => ({
+  "@type": "Service",
+  name: o.name,
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    price: priceToNumber(o.price),
+    description: `${o.price} ${o.unit} · ${o.recurring}`,
+    url: `${site.url}/diensten/`,
+    availability: "https://schema.org/InStock",
+  },
+}));
+const jsonLd = { "@context": "https://schema.org", "@graph": serviceOffers };
 ---
 <Base
   title="Diensten · Websites, leadgeneratie & AI-automatisering in Rotterdam | Webmaister"
@@ -92,6 +115,8 @@ const offers = homeNL.services.offers;
     secondaryHref="/cases/"
     secondaryLabel="Bekijk onze cases"
   />
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 </Base>
 
 <style>
