@@ -52,6 +52,7 @@
   /* ---- Type ---- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
 
   /* ---- Layout ---- */
   --maxw: 1180px;
