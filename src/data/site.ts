@@ -48,6 +48,7 @@ export const nav = [
 export const navNL = [
   { label: "Diensten", href: "/diensten/" },
   { label: "Cases", href: "/cases/" },
+  { label: "Gids", href: "/gids/" },
   { label: "Over ons", href: "/over-ons/" },
   { label: "Contact", href: "/contact/" },
 ];
@@ -62,6 +63,16 @@ export const ctaEN = { label: "Let's Talk Growth", href: "/en/contact/" };
 
 export const ctaPrimary = { label: "Let's Talk Growth", href: "/contact/" };
 export const ctaSecondary = { label: "Explore Our Services", href: "/solutions/" };
+
+// Testimonials. Quotes are placeholders until the client confirms the exact
+// wording; the Testimonials component only renders entries with confirmed:true,
+// so no self-written or unconfirmed quote is ever shown (and no Review schema).
+export const testimonials = [
+  { name: "Tony Hoekstra & Gerbrand van de Weerd", role: "Oprichters", company: "NursiTree", caseSlug: "nursitree", quote: "[INVULLEN: echte, bevestigde quote van Tony Hoekstra of Gerbrand van de Weerd]", confirmed: false },
+  { name: "Esther Macnack", role: "Oprichter", company: "Queenly Events", caseSlug: "queenly-events", quote: "[INVULLEN: echte, bevestigde quote van Esther Macnack]", confirmed: false },
+  { name: "Gabriel Snijders", role: "Oprichter", company: "Capture the Moment Solutions", caseSlug: "capture-the-moment-solutions", quote: "[INVULLEN: echte, bevestigde quote van Gabriel Snijders]", confirmed: false },
+  { name: "Esther Macnack", role: "Oprichter", company: "Hope & Love Foundation", caseSlug: "hope-love-foundation", quote: "[INVULLEN: echte, bevestigde quote van Esther Macnack]", confirmed: false },
+];
 
 // ---- The three pillars (ecosystem) ----
 export const pillars = [

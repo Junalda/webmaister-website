@@ -1,0 +1,122 @@
+---
+import Base from "@/layouts/Base.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import FaqAccordion from "@/components/FaqAccordion.astro";
+import { site } from "@/data/site";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("gids");
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const url = `${site.url}/gids/${entry.id}/`;
+const faqItems = d.faq.map((f: any) => ({ q: f.question, a: f.answer }));
+const fmt = (date: Date) => date.toLocaleDateString("nl-NL", { year: "numeric", month: "long", day: "numeric" });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: d.title,
+      description: d.description,
+      author: { "@type": "Person", name: site.founder, url: `${site.url}/over-ons/` },
+      publisher: { "@id": `${site.url}/#organization` },
+      datePublished: d.pubDate.toISOString(),
+      dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+      mainEntityOfPage: url,
+      url,
+      inLanguage: "nl-NL",
+    },
+    ...(faqItems.length
+      ? [{
+          "@type": "FAQPage",
+          "@id": `${url}#faq`,
+          mainEntity: d.faq.map((f: any) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+        }]
+      : []),
+  ],
+};
+---
+<Base lang="nl" title={`${d.title} | Webmaister`} description={d.description}>
+  <section class="art-hero">
+    <div class="container" style="max-width:760px">
+      <a class="art-back" href="/gids/"><Icon name="arrow" /> Gids</a>
+      <span class="eyebrow" data-reveal>Gids</span>
+      <h1 data-reveal data-delay="60">{d.title}</h1>
+      <p class="art-date" data-reveal data-delay="90">Bijgewerkt op {fmt(d.updatedDate ?? d.pubDate)}</p>
+      <div class="art-answer" data-reveal data-delay="120">
+        <span class="art-answer-label">Kort antwoord</span>
+        <p>{d.answer}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:760px">
+      <article class="article-body" data-reveal>
+        <Content />
+      </article>
+
+      {faqItems.length > 0 && (
+        <div class="art-faq">
+          <h2>Veelgestelde vragen</h2>
+          <FaqAccordion items={faqItems} />
+        </div>
+      )}
+
+      {d.related.length > 0 && (
+        <div class="art-related" data-reveal>
+          <span class="eyebrow">Gerelateerde diensten</span>
+          <ul>{d.related.map((r: any) => <li><a href={r.href}>{r.label} <Icon name="arrow" /></a></li>)}</ul>
+        </div>
+      )}
+
+      <div class="art-cta card" data-reveal>
+        <h2>Benieuwd wat dit voor jou betekent?</h2>
+        <p>Plan een gratis gesprek. We bekijken je situatie en maken een helder plan.</p>
+        <Button href="/contact/" variant="brand" size="lg" arrow>Plan een gesprek</Button>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+</Base>
+
+<style>
+  .art-hero { padding-block: clamp(56px, 9vw, 110px) clamp(24px, 4vw, 40px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .art-back { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.4rem; }
+  .art-back :global(svg) { width: 16px; height: 16px; transform: rotate(180deg); }
+  .art-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin: 0.4rem 0 0; }
+  .art-date { font-size: 0.85rem; color: var(--text-faint); margin-top: 0.8rem; }
+  .art-answer { margin-top: 1.8rem; padding: 1.3rem 1.5rem; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--brand); border-radius: var(--r-md); }
+  .art-answer-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-strong); margin-bottom: 0.5rem; }
+  .art-answer p { font-size: 1.05rem; line-height: 1.6; color: var(--text); margin: 0; }
+
+  .article-body { font-size: 1.06rem; line-height: 1.75; color: var(--text); }
+  .article-body :global(h2) { font-size: clamp(1.4rem, 3vw, 1.9rem); margin: 2.4rem 0 0.9rem; line-height: 1.2; }
+  .article-body :global(h3) { font-size: 1.2rem; margin: 1.8rem 0 0.6rem; }
+  .article-body :global(p) { margin-bottom: 1.1rem; color: var(--text-muted); }
+  .article-body :global(ul), .article-body :global(ol) { margin: 0 0 1.2rem 1.2rem; display: grid; gap: 0.45rem; }
+  .article-body :global(li) { color: var(--text-muted); list-style: disc; }
+  .article-body :global(ol li) { list-style: decimal; }
+  .article-body :global(a) { color: var(--brand-strong); text-decoration: underline; text-underline-offset: 2px; font-weight: 500; }
+  .article-body :global(strong) { color: var(--text); }
+  .article-body :global(table) { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+  .article-body :global(th), .article-body :global(td) { text-align: left; padding: 0.6rem 0.8rem; border: 1px solid var(--line); }
+  .article-body :global(th) { background: var(--bg-alt); font-weight: 600; color: var(--text); }
+
+  .art-faq { margin-top: 3rem; }
+  .art-faq h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 1.2rem; }
+  .art-related { margin-top: 2.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .art-related ul { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin-top: 0.8rem; }
+  .art-related a { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; color: var(--brand-strong); font-size: 0.95rem; }
+  .art-related :global(svg) { width: 15px; height: 15px; }
+  .art-cta { margin-top: 2.6rem; text-align: center; }
+  .art-cta h2 { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .art-cta p { color: var(--text-muted); margin-bottom: 1.4rem; }
+</style>

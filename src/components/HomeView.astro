@@ -29,6 +29,18 @@ const { t, links } = Astro.props;
   </div>
 </div>
 
+<!-- 01b · CLIENT STRIP -->
+<section class="clients">
+  <div class="container">
+    <p class="clients-label" data-reveal>{t.clientsLabel}</p>
+    <ul class="clients-row" data-reveal>
+      {caseStudies.map((cs) => (
+        <li><a href={`${links.cases}#${cs.slug}`}>{cs.company}</a></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
 <!-- 02 · THE PROBLEM -->
 <section class="section section-ink">
   <div class="container">
@@ -233,6 +245,13 @@ const { t, links } = Astro.props;
   .marquee-item { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.9rem); font-weight: 500; letter-spacing: -0.01em; color: var(--text); padding-inline: 1.2rem; }
   .marquee-item i { color: var(--brand); font-style: normal; margin-left: 2.4rem; }
   @keyframes marquee { to { transform: translateX(-50%); } }
+
+  .clients { padding-block: clamp(2.4rem, 5vw, 3.6rem); border-bottom: 1px solid var(--line); }
+  .clients-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.2rem; }
+  .clients-row { display: flex; flex-wrap: wrap; gap: 0.8rem clamp(1.6rem, 4vw, 3rem); align-items: center; }
+  .clients-row li { font-family: var(--font-display); font-size: clamp(1.05rem, 2.2vw, 1.5rem); font-weight: 500; letter-spacing: -0.01em; }
+  .clients-row a { color: var(--text-muted); transition: color .18s ease; }
+  .clients-row a:hover { color: var(--brand-strong); }
 
   .statements { margin-top: clamp(2.5rem, 6vw, 4.5rem); display: grid; gap: 0; }
   .statement { display: flex; gap: clamp(1rem, 3vw, 2.4rem); align-items: baseline; padding-block: clamp(1.3rem, 3vw, 2rem); border-top: 1px solid rgba(255,255,255,0.12); }
