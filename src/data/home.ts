@@ -21,6 +21,7 @@ export const homeEN = {
     description: "Webmaister is a Rotterdam web agency building websites, lead generation and AI automation for growing businesses. Websites from €500 setup + €150/mo. Let's talk growth.",
   },
   whatsapp: "WhatsApp us",
+  clientsLabel: "Trusted by growing businesses",
   hero: {
     kicker: "Rotterdam web agency",
     h1: 'Your business grew.<br /><span class="muted-head">Your systems didn’t.</span>',
@@ -99,6 +100,7 @@ export const homeNL = {
     description: "Webbureau in Rotterdam voor websites, leadgeneratie en AI-automatisering voor groeiende bedrijven. One-page website vanaf €500 setup + €150/mnd. Plan een gratis gesprek.",
   },
   whatsapp: "WhatsApp",
+  clientsLabel: "Vertrouwd door groeiende bedrijven",
   hero: {
     kicker: "Webbureau in Rotterdam",
     h1: 'Je bedrijf groeide.<br /><span class="muted-head">Je systemen niet.</span>',

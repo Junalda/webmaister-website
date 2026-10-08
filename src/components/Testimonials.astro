@@ -1,0 +1,58 @@
+---
+// Social proof. Renders ONLY testimonials with confirmed:true, so no
+// self-written or unconfirmed quote is ever published (and no Review /
+// AggregateRating schema is emitted for quotes we cannot verify). Until a
+// client confirms the exact wording in src/data/site.ts, this component
+// renders nothing at all.
+import Icon from "@/components/Icon.astro";
+import { testimonials } from "@/data/site";
+
+const { lang = "nl" } = Astro.props;
+const confirmed = testimonials.filter((t) => t.confirmed);
+
+const copy = {
+  nl: { eyebrow: "Wat klanten zeggen", heading: "In hun eigen woorden.", caseLink: "Bekijk de case" },
+  en: { eyebrow: "What clients say", heading: "In their own words.", caseLink: "View the case" },
+}[lang === "en" ? "en" : "nl"];
+
+const caseBase = lang === "en" ? "/en/work/" : "/cases/";
+---
+{confirmed.length > 0 && (
+  <section class="testimonials section">
+    <div class="container">
+      <p class="eyebrow" data-reveal>{copy.eyebrow}</p>
+      <h2 data-reveal data-delay="60">{copy.heading}</h2>
+      <ul class="tm-list">
+        {confirmed.map((t) => (
+          <li class="tm-card" data-reveal>
+            <span class="tm-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>{t.quote}</blockquote>
+            <div class="tm-meta">
+              <span class="tm-name">{t.name}</span>
+              <span class="tm-role">{t.role} · {t.company}</span>
+              {t.caseSlug && (
+                <a class="tm-case" href={`${caseBase}#${t.caseSlug}`}>{copy.caseLink} <Icon name="arrow" /></a>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .testimonials { background: var(--bg-alt); border-top: 1px solid var(--line); }
+  .eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brand-strong); margin-bottom: 0.8rem; }
+  .testimonials h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .tm-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1rem, 2.5vw, 1.6rem); }
+  .tm-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.2rem); overflow: hidden; }
+  .tm-mark { position: absolute; top: -0.2em; right: 0.2em; font-size: 6rem; line-height: 1; font-weight: 700; color: var(--brand); opacity: 0.1; font-family: var(--font-display); }
+  .tm-card blockquote { position: relative; z-index: 1; font-size: 1.08rem; line-height: 1.6; color: var(--text); margin: 0 0 1.4rem; }
+  .tm-meta { display: grid; gap: 0.15rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  .tm-name { font-weight: 700; color: var(--text); }
+  .tm-role { font-size: 0.9rem; color: var(--text-muted); }
+  .tm-case { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem; font-size: 0.9rem; font-weight: 600; color: var(--brand-strong); }
+  .tm-case :global(svg) { width: 15px; height: 15px; transition: transform .2s ease; }
+  .tm-case:hover :global(svg) { transform: translateX(4px); }
+</style>

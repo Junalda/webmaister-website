@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import FilterBar from "@/components/FilterBar.astro";
+import Testimonials from "@/components/Testimonials.astro";
 import { caseStudies } from "@/data/site";
 import { alternatesFor } from "@/i18n";
 
@@ -132,6 +133,8 @@ const linkFounders = (text: string, founders?: { name: string; href: string }[])
       </p>
     </div>
   </section>
+
+  <Testimonials lang="en" />
 
   <FinalCta
     title="Your transformation<br>starts with a conversation."

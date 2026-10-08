@@ -27,4 +27,19 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+// NL guide / knowledge base (/gids/). Answer-first articles with an FAQ.
+const gids = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/gids" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    answer: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    order: z.number().default(0),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).default([]),
+    related: z.array(z.object({ label: z.string(), href: z.string() })).default([]),
+  }),
+});
+
+export const collections = { blog, gids };
