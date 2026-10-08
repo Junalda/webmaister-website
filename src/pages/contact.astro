@@ -4,11 +4,14 @@ import Icon from "@/components/Icon.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import { site, framework } from "@/data/site";
 
+// Service options mirror the /start/ offering so a selected service carries
+// through to this form (see the ?service= preselect script below).
 const services = [
-  "Premium website / redesign",
-  "SEO & growth systems",
-  "Brainy AI automation",
-  "Not sure yet help me decide",
+  "Starter Website / One-Pager",
+  "Growth Website",
+  "Business Strategy Session",
+  "Growth Strategist",
+  "Not sure — help me choose",
 ];
 ---
 <Base
@@ -201,6 +204,21 @@ const services = [
 </style>
 
 <script>
+  // Preselect the "What can we help with?" option from a ?service=<slug> query
+  // param, so a service chosen on /start/ carries through to this form.
+  const serviceMap: Record<string, string> = {
+    website: "Starter Website / One-Pager",
+    upgrade: "Growth Website",
+    "strategy-session": "Business Strategy Session",
+    growth: "Growth Strategist",
+    "not-sure": "Not sure — help me choose",
+  };
+  const picked = new URLSearchParams(location.search).get("service");
+  if (picked && serviceMap[picked]) {
+    const select = document.getElementById("interest") as HTMLSelectElement | null;
+    if (select) select.value = serviceMap[picked];
+  }
+
   // Progressive enhancement: validate, submit to the /api/contact endpoint
   // (which sends the email via Resend) and show an inline success or error state.
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
