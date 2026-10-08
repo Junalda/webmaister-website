@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import { site, pillars, framework } from "@/data/site";
+import { alternatesFor } from "@/i18n";
 
 const facts = [
   { label: "Founded", value: site.founded },
@@ -14,8 +15,8 @@ const facts = [
 const aboutLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "@id": `${site.url}/about/#aboutpage`,
-  url: `${site.url}/about/`,
+  "@id": `${site.url}/en/about/#aboutpage`,
+  url: `${site.url}/en/about/`,
   name: `About ${site.name}`,
   description: site.description,
   mainEntity: { "@id": `${site.url}/#organization` },
@@ -24,6 +25,8 @@ const aboutLd = {
 <Base
   title="About · Webmaister — a Rotterdam web agency"
   description={site.description}
+  lang="en"
+  alternates={alternatesFor("/over-ons/", "/en/about/")}
 >
   <section class="page-hero">
     <div class="container center" style="max-width:820px">
@@ -96,6 +99,8 @@ const aboutLd = {
   <FinalCta
     title="Let's build your<br>growth engine."
     text="Book a free Growth Strategy Call and we'll map a clear path to the digital foundation your business needs to grow."
+    ctaHref="/en/contact/"
+    secondaryHref="/en/solutions/"
   />
 
   <script type="application/ld+json" set:html={JSON.stringify(aboutLd)} is:inline />

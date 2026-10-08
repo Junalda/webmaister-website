@@ -1,0 +1,108 @@
+---
+import Base from "@/layouts/Base.astro";
+import FinalCta from "@/components/FinalCta.astro";
+import { site } from "@/data/site";
+import { alternatesFor } from "@/i18n";
+
+const facts = [
+  { label: "Opgericht", value: site.founded },
+  { label: "Gevestigd in", value: `${site.streetAddress}, ${site.postalCode} ${site.city}` },
+  { label: "KvK", value: site.kvk },
+  { label: "Werkgebied", value: site.areaServed.join(" · ") },
+];
+
+const pillarsNL = [
+  { name: "Websites & conversie", short: "Premium websites die vertrouwen wekken en bezoekers omzetten in aanvragen." },
+  { name: "Leadgeneratie & acquisitie", short: "Gestructureerde manieren om de juiste klanten te bereiken en te converteren." },
+  { name: "AI-automatisering", short: "Techniek en processen die handwerk verminderen en de klantreis verbeteren." },
+];
+
+const aboutLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": `${site.url}/over-ons/#aboutpage`,
+  url: `${site.url}/over-ons/`,
+  name: `Over ${site.name}`,
+  description: site.descriptionNL,
+  mainEntity: { "@id": `${site.url}/#organization` },
+};
+---
+<Base
+  title="Over Webmaister · Webbureau in Rotterdam"
+  description={site.descriptionNL}
+  lang="nl"
+  alternates={alternatesFor("/over-ons/", "/en/about/")}
+>
+  <section class="page-hero">
+    <div class="container center" style="max-width:820px">
+      <span class="eyebrow" data-reveal>Over Webmaister</span>
+      <h1 data-reveal data-delay="60">Meer dan een webbureau.<br><span class="gradient-text">Een groeipartner.</span></h1>
+      <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:640px">{site.descriptionNL}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container-narrow about-intro" data-reveal>
+      <p>We zien een website niet als een afgerond product, maar als het fundament waarop een bedrijf groeit, verbonden met positionering, leadgeneratie en automatisering.</p>
+      <p>Opgericht in {site.founded} en gevestigd aan de {site.streetAddress} in {site.city}, werkt Webmaister met ambitieuze mkb-bedrijven die willen groeien zonder extra overhead, in {site.city}, Zuid-Holland en de rest van Nederland, en op afstand.</p>
+      <p>Onze belofte is simpel: meer klanten, minder handwerk en een digitaal fundament dat kan meegroeien. We beginnen niet bij het ontwerp, maar bij de vraag waar een bedrijf naartoe wil, en bouwen dan het platform, de systemen en de automatisering om daar te komen.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">In het kort</span>
+        <h2>De feiten</h2>
+      </div>
+      <ul class="facts grid grid-4" data-reveal>
+        {facts.map((f) => (
+          <li class="fact card">
+            <span class="fact-label">{f.label}</span>
+            <span class="fact-value">{f.value}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head center" data-reveal>
+        <span class="eyebrow">Wat we doen</span>
+        <h2>Website, leadgeneratie en automatisering</h2>
+      </div>
+      <div class="grid grid-3" data-reveal>
+        {pillarsNL.map((p) => (
+          <article class="card card-hover">
+            <h3>{p.name}</h3>
+            <p>{p.short}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta
+    title="Laten we je<br>groeimotor bouwen."
+    text="Plan een gratis gesprek en we schetsen een helder pad naar het digitale fundament dat jouw bedrijf nodig heeft om te groeien."
+    eyebrow="Klaar om te groeien"
+    ctaHref="/contact/"
+    ctaLabel="Plan een gesprek"
+    secondaryHref="/diensten/"
+    secondaryLabel="Bekijk onze diensten"
+  />
+
+  <script type="application/ld+json" set:html={JSON.stringify(aboutLd)} is:inline />
+</Base>
+
+<style>
+  .page-hero { padding-block: clamp(60px, 9vw, 120px) clamp(40px, 6vw, 70px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .about-intro p { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.65; color: var(--text); }
+  .about-intro p + p { margin-top: 1.3rem; }
+  .facts { margin-top: 3rem; }
+  .fact { display: flex; flex-direction: column; gap: 0.35rem; text-align: center; }
+  .fact-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-strong); }
+  .fact-value { font-size: 1.05rem; font-weight: 650; color: var(--ink); }
+  .grid-3 .card h3 { margin-bottom: 0.5rem; }
+</style>

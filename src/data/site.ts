@@ -48,7 +48,6 @@ export const nav = [
 export const navNL = [
   { label: "Diensten", href: "/diensten/" },
   { label: "Cases", href: "/cases/" },
-  { label: "Gids", href: "/gids/" },
   { label: "Over ons", href: "/over-ons/" },
   { label: "Contact", href: "/contact/" },
 ];
