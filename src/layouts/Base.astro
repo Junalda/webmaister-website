@@ -12,11 +12,19 @@ interface Props {
   faqSchema?: boolean;
   serviceSchema?: boolean;
   lang?: string;
+  /* hreflang alternates: [{ hreflang: "nl", href }, { hreflang: "en", href },
+     { hreflang: "x-default", href }]. Omit for pages with no translation
+     (e.g. /start, NL-only service pages, guide articles). */
+  alternates?: { hreflang: string; href: string }[];
 }
-const { title, description, faqSchema = false, serviceSchema = false, lang = "en" } = Astro.props;
+const {
+  title, description, faqSchema = false, serviceSchema = false,
+  lang = "en", alternates = [],
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+const ogLocale = lang === "nl" ? "nl_NL" : "en_US";
 
 // Vercel sets VERCEL_ENV at build time: "production" for the production branch,
 // "preview" for any other (staging) branch. Show a badge on non-production so
@@ -35,6 +43,9 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
     <meta name="theme-color" content="#0a0b12" />
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content={isPreview ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
@@ -49,7 +60,7 @@ const isPreview = !!vercelEnv && vercelEnv !== "production";
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
