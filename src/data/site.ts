@@ -31,16 +31,14 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Home", href: "/" },
-  { label: "Solutions", href: "/solutions/" },
-  { label: "Success Stories", href: "/success-stories/" },
-  { label: "Blog", href: "/blog/" },
+  { label: "Services", href: "/solutions/" },
+  { label: "Our Approach", href: "/#approach" },
+  { label: "Work", href: "/success-stories/" },
   { label: "About", href: "/about/" },
-  { label: "Contact", href: "/contact/" },
 ];
 
-export const ctaPrimary = { label: "Book a Growth Strategy Call", href: "/contact/" };
-export const ctaSecondary = { label: "Explore Solutions", href: "/solutions/" };
+export const ctaPrimary = { label: "Let's Talk Growth", href: "/contact/" };
+export const ctaSecondary = { label: "Explore Our Services", href: "/solutions/" };
 
 // ---- The three pillars (ecosystem) ----
 export const pillars = [
@@ -300,13 +298,13 @@ export const startOptions = [
   {
     slug: "website",
     choice: "I need a website",
-    priceLine: "Starting at €500",
+    priceLine: "€500 setup + €150/mo",
     tagline: "For a fresh, simple online presence",
     title: "A Website, Starting at €500 · Webmaister",
     description:
       "Need a website? Webmaister builds clean, professional one-page websites that get you online and taken seriously. Starting at €500. Message us on WhatsApp.",
     price: "€500",
-    priceNote: "one-time · starting price",
+    priceNote: "setup + €150/month",
     lead: "A clean, professional one-page website that gets you online and taken seriously, fast.",
     forText:
       "Perfect if you don't have a website yet, or your needs are simple. You want a sharp, credible online presence without the overhead.",
@@ -321,13 +319,13 @@ export const startOptions = [
   {
     slug: "upgrade",
     choice: "My current website needs an upgrade",
-    priceLine: "Full websites from €2.700",
+    priceLine: "€2.700 setup + €300/mo",
     tagline: "For a serious business ready to level up",
     title: "A Full Website Upgrade, From €2.700 · Webmaister",
     description:
       "Website outdated? Webmaister rebuilds it into a premium, conversion-focused website that reflects the quality of your business. From €2.700. Message us on WhatsApp.",
     price: "€2.700",
-    priceNote: "from · full custom website",
+    priceNote: "setup + €300/month",
     lead: "A full, premium website rebuild for a business that's ready to be taken seriously.",
     forText:
       "Your current site is outdated or holding you back, and your business has outgrown it. You want a website that reflects the quality of what you actually deliver.",
@@ -349,7 +347,7 @@ export const startOptions = [
     description:
       "Already have a business and want more leads? Webmaister's growth partnership turns your website and marketing into a steady stream of leads. €1.600/month. Message us on WhatsApp.",
     price: "€1.600",
-    priceNote: "per month · growth partnership",
+    priceNote: "per month · min. 6 months",
     lead: "An ongoing growth partnership that turns your website and marketing into a steady stream of leads.",
     forText:
       "You already have a business and a website, but you want more visibility, more leads and more revenue. You want a partner who owns the growth, not just another tool.",
