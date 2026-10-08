@@ -36,7 +36,7 @@ const summaries: Record<string, { industry: string; text: string }> = {
         {caseStudies.map((cs) => {
           const s = summaries[cs.slug];
           return (
-            <li class="case-row" data-reveal>
+            <li class="case-row" id={cs.slug} data-reveal>
               <span class="case-industry">{s?.industry ?? cs.cardIndustry}</span>
               <h2 class="case-name">{cs.company}</h2>
               <p class="case-text">{s?.text ?? cs.cardText}</p>
