@@ -164,8 +164,8 @@ p { color: var(--text-muted); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--line-strong); }
 .btn-ghost:hover { border-color: var(--ink); background: var(--bg-alt); }
 .btn-lg { --_pad-y: 1.05rem; --_pad-x: 1.9rem; font-size: 1.02rem; }
-.section-dark .btn-ghost { color: var(--on-dark); border-color: var(--line-dark); }
-.section-dark .btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+.section-dark .btn-ghost, .section-ink .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
+.section-dark .btn-ghost:hover, .section-ink .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.55); }
 .btn .arrow { transition: transform 0.2s ease; }
 .btn:hover .arrow { transform: translateX(3px); }
 
