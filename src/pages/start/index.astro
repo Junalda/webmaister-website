@@ -3,7 +3,8 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
-import { startOptions, problems, framework } from "@/data/site";
+import FaqAccordion from "@/components/FaqAccordion.astro";
+import { startOptions, problems, framework, pillars, solutionsFaqs } from "@/data/site";
 
 const pains = problems.slice(0, 4);
 ---
@@ -59,7 +60,7 @@ const pains = problems.slice(0, 4);
   </section>
 
   <!-- 03 · MEET THE FOUNDER -->
-  <section class="section s-founder">
+  <section class="section section-alt s-founder">
     <div class="container" style="max-width:820px">
       <p class="kicker" data-reveal><span class="kicker-rule"></span>Meet the founder</p>
       <h2 class="disp s-h" data-reveal data-delay="60">Hi, I'm Junalda.</h2>
@@ -72,7 +73,7 @@ const pains = problems.slice(0, 4);
   </section>
 
   <!-- 04 · THE METHOD -->
-  <section class="section section-alt s-method">
+  <section class="section s-method">
     <div class="container" style="max-width:1000px">
       <p class="kicker" data-reveal><span class="kicker-rule"></span>How we work</p>
       <h2 class="disp s-h" data-reveal data-delay="60">A simple, proven method.</h2>
@@ -85,6 +86,25 @@ const pains = problems.slice(0, 4);
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- 04b · WHAT YOU WALK AWAY WITH -->
+  <section class="section section-alt s-deliver">
+    <div class="container" style="max-width:1040px">
+      <p class="kicker" data-reveal><span class="kicker-rule"></span>What you walk away with</p>
+      <h2 class="disp s-h" data-reveal data-delay="60">More than a website.</h2>
+      <div class="deliver-grid" data-reveal data-delay="120">
+        {pillars.map((p) => (
+          <article class="deliver-card">
+            <span class="deliver-badge"><Icon name="check" /> What you get</span>
+            <span class="deliver-label">{p.name}</span>
+            <h3 class="disp">{p.short}</h3>
+            <p>{p.outcome}</p>
+          </article>
+        ))}
+      </div>
+      <p class="deliver-note" data-reveal>Typical delivery: <strong>2 to 4 weeks</strong>, depending on scope.</p>
     </div>
   </section>
 
@@ -113,12 +133,45 @@ const pains = problems.slice(0, 4);
         ))}
       </ol>
 
-      <div class="start-cta" data-reveal>
-        <p class="start-cta-note disp">Not sure which one fits?</p>
-        <div class="start-cta-actions">
-          <WhatsAppButton label="WhatsApp us" />
-          <Button href="/contact/" variant="ghost" size="lg">Book a call</Button>
-        </div>
+    </div>
+  </section>
+
+  <!-- 06 · THE MATH -->
+  <section class="section section-alt s-math">
+    <div class="container" style="max-width:820px">
+      <p class="kicker" data-reveal><span class="kicker-rule"></span>Worth it?</p>
+      <h2 class="disp s-h" data-reveal data-delay="60">The math is simple.</h2>
+      <p class="math-lead" data-reveal data-delay="100">
+        What's one new customer worth to you? For most businesses, it's more than the price of a
+        starter website. We build toward a foundation that pays for itself — then keeps paying.
+      </p>
+      <ul class="math-points" data-reveal data-delay="120">
+        <li><span class="mp-k disp">From €500</span><span class="mp-v">A professional one-page website, live in 2 to 4 weeks.</span></li>
+        <li><span class="mp-k disp">Built to convert</span><span class="mp-v">The goal is customers and qualified leads, not just clicks.</span></li>
+        <li><span class="mp-k disp">Hours back</span><span class="mp-v">Automation takes repetitive work off your plate, week after week.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 · FAQ -->
+  <section class="section s-faq">
+    <div class="container" style="max-width:860px">
+      <p class="kicker center-k" data-reveal><span class="kicker-rule"></span>Got questions?</p>
+      <h2 class="disp s-h center-h" data-reveal data-delay="60">The things people ask first.</h2>
+      <div class="faq-wrap" data-reveal data-delay="120">
+        <FaqAccordion items={solutionsFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · FINAL CTA -->
+  <section class="section section-alt s-final">
+    <div class="container center" style="max-width:720px">
+      <h2 class="disp s-h" data-reveal>Not sure which one fits?</h2>
+      <p class="final-sub" data-reveal data-delay="80">Tell us where your business stands and we'll point you to the right next step. No pressure.</p>
+      <div class="final-actions" data-reveal data-delay="140">
+        <WhatsAppButton label="WhatsApp us" />
+        <Button href="/contact/" variant="brand" size="lg" arrow>Book a call</Button>
       </div>
     </div>
   </section>
@@ -206,17 +259,44 @@ const pains = problems.slice(0, 4);
   .choice-link:hover .choice-go { color: var(--brand-strong); }
   .choice-link:hover .choice-go :global(svg) { transform: translateX(6px); }
 
-  .start-cta { margin-top: clamp(3rem, 6vw, 4.5rem); text-align: center; }
-  .start-cta-note { font-size: clamp(1.5rem, 3.4vw, 2.2rem); margin-bottom: 1.5rem; color: var(--ink); font-weight: 400; }
-  .start-cta-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+  /* ---- 04b Deliverables ---- */
+  .deliver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.4vw, 1.6rem); margin-top: clamp(2.4rem, 5vw, 3.4rem); }
+  .deliver-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.1rem); display: flex; flex-direction: column; }
+  .deliver-badge { display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-strong); background: var(--bg-tint); padding: 0.32rem 0.7rem; border-radius: var(--r-pill); margin-bottom: 1.1rem; }
+  .deliver-badge :global(svg) { width: 13px; height: 13px; }
+  .deliver-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 0.5rem; }
+  .deliver-card h3 { font-size: clamp(1.2rem, 2.2vw, 1.5rem); line-height: 1.2; margin-bottom: 0.7rem; color: var(--ink); font-weight: 500; }
+  .deliver-card p { font-size: 0.98rem; line-height: 1.6; color: var(--text-muted); }
+  .deliver-note { margin-top: clamp(1.8rem, 3vw, 2.4rem); font-size: 0.95rem; color: var(--text-muted); }
+  .deliver-note strong { color: var(--ink); }
+
+  /* ---- 06 The math ---- */
+  .math-lead { margin-top: clamp(1.2rem, 2.5vw, 1.8rem); font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.65; color: var(--text); max-width: 52ch; }
+  .math-points { list-style: none; padding: 0; margin: clamp(2rem, 4vw, 2.8rem) 0 0; display: grid; gap: 0; }
+  .math-points li { display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: clamp(0.8rem, 3vw, 2rem); align-items: baseline; padding-block: clamp(1.1rem, 2.4vw, 1.5rem); border-top: 1px solid var(--line); }
+  .math-points li:last-child { border-bottom: 1px solid var(--line); }
+  .mp-k { font-size: clamp(1.15rem, 2.4vw, 1.6rem); color: var(--brand-strong); font-weight: 500; line-height: 1.1; }
+  .mp-v { font-size: 1.02rem; line-height: 1.55; color: var(--text-muted); }
+
+  /* ---- 07 FAQ ---- */
+  .center-k { justify-content: center; width: 100%; }
+  .center-h { text-align: center; }
+  .s-faq .center-k { display: flex; }
+  .faq-wrap { margin-top: clamp(2.2rem, 4.5vw, 3.2rem); }
+
+  /* ---- 08 Final CTA ---- */
+  .final-sub { font-size: clamp(1.05rem, 1.8vw, 1.25rem); line-height: 1.6; color: var(--text-muted); margin: 1.2rem auto 0; max-width: 46ch; }
+  .final-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 2rem; }
 
   @media (max-width: 860px) {
+    .deliver-grid { grid-template-columns: 1fr; }
     .hero-wrap { grid-template-columns: 1fr; gap: 2.6rem; }
     .hero-photo { max-width: 400px; margin-inline: auto; }
     .method-steps { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 620px) {
     .method-steps { grid-template-columns: 1fr; }
+    .math-points li { grid-template-columns: 1fr; gap: 0.25rem; }
     .pain { grid-template-columns: 1fr; gap: 0.3rem; }
     .choice-link { grid-template-columns: auto 1fr; gap: 1rem 1.2rem; }
     .choice-go { grid-column: 2; justify-self: start; margin-top: 0.6rem; }
