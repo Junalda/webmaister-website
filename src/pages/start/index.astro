@@ -28,7 +28,7 @@ const pains = problems.slice(0, 4);
         </div>
       </div>
       <div class="hero-photo" data-reveal data-delay="120">
-        <img src="/junalda.jpg" alt="Junalda Meiland, founder of Webmaister, in Rotterdam" width="1717" height="2576" fetchpriority="high" />
+        <img src="/junalda-hero.jpg" alt="Junalda Meiland, founder of Webmaister, in Rotterdam" width="1717" height="2576" fetchpriority="high" />
         <span class="float-pill fp-1"><i></i> Websites</span>
         <span class="float-pill fp-2"><i></i> Lead generation</span>
         <span class="float-pill fp-3"><i></i> AI automation</span>
@@ -61,13 +61,18 @@ const pains = problems.slice(0, 4);
 
   <!-- 03 · MEET THE FOUNDER -->
   <section class="section section-alt s-founder">
-    <div class="container" style="max-width:820px">
-      <p class="kicker" data-reveal><span class="kicker-rule"></span>Meet the founder</p>
-      <h2 class="disp s-h" data-reveal data-delay="60">Hi, I'm Junalda.</h2>
-      <p class="f-role" data-reveal data-delay="90">Founder of Webmaister · Rotterdam</p>
-      <div class="f-copy" data-reveal data-delay="120">
-        <p>I bring 10+ years in technology, a background in software development and IT project management, and hands-on experience building and running businesses as an entrepreneur since 2016. That combination, technology and business together, is how I approach growth at Webmaister.</p>
-        <p>We don't start with design. We start with understanding where your business wants to go, then build the website, systems and automation to take it there, so you get more customers, less manual work, and a foundation built to scale.</p>
+    <div class="container founder-wrap" style="max-width:1040px">
+      <div class="founder-photo founder-photo--alt" data-reveal>
+        <img src="/junalda.jpg" alt="Junalda Meiland, founder of Webmaister" width="1717" height="2576" loading="lazy" />
+      </div>
+      <div class="founder-copy">
+        <p class="kicker" data-reveal><span class="kicker-rule"></span>Meet the founder</p>
+        <h2 class="disp s-h" data-reveal data-delay="60">Hi, I'm Junalda.</h2>
+        <p class="f-role" data-reveal data-delay="90">Founder of Webmaister · Rotterdam</p>
+        <div class="f-copy" data-reveal data-delay="120">
+          <p>I bring 10+ years in technology, a background in software development and IT project management, and hands-on experience building and running businesses as an entrepreneur since 2016. That combination, technology and business together, is how I approach growth at Webmaister.</p>
+          <p>We don't start with design. We start with understanding where your business wants to go, then build the website, systems and automation to take it there, so you get more customers, less manual work, and a foundation built to scale.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -217,6 +222,10 @@ const pains = problems.slice(0, 4);
   .pain-punch { margin-top: clamp(2.2rem, 4.5vw, 3.2rem); font-size: clamp(1.5rem, 3.4vw, 2.4rem); line-height: 1.2; color: var(--ink); font-weight: 400; max-width: 24ch; }
 
   /* ---- 03 Founder ---- */
+  .s-founder .founder-wrap { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: clamp(2rem, 6vw, 4.5rem); align-items: center; }
+  .founder-photo--alt { position: relative; }
+  .founder-photo--alt::before { content: ""; position: absolute; inset: auto auto -14px -14px; width: 70%; height: 70%; background: var(--bg-tint); border-radius: var(--r-lg); z-index: 0; }
+  .founder-photo--alt img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 22%; border-radius: var(--r-lg); box-shadow: var(--shadow-lg); }
   .s-founder .f-role { margin-top: 1rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-strong); }
   .f-copy { margin-top: 1.6rem; }
   .f-copy p { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.7; color: var(--text); }
@@ -292,6 +301,8 @@ const pains = problems.slice(0, 4);
     .deliver-grid { grid-template-columns: 1fr; }
     .hero-wrap { grid-template-columns: 1fr; gap: 2.6rem; }
     .hero-photo { max-width: 400px; margin-inline: auto; }
+    .s-founder .founder-wrap { grid-template-columns: 1fr; gap: 2.4rem; }
+    .founder-photo--alt { max-width: 380px; }
     .method-steps { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 620px) {

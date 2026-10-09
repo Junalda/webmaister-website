@@ -23,6 +23,12 @@ const { o } = Astro.props;
           <span class="opt-price-note">{o.priceNote}</span>
         </div>
       )}
+      {o.packages && (
+        <div class="opt-price" data-reveal data-delay="180">
+          <span class="opt-price-value disp">from {o.packages[0].price}</span>
+          <span class="opt-price-note">{o.packages[0].priceNote} · {o.packages.length} packages</span>
+        </div>
+      )}
     </div>
   </section>
 
@@ -39,15 +45,49 @@ const { o } = Astro.props;
         </div>
       </div>
 
-      <div class="opt-includes-wrap" data-reveal>
-        <span class="opt-label">{o.price ? "What's included" : "How it works"}</span>
-        <ul class="opt-includes">
-          {o.includes.map((item) => (
-            <li><Icon name="check" /> <span>{item}</span></li>
-          ))}
-        </ul>
-        {o.note && <p class="opt-note">{o.note}</p>}
-      </div>
+      {o.packages ? (
+        <div class="pkg-section" data-reveal>
+          <span class="opt-label">Choose your package</span>
+          <div class="pkg-grid">
+            {o.packages.map((pk) => (
+              <article class:list={["pkg", { "pkg--featured": pk.popular }]}>
+                {pk.popular && <span class="pkg-flag">Most popular</span>}
+                <h3 class="disp pkg-name">{pk.name}</h3>
+                <p class="pkg-tag">{pk.tagline}</p>
+                <div class="pkg-price">
+                  <span class="disp pkg-amount">{pk.price}</span>
+                  <span class="pkg-per">{pk.priceNote}</span>
+                </div>
+                {pk.setup && <p class="pkg-setup">+ {pk.setup}</p>}
+                {pk.terms && <p class="pkg-terms">{pk.terms}</p>}
+                <p class="pkg-for">{pk.forWho}</p>
+                {pk.setupIncludes && (
+                  <p class="pkg-setup-desc"><strong>The setup:</strong> {pk.setupIncludes}</p>
+                )}
+                <span class="pkg-inc-label">{pk.includesLabel ?? "What's included"}</span>
+                <ul class="pkg-includes">
+                  {pk.includes.map((it) => (
+                    <li><Icon name="check" /> <span>{it}</span></li>
+                  ))}
+                </ul>
+                {pk.valueNote && <p class="pkg-value">{pk.valueNote}</p>}
+                <Button href={`/contact/?service=${o.slug}`} variant={pk.popular ? "brand" : "ghost"} size="lg" arrow>{pk.cta}</Button>
+              </article>
+            ))}
+          </div>
+          {o.note && <p class="opt-note">{o.note}</p>}
+        </div>
+      ) : (
+        <div class="opt-includes-wrap" data-reveal>
+          <span class="opt-label">{o.price ? "What's included" : "How it works"}</span>
+          <ul class="opt-includes">
+            {o.includes.map((item) => (
+              <li><Icon name="check" /> <span>{item}</span></li>
+            ))}
+          </ul>
+          {o.note && <p class="opt-note">{o.note}</p>}
+        </div>
+      )}
 
       <div class="opt-cta" data-reveal>
         <h2 class="disp">Ready when you are.</h2>
@@ -102,7 +142,32 @@ const { o } = Astro.props;
   .opt-cta .dim { margin: 1rem auto 2rem; max-width: 470px; color: var(--text-muted); line-height: 1.6; }
   .opt-cta-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
+  /* ---- Two-package pricing ---- */
+  .pkg-section { margin-top: clamp(2.4rem, 4.5vw, 3.4rem); padding-top: clamp(2.4rem, 4.5vw, 3.4rem); border-top: 1px solid var(--line); }
+  .pkg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: 1.4rem; align-items: start; }
+  .pkg { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.3rem); }
+  .pkg--featured { border-color: var(--brand); box-shadow: var(--shadow-brand); }
+  .pkg-flag { position: absolute; top: -0.75rem; left: clamp(1.6rem, 3vw, 2.3rem); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--grad-brand); padding: 0.3rem 0.8rem; border-radius: var(--r-pill); }
+  .pkg-name { font-size: clamp(1.5rem, 3vw, 2rem); color: var(--ink); font-weight: 500; margin-bottom: 0.3rem; }
+  .pkg-tag { font-size: 0.98rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .pkg-price { display: flex; align-items: baseline; gap: 0.5rem; }
+  .pkg-amount { font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 400; color: var(--ink); }
+  .pkg-per { font-size: 0.9rem; color: var(--text-muted); }
+  .pkg-setup { margin-top: 0.4rem; font-size: 0.95rem; font-weight: 700; color: var(--brand-strong); }
+  .pkg-terms { margin-top: 0.3rem; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; }
+  .pkg-for { margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--line); font-size: 1rem; line-height: 1.55; color: var(--text-muted); }
+  .pkg-setup-desc { margin-top: 1rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-muted); background: var(--bg-tint); border-radius: var(--r-md); padding: 0.9rem 1rem; }
+  .pkg-setup-desc strong { color: var(--brand-strong); }
+  .pkg-inc-label { display: block; margin-top: 1.3rem; margin-bottom: 0.8rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); }
+  .pkg-includes { display: grid; gap: 0.7rem; margin-bottom: 1.4rem; }
+  .pkg-includes li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.98rem; color: var(--text); }
+  .pkg-includes :global(svg) { width: 16px; height: 16px; color: var(--brand); flex-shrink: 0; margin-top: 4px; }
+  .pkg-value { font-size: 0.92rem; line-height: 1.5; color: var(--brand-strong); font-weight: 600; background: var(--bg-tint); border-radius: var(--r-md); padding: 0.7rem 0.9rem; margin-bottom: 1.3rem; }
+  .pkg :global(.btn) { margin-top: auto; align-self: flex-start; }
+  .pkg--featured :global(.btn) { align-self: stretch; justify-content: center; }
+
   @media (max-width: 680px) {
     .opt-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .pkg-grid { grid-template-columns: 1fr; }
   }
 </style>
