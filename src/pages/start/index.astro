@@ -168,7 +168,7 @@ const bannerItems = [
 
       <div class="math-card" data-reveal data-delay="120">
         <p class="math-say">Say one new customer is worth
-          <span class="math-input-wrap">€<input id="cv" class="math-input" type="number" value="2000" min="1" step="50" aria-label="What one new customer is worth to you, in euro" /></span>
+          <span class="math-input-wrap">€<input id="cv" class="math-input" type="number" value="2000" min="1" step="50" aria-label="What one new customer is worth to you, in euro" /><span class="math-caret" aria-hidden="true"></span></span>
           to you.</p>
         <p class="math-note">Change the number, the math updates. Based on the monthly fee.</p>
 
@@ -205,6 +205,7 @@ const bannerItems = [
         function render() {
           var v = parseFloat(input.value);
           if (!isFinite(v) || v < 1) v = 1;
+          input.style.width = (Math.max(String(input.value).length, 1) + 0.6) + "ch";
           tiers.forEach(function (t) {
             var fee = parseFloat(t.getAttribute("data-fee"));
             var perMo = fee / v;
@@ -292,7 +293,7 @@ const bannerItems = [
   .hb-item i { font-style: normal; color: rgba(255, 255, 255, 0.55); margin-left: 2.2rem; }
   @keyframes hb-marquee { to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) {
-    .float-pill, .hero-banner-track { animation: none; }
+    .float-pill, .hero-banner-track, .math-caret { animation: none; }
   }
 
   /* ---- 02 Problem ---- */
@@ -369,9 +370,13 @@ const bannerItems = [
   .math-say { font-size: clamp(1.2rem, 2.6vw, 1.7rem); color: var(--ink); line-height: 1.4; font-weight: 400; }
   .math-say strong { color: var(--brand-strong); font-weight: 700; }
   .math-input-wrap { display: inline-flex; align-items: baseline; color: var(--brand-strong); font-weight: 700; }
-  .math-input { width: 6ch; font: inherit; font-weight: 700; color: var(--brand-strong); background: transparent; border: none; border-bottom: 2px solid var(--brand); padding: 0 0.1em; text-align: left; -moz-appearance: textfield; appearance: textfield; }
+  .math-input { width: 4.5ch; font: inherit; font-weight: 700; color: var(--brand-strong); background: transparent; border: none; border-bottom: 2px solid var(--brand); padding: 0; text-align: left; -moz-appearance: textfield; appearance: textfield; }
   .math-input:focus { outline: none; border-bottom-color: var(--brand-strong); background: var(--bg-tint); border-radius: 4px 4px 0 0; }
   .math-input::-webkit-outer-spin-button, .math-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  /* Blinking caret that hints the value is editable; hidden once the field is focused (real caret takes over). */
+  .math-caret { display: inline-block; width: 2px; height: 1.05em; background: var(--brand); margin-left: 2px; transform: translateY(3px); animation: caret-blink 1.1s step-end infinite; }
+  .math-input:focus ~ .math-caret { display: none; }
+  @keyframes caret-blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
   .math-note { margin-top: 0.4rem; font-size: 0.9rem; color: var(--text-faint); }
   .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: clamp(1.6rem, 3.5vw, 2.4rem); }
   .math-tier { border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.3rem, 2.8vw, 1.9rem); background: var(--bg); }
