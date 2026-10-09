@@ -11,105 +11,93 @@ export function getStaticPaths() {
 const { o } = Astro.props;
 ---
 <Base title={o.title} description={o.description}>
-  <div class="luxe">
-    <section class="opt-hero">
-      <div class="container" style="max-width:860px">
-        <a class="opt-back" href="/start/"><Icon name="arrow" /> All options</a>
-        <p class="kicker" data-reveal><span class="kicker-rule"></span>{o.service}</p>
-        <h1 class="disp opt-h" data-reveal data-delay="60">{o.choice}</h1>
-        <p class="opt-lead" data-reveal data-delay="120">{o.lead}</p>
-        {o.price && (
-          <div class="opt-price" data-reveal data-delay="180">
-            <span class="opt-price-value disp">{o.price}</span>
-            <span class="opt-price-note">{o.priceNote}</span>
-          </div>
-        )}
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container" style="max-width:860px">
-        <div class="opt-grid">
-          <div class="opt-block" data-reveal>
-            <span class="opt-label">Who it's for</span>
-            <p>{o.forText}</p>
-          </div>
-          <div class="opt-block" data-reveal>
-            <span class="opt-label">The problem it solves</span>
-            <p>{o.problem}</p>
-          </div>
+  <section class="opt-hero">
+    <div class="container" style="max-width:860px">
+      <a class="opt-back" href="/start/"><Icon name="arrow" /> All options</a>
+      <p class="kicker" data-reveal><span class="kicker-rule"></span>{o.service}</p>
+      <h1 class="disp opt-h" data-reveal data-delay="60">{o.choice}</h1>
+      <p class="opt-lead" data-reveal data-delay="120">{o.lead}</p>
+      {o.price && (
+        <div class="opt-price" data-reveal data-delay="180">
+          <span class="opt-price-value disp">{o.price}</span>
+          <span class="opt-price-note">{o.priceNote}</span>
         </div>
+      )}
+    </div>
+  </section>
 
-        <div class="opt-includes-wrap" data-reveal>
-          <span class="opt-label">{o.price ? "What's included" : "How it works"}</span>
-          <ul class="opt-includes">
-            {o.includes.map((item) => (
-              <li><Icon name="check" /> <span>{item}</span></li>
-            ))}
-          </ul>
-          {o.note && <p class="opt-note">{o.note}</p>}
+  <section class="section">
+    <div class="container" style="max-width:860px">
+      <div class="opt-grid">
+        <div class="opt-block" data-reveal>
+          <span class="opt-label">Who it's for</span>
+          <p>{o.forText}</p>
         </div>
-
-        <div class="opt-cta" data-reveal>
-          <h2 class="disp">Ready when you are.</h2>
-          <p class="dim">We'll reply within one business day. Prefer a quick message? Reach us on WhatsApp.</p>
-          <div class="opt-cta-actions">
-            <Button href={`/contact/?service=${o.slug}`} variant="brand" size="lg" arrow>{o.cta}</Button>
-            <WhatsAppButton label="WhatsApp us" />
-          </div>
+        <div class="opt-block" data-reveal>
+          <span class="opt-label">The problem it solves</span>
+          <p>{o.problem}</p>
         </div>
       </div>
-    </section>
-  </div>
+
+      <div class="opt-includes-wrap" data-reveal>
+        <span class="opt-label">{o.price ? "What's included" : "How it works"}</span>
+        <ul class="opt-includes">
+          {o.includes.map((item) => (
+            <li><Icon name="check" /> <span>{item}</span></li>
+          ))}
+        </ul>
+        {o.note && <p class="opt-note">{o.note}</p>}
+      </div>
+
+      <div class="opt-cta" data-reveal>
+        <h2 class="disp">Ready when you are.</h2>
+        <p class="dim">We'll reply within one business day. Prefer a quick message? Reach us on WhatsApp.</p>
+        <div class="opt-cta-actions">
+          <Button href={`/contact/?service=${o.slug}`} variant="brand" size="lg" arrow>{o.cta}</Button>
+          <WhatsAppButton label="WhatsApp us" />
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
-  /* Matches the elevated /start treatment: deep warm-black canvas, ivory serif
-     display, fine hairlines and restrained cyan accents. Content unchanged. */
-  .luxe {
-    --ivory: #f3efe6;
-    --ivory-muted: #b7b1a4;
-    --ivory-faint: #837d72;
-    --hair: rgba(243, 239, 230, 0.14);
-    --hair-soft: rgba(243, 239, 230, 0.08);
-    background: var(--ink);
-    background-image: radial-gradient(120% 80% at 50% -10%, #221c1a 0%, #14110f 55%);
-    color: var(--ivory);
-  }
+  /* Matches the light, fresh /start treatment: warm paper canvas, elegant serif
+     display, fine hairlines and a calm brand accent. Content unchanged. */
   .disp { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 500; letter-spacing: -0.018em; }
 
-  .kicker { display: inline-flex; align-items: center; gap: 0.9rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ivory-muted); margin-bottom: 1.4rem; }
-  .kicker-rule { width: 34px; height: 1px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); display: inline-block; }
+  .kicker { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brand); margin-bottom: 1.3rem; }
+  .kicker-rule { width: 30px; height: 1.5px; background: var(--grad-brand); display: inline-block; border-radius: 2px; }
 
-  .opt-hero { padding-block: clamp(80px, 12vw, 150px) clamp(20px, 4vw, 40px); }
-  .opt-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory-faint); margin-bottom: 2.4rem; transition: color 0.25s ease; }
+  .opt-hero { padding-block: clamp(80px, 12vw, 150px) clamp(24px, 4vw, 48px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .opt-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 2.2rem; transition: color 0.25s ease; }
   .opt-back :global(svg) { width: 15px; height: 15px; transform: rotate(180deg); }
-  .opt-back:hover { color: var(--ivory); }
-  .opt-h { font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.02; margin: 0; color: var(--ivory); font-weight: 400; }
-  .opt-lead { font-size: clamp(1.12rem, 2vw, 1.4rem); line-height: 1.6; color: var(--ivory-muted); max-width: 48ch; margin-top: 1.8rem; font-weight: 300; }
-  .opt-price { display: flex; align-items: baseline; gap: 0.8rem; margin-top: 2.4rem; padding-top: 2rem; border-top: 1px solid var(--hair); }
-  .opt-price-value { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 400; color: #fff; }
-  .opt-price-note { font-size: 0.9rem; letter-spacing: 0.04em; color: var(--ivory-muted); }
+  .opt-back:hover { color: var(--brand-strong); }
+  .opt-h { font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.02; margin: 0; color: var(--ink); font-weight: 400; }
+  .opt-lead { font-size: clamp(1.12rem, 2vw, 1.4rem); line-height: 1.6; color: var(--text-muted); max-width: 48ch; margin-top: 1.8rem; }
+  .opt-price { display: flex; align-items: baseline; gap: 0.8rem; margin-top: 2.4rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .opt-price-value { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 400; color: var(--ink); }
+  .opt-price-note { font-size: 0.9rem; letter-spacing: 0.02em; color: var(--text-muted); }
 
   .section { padding-block: clamp(48px, 7vw, 90px) clamp(84px, 12vw, 150px); }
   .opt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 3.6rem); align-items: start; }
-  .opt-label { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-2); margin-bottom: 1.1rem; }
-  .opt-block > p { font-size: 1.08rem; line-height: 1.7; color: var(--ivory-muted); font-weight: 300; }
+  .opt-label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand-strong); margin-bottom: 1.1rem; }
+  .opt-block > p { font-size: 1.08rem; line-height: 1.7; color: var(--text-muted); }
   .opt-includes { display: grid; gap: 0.85rem; }
-  .opt-includes li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 1.02rem; color: var(--ivory); font-weight: 300; }
-  .opt-includes :global(svg) { width: 17px; height: 17px; color: var(--brand-2); flex-shrink: 0; margin-top: 4px; }
-  .opt-includes-wrap { margin-top: clamp(2.4rem, 4.5vw, 3.4rem); padding-top: clamp(2.4rem, 4.5vw, 3.4rem); border-top: 1px solid var(--hair); }
-  .opt-note { margin-top: 1.6rem; font-size: 0.9rem; line-height: 1.6; color: var(--ivory-faint); max-width: 62ch; padding-left: 1rem; border-left: 1px solid var(--hair); font-weight: 300; }
+  .opt-includes li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 1.02rem; color: var(--text); }
+  .opt-includes :global(svg) { width: 17px; height: 17px; color: var(--brand); flex-shrink: 0; margin-top: 4px; }
+  .opt-includes-wrap { margin-top: clamp(2.4rem, 4.5vw, 3.4rem); padding-top: clamp(2.4rem, 4.5vw, 3.4rem); border-top: 1px solid var(--line); }
+  .opt-note { margin-top: 1.6rem; font-size: 0.9rem; line-height: 1.6; color: var(--text-faint); max-width: 62ch; padding-left: 1rem; border-left: 2px solid var(--line-strong); }
 
-  /* CTA as an elevated bordered panel rather than a box on the same dark. */
+  /* CTA as a soft, friendly tinted panel — fresh, with a premium rounded frame. */
   .opt-cta {
     margin-top: clamp(3rem, 6vw, 4.8rem); text-align: center;
-    border: 1px solid var(--hair); border-radius: var(--r-lg);
+    border: 1px solid var(--line); border-radius: var(--r-lg);
     padding: clamp(2.2rem, 5vw, 3.6rem);
-    background: linear-gradient(180deg, rgba(243, 239, 230, 0.05), rgba(243, 239, 230, 0.015));
+    background: var(--grad-soft);
   }
-  .opt-cta h2 { font-size: clamp(1.7rem, 3.6vw, 2.5rem); color: var(--ivory); font-weight: 400; }
-  .opt-cta .dim { margin: 1rem auto 2rem; max-width: 470px; color: var(--ivory-muted); font-weight: 300; line-height: 1.6; }
+  .opt-cta h2 { font-size: clamp(1.7rem, 3.6vw, 2.5rem); color: var(--ink); font-weight: 400; }
+  .opt-cta .dim { margin: 1rem auto 2rem; max-width: 470px; color: var(--text-muted); line-height: 1.6; }
   .opt-cta-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
   @media (max-width: 680px) {
