@@ -24,8 +24,8 @@ export const site = {
   founder: "Junalda Meiland",
   founded: "2023",
   deliveryTime: "2 tot 4 weken",
-  // [INVULLEN: exacte geo-coördinaten (lat/long) van Galvanistraat 1965, 3029 AD Rotterdam]
-  geo: { lat: "", lng: "" },
+  // Geo-coördinaten van Galvanistraat 1965, 3029 AD Rotterdam.
+  geo: { lat: "51.911964", lng: "4.430999" },
   // ---- One canonical positioning line, used in schema, footer, about & meta. ----
   description:
     "Webmaister is a Rotterdam web agency building websites, lead generation and AI automation for growing businesses.",
@@ -33,7 +33,7 @@ export const site = {
     "Webmaister is een webbureau in Rotterdam dat websites, leadgeneratie en AI-automatisering bouwt voor groeiende bedrijven.",
   social: {
     linkedin: "https://www.linkedin.com/company/112275381/",
-    instagram: "", // [INVULLEN: Instagram-profiel-URL]
+    instagram: "https://www.instagram.com/webmaister.io",
   },
 };
 
