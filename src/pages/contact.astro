@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
+import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
 import { site, framework } from "@/data/site";
 import { alternatesFor } from "@/i18n";
 
@@ -43,9 +44,9 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
             <span class="cc-ic"><Icon name="pin" /></span>
             <span><strong>Bezoekadres</strong><em>{site.streetAddress}, {site.postalCode} {site.city}</em></span>
           </a>
-          <a class="contact-card" href={`tel:${site.phoneHref}`}>
-            <span class="cc-ic"><Icon name="phone" /></span>
-            <span><strong>Bel ons</strong><em>{site.phone}</em></span>
+          <a class="contact-card" href={`https://wa.me/${site.whatsappHref}`} target="_blank" rel="noopener noreferrer">
+            <span class="cc-ic"><WhatsAppIcon /></span>
+            <span><strong>WhatsApp</strong><em>{site.whatsapp}</em></span>
           </a>
           <a class="contact-card" href={`mailto:${site.email}`}>
             <span class="cc-ic"><Icon name="mail" /></span>
