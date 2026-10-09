@@ -9,75 +9,69 @@ import { startOptions } from "@/data/site";
   title="Start here · What do you need help with?"
   description="Tell us what you need and we'll point you to the right solution: a new website from €500, a full website upgrade from €2.700, or a growth partnership from €1.600/month. Message us on WhatsApp."
 >
-  <div class="luxe">
-    <section class="start-hero">
-      <div class="container" style="max-width:940px">
-        <p class="kicker" data-reveal><span class="kicker-rule"></span>Start here</p>
-        <h1 class="disp start-h" data-reveal data-delay="60">What do you<br /><em>need</em> help with?</h1>
-        <p class="start-lead" data-reveal data-delay="120">
-          Pick what fits you best. We'll show you exactly how we can help, and you can message us right away.
-        </p>
-      </div>
-    </section>
+  <section class="start-hero">
+    <div class="container" style="max-width:940px">
+      <p class="kicker" data-reveal><span class="kicker-rule"></span>Start here</p>
+      <h1 class="disp start-h" data-reveal data-delay="60">What do you<br /><span class="hl">need</span> help with?</h1>
+      <p class="start-lead" data-reveal data-delay="120">
+        Pick what fits you best. We'll show you exactly how we can help, and you can message us right away.
+      </p>
+    </div>
+  </section>
 
-    <section class="start-body">
-      <div class="container" style="max-width:940px">
-        <ol class="choices">
-          {startOptions.map((o, i) => (
-            <li class="choice-row" data-reveal>
-              <a href={`/start/${o.slug}/`} class="choice-link">
-                <span class="choice-n disp">{String(i + 1).padStart(2, "0")}</span>
-                <span class="choice-main">
-                  <span class="choice-title disp">{o.choice}</span>
-                  {o.priceLine && <span class="choice-price">{o.priceLine}</span>}
-                  <span class="choice-benefit">{o.benefit}</span>
-                </span>
-                <span class="choice-go">Choose <Icon name="arrow" /></span>
-              </a>
-            </li>
-          ))}
-        </ol>
+  <section class="start-body">
+    <div class="container" style="max-width:940px">
+      <ol class="choices">
+        {startOptions.map((o, i) => (
+          <li class="choice-row" data-reveal>
+            <a href={`/start/${o.slug}/`} class="choice-link">
+              <span class="choice-n disp">{String(i + 1).padStart(2, "0")}</span>
+              <span class="choice-main">
+                <span class="choice-title disp">{o.choice}</span>
+                {o.priceLine && <span class="choice-price">{o.priceLine}</span>}
+                <span class="choice-benefit">{o.benefit}</span>
+              </span>
+              <span class="choice-go">Choose <Icon name="arrow" /></span>
+            </a>
+          </li>
+        ))}
+      </ol>
 
-        <div class="start-cta" data-reveal>
-          <p class="start-cta-note disp">Not sure which one fits?</p>
-          <div class="start-cta-actions">
-            <WhatsAppButton label="WhatsApp us" />
-            <Button href="/contact/" variant="ghost" size="lg">Book a call</Button>
-          </div>
+      <div class="start-cta" data-reveal>
+        <p class="start-cta-note disp">Not sure which one fits?</p>
+        <div class="start-cta-actions">
+          <WhatsAppButton label="WhatsApp us" />
+          <Button href="/contact/" variant="ghost" size="lg">Book a call</Button>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Base>
 
 <style>
-  /* High-end treatment: deep warm-black canvas, ivory serif display, fine
-     hairlines and restrained cyan accents. Content is unchanged; only the
-     presentation is elevated. */
-  .luxe {
-    --ivory: #f3efe6;
-    --ivory-muted: #b7b1a4;
-    --ivory-faint: #837d72;
-    --hair: rgba(243, 239, 230, 0.14);
-    --hair-soft: rgba(243, 239, 230, 0.08);
-    background: var(--ink);
-    background-image: radial-gradient(120% 90% at 50% -10%, #221c1a 0%, #14110f 55%);
-    color: var(--ivory);
-  }
+  /* Light, fresh and editorial — in step with the rest of the site — lifted to
+     feel premium through an elegant serif, generous whitespace, fine hairlines
+     and one playful, confident touch: a softly highlighted word. Content is
+     unchanged; only the presentation. */
   .disp { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 500; letter-spacing: -0.018em; }
 
-  .kicker { display: inline-flex; align-items: center; gap: 0.9rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ivory-muted); margin-bottom: 2rem; }
-  .kicker-rule { width: 34px; height: 1px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); display: inline-block; }
+  .kicker { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--brand); margin-bottom: 1.8rem; }
+  .kicker-rule { width: 30px; height: 1.5px; background: var(--grad-brand); display: inline-block; border-radius: 2px; }
 
-  .start-hero { padding-block: clamp(90px, 14vw, 180px) clamp(24px, 4vw, 48px); }
-  .start-h { font-size: clamp(2.8rem, 8.5vw, 6rem); line-height: 1.0; margin: 0; color: var(--ivory); font-weight: 400; }
-  .start-h em { font-style: italic; font-weight: 400; color: #fff; }
-  .start-lead { font-size: clamp(1.12rem, 2vw, 1.4rem); line-height: 1.6; color: var(--ivory-muted); max-width: 46ch; margin-top: 2rem; font-weight: 300; }
+  .start-hero { padding-block: clamp(84px, 13vw, 170px) clamp(28px, 5vw, 56px); background: var(--grad-soft); border-bottom: 1px solid var(--line); }
+  .start-h { font-size: clamp(2.8rem, 8.5vw, 6rem); line-height: 1.0; margin: 0; color: var(--ink); font-weight: 400; }
+  /* The fresh touch: a soft brand-tinted highlight behind an italic word. */
+  .start-h .hl {
+    font-style: italic; font-weight: 400; color: var(--brand-strong);
+    background: linear-gradient(180deg, transparent 58%, #cfe8fb 58%);
+    padding-inline: 0.12em; border-radius: 3px;
+  }
+  .start-lead { font-size: clamp(1.12rem, 2vw, 1.4rem); line-height: 1.6; color: var(--text-muted); max-width: 46ch; margin-top: 2rem; }
 
-  .start-body { padding-block: clamp(32px, 6vw, 56px) clamp(84px, 12vw, 160px); }
+  .start-body { padding-block: clamp(36px, 6vw, 64px) clamp(84px, 12vw, 160px); }
   .choices { display: grid; gap: 0; list-style: none; padding: 0; margin: 0; }
-  .choice-row { border-top: 1px solid var(--hair); }
-  .choice-row:last-child { border-bottom: 1px solid var(--hair); }
+  .choice-row { border-top: 1px solid var(--line); }
+  .choice-row:last-child { border-bottom: 1px solid var(--line); }
   .choice-link {
     position: relative;
     display: grid; grid-template-columns: auto 1fr auto; align-items: center;
@@ -85,31 +79,28 @@ import { startOptions } from "@/data/site";
     padding-inline: clamp(0.4rem, 1.5vw, 1.4rem);
     transition: background 0.4s ease, padding-left 0.35s ease;
   }
-  /* A hairline that draws itself in on hover — a quiet, expensive detail. */
+  /* A hairline that draws itself in on hover — a quiet, premium detail. */
   .choice-link::after {
-    content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0;
-    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+    background: var(--grad-brand); border-radius: 2px;
     transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .choice-link:hover { background: rgba(243, 239, 230, 0.03); padding-left: clamp(1rem, 2.5vw, 2rem); }
+  .choice-link:hover { background: var(--bg-tint); padding-left: clamp(1rem, 2.5vw, 2rem); }
   .choice-link:hover::after { width: 100%; }
-  .choice-n { font-size: clamp(1rem, 2.2vw, 1.3rem); line-height: 1; color: var(--ivory-faint); font-weight: 500; letter-spacing: 0.05em; align-self: start; padding-top: 0.5rem; font-variant-numeric: tabular-nums; }
-  .choice-link:hover .choice-n { color: var(--brand-2); }
+  .choice-n { font-size: clamp(1rem, 2.2vw, 1.3rem); line-height: 1; color: var(--text-faint); font-weight: 500; letter-spacing: 0.05em; align-self: start; padding-top: 0.5rem; font-variant-numeric: tabular-nums; }
+  .choice-link:hover .choice-n { color: var(--brand-strong); }
   .choice-main { display: flex; flex-direction: column; gap: 0.55rem; min-width: 0; }
-  .choice-title { font-size: clamp(1.5rem, 3.8vw, 2.5rem); line-height: 1.08; color: var(--ivory); font-weight: 400; }
-  .choice-price { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-2); }
-  .choice-benefit { font-size: 1.02rem; line-height: 1.5; color: var(--ivory-muted); max-width: 52ch; font-weight: 300; }
-  .choice-go { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ivory-muted); white-space: nowrap; }
+  .choice-title { font-size: clamp(1.5rem, 3.8vw, 2.5rem); line-height: 1.08; color: var(--ink); font-weight: 400; }
+  .choice-price { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--brand-strong); }
+  .choice-benefit { font-size: 1.02rem; line-height: 1.5; color: var(--text-muted); max-width: 52ch; }
+  .choice-go { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
   .choice-go :global(svg) { width: 16px; height: 16px; transition: transform 0.3s ease; }
-  .choice-link:hover .choice-go { color: var(--ivory); }
+  .choice-link:hover .choice-go { color: var(--brand-strong); }
   .choice-link:hover .choice-go :global(svg) { transform: translateX(6px); }
 
   .start-cta { margin-top: clamp(3.4rem, 7vw, 5.5rem); text-align: center; }
-  .start-cta-note { font-size: clamp(1.6rem, 3.6vw, 2.4rem); margin-bottom: 1.6rem; color: var(--ivory); font-weight: 400; }
+  .start-cta-note { font-size: clamp(1.6rem, 3.6vw, 2.4rem); margin-bottom: 1.6rem; color: var(--ink); font-weight: 400; }
   .start-cta-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; justify-content: center; }
-  /* Lift the ghost button into the dark context. */
-  .start-cta-actions :global(.btn-ghost) { color: var(--ivory); border-color: var(--hair); }
-  .start-cta-actions :global(.btn-ghost:hover) { border-color: var(--ivory-muted); background: rgba(243, 239, 230, 0.04); }
 
   @media (max-width: 620px) {
     .choice-link { grid-template-columns: auto 1fr; gap: 1rem 1.2rem; }
