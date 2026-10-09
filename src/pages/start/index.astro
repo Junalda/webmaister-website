@@ -7,6 +7,16 @@ import FaqAccordion from "@/components/FaqAccordion.astro";
 import { startOptions, problems, framework, pillars, solutionsFaqs } from "@/data/site";
 
 const pains = problems.slice(0, 4);
+const bannerItems = [
+  "Websites",
+  "Lead generation",
+  "AI automation",
+  "SEO",
+  "Built to convert",
+  "6-month results guarantee",
+  "Live in 2 to 4 weeks",
+  "Rotterdam-based",
+];
 ---
 <Base
   title="Start here · What do you need help with?"
@@ -35,6 +45,15 @@ const pains = problems.slice(0, 4);
       </div>
     </div>
   </section>
+
+  <!-- 01b · SCROLLING BANNER (right to left) -->
+  <div class="hero-banner" aria-hidden="true">
+    <div class="hero-banner-track">
+      {[...bannerItems, ...bannerItems].map((t) => (
+        <span class="hb-item">{t}<i>•</i></span>
+      ))}
+    </div>
+  </div>
 
   <!-- 02 · THE PROBLEM -->
   <section class="section s-problem">
@@ -208,9 +227,20 @@ const pains = problems.slice(0, 4);
   .hero-photo img { position: relative; z-index: 1; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: var(--r-xl); box-shadow: var(--shadow-lg); }
   .float-pill { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface); color: var(--ink); font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--r-pill); box-shadow: var(--shadow-md); border: 1px solid var(--line); }
   .float-pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--grad-brand); flex-shrink: 0; }
-  .fp-1 { top: 8%; left: -6%; }
-  .fp-2 { top: 44%; right: -8%; }
-  .fp-3 { bottom: 9%; left: -4%; }
+  .fp-1 { top: 8%; left: -6%; animation: floatY 4.2s ease-in-out infinite; }
+  .fp-2 { top: 44%; right: -8%; animation: floatY 5s ease-in-out 0.8s infinite; }
+  .fp-3 { bottom: 9%; left: -4%; animation: floatY 4.6s ease-in-out 1.6s infinite; }
+  @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+  /* Right-to-left scrolling banner under the hero. */
+  .hero-banner { overflow: hidden; background: var(--grad-brand); }
+  .hero-banner-track { display: inline-flex; white-space: nowrap; padding-block: 0.85rem; animation: hb-marquee 34s linear infinite; }
+  .hb-item { display: inline-flex; align-items: center; font-size: clamp(0.92rem, 1.5vw, 1.08rem); font-weight: 700; letter-spacing: 0.01em; color: #fff; padding-inline: 1.1rem; }
+  .hb-item i { font-style: normal; color: rgba(255, 255, 255, 0.55); margin-left: 2.2rem; }
+  @keyframes hb-marquee { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .float-pill, .hero-banner-track { animation: none; }
+  }
 
   /* ---- 02 Problem ---- */
   .pain-list { list-style: none; padding: 0; margin: clamp(2.2rem, 4.5vw, 3.4rem) 0 0; display: grid; gap: 0; }
