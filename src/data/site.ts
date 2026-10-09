@@ -314,7 +314,7 @@ export const startOptions = [
     priceLine: "€500 setup + €150/mo",
     benefit: "A professional online presence to get your business started.",
     cta: "Get my website",
-    title: "Starter Website — a professional online presence | Webmaister",
+    title: "Starter Website: a professional online presence | Webmaister",
     description:
       "A professional, simple website that gets your business online and taken seriously. €500 setup + €150/month. Let's talk.",
     price: "€500",
@@ -340,7 +340,7 @@ export const startOptions = [
     priceLine: "€2,700 setup + €300/mo",
     benefit: "A strategic website built to turn visitors into customers.",
     cta: "Upgrade my website",
-    title: "Growth Website — turn visitors into customers | Webmaister",
+    title: "Growth Website: turn visitors into customers | Webmaister",
     description:
       "A strategic website redesign built to turn visitors into customers. €2,700 setup + €300/month. Let's talk.",
     price: "€2,700",
@@ -366,7 +366,7 @@ export const startOptions = [
     priceLine: "€350 one-time",
     benefit: "Get clarity on your next move before investing in growth.",
     cta: "Book a strategy session",
-    title: "Business Strategy Session — get strategic clarity | Webmaister",
+    title: "Business Strategy Session: get strategic clarity | Webmaister",
     description:
       "A focused strategic session to get clarity on your next move before you invest in growth. €350 one-time. Book a session.",
     price: "€350",
@@ -391,7 +391,7 @@ export const startOptions = [
     priceLine: "€1,600/mo · 6-month commitment",
     benefit: "Build a predictable system for sustainable business growth.",
     cta: "Discuss my growth",
-    title: "Growth Strategist — a predictable acquisition system | Webmaister",
+    title: "Growth Strategist: a predictable acquisition system | Webmaister",
     description:
       "An ongoing partnership that builds a predictable system for sustainable business growth. €1,600/month, minimum six months. Let's talk.",
     price: "€1,600",
