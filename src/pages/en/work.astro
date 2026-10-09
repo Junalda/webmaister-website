@@ -3,7 +3,9 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import FilterBar from "@/components/FilterBar.astro";
+import Testimonials from "@/components/Testimonials.astro";
 import { caseStudies } from "@/data/site";
+import { alternatesFor } from "@/i18n";
 
 // Filter pills, one per industry represented in the case studies.
 const industryFilters = [...new Set(caseStudies.map((cs) => cs.cardIndustry))].map(
@@ -25,7 +27,9 @@ const linkFounders = (text: string, founders?: { name: string; href: string }[])
 ---
 <Base
   title="Success Stories · Real Client Transformations"
-  description="Authentic transformation stories from Webmaister: how we build premium digital foundations that help businesses in green infrastructure, luxury events and commercial services grow with confidence."
+  description="Authentic transformation stories from Webmaister: how we build premium digital foundations that help businesses in green infrastructure, luxury events and content creation grow with confidence."
+  lang="en"
+  alternates={alternatesFor("/cases/", "/en/work/")}
 >
   <section class="page-hero">
     <div class="container center" style="max-width:820px">
@@ -130,9 +134,13 @@ const linkFounders = (text: string, founders?: { name: string; href: string }[])
     </div>
   </section>
 
+  <Testimonials lang="en" />
+
   <FinalCta
     title="Your transformation<br>starts with a conversation."
     text="Book a free Growth Strategy Call and we'll map a clear path to the digital foundation your business needs to grow."
+    ctaHref="/en/contact/"
+    secondaryHref="/en/solutions/"
   />
 </Base>
 

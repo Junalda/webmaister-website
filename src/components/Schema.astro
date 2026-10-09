@@ -11,11 +11,24 @@ interface Props {
 }
 const { faq = false, services = false, title } = Astro.props;
 
+// sameAs only lists profiles we actually have. Placeholders in site.ts
+// (e.g. an empty Instagram URL) are skipped rather than emitting a broken link.
+const sameAs = [site.social.linkedin, site.social.instagram].filter(Boolean);
+
+// Geo coordinates are a placeholder in site.ts ([INVULLEN]). We only emit a
+// GeoCoordinates node once real values are filled in, so no fake coordinates
+// are ever published.
+const hasGeo = Boolean(site.geo.lat && site.geo.lng);
+
 const localBusiness = {
-  "@type": "ProfessionalService",
+  // ProfessionalService is a subtype of LocalBusiness and Organization; the
+  // explicit Organization keeps "Organization + ProfessionalService" legible
+  // to parsers that look for the base type.
+  "@type": ["ProfessionalService", "Organization"],
   "@id": `${site.url}/#organization`,
   name: site.name,
-  description: site.description,
+  legalName: site.legalName,
+  description: site.descriptionNL,
   url: site.url,
   email: site.email,
   telephone: site.phoneHref,
@@ -23,17 +36,29 @@ const localBusiness = {
   image: `${site.url}/og.png`,
   logo: `${site.url}/logo.svg`,
   priceRange: "€€€",
+  currenciesAccepted: "EUR",
   identifier: {
     "@type": "PropertyValue",
     propertyID: "KvK",
     value: site.kvk,
   },
+  founder: {
+    "@type": "Person",
+    name: site.founder,
+    jobTitle: "Oprichter",
+    url: `${site.url}/over-ons/`,
+  },
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.streetAddress,
+    postalCode: site.postalCode,
     addressLocality: site.city,
     addressRegion: site.region,
     addressCountry: site.country,
   },
+  ...(hasGeo
+    ? { geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng } }
+    : {}),
   areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
   knowsAbout: [
     "Website laten maken Rotterdam",
@@ -42,8 +67,9 @@ const localBusiness = {
     "AI Automatisering Rotterdam",
     "AI Agent Rotterdam",
     "Website Onderhoud Rotterdam",
+    "GEO optimalisatie",
   ],
-  sameAs: [site.social.linkedin],
+  sameAs,
 };
 
 const serviceList = solutionGroups.flatMap((group) =>

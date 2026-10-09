@@ -1,0 +1,363 @@
+---
+// Shared homepage view, rendered by both the NL (/) and EN (/en/) homepages.
+// All copy comes from the `t` object; `links` holds the language-specific
+// internal hrefs. Markup and styles live here once.
+import Button from "@/components/Button.astro";
+import Icon from "@/components/Icon.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import { site, caseStudies } from "@/data/site";
+
+const { t, links } = Astro.props;
+---
+<!-- 01 · HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.hero.kicker}</p>
+    <h1 class="display hero-h" data-reveal data-delay="60" set:html={t.hero.h1} />
+    <p class="hero-sub" data-reveal data-delay="120">{t.hero.sub}</p>
+    <div class="actions" data-reveal data-delay="180">
+      <Button href={links.contact} variant="primary" size="lg" arrow>{t.hero.ctaPrimary}</Button>
+      <WhatsAppButton label={t.whatsapp} />
+      <Button href={links.solutions} variant="ghost" size="lg">{t.hero.ctaSecondary}</Button>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {[...t.marquee, ...t.marquee].map((m) => <span class="marquee-item">{m}<i>/</i></span>)}
+  </div>
+</div>
+
+<!-- 01b · CLIENT STRIP -->
+<section class="clients">
+  <div class="container">
+    <p class="clients-label" data-reveal>{t.clientsLabel}</p>
+    <ul class="clients-row" data-reveal>
+      {caseStudies.map((cs) => (
+        <li><a href={`${links.cases}#${cs.slug}`}>{cs.company}</a></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- 02 · THE PROBLEM -->
+<section class="section section-ink">
+  <div class="container">
+    <h2 class="display sect-h" data-reveal set:html={t.problem.h2} />
+    <ul class="statements">
+      {t.problem.statements.map((p: any) => (
+        <li class="statement" data-reveal>
+          <span class="statement-n display">{p.n}</span>
+          <p><strong>{p.a}</strong> <span class="dim">{p.b}</span></p>
+        </li>
+      ))}
+    </ul>
+    <div class="big-statement" data-reveal>
+      <p class="display" set:html={t.problem.big} />
+      <p class="aside">{t.problem.aside}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · WHAT WE DO -->
+<section class="section" id="services">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.whatWeDo.kicker}</p>
+    <h2 class="display sect-h" data-reveal>{t.whatWeDo.h2}</h2>
+    <p class="sect-intro" data-reveal>{t.whatWeDo.intro}</p>
+    <div class="pillars">
+      {t.whatWeDo.pillars.map((p: any, i: number) => (
+        <article class:list={["pillar", { alt: i % 2 === 1 }]} data-reveal>
+          <span class="pillar-n display">{p.n}</span>
+          <div class="pillar-body">
+            <h3 class="display">{p.title}</h3>
+            <p class="pillar-desc">{p.desc}</p>
+            <ul class="pillar-items">{p.items.map((it: string) => <li>{it}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="sect-foot" data-reveal>
+      <a href={links.solutions} class="text-link">{t.whatWeDo.foot} <Icon name="arrow" /></a>
+    </p>
+  </div>
+</section>
+
+<!-- 04 · THE GROWTH PARTNERSHIP -->
+<section class="section section-ink" id="approach">
+  <div class="container">
+    <p class="kicker accent" data-reveal>{t.partnership.kicker}</p>
+    <h2 class="display sect-h" data-reveal set:html={t.partnership.h2} />
+    <p class="sect-intro dim" data-reveal>{t.partnership.intro}</p>
+    <div class="approach">
+      {t.partnership.approach.map((s: any) => (
+        <div class="app-step" data-reveal>
+          <span class="app-n display">{s.n}</span>
+          <h3 class="display">{s.title}</h3>
+          <p class="dim">{s.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="guarantee" data-reveal>
+      <h3 class="display">{t.partnership.backTitle}</h3>
+      <p class="dim">{t.partnership.backText}</p>
+      <div class="actions"><Button href={links.contact} variant="brand" size="lg" arrow>{t.partnership.cta}</Button><WhatsAppButton label={t.whatsapp} /></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · SERVICES & INVESTMENT -->
+<section class="section">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.services.kicker}</p>
+    <h2 class="display sect-h" data-reveal>{t.services.h2}</h2>
+    <div class="offers">
+      {t.services.offers.map((o: any) => (
+        <article class:list={["offer", { flagship: o.flagship }]} data-reveal>
+          {o.flagship && <span class="offer-flag">{t.services.flagLabel}</span>}
+          <h3 class="display offer-name">{o.name}</h3>
+          <p class="offer-price"><span class="display">{o.price}</span> <span class="offer-unit">{o.unit}</span></p>
+          <p class="offer-rec">{o.recurring}</p>
+          <p class="offer-who">{o.who}</p>
+          <a href={links.contact} class="offer-cta">{o.cta} <Icon name="arrow" /></a>
+        </article>
+      ))}
+    </div>
+    <div class="addons" data-reveal>
+      <span class="addons-label">{t.services.addOnsLabel}</span>
+      <ul>{t.services.addOns.map((a: string) => <li>{a}</li>)}</ul>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · WHY WEBMAISTER + FOUNDER -->
+<section class="section section-soft">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.why.kicker}</p>
+    <h2 class="display sect-h" data-reveal set:html={t.why.h2} />
+    <div class="why-grid">
+      <div class="why-copy" data-reveal>
+        <p>{t.why.copy}</p>
+        <ul class="diff-list">
+          {t.why.differentiators.map((d: string) => <li><Icon name="check" /> <span>{d}</span></li>)}
+        </ul>
+      </div>
+      <aside class="founder" data-reveal>
+        <span class="founder-label">{t.why.founderLabel}</span>
+        <p class="founder-name display">{site.founder}</p>
+        <p class="founder-role">{t.why.founderRole}</p>
+        <p class="founder-bio">{t.why.founderBio}</p>
+        <a href={`https://wa.me/${site.whatsappHref}`} class="text-link" target="_blank" rel="noopener noreferrer">{t.why.founderLink} <Icon name="arrow" /></a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · SELECTED WORK -->
+<section class="section section-ink" id="work">
+  <div class="container">
+    <p class="kicker accent" data-reveal>{t.work.kicker}</p>
+    <h2 class="display sect-h" data-reveal>{t.work.h2}</h2>
+    <ul class="work-list">
+      {caseStudies.map((cs) => (
+        <li class="work-item" data-reveal>
+          <a href={`${links.cases}#${cs.slug}`} class="work-link">
+            <span class="work-industry">{cs.cardIndustry}</span>
+            <span class="work-name display">{cs.company}</span>
+            <span class="work-headline dim">{cs.headline}</span>
+            <span class="work-go">{t.work.viewCase} <Icon name="arrow" /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="sect-foot" data-reveal>
+      <a href={links.cases} class="text-link accent">{t.work.allLink} <Icon name="arrow" /></a>
+    </p>
+  </div>
+</section>
+
+<!-- 08 · HOW WE START -->
+<section class="section">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.howStart.kicker}</p>
+    <h2 class="display sect-h" data-reveal set:html={t.howStart.h2} />
+    <p class="sect-intro" data-reveal>{t.howStart.intro}</p>
+    <div class="approach light">
+      {t.howStart.steps.map((s: any) => (
+        <div class="app-step" data-reveal>
+          <span class="app-n display">{s.n}</span>
+          <h3 class="display">{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="start-cta" data-reveal>
+      <Button href={links.contact} variant="primary" size="lg" arrow>{t.howStart.bookCta}</Button>
+      <WhatsAppButton label={t.whatsapp} />
+      <p class="start-note">{t.howStart.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · FINAL CTA -->
+<section class="section section-ink final">
+  <div class="container center">
+    <h2 class="display final-h" data-reveal set:html={t.final.h2} />
+    <p class="final-sub dim" data-reveal>{t.final.sub}</p>
+    <div class="actions center-actions" data-reveal>
+      <Button href={links.contact} variant="brand" size="lg" arrow>{t.final.ctaPrimary}</Button>
+      <WhatsAppButton label={t.whatsapp} />
+      <Button href={links.solutions} variant="ghost" size="lg">{t.final.ctaSecondary}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .display { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 500; letter-spacing: -0.015em; }
+  .kicker { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-strong); margin-bottom: 1.4rem; }
+  .kicker.accent { color: var(--brand-2); }
+  .accent-head { color: var(--brand); }
+  .muted-head { color: var(--text-faint); font-style: italic; font-weight: 400; }
+  .text-link { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--brand-strong); }
+  .text-link.accent { color: var(--brand-2); }
+  .text-link :global(svg) { width: 18px; height: 18px; transition: transform .2s ease; }
+  .text-link:hover :global(svg) { transform: translateX(4px); }
+  .dim { color: var(--text-muted); }
+
+  .section { padding-block: clamp(72px, 11vw, 160px); }
+  .sect-h { font-size: clamp(2.4rem, 7vw, 5rem); line-height: 1.0; margin: 0; }
+  .sect-intro { font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.55; max-width: 40ch; margin-top: 1.6rem; color: var(--text-muted); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+
+  .section-ink { background: var(--ink); color: var(--on-dark); }
+  .section-ink .sect-h, .section-ink .display { color: #fff; }
+  .section-ink .dim { color: var(--on-dark-muted); }
+  .section-ink .kicker { color: var(--brand-2); }
+  .section-soft { background: var(--bg-alt); }
+
+  .hero { padding-block: clamp(90px, 15vw, 190px) clamp(40px, 7vw, 90px); }
+  .hero-h { font-size: clamp(2.8rem, 9.5vw, 7.5rem); line-height: 0.95; margin: 0; max-width: 16ch; }
+  .hero-sub { font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.55; max-width: 46ch; margin-top: 2rem; color: var(--text-muted); }
+  .actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.6rem; align-items: center; }
+
+  .marquee { overflow: hidden; border-block: 1px solid var(--line); background: var(--surface); padding-block: 1rem; }
+  .marquee-track { display: inline-flex; white-space: nowrap; animation: marquee 32s linear infinite; }
+  .marquee-item { font-family: var(--font-display); font-size: clamp(1.2rem, 2.4vw, 1.9rem); font-weight: 500; letter-spacing: -0.01em; color: var(--text); padding-inline: 1.2rem; }
+  .marquee-item i { color: var(--brand); font-style: normal; margin-left: 2.4rem; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  .clients { padding-block: clamp(2.4rem, 5vw, 3.6rem); border-bottom: 1px solid var(--line); }
+  .clients-label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1.2rem; }
+  .clients-row { display: flex; flex-wrap: wrap; gap: 0.8rem clamp(1.6rem, 4vw, 3rem); align-items: center; }
+  .clients-row li { font-family: var(--font-display); font-size: clamp(1.05rem, 2.2vw, 1.5rem); font-weight: 500; letter-spacing: -0.01em; }
+  .clients-row a { color: var(--text-muted); transition: color .18s ease; }
+  .clients-row a:hover { color: var(--brand-strong); }
+
+  .statements { margin-top: clamp(2.5rem, 6vw, 4.5rem); display: grid; gap: 0; }
+  .statement { display: flex; gap: clamp(1rem, 3vw, 2.4rem); align-items: baseline; padding-block: clamp(1.3rem, 3vw, 2rem); border-top: 1px solid rgba(255,255,255,0.12); }
+  .statement:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .statement-n { font-size: clamp(1.4rem, 3vw, 2.1rem); color: var(--brand-2); flex-shrink: 0; width: 2.4ch; }
+  .statement p { font-size: clamp(1.3rem, 3.4vw, 2.3rem); line-height: 1.15; margin: 0; }
+  .statement strong { font-weight: 600; color: #fff; }
+  .big-statement { margin-top: clamp(2.8rem, 6vw, 4.5rem); }
+  .big-statement .display { font-size: clamp(1.8rem, 4.6vw, 3.4rem); line-height: 1.1; }
+  .big-statement .aside { margin-top: 1.4rem; font-size: 1.1rem; color: var(--on-dark-muted); max-width: 46ch; }
+
+  .pillars { display: grid; gap: 0; }
+  .pillar { display: grid; grid-template-columns: minmax(0, 0.4fr) minmax(0, 1fr); gap: clamp(1rem, 4vw, 3rem); padding-block: clamp(2rem, 4vw, 3.2rem); border-top: 1px solid var(--line); align-items: start; }
+  .pillar:last-child { border-bottom: 1px solid var(--line); }
+  .pillar.alt { grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr); }
+  .pillar.alt .pillar-n { order: 2; text-align: right; }
+  .pillar.alt .pillar-body { order: 1; }
+  .pillar-n { font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; color: transparent; -webkit-text-stroke: 1.5px var(--line-strong); font-weight: 600; }
+  .pillar-body h3 { font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.05; margin-bottom: 0.8rem; }
+  .pillar-desc { font-size: 1.08rem; line-height: 1.6; color: var(--text-muted); max-width: 52ch; margin-bottom: 1.2rem; }
+  .pillar-items { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; }
+  .pillar-items li { font-size: 0.9rem; color: var(--text); padding: 0.3rem 0.8rem; border: 1px solid var(--line); border-radius: var(--r-pill); }
+  .sect-foot { margin-top: clamp(2rem, 4vw, 3rem); }
+
+  .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.4rem, 3vw, 2.4rem); margin-top: clamp(2.6rem, 6vw, 4.5rem); }
+  .app-step { border-top: 2px solid rgba(255,255,255,0.18); padding-top: 1.2rem; }
+  .approach.light .app-step { border-top-color: var(--line-strong); }
+  .app-n { display: block; font-size: 1.1rem; color: var(--brand-2); margin-bottom: 1rem; font-weight: 600; }
+  .approach.light .app-n { color: var(--brand-strong); }
+  .app-step h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); margin-bottom: 0.5rem; }
+  .app-step p { font-size: 0.98rem; line-height: 1.55; }
+  .guarantee { margin-top: clamp(3rem, 6vw, 5rem); max-width: 60ch; }
+  .guarantee h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+  .guarantee .actions { margin-top: 2rem; }
+
+  .offers { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: clamp(2.6rem, 5vw, 4rem); }
+  .offer { position: relative; border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.6rem, 3vw, 2.3rem); display: flex; flex-direction: column; background: var(--surface); }
+  .offer.flagship { border-color: var(--ink); background: var(--ink); color: var(--on-dark); }
+  .offer.flagship .offer-name, .offer.flagship .offer-price .display { color: #fff; }
+  .offer.flagship .offer-who { color: var(--on-dark-muted); }
+  .offer-flag { position: absolute; top: -0.7rem; left: clamp(1.6rem,3vw,2.3rem); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--brand); padding: 0.3rem 0.8rem; border-radius: var(--r-pill); }
+  .offer-name { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 1rem; }
+  .offer-price { margin-bottom: 0.2rem; }
+  .offer-price .display { font-size: clamp(1.8rem, 3.4vw, 2.5rem); font-weight: 600; }
+  .offer-unit { font-size: 0.9rem; color: var(--text-muted); }
+  .offer.flagship .offer-unit { color: var(--on-dark-muted); }
+  .offer-rec { font-size: 0.95rem; color: var(--brand-strong); font-weight: 600; margin-bottom: 1.1rem; }
+  .offer.flagship .offer-rec { color: var(--brand-2); }
+  .offer-who { font-size: 0.98rem; line-height: 1.55; color: var(--text-muted); flex: 1; margin-bottom: 1.4rem; }
+  .offer-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--brand-strong); align-self: flex-start; }
+  .offer.flagship .offer-cta { color: #fff; }
+  .offer-cta :global(svg) { width: 17px; height: 17px; transition: transform .2s ease; }
+  .offer-cta:hover :global(svg) { transform: translateX(4px); }
+  .addons { margin-top: clamp(2.4rem, 4vw, 3.4rem); border-top: 1px solid var(--line); padding-top: 1.8rem; }
+  .addons-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 1rem; }
+  .addons ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 2rem; }
+  .addons li { font-size: 0.95rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
+  .addons li::before { content: "—"; position: absolute; left: 0; color: var(--brand); }
+
+  .why-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 5vw, 4.5rem); margin-top: clamp(2.6rem, 5vw, 4rem); align-items: start; }
+  .why-copy p { font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.6; color: var(--text); max-width: 46ch; }
+  .diff-list { display: grid; gap: 0.8rem; margin-top: 2rem; }
+  .diff-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 1.02rem; color: var(--text); font-weight: 500; }
+  .diff-list :global(svg) { width: 19px; height: 19px; color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+  .founder { border-left: 2px solid var(--ink); padding-left: clamp(1.4rem, 3vw, 2.4rem); }
+  .founder-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
+  .founder-name { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-top: 0.8rem; }
+  .founder-role { color: var(--brand-strong); font-weight: 600; font-size: 0.95rem; margin-top: 0.2rem; }
+  .founder-bio { font-size: 1.02rem; line-height: 1.65; color: var(--text-muted); margin: 1.2rem 0 1.4rem; }
+
+  .work-list { margin-top: clamp(2.6rem, 5vw, 4rem); }
+  .work-item { border-top: 1px solid rgba(255,255,255,0.12); }
+  .work-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .work-link { display: grid; grid-template-columns: 0.9fr 1.4fr auto; gap: 1rem clamp(1rem, 3vw, 2.5rem); align-items: baseline; padding-block: clamp(1.4rem, 3vw, 2.2rem); transition: padding-left .25s ease; }
+  .work-link:hover { padding-left: 0.8rem; }
+  .work-industry { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-2); }
+  .work-name { font-size: clamp(1.6rem, 4vw, 3rem); line-height: 1; color: #fff; }
+  .work-headline { font-size: 1rem; line-height: 1.4; }
+  .work-go { display: inline-flex; align-items: center; gap: 0.4rem; color: #fff; font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+  .work-go :global(svg) { width: 16px; height: 16px; transition: transform .2s ease; }
+  .work-link:hover .work-go :global(svg) { transform: translateX(4px); }
+
+  .start-cta { margin-top: clamp(2.6rem, 5vw, 4rem); display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
+  .start-note { width: 100%; font-size: 0.9rem; color: var(--text-faint); margin-top: 0.6rem; }
+
+  .final { padding-block: clamp(90px, 14vw, 180px); }
+  .center { text-align: center; }
+  .final-h { font-size: clamp(2.8rem, 10vw, 8rem); line-height: 0.95; }
+  .final-sub { font-size: clamp(1.1rem, 2vw, 1.4rem); margin: 1.6rem auto 0; max-width: 40ch; }
+  .center-actions { justify-content: center; margin-top: 2.6rem; }
+
+  @media (max-width: 860px) {
+    .approach { grid-template-columns: repeat(2, 1fr); }
+    .offers { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .founder { border-left: 0; border-top: 2px solid var(--ink); padding-left: 0; padding-top: 1.6rem; }
+    .work-link { grid-template-columns: 1fr; gap: 0.3rem; }
+    .work-go { margin-top: 0.4rem; }
+    .addons ul { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .approach { grid-template-columns: 1fr; }
+    .pillar, .pillar.alt { grid-template-columns: 1fr; gap: 0.6rem; }
+    .pillar.alt .pillar-n { order: 0; text-align: left; }
+    .pillar.alt .pillar-body { order: 1; }
+    .statement { gap: 0.9rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+</style>

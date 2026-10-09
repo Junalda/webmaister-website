@@ -7,26 +7,33 @@
 export const site = {
   name: "Webmaister",
   legalName: "Webmaister",
-  tagline: "Growth & AI Infrastructure Partner",
+  tagline: "Webbureau in Rotterdam",
   url: "https://www.webmaister.io",
   email: "hello@webmaister.io",
-  phone: "+31(0) 103072175",
+  phone: "+31 10 307 2175",
   phoneHref: "+31103072175",
   whatsapp: "+31 6 43187444",
   whatsappHref: "31643187444", // wa.me format: country code + number, no + or leading 0
   kvk: "87478889",
+  streetAddress: "Galvanistraat 1965",
+  postalCode: "3029 AD",
   city: "Rotterdam",
   region: "Zuid-Holland",
   country: "NL",
-  areaServed: ["Rotterdam", "Zuid-Holland", "Netherlands"],
+  areaServed: ["Rotterdam", "Zuid-Holland", "Nederland"],
+  founder: "Junalda Meiland",
   founded: "2023",
-  // Single canonical company description (boilerplate) reused in the
-  // Organization schema, the home meta description, the footer and About page,
-  // so AI/search engines always read the exact same definition.
+  deliveryTime: "2 tot 4 weken",
+  // [INVULLEN: exacte geo-coördinaten (lat/long) van Galvanistraat 1965, 3029 AD Rotterdam]
+  geo: { lat: "", lng: "" },
+  // ---- One canonical positioning line, used in schema, footer, about & meta. ----
   description:
-    "Webmaister is a Growth & AI Infrastructure Partner based in Rotterdam, the Netherlands. We help ambitious businesses grow with premium websites, AI solutions and automation that attract more customers, save time and increase revenue.",
+    "Webmaister is a Rotterdam web agency building websites, lead generation and AI automation for growing businesses.",
+  descriptionNL:
+    "Webmaister is een webbureau in Rotterdam dat websites, leadgeneratie en AI-automatisering bouwt voor groeiende bedrijven.",
   social: {
     linkedin: "https://www.linkedin.com/company/112275381/",
+    instagram: "", // [INVULLEN: Instagram-profiel-URL]
   },
 };
 
@@ -37,8 +44,35 @@ export const nav = [
   { label: "About", href: "/about/" },
 ];
 
+// ---- Bilingual navigation (NL default at /, EN under /en/). ----
+export const navNL = [
+  { label: "Diensten", href: "/diensten/" },
+  { label: "Cases", href: "/cases/" },
+  { label: "Gids", href: "/gids/" },
+  { label: "Over ons", href: "/over-ons/" },
+  { label: "Contact", href: "/contact/" },
+];
+export const navEN = [
+  { label: "Services", href: "/en/solutions/" },
+  { label: "Work", href: "/en/work/" },
+  { label: "About", href: "/en/about/" },
+  { label: "Contact", href: "/en/contact/" },
+];
+export const ctaNL = { label: "Plan een gesprek", href: "/contact/" };
+export const ctaEN = { label: "Let's Talk Growth", href: "/en/contact/" };
+
 export const ctaPrimary = { label: "Let's Talk Growth", href: "/contact/" };
 export const ctaSecondary = { label: "Explore Our Services", href: "/solutions/" };
+
+// Testimonials. Quotes are placeholders until the client confirms the exact
+// wording; the Testimonials component only renders entries with confirmed:true,
+// so no self-written or unconfirmed quote is ever shown (and no Review schema).
+export const testimonials = [
+  { name: "Tony Hoekstra & Gerbrand van de Weerd", role: "Oprichters", company: "NursiTree", caseSlug: "nursitree", quote: "[INVULLEN: echte, bevestigde quote van Tony Hoekstra of Gerbrand van de Weerd]", confirmed: false },
+  { name: "Esther Macnack", role: "Oprichter", company: "Queenly Events", caseSlug: "queenly-events", quote: "[INVULLEN: echte, bevestigde quote van Esther Macnack]", confirmed: false },
+  { name: "Gabriel Snijders", role: "Oprichter", company: "Capture the Moment Solutions", caseSlug: "capture-the-moment-solutions", quote: "[INVULLEN: echte, bevestigde quote van Gabriel Snijders]", confirmed: false },
+  { name: "Esther Macnack", role: "Oprichter", company: "Hope & Love Foundation", caseSlug: "hope-love-foundation", quote: "[INVULLEN: echte, bevestigde quote van Esther Macnack]", confirmed: false },
+];
 
 // ---- The three pillars (ecosystem) ----
 export const pillars = [
@@ -206,32 +240,10 @@ export const caseStudies: CaseStudy[] = [
     outcome:
       "Queenly Events now has a digital presence that reflects the quality and sophistication of the experiences they create. The website supports their goal of attracting higher-value clients and strengthening their market position.",
     quote: "Luxury is not about saying you're premium. It's about making people feel it.",
-    website: { label: "queenlyevent.nl", href: "https://queenlyevent.nl" },
+    website: { label: "queenlyevents.nl", href: "https://queenlyevents.nl" },
     founders: [
       { name: "Esther Macnack", href: "https://www.linkedin.com/in/esther-macnack-1a0332296/" },
     ],
-  },
-  {
-    slug: "yiska-cleaning",
-    company: "Yiska Cleaning",
-    industry: "Commercial Cleaning Services",
-    cardIndustry: "Commercial Services",
-    cardText: "Creating a professional online presence designed for long-term growth.",
-    headline: "Creating a Professional Brand Built for Growth",
-    challenge:
-      "Yiska Cleaning wanted to move beyond being seen as just another cleaning company. The company needed a professional online presence capable of building trust with businesses and supporting future expansion.",
-    solutionIntro:
-      "Webmaister created a modern business platform focused on professionalism, reliability and credibility. The website was designed to:",
-    solutionPoints: [
-      "Increase trust",
-      "Showcase services clearly",
-      "Support lead generation",
-      "Improve local visibility",
-      "Present the company professionally",
-    ],
-    outcome:
-      "Yiska Cleaning now has a stronger digital presence that aligns with its ambition to become a trusted cleaning partner for businesses. The company is positioned to grow with confidence while presenting a more professional image to prospective clients.",
-    quote: "Professional companies deserve professional digital foundations.",
   },
   {
     slug: "capture-the-moment-solutions",
@@ -426,7 +438,7 @@ export const startOptions = [
 export const faqs = [
   {
     q: "Is Webmaister a web design agency?",
-    a: "No. Webmaister is a Growth & AI Infrastructure Partner. We build the complete digital foundation that helps businesses grow premium websites, growth and SEO systems, and Brainy AI automation not just websites.",
+    a: "Not only. Webmaister is a Rotterdam web agency that builds websites, lead generation and AI automation for growing businesses. We build the complete digital foundation that helps a business attract and convert customers, not just a website.",
   },
   {
     q: "What is Brainy?",

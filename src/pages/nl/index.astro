@@ -2,7 +2,8 @@
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
-import { site, nlLandings } from "@/data/site";
+import { site } from "@/data/site";
+import { services } from "@/data/services";
 
 const title = "Diensten in Rotterdam · Webdesign, SEO & AI-automatisering";
 const description =
@@ -17,7 +18,7 @@ const jsonLd = {
   isPartOf: { "@id": `${site.url}/#website` },
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: nlLandings.map((p, i) => ({
+    itemListElement: services.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: p.keyword,
@@ -53,7 +54,7 @@ const jsonLd = {
         <span class="nl-card-link">Ontdek het acquisitiesysteem <Icon name="arrow" /></span>
       </a>
       <div class="nl-grid">
-        {nlLandings.map((p) => (
+        {services.map((p) => (
           <a class="nl-card card" href={`/nl/${p.slug}/`} data-reveal>
             <h3>{p.keyword}</h3>
             <p>{p.lead}</p>
