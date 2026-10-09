@@ -167,31 +167,67 @@ const bannerItems = [
       <h2 class="disp s-h center-h" data-reveal data-delay="60">One customer pays for it.</h2>
 
       <div class="math-card" data-reveal data-delay="120">
-        <p class="math-say">Say one new customer is worth <strong>€2,000</strong> to you.</p>
-        <p class="math-note">An example, swap in your own number. Based on the monthly fee.</p>
+        <p class="math-say">Say one new customer is worth
+          <span class="math-input-wrap">€<input id="cv" class="math-input" type="number" value="2000" min="100" step="100" aria-label="What one new customer is worth to you, in euro" /></span>
+          to you.</p>
+        <p class="math-note">Change the number, the math updates. Based on the monthly fee.</p>
 
         <div class="math-grid">
-          <article class="math-tier">
+          <article class="math-tier" data-fee="300">
             <span class="mt-label">Growth Essentials · €300/mo</span>
-            <p class="mt-num"><span class="disp">0.15</span><span class="mt-unit">of a customer</span></p>
+            <p class="mt-num"><span class="disp mt-value">0.15</span><span class="mt-unit">new customers / mo</span></p>
             <div class="mt-bar"><span style="width:15%"></span><i class="mt-mark"></i></div>
-            <span class="mt-foot">a month. One new customer covers about 7 months.</span>
+            <span class="mt-foot">One new customer covers about 7 months.</span>
           </article>
-          <article class="math-tier math-tier--dark">
+          <article class="math-tier math-tier--dark" data-fee="1600">
             <span class="mt-label">Growth Partnership · €1,600/mo</span>
-            <p class="mt-num"><span class="disp">0.8</span><span class="mt-unit">of a customer</span></p>
+            <p class="mt-num"><span class="disp mt-value">0.8</span><span class="mt-unit">new customers / mo</span></p>
             <div class="mt-bar"><span style="width:80%"></span><i class="mt-mark"></i></div>
-            <span class="mt-foot">a month. One new customer covers the month, with room to spare.</span>
+            <span class="mt-foot">One new customer covers the month, with room to spare.</span>
           </article>
         </div>
 
-        <p class="math-after"><strong>Less than one new customer a month covers either package.</strong> Everything above that is upside.</p>
+        <p class="math-after"><strong id="math-after-lead">Less than one new customer a month covers either package.</strong> Everything above that is upside.</p>
         <div class="math-guarantee">
           <span class="mg-badge">Guaranteed</span>
           <span>The €2,700 setup is one-time, and you get it back if we don't hit the goals we agree on within six months.</span>
         </div>
       </div>
     </div>
+
+    <script is:inline>
+      (function () {
+        var input = document.getElementById("cv");
+        if (!input) return;
+        var tiers = document.querySelectorAll(".math-tier[data-fee]");
+        var lead = document.getElementById("math-after-lead");
+        function fmt(n) { if (n > 0 && n < 0.01) return "<0.01"; return (Math.round(n * 100) / 100).toString(); }
+        function render() {
+          var v = parseFloat(input.value);
+          if (!isFinite(v) || v < 100) v = 100;
+          tiers.forEach(function (t) {
+            var fee = parseFloat(t.getAttribute("data-fee"));
+            var perMo = fee / v;
+            var months = v / fee;
+            t.querySelector(".mt-value").textContent = fmt(perMo);
+            t.querySelector(".mt-bar > span").style.width = Math.min(perMo, 1) * 100 + "%";
+            var foot;
+            if (months >= 1) {
+              var m = Math.round(months);
+              foot = m >= 2 ? "One new customer covers about " + m + " months." : "One new customer covers the month, with room to spare.";
+            } else {
+              foot = "You'd need about " + fmt(perMo) + " new customers a month.";
+            }
+            t.querySelector(".mt-foot").textContent = foot;
+          });
+          lead.textContent = v >= 1600
+            ? "Less than one new customer a month covers either package."
+            : "A couple of new customers a month and it pays for itself.";
+        }
+        input.addEventListener("input", render);
+        render();
+      })();
+    </script>
   </section>
 
   <!-- 07 · FAQ -->
@@ -332,6 +368,10 @@ const bannerItems = [
   .math-card { margin-top: clamp(2rem, 4vw, 3rem); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-xl); padding: clamp(1.6rem, 4vw, 2.8rem); box-shadow: var(--shadow-md); }
   .math-say { font-size: clamp(1.2rem, 2.6vw, 1.7rem); color: var(--ink); line-height: 1.4; font-weight: 400; }
   .math-say strong { color: var(--brand-strong); font-weight: 700; }
+  .math-input-wrap { display: inline-flex; align-items: baseline; color: var(--brand-strong); font-weight: 700; }
+  .math-input { width: 6ch; font: inherit; font-weight: 700; color: var(--brand-strong); background: transparent; border: none; border-bottom: 2px solid var(--brand); padding: 0 0.1em; text-align: left; -moz-appearance: textfield; appearance: textfield; }
+  .math-input:focus { outline: none; border-bottom-color: var(--brand-strong); background: var(--bg-tint); border-radius: 4px 4px 0 0; }
+  .math-input::-webkit-outer-spin-button, .math-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   .math-note { margin-top: 0.4rem; font-size: 0.9rem; color: var(--text-faint); }
   .math-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: clamp(1.6rem, 3.5vw, 2.4rem); }
   .math-tier { border: 1px solid var(--line); border-radius: var(--r-lg); padding: clamp(1.3rem, 2.8vw, 1.9rem); background: var(--bg); }

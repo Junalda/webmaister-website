@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
+import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import { site, framework } from "@/data/site";
 import { alternatesFor } from "@/i18n";
@@ -46,9 +47,9 @@ const services = [
             <span class="cc-ic"><Icon name="mail" /></span>
             <span><strong>Email us</strong><em>{site.email}</em></span>
           </a>
-          <a class="contact-card" href={`tel:${site.phoneHref}`}>
-            <span class="cc-ic"><Icon name="phone" /></span>
-            <span><strong>Call us</strong><em>{site.phone}</em></span>
+          <a class="contact-card" href={`https://wa.me/${site.whatsappHref}`} target="_blank" rel="noopener noreferrer">
+            <span class="cc-ic"><WhatsAppIcon /></span>
+            <span><strong>WhatsApp</strong><em>{site.whatsapp}</em></span>
           </a>
           <div class="contact-card static">
             <span class="cc-ic"><Icon name="shield" /></span>
