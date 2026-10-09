@@ -405,11 +405,12 @@ export const startOptions = [
     packages: [
       {
         name: "Growth Essentials",
-        tagline: "Steady leads, low commitment.",
+        tagline: "Steady leads, lighter touch.",
         price: "€300",
         priceNote: "per month",
-        terms: "Month-to-month · cancel anytime",
-        forWho: "A low-risk way to keep your customer acquisition improving every month.",
+        setup: "€2,700 one-time setup",
+        terms: "Month-to-month after setup",
+        forWho: "A lower-cost way to keep your customer acquisition improving every month.",
         includes: [
           "Lead generation and acquisition support",
           "Monthly funnel and conversion optimization",
@@ -442,6 +443,10 @@ export const startOptions = [
         cta: "Build my growth engine",
       },
     ],
+    guarantee: {
+      title: "6-month results guarantee",
+      text: "Both packages start with the same €2,700 setup, and it's protected. We agree on clear, measurable goals before we start. If we don't deliver them within six months, you get your €2,700 setup fee back, based on the goals we document together. That's how sure we are it works.",
+    },
     note: "This is a business growth and acquisition service, not a website development package. Website development, advertising budgets and third-party tools are not automatically included.",
   },
   {
