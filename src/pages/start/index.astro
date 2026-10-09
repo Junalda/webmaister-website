@@ -168,7 +168,7 @@ const bannerItems = [
 
       <div class="math-card" data-reveal data-delay="120">
         <p class="math-say">Say one new customer is worth
-          <span class="math-input-wrap">€<input id="cv" class="math-input" type="number" value="2000" min="100" step="100" aria-label="What one new customer is worth to you, in euro" /></span>
+          <span class="math-input-wrap">€<input id="cv" class="math-input" type="number" value="2000" min="1" step="50" aria-label="What one new customer is worth to you, in euro" /></span>
           to you.</p>
         <p class="math-note">Change the number, the math updates. Based on the monthly fee.</p>
 
@@ -204,7 +204,7 @@ const bannerItems = [
         function fmt(n) { if (n > 0 && n < 0.01) return "<0.01"; return (Math.round(n * 100) / 100).toString(); }
         function render() {
           var v = parseFloat(input.value);
-          if (!isFinite(v) || v < 100) v = 100;
+          if (!isFinite(v) || v < 1) v = 1;
           tiers.forEach(function (t) {
             var fee = parseFloat(t.getAttribute("data-fee"));
             var perMo = fee / v;
