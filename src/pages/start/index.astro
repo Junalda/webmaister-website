@@ -34,8 +34,21 @@ const bannerItems = [
         </p>
         <div class="hero-actions" data-reveal data-delay="180">
           <Button href="#offer" variant="brand" size="lg" arrow>See what you need</Button>
-          <Button href="#math" variant="ghost" size="lg">Master the math</Button>
           <WhatsAppButton label="WhatsApp us" />
+        </div>
+        <div class="hero-calc" data-reveal data-delay="240">
+          <a class="calc-cta" href="#math">
+            See what your growth could look like
+            <Icon name="arrow" class="calc-ic" />
+          </a>
+          <p class="calc-sub">Explore your options in just 2 minutes. No commitment.</p>
+          <span class="calc-hand" aria-hidden="true">
+            <svg class="calc-hand-arrow" viewBox="0 0 90 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M82 40 C 52 44 16 40 9 13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M9 13 L 4 25 M9 13 L 21 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="calc-hand-note">play with your own numbers</span>
+          </span>
         </div>
       </div>
       <div class="hero-photo" data-reveal data-delay="120">
@@ -278,6 +291,17 @@ const bannerItems = [
   .hero-h { font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: 0.98; margin: 0; color: var(--ink); font-weight: 400; }
   .hero-sub { margin-top: 1.8rem; font-size: clamp(1.08rem, 1.8vw, 1.3rem); line-height: 1.65; color: var(--text-muted); max-width: 46ch; }
   .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: center; margin-top: 2.4rem; }
+
+  /* Creative CTA to the interactive calculator. */
+  .hero-calc { margin-top: 1.8rem; max-width: 480px; }
+  .calc-cta { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.95rem 1.5rem; border-radius: var(--r-pill); background: var(--grad-brand); color: #fff; font-weight: 650; font-size: 1.05rem; box-shadow: var(--shadow-brand); transition: transform .2s ease, box-shadow .2s ease; }
+  .calc-cta:hover { transform: translateY(-2px); box-shadow: 0 24px 56px -18px rgba(10, 142, 242, 0.5); }
+  .calc-cta :global(svg) { width: 18px; height: 18px; transform: rotate(-45deg); transition: transform .2s ease; }
+  .calc-cta:hover :global(svg) { transform: rotate(-45deg) translate(2px, -2px); }
+  .calc-sub { margin-top: 0.75rem; font-size: 0.92rem; color: var(--text-muted); }
+  .calc-hand { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.3rem; color: var(--brand-strong); }
+  .calc-hand-arrow { width: 52px; height: 26px; flex-shrink: 0; }
+  .calc-hand-note { font-family: "Caveat", "Comic Sans MS", cursive; font-size: 1.4rem; font-weight: 600; line-height: 1; transform: rotate(-3deg); white-space: nowrap; }
 
   .hero-photo { position: relative; }
   .hero-photo::before { content: ""; position: absolute; inset: auto -16px -16px auto; width: 74%; height: 74%; background: var(--bg-tint); border-radius: var(--r-xl); z-index: 0; }
