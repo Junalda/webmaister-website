@@ -64,7 +64,9 @@ const { o } = Astro.props;
 <style>
   /* Matches the light, fresh /start treatment: warm paper canvas, elegant serif
      display, fine hairlines and a calm brand accent. Content unchanged. */
-  .disp { font-family: var(--font-display); font-optical-sizing: auto; font-weight: 500; letter-spacing: -0.018em; }
+  /* Classic, calm serif (as shown in the approved preview) instead of
+     Fraunces — web-safe, no external font load. */
+  .disp { font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -0.012em; }
 
   .kicker { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brand); margin-bottom: 1.3rem; }
   .kicker-rule { width: 30px; height: 1.5px; background: var(--grad-brand); display: inline-block; border-radius: 2px; }
