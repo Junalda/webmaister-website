@@ -387,27 +387,60 @@ export const startOptions = [
   {
     slug: "growth",
     choice: "I need more customers and leads",
-    service: "Growth Strategist",
-    priceLine: "€1,600/mo · 6-month commitment",
+    service: "Growth & Lead Generation",
+    priceLine: "2 packages · from €300/mo",
     benefit: "Build a predictable system for sustainable business growth.",
     cta: "Discuss my growth",
-    title: "Growth Strategist: a predictable acquisition system | Webmaister",
+    title: "Growth & lead generation: two packages to bring in customers | Webmaister",
     description:
-      "An ongoing partnership that builds a predictable system for sustainable business growth. €1,600/month, minimum six months. Let's talk.",
-    price: "€1,600",
-    priceNote: "per month · minimum 6 months",
-    lead: "An ongoing partnership that builds a predictable system for sustainable business growth.",
+      "Two clear ways to get more customers and leads: Growth Essentials at €300/month, or the done-for-you Growth Partnership at €2,700 setup + €1,600/month. Let's talk.",
+    lead: "Two clear ways to get more customers and leads. Start light, or let us build and run the whole acquisition engine for you.",
     forText:
       "For established businesses that want to move beyond referrals and inconsistent customer acquisition.",
     problem:
       "Your growth depends too much on referrals and chance, and you want a system that brings in the right customers consistently.",
-    includes: [
-      "Business and growth strategy",
-      "Positioning and offer optimization",
-      "Lead generation and acquisition strategy",
-      "Sales funnel optimization",
-      "Recurring revenue opportunities",
-      "Performance reviews and strategic guidance",
+    // Two packages, priced so the choice is a no-brainer: Essentials is a
+    // low-risk, month-to-month entry; the Partnership builds the full system
+    // once (€2,700 setup) and then runs it (€1,600/mo).
+    packages: [
+      {
+        name: "Growth Essentials",
+        tagline: "Steady leads, low commitment.",
+        price: "€300",
+        priceNote: "per month",
+        terms: "Month-to-month · cancel anytime",
+        forWho: "A low-risk way to keep your customer acquisition improving every month.",
+        includes: [
+          "Lead generation and acquisition support",
+          "Monthly funnel and conversion optimization",
+          "Positioning and offer feedback",
+          "Performance tracking and reporting",
+        ],
+        cta: "Start with Essentials",
+      },
+      {
+        name: "Growth Partnership",
+        tagline: "A done-for-you acquisition engine.",
+        price: "€1,600",
+        priceNote: "per month",
+        setup: "€2,700 one-time setup",
+        setupIncludes:
+          "We build your acquisition system once: positioning, offer, funnel, campaigns and automation, set up and ready to bring in customers.",
+        terms: "Minimum 6 months",
+        popular: true,
+        forWho: "The full system, built and run for you until the right customers come in predictably.",
+        includesLabel: "Everything in Essentials, plus:",
+        includes: [
+          "A dedicated growth strategist",
+          "Active campaign and acquisition management",
+          "Full business and growth strategy",
+          "Sales funnel optimization",
+          "Recurring revenue opportunities",
+          "Performance reviews and strategic guidance",
+        ],
+        valueNote: "For most businesses, a single new customer covers the monthly fee.",
+        cta: "Build my growth engine",
+      },
     ],
     note: "This is a business growth and acquisition service, not a website development package. Website development, advertising budgets and third-party tools are not automatically included.",
   },
