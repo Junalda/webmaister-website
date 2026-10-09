@@ -26,7 +26,7 @@ const { o } = Astro.props;
       {o.packages && (
         <div class="opt-price" data-reveal data-delay="180">
           <span class="opt-price-value disp">from {o.packages[0].price}</span>
-          <span class="opt-price-note">{o.packages[0].priceNote} · {o.packages.length} packages</span>
+          <span class="opt-price-note">per month + €2,700 setup · {o.packages.length} packages</span>
         </div>
       )}
     </div>
@@ -75,6 +75,15 @@ const { o } = Astro.props;
               </article>
             ))}
           </div>
+          {o.guarantee && (
+            <div class="pkg-guarantee">
+              <span class="pg-icon"><Icon name="check" /></span>
+              <div class="pg-body">
+                <span class="pg-title">{o.guarantee.title}</span>
+                <p>{o.guarantee.text}</p>
+              </div>
+            </div>
+          )}
           {o.note && <p class="opt-note">{o.note}</p>}
         </div>
       ) : (
@@ -165,6 +174,13 @@ const { o } = Astro.props;
   .pkg-value { font-size: 0.92rem; line-height: 1.5; color: var(--brand-strong); font-weight: 600; background: var(--bg-tint); border-radius: var(--r-md); padding: 0.7rem 0.9rem; margin-bottom: 1.3rem; }
   .pkg :global(.btn) { margin-top: auto; align-self: flex-start; }
   .pkg--featured :global(.btn) { align-self: stretch; justify-content: center; }
+
+  /* Shared results guarantee under both packages. */
+  .pkg-guarantee { display: flex; gap: 1.1rem; align-items: flex-start; margin-top: clamp(1.4rem, 3vw, 2rem); padding: clamp(1.3rem, 3vw, 1.8rem) clamp(1.4rem, 3vw, 2rem); background: var(--ink); color: var(--on-dark); border-radius: var(--r-lg); }
+  .pg-icon { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--grad-brand); }
+  .pg-icon :global(svg) { width: 20px; height: 20px; color: #fff; }
+  .pg-title { display: block; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.2rem, 2.4vw, 1.55rem); color: #fff; font-weight: 500; margin-bottom: 0.4rem; }
+  .pg-body p { font-size: 1rem; line-height: 1.6; color: var(--on-dark-muted); margin: 0; }
 
   @media (max-width: 680px) {
     .opt-grid { grid-template-columns: 1fr; gap: 2.2rem; }
