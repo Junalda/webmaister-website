@@ -82,7 +82,7 @@ export const services: ServicePage[] = [
   {
     slug: "webdesign-rotterdam",
     keyword: "Webdesign Rotterdam",
-    title: "Webdesign Rotterdam — premium, conversiegericht ontwerp | Webmaister",
+    title: "Webdesign Rotterdam, premium, conversiegericht ontwerp | Webmaister",
     description: "Webdesign in Rotterdam dat vertrouwen wekt en converteert. Premium, mobiel-first ontwerp vanaf €500 setup + €150/mnd. Levertijd 2–4 weken. Plan een gratis gesprek.",
     h1: "Webdesign in Rotterdam",
     lead: "Webdesign in Rotterdam betekent bij Webmaister een premium, conversiegericht ontwerp dat in seconden vertrouwen wekt. Een ontwerptraject start vanaf €500 setup plus €150 per maand (one-pager) of €2.700 setup plus €300 per maand voor een volledige website.",
@@ -130,7 +130,7 @@ export const services: ServicePage[] = [
   {
     slug: "seo-rotterdam",
     keyword: "SEO Rotterdam",
-    title: "SEO Rotterdam — hoger in Google, meer aanvragen | Webmaister",
+    title: "SEO Rotterdam, hoger in Google, meer aanvragen | Webmaister",
     description: "SEO in Rotterdam die klanten oplevert die actief zoeken. Technische SEO, lokale SEO en conversie als één groeisysteem. Plan een gratis gesprek met Webmaister.",
     h1: "SEO in Rotterdam",
     lead: "SEO in Rotterdam zorgt dat klanten die actief zoeken bij jou terechtkomen in plaats van bij de concurrent. Bij Webmaister is SEO geen los trucje, maar onderdeel van een groeisysteem; het werkt het beste in combinatie met een snelle, converterende website. Een SEO-traject stemmen we af op je budget en doelen.",
@@ -177,7 +177,7 @@ export const services: ServicePage[] = [
   {
     slug: "ai-automatisering-rotterdam",
     keyword: "AI-automatisering Rotterdam",
-    title: "AI-automatisering Rotterdam — minder handwerk, meer groei | Webmaister",
+    title: "AI-automatisering Rotterdam, minder handwerk, meer groei | Webmaister",
     description: "AI-automatisering voor bedrijven in Rotterdam: leads kwalificeren, 24/7 vragen beantwoorden en administratie automatiseren. Opschalen zonder meer personeel. Plan een gesprek.",
     h1: "AI-automatisering in Rotterdam",
     lead: "AI-automatisering in Rotterdam laat je bedrijf groeien zonder dat je meer mensen hoeft aan te nemen. Bij Webmaister automatiseren we het terugkerende werk, zoals leads opvangen, vragen beantwoorden en administratie, met systemen die dag en nacht doorwerken tegen een fractie van de kosten.",
@@ -225,7 +225,7 @@ export const services: ServicePage[] = [
   {
     slug: "ai-agent-rotterdam",
     keyword: "AI-agent Rotterdam",
-    title: "AI-agent laten bouwen in Rotterdam — 24/7 een digitale medewerker | Webmaister",
+    title: "AI-agent laten bouwen in Rotterdam, 24/7 een digitale medewerker | Webmaister",
     description: "Een AI-agent voor je bedrijf in Rotterdam: vangt leads op, beantwoordt vragen 24/7 in elke taal en plant afspraken in. Een digitale medewerker die altijd doorwerkt.",
     h1: "AI-agent in Rotterdam",
     lead: "Een AI-agent in Rotterdam werkt als een digitale medewerker die 24/7 doorgaat: hij vangt leads op, beantwoordt klantvragen in elke taal, plant afspraken in en volgt op, zodat geen aanvraag koud wordt. Een AI-agent bouwen we meestal als onderdeel van een leadgeneratie- of automatiseringstraject.",
@@ -321,7 +321,7 @@ export const services: ServicePage[] = [
   {
     slug: "geo-optimalisatie",
     keyword: "GEO-optimalisatie",
-    title: "GEO-optimalisatie — vindbaar worden in ChatGPT, Claude & Perplexity | Webmaister",
+    title: "GEO-optimalisatie, vindbaar worden in ChatGPT, Claude & Perplexity | Webmaister",
     description: "GEO (Generative Engine Optimization): word genoemd door ChatGPT, Claude, Gemini en Perplexity. Webmaister maakt je bedrijf duidelijk en citeerbaar voor AI-assistenten.",
     h1: "GEO-optimalisatie: vindbaar in ChatGPT, Claude en Perplexity",
     lead: "GEO-optimalisatie (Generative Engine Optimization) zorgt dat je bedrijf wordt genoemd als relevante optie wanneer mensen een vraag stellen aan AI-assistenten zoals ChatGPT, Claude, Gemini en Perplexity. Waar SEO draait om posities in Google, draait GEO om duidelijk, betrouwbaar en citeerbaar zijn voor machines.",
