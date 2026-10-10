@@ -39,10 +39,10 @@ Daarom begint een goed traject niet met een prijslijst, maar met een analyse van
 
 In de praktijk zit [AI-automatisering](/nl/ai-automatisering-rotterdam/) vaak in een groter geheel:
 
-- **Leadgeneratiesysteem** (inclusief opvolging en automatisering) — vanaf €5.000 setup + €500/mnd
-- **Growth Strategist** (doorlopende aansturing) — vanaf €1.600/mnd
-- **Automatisering op maat** — op aanvraag, afhankelijk van de scope
-- **Strategiesessie** (om te bepalen waar te beginnen) — €350
+- **Leadgeneratiesysteem** (inclusief opvolging en automatisering), vanaf €5.000 setup + €500/mnd
+- **Growth Strategist** (doorlopende aansturing), vanaf €1.600/mnd
+- **Automatisering op maat**, op aanvraag, afhankelijk van de scope
+- **Strategiesessie** (om te bepalen waar te beginnen), €350
 
 Een losse [AI-agent](/nl/ai-agent-rotterdam/) die vragen beantwoordt en leads opvangt, bouwen we meestal als onderdeel van zo'n traject.
 

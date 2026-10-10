@@ -1,4 +1,4 @@
-# Webmaister — open to crawlers and AI search assistants
+# Webmaister, open to crawlers and AI search assistants
 User-agent: *
 Allow: /
 

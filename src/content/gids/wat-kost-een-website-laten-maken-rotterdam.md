@@ -28,10 +28,10 @@ Een website is voor veel bedrijven de belangrijkste investering in hun online aa
 
 Bij [Webmaister](/nl/website-laten-maken-rotterdam/) werken we met vaste, transparante pakketten:
 
-- **Starter Website / One-Pager** — vanaf €500 setup + €150 per maand
-- **Growth Website (volledig, meerdere pagina's)** — vanaf €2.700 setup + €300 per maand
-- **Leadgeneratiesysteem** — vanaf €5.000 setup + €500 per maand
-- **E-commerce** — vanaf €2.500 setup
+- **Starter Website / One-Pager**, vanaf €500 setup + €150 per maand
+- **Growth Website (volledig, meerdere pagina's)**, vanaf €2.700 setup + €300 per maand
+- **Leadgeneratiesysteem**, vanaf €5.000 setup + €500 per maand
+- **E-commerce**, vanaf €2.500 setup
 
 De setup is het eenmalige bedrag voor ontwerp en bouw. Het maandbedrag dekt hosting, onderhoud, beveiliging en kleine aanpassingen. Zo betaal je niet alles in één keer en blijft je website na livegang in goede staat.
 

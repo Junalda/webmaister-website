@@ -13,7 +13,7 @@ const services = [
   "Growth Website",
   "Business Strategy Session",
   "Growth Strategist",
-  "Not sure — help me choose",
+  "Not sure, help me choose",
 ];
 ---
 <Base
@@ -215,7 +215,7 @@ const services = [
     upgrade: "Growth Website",
     "strategy-session": "Business Strategy Session",
     growth: "Growth Strategist",
-    "not-sure": "Not sure — help me choose",
+    "not-sure": "Not sure, help me choose",
   };
   const picked = new URLSearchParams(location.search).get("service");
   if (picked && serviceMap[picked]) {

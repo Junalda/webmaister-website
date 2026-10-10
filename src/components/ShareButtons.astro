@@ -104,11 +104,11 @@ const xHref = `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(title
           await navigator.share({ title, url });
           return;
         } catch {
-          /* cancelled/unsupported — fall through to copy */
+          /* cancelled/unsupported, fall through to copy */
         }
       }
       const ok = await copy(url);
-      showToast(btn, ok ? "Link gekopieerd — plak 'm in Instagram" : "Kopiëren niet gelukt");
+      showToast(btn, ok ? "Link gekopieerd, plak 'm in Instagram" : "Kopiëren niet gelukt");
     });
   });
 
