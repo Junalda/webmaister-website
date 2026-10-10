@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { site } from "@/data/site";
 
-// On-demand (server) route — never prerendered, so the Resend API key stays
+// On-demand (server) route, never prerendered, so the Resend API key stays
 // server-side only.
 export const prerender = false;
 
@@ -59,10 +59,10 @@ export const POST: APIRoute = async ({ request }) => {
   const rows: [string, string][] = [
     ["Name", name],
     ["Email", email],
-    ["Company", company || "—"],
-    ["Phone", phone || "—"],
+    ["Company", company || "-"],
+    ["Phone", phone || "-"],
     ["Interest", interest],
-    ["Message", message || "—"],
+    ["Message", message || "-"],
   ];
   const html = `
     <div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;color:#0a0b12">

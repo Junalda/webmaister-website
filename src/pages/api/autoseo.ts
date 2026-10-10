@@ -338,7 +338,7 @@ export const GET: APIRoute = async ({ request }) => {
       url.searchParams.get("token") ||
       "";
     if (!WEBHOOK_TOKEN || provided !== WEBHOOK_TOKEN) {
-      info.github = { ok: false, reason: "unauthorized — append &token=YOUR_AUTOSEO_TOKEN" };
+      info.github = { ok: false, reason: "unauthorized, append &token=YOUR_AUTOSEO_TOKEN" };
     } else {
       info.github = await checkGithub();
     }
