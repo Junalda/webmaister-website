@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
+import ContactSpamGuard from "@/components/ContactSpamGuard.astro";
 import { site, framework } from "@/data/site";
 import { alternatesFor } from "@/i18n";
 
@@ -106,8 +107,7 @@ const services = [
             <textarea id="message" name="message" rows="4" placeholder="What would success look like in the next 6 months?"></textarea>
           </div>
 
-          <!-- honeypot for spam bots -->
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+          <ContactSpamGuard />
 
           <button type="submit" class="btn btn-brand btn-lg form-submit">
             <span class="submit-label">Book my Growth Strategy Call</span>
@@ -185,7 +185,6 @@ const services = [
     box-shadow: 0 0 0 3px rgba(10,142,242,0.12);
   }
   .field input:user-invalid, .field select:user-invalid { border-color: #e5484d; }
-  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
   .form-submit { width: 100%; margin-top: 0.5rem; }
   .form-submit :global(svg) { width: 18px; height: 18px; }
   .form-fine { font-size: 0.78rem; color: var(--text-faint); text-align: center; margin-top: 0.9rem; }
@@ -228,6 +227,8 @@ const services = [
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const success = document.getElementById("form-success");
   const errorBox = document.getElementById("form-error");
+  const startedInput = form?.elements.namedItem("form_started_at") as HTMLInputElement | null;
+  if (startedInput && !startedInput.value) startedInput.value = String(Date.now());
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -236,7 +237,6 @@ const services = [
       form.reportValidity();
       return;
     }
-    if ((form.elements.namedItem("_gotcha") as HTMLInputElement)?.value) return; // bot
 
     const btn = form.querySelector(".form-submit") as HTMLButtonElement;
     const label = form.querySelector(".submit-label");
@@ -261,6 +261,7 @@ const services = [
       if (res.ok && result.ok) {
         if (success) success.hidden = false;
         form.reset();
+        if (startedInput) startedInput.value = String(Date.now());
       } else {
         showError(result.error || "Something went wrong. Please try again or email us directly.");
       }

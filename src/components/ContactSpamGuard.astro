@@ -1,0 +1,57 @@
+---
+// Invisible spam controls for the contact forms. Nothing here is shown
+// unless Turnstile is configured and Cloudflare asks for an interaction.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
+---
+
+<div class="hp" aria-hidden="true">
+  <label for="website">Website</label>
+  <input
+    id="website"
+    name="website"
+    type="text"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    value=""
+  />
+</div>
+
+<input type="hidden" name="form_started_at" id="form-started-at" value="" />
+<script is:inline>
+  (function () {
+    var el = document.getElementById("form-started-at");
+    if (el && !el.value) el.value = String(Date.now());
+  })();
+</script>
+
+{
+  turnstileSiteKey && (
+    <>
+      <script
+        is:inline
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+      />
+      <div
+        class="cf-turnstile"
+        data-sitekey={turnstileSiteKey}
+        data-appearance="interaction-only"
+        data-theme="light"
+      />
+    </>
+  )
+}
+
+<style>
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>

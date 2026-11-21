@@ -129,12 +129,28 @@ runs server-side, so the API key never reaches the browser.
    | `RESEND_API_KEY` | Resend API key (required) | `re_...` |
    | `RESEND_FROM` | Verified sender | `Webmaister <noreply@webmaister.io>` |
    | `RESEND_TO` | Where submissions land (defaults to the site email) | `hello@webmaister.io` |
+   | `PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key (optional) | `0x4AAAA...` |
+   | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key (optional) | `0x4AAAA...` |
 
    See `.env.example`. For a quick test you can send from
    `Webmaister <onboarding@resend.dev>` without verifying a domain.
 3. Deploy to Vercel (the adapter is already configured). The endpoint
-   validates input, blocks spam via a honeypot, and returns JSON the form
-   uses to show an inline success or error state.
+   checks a valid email and the required fields, silently drops spam
+   (honeypot field `website`, or a submit faster than 3 seconds), and
+   returns JSON the form uses to show an inline success or error state.
+   Turnstile runs only when both keys above are set. If either is missing,
+   it is skipped and the form still sends.
+
+**Turnstile (Cloudflare, free)**
+
+1. Cloudflare dashboard → **Turnstile** → **Add widget**.
+2. Widget name: `Webmaister`. Hostnames: `webmaister.io` and `www.webmaister.io`.
+   Widget mode: **Managed** (stays invisible unless a visitor looks risky).
+3. Copy the site key into `PUBLIC_TURNSTILE_SITE_KEY` and the secret key into
+   `TURNSTILE_SECRET_KEY` on the Vercel project (Production). Mark the secret
+   as Sensitive.
+4. Redeploy production. Vercel applies new env vars on the next deployment,
+   and the public site key is written into the static pages at build time.
 
 ## Blog (and connecting GetAutoSEO)
 
