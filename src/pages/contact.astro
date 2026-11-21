@@ -2,6 +2,7 @@
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import WhatsAppIcon from "@/components/WhatsAppIcon.astro";
+import ContactSpamGuard from "@/components/ContactSpamGuard.astro";
 import { site, framework } from "@/data/site";
 import { alternatesFor } from "@/i18n";
 
@@ -118,7 +119,7 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
             <textarea id="message" name="message" rows="4" placeholder="Hoe ziet succes er over 6 maanden uit?"></textarea>
           </div>
 
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp" />
+          <ContactSpamGuard />
 
           <button type="submit" class="btn btn-brand btn-lg form-submit">
             <span class="submit-label">Plan mijn gesprek</span>
@@ -167,7 +168,6 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
   .field textarea { resize: vertical; min-height: 96px; }
   .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--brand); background: #fff; box-shadow: 0 0 0 3px rgba(10,142,242,0.12); }
   .field input:user-invalid, .field select:user-invalid { border-color: #e5484d; }
-  .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
   .form-submit { width: 100%; margin-top: 0.5rem; }
   .form-submit :global(svg) { width: 18px; height: 18px; }
   .form-fine { font-size: 0.78rem; color: var(--text-faint); text-align: center; margin-top: 0.9rem; }
@@ -196,12 +196,13 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const success = document.getElementById("form-success");
   const errorBox = document.getElementById("form-error");
+  const startedInput = form?.elements.namedItem("form_started_at") as HTMLInputElement | null;
+  if (startedInput && !startedInput.value) startedInput.value = String(Date.now());
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (errorBox) errorBox.hidden = true;
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    if ((form.elements.namedItem("_gotcha") as HTMLInputElement)?.value) return;
 
     const btn = form.querySelector(".form-submit") as HTMLButtonElement;
     const label = form.querySelector(".submit-label");
@@ -216,7 +217,11 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
         method: "POST", body: new FormData(form), headers: { Accept: "application/json" },
       });
       const result = await res.json().catch(() => ({}));
-      if (res.ok && result.ok) { if (success) success.hidden = false; form.reset(); }
+      if (res.ok && result.ok) {
+        if (success) success.hidden = false;
+        form.reset();
+        if (startedInput) startedInput.value = String(Date.now());
+      }
       else { showError(result.error || "Er ging iets mis. Probeer het opnieuw of mail ons direct."); }
     } catch {
       showError("We konden de server niet bereiken. Controleer je verbinding of mail ons direct.");
