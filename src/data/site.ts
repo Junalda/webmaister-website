@@ -57,6 +57,7 @@ export const site = {
   social: {
     linkedin: "https://www.linkedin.com/company/112275381/",
     instagram: "https://www.instagram.com/webmaister.io",
+    founderLinkedin: "https://www.linkedin.com/in/junalda-m-n-meiland",
   },
 };
 
