@@ -2,12 +2,11 @@
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
-import { site } from "@/data/site";
+import { site, schemaIds, core } from "@/data/site";
 import { services } from "@/data/services";
 
 const title = "Diensten in Rotterdam · Webdesign, SEO & AI-automatisering";
-const description =
-  "Webmaister helpt ambitieuze ondernemers in Rotterdam groeien: premium websites, SEO en AI-automatisering. Bekijk onze diensten en plan een gratis strategiegesprek.";
+const description = core.nl;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -15,7 +14,7 @@ const jsonLd = {
   name: "Diensten in Rotterdam",
   description,
   url: `${site.url}/nl/`,
-  isPartOf: { "@id": `${site.url}/#website` },
+  isPartOf: { "@id": schemaIds.website },
   mainEntity: {
     "@type": "ItemList",
     itemListElement: services.map((p, i) => ({
@@ -33,7 +32,7 @@ const jsonLd = {
       <span class="eyebrow" data-reveal>Rotterdam</span>
       <h1 data-reveal data-delay="60">Jouw groeipartner in Rotterdam</h1>
       <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:640px">
-        Premium websites, vindbaarheid in Google en AI-automatisering, alles om meer klanten aan te trekken en meer tijd over te houden.
+        {core.nl}
       </p>
       <div class="hero-cta" data-reveal data-delay="180">
         <Button href="/contact/" variant="brand" size="lg" arrow>Plan een gratis gesprek</Button>
@@ -47,11 +46,11 @@ const jsonLd = {
         <span class="eyebrow">Onze diensten</span>
         <h2>Waarmee we je helpen groeien</h2>
       </div>
-      <a class="nl-featured card" href="/nl/acquisitiesysteem/" data-reveal>
-        <span class="nl-featured-tag">Onze kernaanpak</span>
-        <h3>Een acquisitiesysteem: website, positionering en leadgeneratie als één geheel</h3>
-        <p>Geen losse onderdelen, maar één systeem dat structureel de juiste klanten aantrekt.</p>
-        <span class="nl-card-link">Ontdek het acquisitiesysteem <Icon name="arrow" /></span>
+      <a class="nl-featured card" href="/start/" data-reveal>
+        <span class="nl-featured-tag">Pakketten</span>
+        <h3>Gevonden worden op Google en in AI</h3>
+        <p>One-Pager €500 + €150 per maand, live binnen 7 dagen. Growth Essentials €2.700 + €300 per maand. Growth Partnership is op aanvraag.</p>
+        <span class="nl-card-link">Bekijk pakketten en prijzen <Icon name="arrow" /></span>
       </a>
       <div class="nl-grid">
         {services.map((p) => (

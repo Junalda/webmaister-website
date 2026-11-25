@@ -5,6 +5,7 @@
 import Button from "@/components/Button.astro";
 import Icon from "@/components/Icon.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import FaqAccordion from "@/components/FaqAccordion.astro";
 import { site, caseStudies } from "@/data/site";
 
 const { t, links } = Astro.props;
@@ -16,9 +17,9 @@ const { t, links } = Astro.props;
     <h1 class="display hero-h" data-reveal data-delay="60" set:html={t.hero.h1} />
     <p class="hero-sub" data-reveal data-delay="120">{t.hero.sub}</p>
     <div class="actions" data-reveal data-delay="180">
-      <Button href={links.contact} variant="primary" size="lg" arrow>{t.hero.ctaPrimary}</Button>
+      <Button href={links.start} variant="primary" size="lg" arrow>{t.hero.ctaSecondary}</Button>
       <WhatsAppButton label={t.whatsapp} />
-      <Button href={links.solutions} variant="ghost" size="lg">{t.hero.ctaSecondary}</Button>
+      <Button href={links.solutions} variant="ghost" size="lg">{t.hero.ctaServices}</Button>
     </div>
   </div>
 </section>
@@ -120,7 +121,7 @@ const { t, links } = Astro.props;
           <p class="offer-price"><span class="display">{o.price}</span> <span class="offer-unit">{o.unit}</span></p>
           <p class="offer-rec">{o.recurring}</p>
           <p class="offer-who">{o.who}</p>
-          <a href={links.contact} class="offer-cta">{o.cta} <Icon name="arrow" /></a>
+          <a href={links.start} class="offer-cta">{o.cta} <Icon name="arrow" /></a>
         </article>
       ))}
     </div>
@@ -148,7 +149,7 @@ const { t, links } = Astro.props;
         <p class="founder-name display">{site.founder}</p>
         <p class="founder-role">{t.why.founderRole}</p>
         <p class="founder-bio">{t.why.founderBio}</p>
-        <a href={`https://wa.me/${site.whatsappHref}`} class="text-link" target="_blank" rel="noopener noreferrer">{t.why.founderLink} <Icon name="arrow" /></a>
+        <a href={links.about} class="text-link">{t.why.founderLink} <Icon name="arrow" /></a>
       </aside>
     </div>
   </div>
@@ -200,15 +201,26 @@ const { t, links } = Astro.props;
   </div>
 </section>
 
+<!-- 08b · FAQ -->
+<section class="section section-soft" id="faq">
+  <div class="container">
+    <p class="kicker" data-reveal>{t.faq.kicker}</p>
+    <h2 class="display sect-h" data-reveal>{t.faq.h2}</h2>
+    <div class="faq-wrap" data-reveal>
+      <FaqAccordion items={t.faq.items} />
+    </div>
+  </div>
+</section>
+
 <!-- 09 · FINAL CTA -->
 <section class="section section-ink final">
   <div class="container center">
     <h2 class="display final-h" data-reveal set:html={t.final.h2} />
     <p class="final-sub dim" data-reveal>{t.final.sub}</p>
     <div class="actions center-actions" data-reveal>
-      <Button href={links.contact} variant="brand" size="lg" arrow>{t.final.ctaPrimary}</Button>
+      <Button href={links.start} variant="brand" size="lg" arrow>{t.final.ctaPrimary}</Button>
       <WhatsAppButton label={t.whatsapp} />
-      <Button href={links.solutions} variant="ghost" size="lg">{t.final.ctaSecondary}</Button>
+      <Button href={links.contact} variant="ghost" size="lg">{t.hero.ctaPrimary}</Button>
     </div>
   </div>
 </section>
@@ -275,6 +287,7 @@ const { t, links } = Astro.props;
   .pillar-items { display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; }
   .pillar-items li { font-size: 0.9rem; color: var(--text); padding: 0.3rem 0.8rem; border: 1px solid var(--line); border-radius: var(--r-pill); }
   .sect-foot { margin-top: clamp(2rem, 4vw, 3rem); }
+  .faq-wrap { margin-top: clamp(2rem, 4vw, 3rem); }
 
   .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1.4rem, 3vw, 2.4rem); margin-top: clamp(2.6rem, 6vw, 4.5rem); }
   .app-step { border-top: 2px solid rgba(255,255,255,0.18); padding-top: 1.2rem; }

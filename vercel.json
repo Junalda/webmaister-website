@@ -8,6 +8,11 @@
     { "source": "/about", "destination": "/over-ons/", "permanent": true },
     { "source": "/about/", "destination": "/over-ons/", "permanent": true },
     { "source": "/start/growth", "destination": "/start/upgrade/", "permanent": true },
-    { "source": "/start/growth/", "destination": "/start/upgrade/", "permanent": true }
+    { "source": "/start/growth/", "destination": "/start/upgrade/", "permanent": true },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    { "source": "/nl/acquisitiesysteem", "destination": "/diensten/", "permanent": true },
+    { "source": "/nl/acquisitiesysteem/", "destination": "/diensten/", "permanent": true },
+    { "source": "/gids/website-of-leadgeneratiesysteem-wat-heb-je-nodig", "destination": "/diensten/", "permanent": true },
+    { "source": "/gids/website-of-leadgeneratiesysteem-wat-heb-je-nodig/", "destination": "/diensten/", "permanent": true }
   ]
 }

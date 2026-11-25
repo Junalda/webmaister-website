@@ -15,9 +15,9 @@ faq:
   - question: "Waarom betaal je een bedrag per maand?"
     answer: "Het maandbedrag dekt hosting, updates, beveiliging, back-ups en doorlopend onderhoud, plus kleine aanpassingen. Zo blijft je site veilig, snel en actueel in plaats van langzaam te verouderen."
   - question: "Hoeveel kost een webshop?"
-    answer: "E-commerce start bij Webmaister vanaf €2.500 setup, een custom e-commerce front-end vanaf €3.500. Terugkerende e-commerce-diensten starten vanaf €350 per maand, afhankelijk van de omvang."
+    answer: "Een webshop publiceren we niet als vast pakket. De gepubliceerde pakketten zijn de One-Pager (€500 + €150 per maand), Growth Essentials (€2.700 + €300 per maand) en Growth Partnership (op aanvraag)."
   - question: "Hoe lang duurt het om een website te laten maken?"
-    answer: "Gemiddeld 2 tot 4 weken, afhankelijk van de omvang en hoe snel content en feedback worden aangeleverd."
+    answer: "Een One-Pager staat binnen 7 dagen live. Voor Growth Essentials en Growth Partnership spreken we de doorlooptijd vooraf af."
   - question: "Is een dure website altijd beter?"
     answer: "Nee. Belangrijker dan de prijs is of de website je doel dient: vertrouwen wekken en bezoekers omzetten in aanvragen. Een te goedkope site kost je vaak meer doordat hij niet converteert of snel vervangen moet worden."
 ---
@@ -28,10 +28,9 @@ Een website is voor veel bedrijven de belangrijkste investering in hun online aa
 
 Bij [Webmaister](/nl/website-laten-maken-rotterdam/) werken we met vaste, transparante pakketten:
 
-- **Starter Website / One-Pager**, vanaf €500 setup + €150 per maand
-- **Growth Website (volledig, meerdere pagina's)**, vanaf €2.700 setup + €300 per maand
-- **Leadgeneratiesysteem**, vanaf €5.000 setup + €500 per maand
-- **E-commerce**, vanaf €2.500 setup
+- **One-Pager**, €500 setup + €150 per maand, live binnen 7 dagen
+- **Growth Essentials**, €2.700 setup + €300 per maand, met een resultaten-garantie van 6 maanden op de setup
+- **Growth Partnership**, prijs op aanvraag
 
 De setup is het eenmalige bedrag voor ontwerp en bouw. Het maandbedrag dekt hosting, onderhoud, beveiliging en kleine aanpassingen. Zo betaal je niet alles in één keer en blijft je website na livegang in goede staat.
 
@@ -81,10 +80,10 @@ De grootste fout is kiezen op prijs alleen. Een website is je hardst werkende ve
 
 ## Hoe lang duurt het?
 
-Een gerichte website staat doorgaans binnen 2 tot 4 weken live. We starten met het meest waardevolle werk eerst, zodat je snel resultaat ziet, en bouwen daarna uit.
+Een One-Pager staat binnen 7 dagen live. Voor een groter traject spreken we de doorlooptijd vooraf af.
 
 ## Conclusie: wat is een realistisch budget?
 
-Voor een professionele online aanwezigheid in Rotterdam is een realistisch budget: vanaf €500 setup + €150 per maand voor een one-pager, of vanaf €2.700 setup + €300 per maand voor een volledige website. Wil je dat je website ook structureel klanten oplevert, dan kijk je verder dan de website alleen, naar een [leadgeneratiesysteem](/nl/website-laten-maken-rotterdam/) of groeistrategie.
+Voor een professionele online aanwezigheid in Rotterdam zijn de pakketten: €500 setup + €150 per maand voor een One-Pager, of €2.700 setup + €300 per maand voor Growth Essentials. Growth Partnership is op aanvraag. De prijzen staan ook op de [startpagina](/start/).
 
 De beste manier om een exacte prijs te krijgen, is een gratis gesprek waarin we je doel en de scope bespreken. Dan weet je precies wat je krijgt en wat het kost.

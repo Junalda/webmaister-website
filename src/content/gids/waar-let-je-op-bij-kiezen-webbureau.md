@@ -1,7 +1,7 @@
 ---
 title: "Waar let je op bij het kiezen van een webbureau?"
 description: "Een webbureau kiezen in Rotterdam? Dit zijn de belangrijkste punten: strategie vóór design, eigenaarschap, onderhoud, transparante prijzen en bewijs. Plus de rode vlaggen die je moet vermijden."
-answer: "Let bij het kiezen van een webbureau vooral op of ze beginnen bij je bedrijfsdoel en niet bij design, of je eigenaar blijft van je domein en site, of er transparante prijzen en duidelijke afspraken zijn, en of ze denken in groei (website, vindbaarheid en acquisitie samen) in plaats van alleen een mooie site opleveren. Vraag naar echte cases, naar wat er wél en niet inzit, en naar hoe het onderhoud na livegang geregeld is."
+answer: "Let bij het kiezen van een webbureau vooral op of ze beginnen bij je bedrijfsdoel en niet bij design, of je eigenaar blijft van je domein en site, of er transparante prijzen en duidelijke afspraken zijn, en of ze denken in website, vindbaarheid op Google en in AI, en onderhoud samen. Vraag naar echte cases, naar wat er wél en niet inzit, en naar hoe het onderhoud na livegang geregeld is."
 pubDate: 2026-05-20
 updatedDate: 2026-10-08
 order: 5
@@ -11,7 +11,7 @@ related:
   - { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" }
 faq:
   - question: "Wat is het belangrijkste bij het kiezen van een webbureau?"
-    answer: "Dat ze beginnen bij je bedrijfsdoel, niet bij design. Een mooie website die geen aanvragen oplevert, kost je klanten. Kies een bureau dat denkt in groei: website, vindbaarheid en acquisitie samen."
+    answer: "Dat ze beginnen bij je bedrijfsdoel, niet bij design. Kies een bureau dat de website, de vindbaarheid op Google en in AI, en het onderhoud samen bekijkt."
   - question: "Moet ik een lokaal webbureau kiezen?"
     answer: "Niet per se, maar een lokaal bureau kent je markt en is makkelijker te bereiken. Belangrijker dan locatie is of ze je doel begrijpen en bewijs kunnen laten zien."
   - question: "Blijf ik eigenaar van mijn website?"
@@ -19,7 +19,7 @@ faq:
   - question: "Waar herken ik een slecht webbureau aan?"
     answer: "Aan garanties die te mooi zijn (zoals 'nummer 1 in Google'), onduidelijke prijzen met veel meerwerk, geen aandacht voor je doel, en geen echte cases of referenties."
   - question: "Wat kost een goed webbureau?"
-    answer: "Transparante bureaus noemen richtprijzen. Bij Webmaister: website vanaf €500 setup + €150/mnd, volledige website vanaf €2.700 + €300/mnd. Een goed bureau legt uit waarom iets kost wat het kost."
+    answer: "Transparante bureaus noemen prijzen. Bij Webmaister: One-Pager €500 setup + €150 per maand, Growth Essentials €2.700 + €300 per maand, Growth Partnership op aanvraag."
 ---
 
 Een website laten maken is een investering, en het bureau dat je kiest bepaalt grotendeels of die investering rendeert. Toch is het lastig kiezen: elk bureau belooft mooie resultaten. In dit artikel geven we de punten waar je echt op moet letten, en de rode vlaggen die je moet vermijden.
@@ -32,7 +32,7 @@ Vraag een bureau daarom: hoe bepaal je wat op de site komt? Als het antwoord all
 
 ## 2. Denken in groei, niet alleen in websites
 
-Een website staat niet op zichzelf. Hij werkt pas echt als hij verbonden is met vindbaarheid en acquisitie. Een bureau dat alleen een site oplevert en daarna verdwijnt, laat je met het halve verhaal achter.
+Een website staat niet op zichzelf. Hij werkt pas echt als hij gevonden wordt op Google en in AI, en als iemand hem bijhoudt. Een bureau dat alleen een site oplevert en daarna verdwijnt, laat het onderhoud en de vindbaarheid liggen.
 
 Kies een partij die het grotere plaatje ziet: hoe trek je de juiste bezoekers aan, hoe zet je ze om in aanvragen, en hoe groeit dat mee. Dat hoeft niet allemaal in één keer, maar de visie moet er zijn.
 
@@ -44,7 +44,7 @@ Goede bureaus zijn open over wat iets kost. Pas op voor:
 - Onduidelijkheid over wat er wél en niet inzit
 - Geen heldere afspraken over onderhoud en eigendom
 
-Vraag om richtprijzen en een duidelijke scope. Bij ons zie je de prijzen gewoon op de site: een [website](/nl/website-laten-maken-rotterdam/) start vanaf €500 setup + €150/mnd, een volledige website vanaf €2.700 + €300/mnd.
+Vraag om prijzen en een duidelijke scope. Bij ons staan ze op de site: een [One-Pager](/start/) is €500 setup + €150 per maand, Growth Essentials is €2.700 + €300 per maand, en Growth Partnership is op aanvraag.
 
 ## 4. Eigenaarschap
 

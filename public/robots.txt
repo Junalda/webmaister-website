@@ -1,4 +1,6 @@
 # Webmaister, open to crawlers and AI search assistants
+# LLM guidance: https://www.webmaister.io/llms.txt
+
 User-agent: *
 Allow: /
 

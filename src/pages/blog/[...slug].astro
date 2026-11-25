@@ -38,7 +38,7 @@ const graph: object[] = [
     datePublished: pubDate.toISOString(),
     dateModified: (updatedDate ?? pubDate).toISOString(),
     author: { "@type": "Organization", name: author, url: site.url },
-    publisher: { "@id": `${site.url}/#organization` },
+    publisher: { "@id": "https://webmaister.io/#organization" },
     mainEntityOfPage: canonical,
     url: canonical,
     ...(cover ? { image: new URL(cover, site.url).href } : {}),

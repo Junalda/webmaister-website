@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
-import { site } from "@/data/site";
+import { site, schemaIds } from "@/data/site";
 import { getCollection } from "astro:content";
 
 const articles = (await getCollection("gids")).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
@@ -10,22 +10,22 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Gids & kennisbank",
-  description: "Antwoorden op echte vragen van ondernemers over websites, leadgeneratie, AI-automatisering en groei.",
+  description: "Antwoorden op vragen van ondernemers over websites, vindbaarheid op Google en in AI, en automatisering.",
   url: `${site.url}/gids/`,
-  isPartOf: { "@id": `${site.url}/#website` },
+  isPartOf: { "@id": schemaIds.website },
 };
 ---
 <Base
   lang="nl"
-  title="Gids & kennisbank · websites, leadgeneratie & AI-automatisering | Webmaister"
-  description="Praktische antwoorden op echte ondernemersvragen: wat kost een website, wat is GEO, website of leadgeneratiesysteem, en meer. De kennisbank van Webmaister."
+  title="Gids · websites, Google en AI | Webmaister"
+  description="Praktische antwoorden: wat kost een website, hoe word je gevonden op Google en in AI, en hoe werkt onderhoud. De kennisbank van Webmaister."
 >
   <section class="page-hero">
     <div class="container center" style="max-width:780px">
       <span class="eyebrow" data-reveal>Gids</span>
       <h1 data-reveal data-delay="60">Antwoorden op <span class="gradient-text">echte vragen.</span></h1>
       <p class="lead" data-reveal data-delay="120" style="margin:1.4rem auto 0;max-width:600px">
-        Praktische artikelen over websites, leadgeneratie, AI-automatisering en groei, geschreven om je echt verder te helpen.
+        Praktische artikelen over websites, vindbaarheid op Google en in AI, en automatisering.
       </p>
     </div>
   </section>
