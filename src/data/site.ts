@@ -312,14 +312,14 @@ export const startOptions = [
     choice: "I need a website",
     service: "Starter Website / One-Pager",
     priceLine: "€500 setup + €150/mo",
-    benefit: "A professional online presence to get your business started.",
+    benefit: "A professional site for your business, live within 7 days.",
     cta: "Get my website",
     title: "Starter Website: a professional online presence | Webmaister",
     description:
-      "A professional, simple website that gets your business online and taken seriously. €500 setup + €150/month. Let's talk.",
+      "A professional site for your business, live within 7 days. €500 setup + €150/month.",
     price: "€500",
     priceNote: "setup + €150/month",
-    lead: "A professional, simple website that gets your business online and taken seriously.",
+    lead: "A professional site for your business, live within 7 days.",
     forText:
       "For entrepreneurs who need a professional, simple website without a large upfront investment.",
     problem:
@@ -331,33 +331,73 @@ export const startOptions = [
       "A clear call-to-action",
       "SEO-ready foundations",
       "Ongoing maintenance",
+      "Live within 7 days",
     ],
   },
   {
     slug: "upgrade",
-    choice: "My website needs to drive growth",
-    service: "Growth Website",
-    priceLine: "€2,700 setup + €300/mo",
-    benefit: "A strategic website built to turn visitors into customers.",
-    cta: "Upgrade my website",
-    title: "Growth Website: turn visitors into customers | Webmaister",
+    choice: "I need more customers",
+    service: "Growth packages",
+    priceLine:
+      "Growth Essentials €2,700 setup + €300/mo · Growth Partnership · Price on request",
+    benefit:
+      "A website built to get you found on Google and AI and turn visitors into customers, with a 6-month results guarantee.",
+    cta: "See growth packages",
+    title: "Growth packages: get found on Google and AI | Webmaister",
     description:
-      "A strategic website redesign built to turn visitors into customers. €2,700 setup + €300/month. Let's talk.",
-    price: "€2,700",
-    priceNote: "setup + €300/month",
-    lead: "A strategic website redesign built to turn visitors into customers.",
+      "Growth Essentials is €2,700 setup + €300/month, with a 6-month results guarantee. Growth Partnership is price on request.",
+    lead: "A website built to get you found on Google and AI and turn visitors into customers, with a 6-month results guarantee.",
     forText:
-      "For established businesses whose current website no longer reflects their quality, positioning or ambitions.",
+      "For established businesses that want to be found on Google and AI, and turn that attention into customers.",
     problem:
-      "Your website gets visitors but too few become inquiries, and it no longer matches where your business is today.",
-    includes: [
-      "Strategic website redesign",
-      "Clear positioning and messaging",
-      "Conversion-focused structure",
-      "SEO foundations",
-      "Ongoing maintenance and optimization",
+      "The right customers can't find you on Google or in AI answers, and too few of the people who do visit become customers.",
+    priceHeadline: "€2,700",
+    priceHeadlineNote:
+      "Growth Essentials setup + €300/mo · Growth Partnership · Price on request",
+    packages: [
+      {
+        name: "Growth Essentials",
+        tagline: "Get found, and turn visitors into customers.",
+        price: "€300",
+        priceNote: "per month",
+        setup: "€2,700 one-time setup",
+        terms: "Month-to-month after setup",
+        forWho:
+          "A lower-cost way to get your website found on Google and AI and keep it improving every month.",
+        includes: [
+          "Google and AI search visibility",
+          "Monthly funnel and conversion optimization",
+          "Positioning and offer feedback",
+          "Performance tracking and reporting",
+        ],
+        cta: "Start with Essentials",
+      },
+      {
+        name: "Growth Partnership",
+        tagline: "A done-for-you growth partnership.",
+        price: "Price on request",
+        terms: "Minimum 6 months",
+        popular: true,
+        forWho: "The full system, built and run for you until the right customers come in predictably.",
+        setupIncludes:
+          "We build the system once: positioning, offer, funnel, campaigns and automation, set up and ready to bring in customers.",
+        includesLabel: "Everything in Essentials, plus:",
+        includes: [
+          "A dedicated growth strategist",
+          "Active campaign management",
+          "Full business and growth strategy",
+          "Sales funnel optimization",
+          "Recurring revenue opportunities",
+          "Performance reviews and strategic guidance",
+        ],
+        cta: "Ask about Partnership",
+      },
     ],
-    note: "The monthly fee covers website-related support and optimization, not full business growth management.",
+    guarantee: {
+      title: "6-month results guarantee",
+      text: "The Growth Essentials €2,700 setup is protected. We agree on clear, measurable goals before we start. If we don't deliver them within six months, you get your €2,700 setup fee back, based on the goals we document together. That's how sure we are it works.",
+    },
+    note: "The 6-month results guarantee applies to the Growth Essentials €2,700 setup. Growth Partnership is price on request. Advertising budgets and third-party tools are not automatically included.",
   },
   {
     slug: "strategy-session",
@@ -373,7 +413,7 @@ export const startOptions = [
     priceNote: "one-time",
     lead: "A focused strategic session to get clarity on your next move before you invest in growth.",
     forText:
-      "For entrepreneurs who need professional guidance on positioning, business models, customer acquisition or growth opportunities.",
+      "For entrepreneurs who need professional guidance on positioning, business models, finding customers or growth opportunities.",
     problem:
       "You're not sure where to invest next, and you want an expert perspective before committing time and budget.",
     includes: [
@@ -385,81 +425,16 @@ export const startOptions = [
     note: "This is a standalone advisory session, not an ongoing service.",
   },
   {
-    slug: "growth",
-    choice: "I need more customers and leads",
-    service: "Growth & Lead Generation",
-    priceLine: "2 packages · from €300/mo",
-    benefit: "Build a predictable system for sustainable business growth.",
-    cta: "Discuss my growth",
-    title: "Growth & lead generation: two packages to bring in customers | Webmaister",
-    description:
-      "Two clear ways to get more customers and leads: Growth Essentials at €300/month, or the done-for-you Growth Partnership at €2,700 setup + €1,600/month. Let's talk.",
-    lead: "Two clear ways to get more customers and leads. Start light, or let us build and run the whole acquisition engine for you.",
-    forText:
-      "For established businesses that want to move beyond referrals and inconsistent customer acquisition.",
-    problem:
-      "Your growth depends too much on referrals and chance, and you want a system that brings in the right customers consistently.",
-    // Two packages, priced so the choice is a no-brainer: Essentials is a
-    // low-risk, month-to-month entry; the Partnership builds the full system
-    // once (€2,700 setup) and then runs it (€1,600/mo).
-    packages: [
-      {
-        name: "Growth Essentials",
-        tagline: "Steady leads, lighter touch.",
-        price: "€300",
-        priceNote: "per month",
-        setup: "€2,700 one-time setup",
-        terms: "Month-to-month after setup",
-        forWho: "A lower-cost way to keep your customer acquisition improving every month.",
-        includes: [
-          "Lead generation and acquisition support",
-          "Monthly funnel and conversion optimization",
-          "Positioning and offer feedback",
-          "Performance tracking and reporting",
-        ],
-        cta: "Start with Essentials",
-      },
-      {
-        name: "Growth Partnership",
-        tagline: "A done-for-you acquisition engine.",
-        price: "€1,600",
-        priceNote: "per month",
-        setup: "€2,700 one-time setup",
-        setupIncludes:
-          "We build your acquisition system once: positioning, offer, funnel, campaigns and automation, set up and ready to bring in customers.",
-        terms: "Minimum 6 months",
-        popular: true,
-        forWho: "The full system, built and run for you until the right customers come in predictably.",
-        includesLabel: "Everything in Essentials, plus:",
-        includes: [
-          "A dedicated growth strategist",
-          "Active campaign and acquisition management",
-          "Full business and growth strategy",
-          "Sales funnel optimization",
-          "Recurring revenue opportunities",
-          "Performance reviews and strategic guidance",
-        ],
-        valueNote: "For most businesses, a single new customer covers the monthly fee.",
-        cta: "Build my growth engine",
-      },
-    ],
-    guarantee: {
-      title: "6-month results guarantee",
-      text: "Both packages start with the same €2,700 setup, and it's protected. We agree on clear, measurable goals before we start. If we don't deliver them within six months, you get your €2,700 setup fee back, based on the goals we document together. That's how sure we are it works.",
-    },
-    note: "This is a business growth and acquisition service, not a website development package. Website development, advertising budgets and third-party tools are not automatically included.",
-  },
-  {
     slug: "not-sure",
     choice: "I'm not sure what I need",
     service: "Let's figure it out together",
     priceLine: "",
-    benefit: "Tell us where your business stands, and we'll help you identify the right next step.",
+    benefit: "Tell us where your business stands, and we'll point you to the right next step.",
     cta: "Help me choose",
     title: "Not sure what you need? Let's figure it out | Webmaister",
     description:
-      "Tell us where your business stands and we'll help you identify the right next step. A short, no-pressure conversation.",
-    lead: "Tell us where your business stands, and we'll help you identify the right next step.",
+      "Tell us where your business stands, and we'll point you to the right next step. A short, no-pressure conversation.",
+    lead: "Tell us where your business stands, and we'll point you to the right next step.",
     forText:
       "For anyone who knows they want to grow but isn't sure which service fits best.",
     problem:

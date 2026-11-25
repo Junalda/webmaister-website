@@ -20,6 +20,8 @@ const sameAs = [site.social.linkedin, site.social.instagram].filter(Boolean);
 // are ever published.
 const hasGeo = Boolean(site.geo.lat && site.geo.lng);
 
+const onStart = Astro.url.pathname === "/start" || Astro.url.pathname.startsWith("/start/");
+
 const localBusiness = {
   // ProfessionalService is a subtype of LocalBusiness and Organization; the
   // explicit Organization keeps "Organization + ProfessionalService" legible
@@ -28,7 +30,9 @@ const localBusiness = {
   "@id": `${site.url}/#organization`,
   name: site.name,
   legalName: site.legalName,
-  description: site.descriptionNL,
+  description: onStart
+    ? "Webmaister builds websites that get you found on Google and AI, plus automation that takes the busywork off your plate. For growing businesses in Rotterdam and beyond."
+    : site.descriptionNL,
   url: site.url,
   email: site.email,
   telephone: `+${site.whatsappHref}`,
