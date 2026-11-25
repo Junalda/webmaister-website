@@ -1,5 +1,6 @@
 ---
 title: "Wat kost AI-automatisering voor een MKB-bedrijf?"
+seoTitle: "Wat kost AI-automatisering voor MKB? | Webmaister"
 description: "Wat kost AI-automatisering voor een mkb-bedrijf? Ondersteuning, afspraken, opvolging en administratie. Growth Essentials is €2.700 + €300/mnd. Growth Partnership is op aanvraag."
 answer: "AI-automatisering bij Webmaister gaat over ondersteuning, afspraken, opvolging en administratie. Growth Essentials is €2.700 setup plus €300 per maand. Growth Partnership is op aanvraag. Een strategiesessie om te bepalen waar te beginnen kost €350."
 pubDate: 2026-04-02

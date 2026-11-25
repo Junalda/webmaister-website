@@ -16,9 +16,9 @@ export const businessAddress = {
 
 // Stable @ids. The site canonical host is www; these ids are the entity keys.
 export const schemaIds = {
-  organization: "https://webmaister.io/#organization",
-  founder: "https://webmaister.io/#junalda",
-  website: "https://webmaister.io/#website",
+  organization: "https://www.webmaister.io/#organization",
+  founder: "https://www.webmaister.io/#junalda",
+  website: "https://www.webmaister.io/#website",
 } as const;
 
 // One core sentence, used verbatim in the hero subline, meta descriptions,
@@ -31,7 +31,7 @@ export const core = {
 export const site = {
   name: "Webmaister",
   legalName: "JM IT Solutions",
-  alternateName: "JM IT Solutions",
+  alternateName: "Webmaister.io",
   tagline: "Webbureau in Rotterdam",
   url: "https://www.webmaister.io",
   email: "hello@webmaister.io",
@@ -205,7 +205,7 @@ export const solutionGroups = [
     name: "Brainy AI Solutions",
     tag: "Your digital employee, working 24/7.",
     icon: "spark",
-    intro: "Brainy is the automation layer for support, bookings, follow-ups and admin. It is not a lead-generation bot. It takes repetitive work off the team, around the clock.",
+    intro: "Brainy is the automation layer for support, bookings, follow-ups and admin. It is not a chatbot. It takes repetitive work off the team, around the clock.",
     items: [
       { name: "AI Customer Support", outcome: "Answers customer questions from your own information, including outside office hours." },
       { name: "Bookings", outcome: "Schedules appointments and sends reminders so a request can move to a conversation." },
@@ -356,11 +356,11 @@ export const startOptions = [
   {
     slug: "website",
     choice: "I need a website",
-    service: "Starter Website / One-Pager",
+    service: "One-Pager",
     priceLine: "€500 setup + €150/mo",
     benefit: "A professional site for your business, live within 7 days.",
     cta: "Get my website",
-    title: "Starter Website: a professional online presence | Webmaister",
+    title: "One-Pager: live in 7 days | Webmaister",
     description:
       "A professional site for your business, live within 7 days. €500 setup + €150/month.",
     price: "€500",
@@ -452,7 +452,7 @@ export const startOptions = [
     priceLine: "€350 one-time",
     benefit: "Get clarity on your next move before investing in growth.",
     cta: "Book a strategy session",
-    title: "Business Strategy Session: get strategic clarity | Webmaister",
+    title: "Strategy session: get clarity | Webmaister",
     description:
       "A focused strategic session to get clarity on your next move before you invest in growth. €350 one-time. Book a session.",
     price: "€350",
@@ -516,8 +516,8 @@ export const faqs = [
     a: "We write, in plain language and in schema.org structured data, who the business is, what it offers and where it works. The site is fast, custom and code-based, and the pages answer real customer questions. The same clarity helps on Google. We do not guarantee that ChatGPT or Google AI Overviews will cite the site. We make the facts easy for those systems to read.",
   },
   {
-    q: "Do you work with WordPress?",
-    a: "No. Webmaister does not build WordPress sites. We build custom, fast, code-based websites, without a theme and plugin stack. That keeps the site light, and we maintain the code ourselves.",
+    q: "How are the websites built?",
+    a: "We build custom, fast, code-based websites, without a theme and plugin stack. That keeps the site light, and we maintain the code ourselves.",
   },
   {
     q: "Who is Webmaister for, and do you only work in Rotterdam?",
@@ -555,8 +555,8 @@ export const faqsNL = [
     a: "We schrijven in gewone taal en in structured data (schema.org) wie het bedrijf is, wat het aanbiedt en waar het werkt. De site is snel, op maat en in code gebouwd, en de pagina's beantwoorden echte klantvragen. Dezelfde duidelijkheid helpt in Google. We garanderen niet dat ChatGPT of Google AI Overviews de site citeren. We maken de feiten wel makkelijk leesbaar voor die systemen.",
   },
   {
-    q: "Werken jullie met WordPress?",
-    a: "Nee. Webmaister bouwt geen WordPress-sites. We bouwen maatwerk websites in code: snel, zonder een thema- en pluginlaag. Daardoor blijft de site licht, en we onderhouden de code zelf.",
+    q: "Hoe bouwen jullie de websites?",
+    a: "We bouwen maatwerk websites in code: snel, zonder een thema- en pluginlaag. Daardoor blijft de site licht, en we onderhouden de code zelf.",
   },
   {
     q: "Voor wie is Webmaister, en werken jullie alleen in Rotterdam?",
@@ -575,31 +575,32 @@ export const faqsNL = [
 // Same questions on the English services page.
 export const solutionsFaqs = faqs;
 
-// Visible FAQ on /start. Frozen so shared FAQ edits do not change that page.
+// Visible FAQ on /start, and the FAQPage JSON-LD for that URL. Same packages
+// and positioning as the rest of the site.
 export const startPageFaqs = [
   {
-    q: "What does a premium website include?",
-    a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into customers, not just to look good.",
+    q: "What does a website from Webmaister cost?",
+    a: "A One-Pager is €500 setup plus €150 per month, and it goes live within 7 days. Growth Essentials is €2,700 setup plus €300 per month, with a 6-month results guarantee on the setup: we agree measurable goals first, and if we do not deliver them within six months you get the €2,700 setup fee back, based on the goals we document together. Growth Partnership is price on request. We do not publish a fixed fee for it.",
   },
   {
-    q: "Is Brainy a chatbot?",
-    a: "No. Brainy is an AI layer that works like a digital employee: it answers customer questions 24/7, books appointments, handles follow-ups and automates admin, and it generates content. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
+    q: "How fast is my site live?",
+    a: "A One-Pager is live within 7 days. Growth Essentials and Growth Partnership take longer because the scope is larger, and we agree the timing before we start.",
   },
   {
-    q: "How long does a project take?",
-    a: "A focused website typically takes a few weeks; growth systems and AI automation are then layered on in stages. We start with the highest-leverage work first so you see value early, then build out from there. Exact timing depends on scope, which we map in the first strategy call.",
+    q: "What is included in the monthly fee?",
+    a: "The One-Pager monthly fee of €150 covers ongoing maintenance. The Growth Essentials monthly fee of €300 covers being found on Google and in AI, monthly funnel and conversion work, feedback on positioning and offer, and performance tracking. Growth Partnership is scoped on request, with a minimum of 6 months.",
   },
   {
-    q: "What does it cost?",
-    a: "Websites start at €500 setup + €150/mo, live within 7 days. Growth packages start at €2,700 setup + €300/mo, with a 6-month results guarantee. See all packages above, or message us and we'll tell you which one fits.",
+    q: "What does being found on Google and in AI mean?",
+    a: "People search Google and they also ask assistants such as ChatGPT and Google AI Overviews. Being found means the right people can reach your business in both places. That depends on a fast site that states who you are, what you do, who it is for and where you work. No one can promise that an assistant will name you every time.",
   },
   {
-    q: "Do you only work with businesses in Rotterdam?",
-    a: "Webmaister is based in Rotterdam and knows the local market, but we work with ambitious businesses across Zuid-Holland, the wider Netherlands and remotely. The same approach applies wherever you are.",
+    q: "What is the difference between One-Pager, Growth Essentials and Growth Partnership?",
+    a: "The One-Pager is one professional page, live within 7 days, at €500 setup and €150 per month. Growth Essentials is the larger build for getting found on Google and in AI and turning visitors into customers, at €2,700 setup and €300 per month, with a 6-month results guarantee on that setup. Growth Partnership is a done-for-you partnership. The price is on request and the minimum term is 6 months.",
   },
   {
-    q: "Can you improve our existing website instead of rebuilding it?",
-    a: "Often, yes. We can redesign or optimize an existing site, add growth and SEO systems, or connect AI automation to what you already have. We start with where you want to go and recommend the smallest change that gets you there.",
+    q: "Who is Webmaister for?",
+    a: "Webmaister is for entrepreneurs and SMEs who want a website that gets found on Google and in AI assistants like ChatGPT. We are based in Rotterdam and work across Rotterdam, Zuid-Holland and the rest of the Netherlands, including remotely.",
   },
 ];
 
@@ -672,7 +673,7 @@ export const nlLandings = [
       "Laat repetitief werk over aan Brainy, je digitale medewerker die 24/7 doorwerkt.",
     intro: [
       "Groeien hoeft niet te betekenen dat je meer mensen aanneemt. Met AI-automatisering laat je het terugkerende werk over aan een systeem dat dag en nacht doorwerkt, tegen een fractie van de kosten.",
-      "Brainy is de automatisering achter Webmaister. Geen leadgeneratie-bot en geen chatbot, maar ondersteuning, afspraken, opvolging en administratie, zodat terugkerend werk niet op het team blijft liggen.",
+      "Brainy is de automatisering achter Webmaister. Geen chatbot, maar ondersteuning, afspraken, opvolging en administratie, zodat terugkerend werk niet op het team blijft liggen.",
     ],
     includesTitle: "Wat Brainy doet",
     includes: [

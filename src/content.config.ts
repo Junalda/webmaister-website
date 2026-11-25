@@ -8,6 +8,8 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
+    // Document <title> when the article headline is longer than 60 characters.
+    seoTitle: z.string().max(60).optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
@@ -32,6 +34,8 @@ const gids = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/gids" }),
   schema: z.object({
     title: z.string(),
+    // Document <title> when the article headline is longer than 60 characters.
+    seoTitle: z.string().max(60).optional(),
     description: z.string(),
     answer: z.string(),
     pubDate: z.coerce.date(),

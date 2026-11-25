@@ -1,5 +1,6 @@
 ---
 title: "Wat kost een website laten maken in Rotterdam? (2026)"
+seoTitle: "Wat kost een website in Rotterdam? | Webmaister"
 description: "Wat kost een website laten maken in Rotterdam in 2026? Van one-pager (vanaf €500 + €150/mnd) tot volledige website (vanaf €2.700 + €300/mnd). Alles over prijzen, wat de kosten bepaalt en wat je krijgt."
 answer: "Een website laten maken in Rotterdam kost in 2026 grofweg vanaf €500 setup plus €150 per maand voor een professionele one-pager, en vanaf €2.700 setup plus €300 per maand voor een volledige zakelijke website. De prijs hangt af van de omvang, de mate van maatwerk en of je ook doorlopende ondersteuning en optimalisatie wilt."
 pubDate: 2026-01-15

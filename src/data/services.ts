@@ -81,7 +81,7 @@ export const services: ServicePage[] = [
   {
     slug: "webdesign-rotterdam",
     keyword: "Webdesign Rotterdam",
-    title: "Webdesign Rotterdam, premium, conversiegericht ontwerp | Webmaister",
+    title: "Webdesign Rotterdam · Google & AI | Webmaister",
     description: "Webdesign in Rotterdam. Maatwerk, mobiel-first, in code. One-Pager €500 + €150/mnd, live binnen 7 dagen. Growth Essentials €2.700 + €300/mnd.",
     h1: "Webdesign in Rotterdam",
     lead: "Webdesign in Rotterdam betekent bij Webmaister een premium, conversiegericht ontwerp dat in seconden vertrouwen wekt. Een ontwerptraject start vanaf €500 setup plus €150 per maand (one-pager) of €2.700 setup plus €300 per maand voor een volledige website.",
@@ -177,8 +177,8 @@ export const services: ServicePage[] = [
   {
     slug: "ai-automatisering-rotterdam",
     keyword: "AI-automatisering Rotterdam",
-    title: "AI-automatisering Rotterdam, minder handwerk, meer groei | Webmaister",
-    description: "AI-automatisering in Rotterdam voor ondersteuning, afspraken, opvolging en administratie. Geen WordPress. Plan een gesprek met Webmaister.",
+    title: "AI-automatisering in Rotterdam | Webmaister",
+    description: "AI-automatisering in Rotterdam voor ondersteuning, afspraken, opvolging en administratie. Plan een gesprek met Webmaister.",
     h1: "AI-automatisering in Rotterdam",
     lead: "AI-automatisering in Rotterdam neemt terugkerend werk over: ondersteuning, afspraken, opvolging en administratie, ook buiten kantooruren.",
     intro: [
@@ -225,7 +225,7 @@ export const services: ServicePage[] = [
   {
     slug: "ai-agent-rotterdam",
     keyword: "AI-agent Rotterdam",
-    title: "AI-agent laten bouwen in Rotterdam, 24/7 een digitale medewerker | Webmaister",
+    title: "AI-agent bouwen in Rotterdam | Webmaister",
     description: "Een AI-agent in Rotterdam voor ondersteuning, afspraken, opvolging en administratie. Vragen beantwoorden en afspraken inplannen, ook buiten kantooruren.",
     h1: "AI-agent in Rotterdam",
     lead: "Een AI-agent in Rotterdam neemt ondersteuning, afspraken, opvolging en administratie over, ook buiten kantooruren. De agent beantwoordt vragen uit je eigen informatie en plant afspraken in.",
@@ -300,7 +300,7 @@ export const services: ServicePage[] = [
       text: "Wat kost website-onderhoud in Rotterdam?",
       items: [
         { name: "Website-onderhoud", price: "vanaf €150 / maand" },
-        { name: "Inbegrepen bij Starter Website", price: "€150 / maand" },
+        { name: "Inbegrepen bij One-Pager", price: "€150 / maand" },
         { name: "Inbegrepen bij Growth Essentials", price: "€300 / maand" },
         { name: "E-commerce terugkerend", price: "vanaf €350 / maand" },
       ],
@@ -321,7 +321,7 @@ export const services: ServicePage[] = [
   {
     slug: "geo-optimalisatie",
     keyword: "GEO-optimalisatie",
-    title: "GEO-optimalisatie, vindbaar worden in ChatGPT, Claude & Perplexity | Webmaister",
+    title: "GEO: gevonden worden in AI | Webmaister",
     description: "GEO (Generative Engine Optimization): word genoemd door ChatGPT, Claude, Gemini en Perplexity. Webmaister maakt je bedrijf duidelijk en citeerbaar voor AI-assistenten.",
     h1: "GEO-optimalisatie: vindbaar in ChatGPT, Claude en Perplexity",
     lead: "GEO-optimalisatie (Generative Engine Optimization) zorgt dat je bedrijf wordt genoemd als relevante optie wanneer mensen een vraag stellen aan AI-assistenten zoals ChatGPT, Claude, Gemini en Perplexity. Waar SEO draait om posities in Google, draait GEO om duidelijk, betrouwbaar en citeerbaar zijn voor machines.",

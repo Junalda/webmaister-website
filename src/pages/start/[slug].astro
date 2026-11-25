@@ -71,7 +71,7 @@ const { o } = Astro.props;
                   ))}
                 </ul>
                 {pk.valueNote && <p class="pkg-value">{pk.valueNote}</p>}
-                <Button href={`/contact/?service=${o.slug}`} variant={pk.popular ? "brand" : "ghost"} size="lg" arrow>{pk.cta}</Button>
+                <Button href={`/en/contact/?service=${o.slug}`} variant={pk.popular ? "brand" : "ghost"} size="lg" arrow>{pk.cta}</Button>
               </article>
             ))}
           </div>
@@ -102,7 +102,7 @@ const { o } = Astro.props;
         <h2 class="disp">Ready when you are.</h2>
         <p class="dim">We'll reply within one business day. Prefer a quick message? Reach us on WhatsApp.</p>
         <div class="opt-cta-actions">
-          <Button href={`/contact/?service=${o.slug}`} variant="brand" size="lg" arrow>{o.cta}</Button>
+          <Button href={`/en/contact/?service=${o.slug}`} variant="brand" size="lg" arrow>{o.cta}</Button>
           <WhatsAppButton label="WhatsApp us" />
         </div>
       </div>
