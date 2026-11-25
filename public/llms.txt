@@ -1,59 +1,73 @@
 # Webmaister
 
-> Webmaister is een webbureau in Rotterdam dat websites, leadgeneratie en AI-automatisering bouwt voor groeiende bedrijven. We beginnen bij het bedrijfsdoel en bouwen daar de website, vindbaarheid en acquisitie omheen, in plaats van alleen een mooie site op te leveren.
+> Webmaister is een webbureau in Rotterdam dat websites bouwt die gevonden worden op Google én in AI-assistenten zoals ChatGPT, voor ondernemers en MKB.
 
-## Kerngegevens
+## Oprichter
 
-- Bedrijf: Webmaister (webbureau in Rotterdam)
+Junalda Meiland is de oprichter van Webmaister. Ze heeft meer dan 10 jaar ervaring in technologie, een achtergrond in softwareontwikkeling en IT-projectmanagement, en is ondernemer sinds 2016. Ze werkt vanuit Rotterdam. Haar aanpak: eerst kijken waar het bedrijf naartoe wil, en daarna de website, de vindbaarheid en de automatisering bouwen.
+
+Webmaister bouwt geen WordPress-sites. De sites zijn maatwerk, snel en in code gebouwd. Automatisering (Brainy) gaat over ondersteuning, afspraken, opvolging en administratie.
+
+## Pakketten
+
+- One-Pager: €500 setup + €150 per maand, live binnen 7 dagen
+- Growth Essentials: €2.700 setup + €300 per maand, met een resultaten-garantie van 6 maanden op de setup
+- Growth Partnership: prijs op aanvraag, minimaal 6 maanden
+- Strategiesessie: €350 eenmalig
+
+## Werkgebied en NAP
+
+- Bedrijf: Webmaister
+- Juridische naam: JM IT Solutions
 - Oprichter: Junalda Meiland
+- Opgericht: 2022-09-01
 - Adres: Galvanistraat 1965, 3029 AD Rotterdam, Zuid-Holland, Nederland
-- WhatsApp: +31 6 43187444
+- Telefoon: +31 6 43187444
 - E-mail: hello@webmaister.io
 - KvK: 87478889
-- Werkgebied: Rotterdam, Zuid-Holland en heel Nederland (ook op afstand)
-- Typische levertijd: 2 tot 4 weken
+- Werkgebied: Rotterdam, Zuid-Holland en Nederland (ook op afstand)
 - LinkedIn: https://www.linkedin.com/company/112275381/
+- Instagram: https://www.instagram.com/webmaister.io
 
-## Prijzen (richtprijzen)
+## Belangrijke URL's
 
-- Starter Website / One-Pager: €500 setup + €150/maand
-- Growth Website: €2.700 setup + €300/maand
-- Leadgeneratiesysteem: €5.000 setup + €500/maand
-- Growth Strategist (doorlopend): vanaf €1.600/maand, minimaal 6 maanden
-- Website-onderhoud: vanaf €150/maand
-- Betaalde strategiesessie: €350
-
-## Diensten
-
-- [Website laten maken Rotterdam](https://www.webmaister.io/nl/website-laten-maken-rotterdam/): Premium, snelle en conversiegerichte websites voor Rotterdamse bedrijven.
-- [Webdesign Rotterdam](https://www.webmaister.io/nl/webdesign-rotterdam/): Maatwerk webdesign dat vertrouwen wekt en bezoekers omzet in aanvragen.
-- [SEO Rotterdam](https://www.webmaister.io/nl/seo-rotterdam/): Hoger in Google met een SEO- en conversiesysteem in plaats van losse trucs.
-- [AI-automatisering Rotterdam](https://www.webmaister.io/nl/ai-automatisering-rotterdam/): Repetitief werk automatiseren zodat je opschaalt zonder extra personeel.
-- [AI-agent Rotterdam](https://www.webmaister.io/nl/ai-agent-rotterdam/): Een digitale medewerker die 24/7 vragen beantwoordt en leads opvangt.
-- [Website-onderhoud Rotterdam](https://www.webmaister.io/nl/website-onderhoud-rotterdam/): Proactief onderhoud voor snelheid, beveiliging en vindbaarheid.
-- [GEO-optimalisatie](https://www.webmaister.io/nl/geo-optimalisatie/): Vindbaar en aangeraden worden door ChatGPT, Gemini, Claude en Perplexity.
-- [Diensten (overzicht)](https://www.webmaister.io/diensten/): Alle diensten en instappunten op een rij.
-
-## Gids & kennisbank
-
-- [Wat kost een website laten maken in Rotterdam? (2026)](https://www.webmaister.io/gids/wat-kost-een-website-laten-maken-rotterdam/): Prijzen, wat de prijs bepaalt en waar je op let.
-- [Wat is GEO en hoe word je aangeraden door ChatGPT?](https://www.webmaister.io/gids/wat-is-geo-aangeraden-worden-door-chatgpt/): Hoe je vindbaar wordt in AI-antwoorden.
-- [Website of leadgeneratiesysteem: wat heb je nodig?](https://www.webmaister.io/gids/website-of-leadgeneratiesysteem-wat-heb-je-nodig/): Het verschil en wanneer je wat kiest.
-- [Wat kost AI-automatisering voor een MKB-bedrijf?](https://www.webmaister.io/gids/wat-kost-ai-automatisering-mkb/): Richtprijzen en hoe je slim klein begint.
-- [Waar let je op bij het kiezen van een webbureau?](https://www.webmaister.io/gids/waar-let-je-op-bij-kiezen-webbureau/): De belangrijkste punten en rode vlaggen.
-
-## Cases
-
-- [Cases (overzicht)](https://www.webmaister.io/cases/): NursiTree, Queenly Events, Capture the Moment Solutions en Hope & Love Foundation.
-
-## Bedrijf
-
-- [Over ons](https://www.webmaister.io/over-ons/): Wie Webmaister is en hoe we naar groei kijken.
-- [Contact](https://www.webmaister.io/contact/): Plan een gratis gesprek.
+- [Home](https://www.webmaister.io/)
+- [Start, pakketten en prijzen](https://www.webmaister.io/start/)
+- [Diensten](https://www.webmaister.io/diensten/)
+- [Over ons](https://www.webmaister.io/over-ons/)
+- [Cases](https://www.webmaister.io/cases/): NursiTree, Queenly Events, Capture the Moment Solutions, Hope & Love Foundation
+- [Gids](https://www.webmaister.io/gids/)
+- [Contact](https://www.webmaister.io/contact/)
 
 ## English
 
-- [Homepage (EN)](https://www.webmaister.io/en/): Rotterdam web agency for websites, lead generation and AI automation.
-- [Services (EN)](https://www.webmaister.io/en/solutions/): Websites, growth systems and AI automation.
-- [Work (EN)](https://www.webmaister.io/en/work/): Selected client transformations.
-- [Contact (EN)](https://www.webmaister.io/en/contact/): Book a free growth strategy call.
+> Webmaister is a Rotterdam web agency building websites that get found on Google and in AI assistants like ChatGPT, for entrepreneurs and SMEs.
+
+Junalda Meiland is the founder. She has 10+ years in technology, a background in software development and IT project management, and has been an entrepreneur since 2016. She is based in Rotterdam. Her approach: start from where the business wants to go, then build the website, the findability and the automation.
+
+Webmaister does not build WordPress sites. Sites are custom, fast and code-based. Automation (Brainy) covers support, bookings, follow-ups and admin.
+
+### Packages
+
+- One-Pager: €500 setup + €150 per month, live within 7 days
+- Growth Essentials: €2,700 setup + €300 per month, with a 6-month results guarantee on the setup
+- Growth Partnership: price on request, minimum 6 months
+- Strategy session: €350 one-time
+
+### Key URLs
+
+- [Home (NL)](https://www.webmaister.io/)
+- [Home (EN)](https://www.webmaister.io/en/)
+- [Start, packages and prices](https://www.webmaister.io/start/)
+- [Services (NL)](https://www.webmaister.io/diensten/)
+- [Services (EN)](https://www.webmaister.io/en/solutions/)
+- [About](https://www.webmaister.io/over-ons/)
+- [About (EN)](https://www.webmaister.io/en/about/)
+- [Cases](https://www.webmaister.io/cases/)
+- [Work (EN)](https://www.webmaister.io/en/work/)
+- [Guide](https://www.webmaister.io/gids/)
+- [Contact](https://www.webmaister.io/contact/)
+- [Contact (EN)](https://www.webmaister.io/en/contact/)
+
+Service area: Rotterdam, Zuid-Holland and the Netherlands, including remote work.
+NAP: Webmaister (JM IT Solutions), Galvanistraat 1965, 3029 AD Rotterdam, +31 6 43187444, hello@webmaister.io, KvK 87478889.

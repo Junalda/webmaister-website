@@ -10,17 +10,16 @@ import { alternatesFor } from "@/i18n";
 // Service options mirror the /start/ offering so a selected service carries
 // through to this form (see the ?service= preselect script below).
 const services = [
-  "Starter Website / One-Pager",
-  "Growth Website",
+  "One-Pager",
+  "Growth Essentials",
+  "Growth Partnership",
   "Business Strategy Session",
-  "Growth Strategist",
   "Not sure, help me choose",
 ];
 ---
 <Base
-  title="Contact · Book Your Growth Strategy Call"
-  description="Let's build your growth engine. Book a free Growth Strategy Call with Webmaister in Rotterdam for premium websites, lead generation and AI automation."
-  faqSchema
+  title="Contact | Webmaister web agency Rotterdam"
+  description="Contact Webmaister, a Rotterdam web agency. Galvanistraat 1965, 3029 AD Rotterdam. Call or WhatsApp +31 6 43187444, or email hello@webmaister.io."
   lang="en"
   alternates={alternatesFor("/contact/", "/en/contact/")}
 >
@@ -32,9 +31,8 @@ const services = [
         <span class="eyebrow" data-reveal>Contact</span>
         <h1 data-reveal data-delay="60">Let's build your<br><span class="gradient-text">growth engine.</span></h1>
         <p class="lead" data-reveal data-delay="120">
-          Book a free Growth Strategy Call. We'll review your current setup, find the
-          highest-leverage opportunities and outline a clear plan to attract more customers,
-          automate work and grow no obligation.
+          Tell us what you need: a website that gets found on Google and in AI assistants like ChatGPT.
+          We reply within one business day. Address: {site.streetAddress}, {site.postalCode} {site.city}.
         </p>
 
         <ul class="promise" data-reveal data-delay="180">
@@ -210,10 +208,10 @@ const services = [
   // Preselect the "What can we help with?" option from a ?service=<slug> query
   // param, so a service chosen on /start/ carries through to this form.
   const serviceMap: Record<string, string> = {
-    website: "Starter Website / One-Pager",
-    upgrade: "Growth Website",
+    website: "One-Pager",
+    upgrade: "Growth Essentials",
     "strategy-session": "Business Strategy Session",
-    growth: "Growth Strategist",
+    growth: "Growth Partnership",
     "not-sure": "Not sure, help me choose",
   };
   const picked = new URLSearchParams(location.search).get("service");

@@ -43,7 +43,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       // /start/growth/ is a permanent redirect to /start/upgrade/.
-      filter: (page) => !page.includes("/start/growth"),
+      filter: (page) =>
+        !page.includes("/start/growth") &&
+        !page.includes("/acquisitiesysteem") &&
+        !page.includes("leadgeneratiesysteem"),
       // Attach hreflang alternates to bilingual pages so AI and search engines
       // see NL and EN as the same page in two languages, with NL as x-default.
       serialize(item) {

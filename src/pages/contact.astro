@@ -8,17 +8,17 @@ import { alternatesFor } from "@/i18n";
 
 // Diensten spiegelen /start, zodat een gekozen dienst meekomt via ?service=.
 const services = [
-  "Starter Website / One-Pager",
-  "Growth Website",
+  "One-Pager",
+  "Growth Essentials",
+  "Growth Partnership",
   "Strategiesessie",
-  "Growth Strategist",
   "Weet ik nog niet",
 ];
 const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} ${site.city}`);
 ---
 <Base
-  title="Contact · Plan een gratis gesprek | Webmaister"
-  description="Plan een gratis gesprek met Webmaister, webbureau in Rotterdam. Galvanistraat 1965, 3029 AD Rotterdam. We reageren binnen één werkdag."
+  title="Contact | Webmaister webbureau Rotterdam"
+  description="Contact Webmaister in Rotterdam. Galvanistraat 1965, 3029 AD Rotterdam. Bel of app +31 6 43187444, of mail hello@webmaister.io."
   lang="nl"
   alternates={alternatesFor("/contact/", "/en/contact/")}
 >
@@ -29,9 +29,8 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
         <span class="eyebrow" data-reveal>Contact</span>
         <h1 data-reveal data-delay="60">Laten we je<br><span class="gradient-text">groeimotor bouwen.</span></h1>
         <p class="lead" data-reveal data-delay="120">
-          Plan een gratis gesprek. We bekijken je huidige situatie, vinden de kansen met de meeste
-          impact en schetsen een helder plan om meer klanten aan te trekken, werk te automatiseren
-          en te groeien, vrijblijvend.
+          Plan een gesprek over een website die gevonden wordt op Google en in AI-assistenten zoals ChatGPT.
+          We reageren binnen één werkdag. Adres: {site.streetAddress}, {site.postalCode} {site.city}.
         </p>
 
         <ul class="promise" data-reveal data-delay="180">
@@ -181,10 +180,10 @@ const mapsQuery = encodeURIComponent(`${site.streetAddress}, ${site.postalCode} 
 
 <script>
   const serviceMap: Record<string, string> = {
-    website: "Starter Website / One-Pager",
-    upgrade: "Growth Website",
+    website: "One-Pager",
+    upgrade: "Growth Essentials",
     "strategy-session": "Strategiesessie",
-    growth: "Growth Strategist",
+    growth: "Growth Partnership",
     "not-sure": "Weet ik nog niet",
   };
   const picked = new URLSearchParams(location.search).get("service");

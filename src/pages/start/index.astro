@@ -4,64 +4,31 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
-import { startOptions, problems, framework, pillars, solutionsFaqs } from "@/data/site";
+import { startOptions, startPageFaqs } from "@/data/site";
 
-// Shared site copy stays untouched. These overrides apply only on /start.
-const pains = problems.slice(0, 4).map((p, i) =>
-  i === 0
-    ? {
-        title: "Customers can't find you.",
-        text: "Your website might look good, but it doesn't show up on Google or in AI answers.",
-      }
-    : p
-);
+// /start copy is frozen here. Shared site arrays changed for the rest of the
+// site; this page keeps the English text it already showed.
+const pains = [
+  { title: "Customers can't find you.", text: "Your website might look good, but it doesn't show up on Google or in AI answers." },
+  { title: "Processes are still manual", text: "Quotes, follow-ups and admin eat the hours that should go into growth." },
+  { title: "Customers wait too long", text: "Slow replies cost trust and revenue while competitors answer instantly." },
+  { title: "Teams waste time on repetitive work", text: "Skilled people stuck doing copy-paste tasks a system should handle." },
+];
 
-const method = framework.map((f) =>
-  f.step === "03"
-    ? { ...f, text: "Brainy takes over repetitive work: support, bookings, follow-ups and admin 24/7." }
-    : f
-);
+const method = [
+  { step: "01", name: "Discover", text: "We map your customers, funnel and bottlenecks to find the highest-leverage growth opportunities." },
+  { step: "02", name: "Build", text: "We design a premium, fast digital foundation engineered to convert and built to last." },
+  { step: "03", name: "Automate", text: "Brainy takes over repetitive work: support, bookings, follow-ups and admin 24/7." },
+  { step: "04", name: "Scale", text: "We optimize with real data so results compound and growth no longer depends on headcount." },
+];
 
-const deliverables = pillars.map((p) => {
-  if (p.id === "digital-presence") {
-    return {
-      ...p,
-      short: "Premium websites that build trust and bring in customers.",
-      outcome: "A site customers trust in seconds and one that turns visitors into customers.",
-    };
-  }
-  if (p.id === "growth-systems") {
-    return {
-      ...p,
-      short: "Get found on Google and AI.",
-      outcome:
-        "SEO and AI search visibility, so the right customers find you when they search, month after month.",
-    };
-  }
-  return p;
-});
+const deliverables = [
+  { name: "Digital Presence", short: "Premium websites that build trust and bring in customers.", outcome: "A site customers trust in seconds and one that turns visitors into customers." },
+  { name: "Growth Systems", short: "Get found on Google and AI.", outcome: "SEO and AI search visibility, so the right customers find you when they search, month after month." },
+  { name: "Brainy AI & Automation", short: "AI that automates repetitive work and helps you scale without extra hires.", outcome: "A digital employee that handles the busywork 24/7 so your team can focus on growth." },
+];
 
-const startFaqs = solutionsFaqs.map((f) => {
-  if (f.q === "What does a premium website include?") {
-    return {
-      ...f,
-      a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into customers, not just to look good.",
-    };
-  }
-  if (f.q === "Is Brainy a chatbot?") {
-    return {
-      ...f,
-      a: "No. Brainy is an AI layer that works like a digital employee: it answers customer questions 24/7, books appointments, handles follow-ups and automates admin, and it generates content. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
-    };
-  }
-  if (f.q === "What does it cost?") {
-    return {
-      ...f,
-      a: "Websites start at €500 setup + €150/mo, live within 7 days. Growth packages start at €2,700 setup + €300/mo, with a 6-month results guarantee. See all packages above, or message us and we'll tell you which one fits.",
-    };
-  }
-  return f;
-});
+const startFaqs = startPageFaqs;
 
 const bannerItems = [
   "Websites",
@@ -75,6 +42,7 @@ const bannerItems = [
 ];
 ---
 <Base
+  lang="en"
   title="Start here · What do you need help with?"
   description="Websites from €500 setup + €150/mo, live within 7 days. Growth Essentials is €2,700 setup + €300/mo, with a 6-month results guarantee. Growth Partnership is price on request."
 >

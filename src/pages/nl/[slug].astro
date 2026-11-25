@@ -21,7 +21,7 @@ const jsonLd = {
       "@type": "Service",
       name: s.keyword,
       description: s.lead,
-      provider: { "@id": `${site.url}/#organization` },
+      provider: { "@id": "https://webmaister.io/#organization" },
       areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
       url,
       offers: s.pricing.items.map((i) => ({ "@type": "Offer", name: i.name, description: i.price })),
@@ -98,7 +98,7 @@ const jsonLd = {
           <li><span class="pl-name">{i.name}</span><span class="pl-price">{i.price}</span></li>
         ))}
       </ul>
-      <p class="price-note" data-reveal>Typische levertijd: {site.deliveryTime} per pakket. Prijzen zijn vanaf-prijzen; in een gratis gesprek maken we een offerte op maat.</p>
+      <p class="price-note" data-reveal>Een One-Pager staat binnen 7 dagen live. Overige pakketten spreken we vooraf af. <a href="/over-ons/">Over Junalda Meiland, oprichter van Webmaister</a> · <a href="/cases/">Bekijk de cases</a> · <a href="/contact/">Neem contact op met Webmaister</a> · <a href="/start/">Bekijk pakketten en prijzen</a></p>
     </div>
   </section>
 

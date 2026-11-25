@@ -4,38 +4,88 @@
 // structured data (JSON-LD) never drift apart.
 // =========================================================================
 
+// Public street address. Single source for visible NAP and PostalAddress.
+// Kept on the site and in schema, next to areaServed.
+export const businessAddress = {
+  streetAddress: "Galvanistraat 1965",
+  postalCode: "3029 AD",
+  addressLocality: "Rotterdam",
+  addressRegion: "Zuid-Holland",
+  addressCountry: "NL",
+} as const;
+
+// Stable @ids. The site canonical host is www; these ids are the entity keys.
+export const schemaIds = {
+  organization: "https://webmaister.io/#organization",
+  founder: "https://webmaister.io/#junalda",
+  website: "https://webmaister.io/#website",
+} as const;
+
+// One core sentence, used verbatim in the hero subline, meta descriptions,
+// About, llms.txt and the schema description.
+export const core = {
+  nl: "Webmaister is een webbureau in Rotterdam dat websites bouwt die gevonden worden op Google én in AI-assistenten zoals ChatGPT, voor ondernemers en MKB.",
+  en: "Webmaister is a Rotterdam web agency building websites that get found on Google and in AI assistants like ChatGPT, for entrepreneurs and SMEs.",
+} as const;
+
 export const site = {
   name: "Webmaister",
-  legalName: "Webmaister",
+  legalName: "JM IT Solutions",
+  alternateName: "JM IT Solutions",
   tagline: "Webbureau in Rotterdam",
   url: "https://www.webmaister.io",
   email: "hello@webmaister.io",
-  phone: "+31 10 307 2175",
-  phoneHref: "+31103072175",
+  phone: "+31 6 43187444",
+  phoneHref: "+31643187444",
   whatsapp: "+31 6 43187444",
   whatsappHref: "31643187444", // wa.me format: country code + number, no + or leading 0
   kvk: "87478889",
-  streetAddress: "Galvanistraat 1965",
-  postalCode: "3029 AD",
-  city: "Rotterdam",
-  region: "Zuid-Holland",
-  country: "NL",
+  streetAddress: businessAddress.streetAddress,
+  postalCode: businessAddress.postalCode,
+  city: businessAddress.addressLocality,
+  region: businessAddress.addressRegion,
+  country: businessAddress.addressCountry,
   areaServed: ["Rotterdam", "Zuid-Holland", "Nederland"],
   founder: "Junalda Meiland",
-  founded: "2023",
-  deliveryTime: "2 tot 4 weken",
+  founded: "2022",
+  foundingDate: "2022-09-01",
+  deliveryTime: "One-Pager binnen 7 dagen",
   // Geo-coördinaten van Galvanistraat 1965, 3029 AD Rotterdam.
   geo: { lat: "51.911964", lng: "4.430999" },
-  // ---- One canonical positioning line, used in schema, footer, about & meta. ----
-  description:
-    "Webmaister is a Rotterdam web agency building websites, lead generation and AI automation for growing businesses.",
-  descriptionNL:
-    "Webmaister is een webbureau in Rotterdam dat websites, leadgeneratie en AI-automatisering bouwt voor groeiende bedrijven.",
+  description: core.en,
+  descriptionNL: core.nl,
   social: {
     linkedin: "https://www.linkedin.com/company/112275381/",
     instagram: "https://www.instagram.com/webmaister.io",
+    founderLinkedin: "https://www.linkedin.com/in/junalda-m-n-meiland",
   },
 };
+
+// Packages shown on /start. Partnership has no public price.
+export const packages = [
+  {
+    id: "one-pager",
+    name: "One-Pager",
+    setup: 500,
+    monthly: 150,
+    description: "A professional one-page website, live within 7 days. €500 setup + €150 per month.",
+    descriptionNL: "Een professionele website van één pagina, live binnen 7 dagen. €500 setup + €150 per maand.",
+  },
+  {
+    id: "growth-essentials",
+    name: "Growth Essentials",
+    setup: 2700,
+    monthly: 300,
+    description: "Get found on Google and AI and turn visitors into customers. €2,700 setup + €300 per month, with a 6-month results guarantee on the setup.",
+    descriptionNL: "Gevonden worden op Google en in AI, en bezoekers omzetten in klanten. €2.700 setup + €300 per maand, met een resultaten-garantie van 6 maanden op de setup.",
+  },
+  {
+    id: "growth-partnership",
+    name: "Growth Partnership",
+    description: "A done-for-you growth partnership. Price on request. Minimum 6 months.",
+    descriptionNL: "Een done-for-you groeipartnerschap. Prijs op aanvraag. Minimaal 6 maanden.",
+  },
+] as const;
 
 export const nav = [
   { label: "Services", href: "/solutions/" },
@@ -79,51 +129,49 @@ export const pillars = [
   {
     id: "digital-presence",
     name: "Digital Presence",
-    short: "Premium websites that build trust and generate leads.",
+    short: "Premium websites that build trust and get you found.",
     icon: "globe",
-    outcome: "A site customers trust in seconds and one that turns visitors into qualified leads.",
+    outcome: "A fast, custom site customers trust in seconds, built to be found on Google and in AI assistants.",
   },
   {
     id: "growth-systems",
-    name: "Growth Systems",
-    short: "SEO, conversion optimization and customer-acquisition systems.",
+    name: "Findability",
+    short: "Get found on Google and AI.",
     icon: "trend",
-    outcome: "A predictable engine that brings the right customers to you, month after month.",
+    outcome: "SEO and AI-search visibility, so the right people find you on Google and in assistants like ChatGPT.",
   },
   {
     id: "brainy",
     name: "Brainy AI & Automation",
-    short: "AI that automates repetitive work and helps you scale without extra hires.",
+    short: "AI that handles support, bookings, follow-ups and admin.",
     icon: "spark",
-    outcome: "A digital employee that handles the busywork 24/7 so your team can focus on growth.",
+    outcome: "A digital employee for support, bookings, follow-ups and admin, so repetitive work does not wait on your team.",
   },
 ];
 
 // ---- The modern business problem ----
 export const problems = [
-  { title: "Your website doesn't generate leads", text: "Beautiful, maybe but it isn't turning visitors into conversations or customers." },
-  { title: "Processes are still manual", text: "Quotes, follow-ups and admin eat the hours that should go into growth." },
-  { title: "Customers wait too long", text: "Slow replies cost trust and revenue while competitors answer instantly." },
+  { title: "Customers can't find you", text: "The site may look fine, but it does not show up on Google or in AI answers." },
+  { title: "Processes are still manual", text: "Support, follow-ups and admin eat the hours that should go into the business." },
+  { title: "Customers wait too long", text: "Slow replies cost trust while someone else answers first." },
   { title: "Teams waste time on repetitive work", text: "Skilled people stuck doing copy-paste tasks a system should handle." },
-  { title: "Growth depends entirely on people", text: "Every new customer means more headcount so scaling stays expensive and fragile." },
+  { title: "The website and the findability are separate", text: "A new site that nobody can find does not change how customers reach you." },
 ];
 
 // ---- Growth framework ----
 export const framework = [
-  { step: "01", name: "Discover", text: "We map your customers, funnel and bottlenecks to find the highest-leverage growth opportunities." },
-  { step: "02", name: "Build", text: "We design a premium, fast digital foundation engineered to convert and built to last." },
-  { step: "03", name: "Automate", text: "Brainy takes over repetitive work lead capture, support, follow-ups and admin 24/7." },
-  { step: "04", name: "Scale", text: "We optimize with real data so results compound and growth no longer depends on headcount." },
+  { step: "01", name: "Discover", text: "We start from where the business wants to go, then decide what the website, findability and automation need to do." },
+  { step: "02", name: "Build", text: "We design and build a fast, custom, code-based site with a clear path to contact." },
+  { step: "03", name: "Automate", text: "Brainy takes over repetitive work: support, bookings, follow-ups and admin, 24/7." },
+  { step: "04", name: "Stay found", text: "Monthly maintenance and findability work keep the site fast, current and visible on Google and in AI answers." },
 ];
 
 // ---- What Brainy does ----
 export const brainyCapabilities = [
-  { title: "Capture & qualify leads", text: "Greets every visitor, asks the right questions and routes hot leads to your team automatically." },
-  { title: "Answer questions 24/7", text: "Instant, accurate answers from your own knowledge base, day or night, in any language." },
-  { title: "Book appointments & follow-ups", text: "Schedules calls, sends reminders and never lets a lead go cold." },
-  { title: "Generate content", text: "Drafts on-brand copy, emails and product descriptions in minutes, not days." },
-  { title: "Analyze business data", text: "Turns scattered numbers into clear answers you can act on." },
-  { title: "Automate admin work", text: "Handles repetitive back-office tasks so your team reclaims hours every week." },
+  { title: "Customer support", text: "Answers questions from your own information, day or night, so people are not left waiting." },
+  { title: "Bookings", text: "Schedules appointments and sends reminders." },
+  { title: "Follow-ups", text: "Keeps the next step moving after a conversation, so requests do not sit still." },
+  { title: "Admin", text: "Handles repetitive back-office tasks so your team reclaims hours every week." },
 ];
 
 // ---- Solutions catalogue ----
@@ -131,9 +179,9 @@ export const solutionGroups = [
   {
     id: "digital-presence",
     name: "Digital Presence",
-    tag: "Build trust. Generate leads.",
+    tag: "Build trust. Get found.",
     icon: "globe",
-    intro: "A premium website is your hardest-working salesperson. We build digital foundations that load instantly, look world-class and turn visitors into customers.",
+    intro: "A premium website is the foundation people judge in seconds. We build fast, custom sites that load quickly, explain the business clearly and can be found on Google and in AI assistants.",
     items: [
       { name: "Premium Website Design", outcome: "Win trust in seconds and convert more visitors with a fast, elegant site engineered around your customer's journey." },
       { name: "Website Redesign", outcome: "Modernize an outdated site into a credibility and conversion engine without losing your existing SEO." },
@@ -143,13 +191,13 @@ export const solutionGroups = [
   {
     id: "growth-systems",
     name: "Growth Systems",
-    tag: "Predictable customer acquisition.",
+    tag: "Get found on Google and AI.",
     icon: "trend",
-    intro: "Traffic is only useful when it becomes revenue. We build acquisition and conversion systems that bring the right customers to you and turn them into buyers.",
+    intro: "Being online is not the same as being found. We work on Google visibility and on being understandable to AI assistants such as ChatGPT and Google AI Overviews.",
     items: [
-      { name: "SEO", outcome: "Get found by customers actively searching in Rotterdam and beyond, and own the rankings that drive demand." },
-      { name: "Conversion Optimization", outcome: "Turn more of your existing traffic into leads and sales often the fastest ROI in your entire funnel." },
-      { name: "Lead Generation Systems", outcome: "A reliable pipeline of qualified leads, captured and nurtured automatically instead of by chance." },
+      { name: "SEO", outcome: "Get found by people actively searching in Rotterdam and beyond, with a fast site and clear pages." },
+      { name: "AI search visibility", outcome: "Make who you are, what you do and who it is for explicit, so AI assistants can cite the site when it fits the question." },
+      { name: "Monthly findability", outcome: "Included with Growth Essentials: visibility on Google and in AI, reviewed and improved every month." },
     ],
   },
   {
@@ -157,14 +205,12 @@ export const solutionGroups = [
     name: "Brainy AI Solutions",
     tag: "Your digital employee, working 24/7.",
     icon: "spark",
-    intro: "Brainy is the intelligent layer that runs the work you'd otherwise hire for sales, support, admin and operations around the clock, at a fraction of the cost.",
+    intro: "Brainy is the automation layer for support, bookings, follow-ups and admin. It is not a lead-generation bot. It takes repetitive work off the team, around the clock.",
     items: [
-      { name: "AI Assistants", outcome: "A digital team member that handles routine work across sales, service and operations 24/7." },
-      { name: "AI Customer Support", outcome: "Instant, accurate answers that delight customers and cut support load and response times." },
-      { name: "AI Lead Qualification", outcome: "Every inbound lead engaged, qualified and routed in seconds so your team only talks to buyers." },
-      { name: "AI Knowledge Bases", outcome: "Your company's expertise, searchable in plain language for customers and staff alike." },
-      { name: "AI Content Generation", outcome: "On-brand content at scale: pages, emails, descriptions and posts produced in minutes." },
-      { name: "Business Process Automation", outcome: "Connect your tools and let the repetitive work run itself, eliminating manual handoffs and errors." },
+      { name: "AI Customer Support", outcome: "Answers customer questions from your own information, including outside office hours." },
+      { name: "Bookings", outcome: "Schedules appointments and sends reminders so a request can move to a conversation." },
+      { name: "Follow-ups", outcome: "Keeps the next step moving after a question or a booking." },
+      { name: "Admin automation", outcome: "Handles repetitive back-office tasks so the team spends time on the work that needs a person." },
     ],
   },
 ];
@@ -268,7 +314,7 @@ export const caseStudies: CaseStudy[] = [
       "Scalable structure for future growth",
     ],
     outcome:
-      "Capture the Moment Solutions now has a professional digital foundation that clearly presents Gabriel's services, story, process and portfolio. Visitors immediately understand the value of his work, the platform gives them the confidence to reach out, and the structure supports lead generation for both real estate and content-creation clients, ready to scale as the business grows.",
+      "Capture the Moment Solutions now has a professional digital foundation that clearly presents Gabriel's services, story, process and portfolio. Visitors immediately understand the value of his work, and the platform gives them a clear way to get in touch, ready to grow as the business grows.",
     quote: "Trust starts before the first conversation. A strong digital foundation makes your work easier to believe, understand and buy.",
     website: { label: "capturethemomentsolutions.nl", href: "https://capturethemomentsolutions.nl" },
     founders: [
@@ -447,43 +493,97 @@ export const startOptions = [
   },
 ];
 
-// ---- FAQ (powers FAQPage schema + Contact/Home copy) ----
+// ---- FAQ on the homepage, /diensten and /en/solutions. Standalone answers. ----
 export const faqs = [
   {
-    q: "Is Webmaister a web design agency?",
-    a: "Not only. Webmaister is a Rotterdam web agency that builds websites, lead generation and AI automation for growing businesses. We build the complete digital foundation that helps a business attract and convert customers, not just a website.",
+    q: "What does a website from Webmaister cost?",
+    a: "A One-Pager is €500 setup plus €150 per month, and it goes live within 7 days. Growth Essentials is €2,700 setup plus €300 per month, with a 6-month results guarantee on the setup: we agree measurable goals first, and if we do not deliver them within six months you get the €2,700 setup fee back, based on the goals we document together. Growth Partnership is price on request, and we do not publish a fixed fee for it.",
   },
   {
-    q: "What is Brainy?",
-    a: "Brainy is the intelligent AI layer behind Webmaister. It works like a digital employee: capturing and qualifying leads, answering customer questions 24/7, booking appointments, generating content, analyzing data and automating administrative work so businesses scale without hiring extra staff.",
+    q: "How fast is my site live?",
+    a: "A One-Pager is live within 7 days. Growth Essentials and Growth Partnership take longer because the scope is larger, and we agree the timing before we start. We do not quote one delivery time for every package.",
   },
   {
-    q: "Do you work with businesses in Rotterdam?",
-    a: "Yes. Webmaister is based in Rotterdam and works with ambitious businesses across Rotterdam, Zuid-Holland and the wider Netherlands, as well as remotely. We offer local expertise in website design, SEO and AI automation for the Rotterdam market.",
+    q: "What's included in the monthly fee?",
+    a: "The One-Pager monthly fee of €150 covers ongoing maintenance. The Growth Essentials monthly fee of €300 covers Google and AI search visibility, monthly funnel and conversion optimization, positioning and offer feedback, and performance tracking and reporting. Growth Partnership is scoped on request, with a minimum of 6 months.",
   },
   {
-    q: "How is this different from hiring more staff?",
-    a: "Instead of adding headcount to handle repetitive work, Brainy automates it 24/7 at a fraction of the cost. Your existing team is freed to focus on high-value work, and your capacity scales without your payroll scaling with it.",
+    q: "What does being found in AI (ChatGPT, Google AI Overviews) mean?",
+    a: "People ask ChatGPT, Google AI Overviews and similar assistants for a short answer, not only a list of links. Being found means the assistant can mention your business when the question matches what you do. That depends on a site that states who you are, what you do, who it is for and where you work. It is not an ad placement, and no one can promise that an assistant will name you every time.",
   },
   {
-    q: "What does a project look like?",
-    a: "We follow a simple four-step framework: Discover (map your funnel and bottlenecks), Build (a premium, fast digital foundation), Automate (deploy Brainy on the repetitive work), and Scale (optimize with real data so results compound).",
+    q: "How do you make sure my site appears in AI answers?",
+    a: "We write, in plain language and in schema.org structured data, who the business is, what it offers and where it works. The site is fast, custom and code-based, and the pages answer real customer questions. The same clarity helps on Google. We do not guarantee that ChatGPT or Google AI Overviews will cite the site. We make the facts easy for those systems to read.",
   },
   {
-    q: "How do we get started?",
-    a: "Book a free Growth Strategy Call. We'll review your current setup, identify the highest-leverage opportunities and outline a clear plan to attract more customers, automate work and grow.",
+    q: "Do you work with WordPress?",
+    a: "No. Webmaister does not build WordPress sites. We build custom, fast, code-based websites, without a theme and plugin stack. That keeps the site light, and we maintain the code ourselves.",
+  },
+  {
+    q: "Who is Webmaister for, and do you only work in Rotterdam?",
+    a: "Webmaister is for entrepreneurs and SMEs who want a website that gets found on Google and in AI assistants like ChatGPT. We are based in Rotterdam and work across Rotterdam, Zuid-Holland and the rest of the Netherlands, including remotely. You do not have to be based in Rotterdam.",
+  },
+  {
+    q: "Who is behind Webmaister?",
+    a: "Junalda Meiland is the founder. She has 10+ years in technology, a background in software development and IT project management, and she has been an entrepreneur since 2016. She is based in Rotterdam. Her approach is to start from where the business wants to go, then build the website, the findability and the automation.",
+  },
+  {
+    q: "What is the difference between One-Pager, Growth Essentials and Growth Partnership?",
+    a: "The One-Pager is one professional page, live within 7 days, at €500 setup and €150 per month. Growth Essentials is the larger build for getting found on Google and in AI and turning visitors into customers, at €2,700 setup and €300 per month, with a 6-month results guarantee on that setup. Growth Partnership is a done-for-you partnership. The price is on request and the minimum term is 6 months.",
   },
 ];
 
-// ---- Solutions-page FAQ (answer-first, powers a second FAQPage) ----
-export const solutionsFaqs = [
+export const faqsNL = [
+  {
+    q: "Wat kost een website van Webmaister?",
+    a: "Een One-Pager kost €500 setup plus €150 per maand en staat binnen 7 dagen live. Growth Essentials kost €2.700 setup plus €300 per maand, met een resultaten-garantie van 6 maanden op die setup: we spreken meetbare doelen af, en halen we die niet binnen zes maanden, dan krijg je de setup van €2.700 terug, op basis van de doelen die we samen vastleggen. Growth Partnership is op aanvraag, en daar publiceren we geen vast bedrag voor.",
+  },
+  {
+    q: "Hoe snel staat mijn site live?",
+    a: "Een One-Pager staat binnen 7 dagen live. Growth Essentials en Growth Partnership duren langer, omdat de omvang groter is, en die doorlooptijd spreken we vooraf af. We noemen niet één levertijd voor elk pakket.",
+  },
+  {
+    q: "Wat zit er in het maandbedrag?",
+    a: "Het maandbedrag van €150 bij een One-Pager is doorlopend onderhoud. Het maandbedrag van €300 bij Growth Essentials dekt vindbaarheid op Google en in AI, maandelijkse funnel- en conversieoptimalisatie, feedback op positionering en aanbod, en het bijhouden en rapporteren van prestaties. Growth Partnership stemmen we af op aanvraag, met een minimum van 6 maanden.",
+  },
+  {
+    q: "Wat betekent gevonden worden in AI (ChatGPT, Google AI Overviews)?",
+    a: "Mensen stellen een vraag aan ChatGPT, Google AI Overviews en vergelijkbare assistenten en krijgen een kort antwoord, niet alleen een lijst links. Gevonden worden betekent dat zo'n assistent je bedrijf kan noemen als de vraag past bij wat je doet. Dat vraagt een site die duidelijk maakt wie je bent, wat je doet, voor wie en waar. Het is geen advertentieplek, en niemand kan beloven dat een assistent je elke keer noemt.",
+  },
+  {
+    q: "Hoe zorgen jullie dat mijn site in AI-antwoorden verschijnt?",
+    a: "We schrijven in gewone taal en in structured data (schema.org) wie het bedrijf is, wat het aanbiedt en waar het werkt. De site is snel, op maat en in code gebouwd, en de pagina's beantwoorden echte klantvragen. Dezelfde duidelijkheid helpt in Google. We garanderen niet dat ChatGPT of Google AI Overviews de site citeren. We maken de feiten wel makkelijk leesbaar voor die systemen.",
+  },
+  {
+    q: "Werken jullie met WordPress?",
+    a: "Nee. Webmaister bouwt geen WordPress-sites. We bouwen maatwerk websites in code: snel, zonder een thema- en pluginlaag. Daardoor blijft de site licht, en we onderhouden de code zelf.",
+  },
+  {
+    q: "Voor wie is Webmaister, en werken jullie alleen in Rotterdam?",
+    a: "Webmaister is voor ondernemers en het MKB die een website willen die gevonden wordt op Google en in AI-assistenten zoals ChatGPT. We zitten in Rotterdam en werken in Rotterdam, Zuid-Holland en de rest van Nederland, ook op afstand. Je hoeft niet in Rotterdam gevestigd te zijn.",
+  },
+  {
+    q: "Wie zit er achter Webmaister?",
+    a: "Junalda Meiland is de oprichter. Ze heeft meer dan 10 jaar ervaring in technologie, een achtergrond in softwareontwikkeling en IT-projectmanagement, en is ondernemer sinds 2016. Ze werkt vanuit Rotterdam. Haar aanpak: eerst kijken waar het bedrijf naartoe wil, en daarna de website, de vindbaarheid en de automatisering bouwen.",
+  },
+  {
+    q: "Wat is het verschil tussen One-Pager, Growth Essentials en Growth Partnership?",
+    a: "De One-Pager is één professionele pagina, live binnen 7 dagen, voor €500 setup en €150 per maand. Growth Essentials is het grotere traject om gevonden te worden op Google en in AI en bezoekers om te zetten in klanten, voor €2.700 setup en €300 per maand, met een resultaten-garantie van 6 maanden op die setup. Growth Partnership is een done-for-you partnerschap. De prijs is op aanvraag en de minimale looptijd is 6 maanden.",
+  },
+];
+
+// Same questions on the English services page.
+export const solutionsFaqs = faqs;
+
+// Visible FAQ on /start. Frozen so shared FAQ edits do not change that page.
+export const startPageFaqs = [
   {
     q: "What does a premium website include?",
-    a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into qualified leads, not just to look good.",
+    a: "A premium website from Webmaister is a fast, mobile-first, conversion-focused platform with clear positioning, strong branding, SEO-ready architecture and the structure to grow with your business. It is built to win trust in seconds and turn visitors into customers, not just to look good.",
   },
   {
     q: "Is Brainy a chatbot?",
-    a: "No. Brainy is an AI layer that works like a digital employee: it captures and qualifies leads, answers customer questions 24/7, books appointments and follow-ups, generates content and automates administrative work. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
+    a: "No. Brainy is an AI layer that works like a digital employee: it answers customer questions 24/7, books appointments, handles follow-ups and automates admin, and it generates content. The goal is to remove repetitive work so your team can focus on growth, not to bolt a chatbot onto your site.",
   },
   {
     q: "How long does a project take?",
@@ -491,7 +591,7 @@ export const solutionsFaqs = [
   },
   {
     q: "What does it cost?",
-    a: "It depends on what you need: a website, growth and SEO systems, AI automation, or a combination. We scope each project to your goals and budget and give you a clear quote up front. The fastest way to a price is a free Growth Strategy Call, where we map the work and the expected return.",
+    a: "Websites start at €500 setup + €150/mo, live within 7 days. Growth packages start at €2,700 setup + €300/mo, with a 6-month results guarantee. See all packages above, or message us and we'll tell you which one fits.",
   },
   {
     q: "Do you only work with businesses in Rotterdam?",
@@ -566,25 +666,24 @@ export const nlLandings = [
     keyword: "AI Automatisering Rotterdam",
     title: "AI Automatisering Rotterdam · Je digitale medewerker",
     description:
-      "AI-automatisering voor bedrijven in Rotterdam. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden en administratie automatiseren. Plan een gesprek.",
+      "AI-automatisering voor bedrijven in Rotterdam. Brainy werkt als een digitale medewerker: ondersteuning, afspraken, opvolging en administratie. Plan een gesprek.",
     h1: "AI-automatisering in Rotterdam",
     lead:
       "Laat repetitief werk over aan Brainy, je digitale medewerker die 24/7 doorwerkt.",
     intro: [
       "Groeien hoeft niet te betekenen dat je meer mensen aanneemt. Met AI-automatisering laat je het terugkerende werk over aan een systeem dat dag en nacht doorwerkt, tegen een fractie van de kosten.",
-      "Brainy is de intelligente laag achter Webmaister. Geen chatbot, maar een digitale medewerker die leads opvangt en kwalificeert, klantvragen 24/7 beantwoordt, afspraken inplant en administratie automatiseert, zodat jouw team zich op groei kan richten.",
+      "Brainy is de automatisering achter Webmaister. Geen leadgeneratie-bot en geen chatbot, maar ondersteuning, afspraken, opvolging en administratie, zodat terugkerend werk niet op het team blijft liggen.",
     ],
     includesTitle: "Wat Brainy doet",
     includes: [
-      "Leads opvangen en kwalificeren, automatisch",
-      "24/7 klantvragen beantwoorden uit je eigen kennisbank",
-      "Afspraken en opvolging inplannen",
-      "Administratief werk en handmatige taken automatiseren",
-      "Opschalen zonder dat je personeelskosten meegroeien",
+      "Klantvragen beantwoorden uit je eigen informatie",
+      "Afspraken inplannen",
+      "Opvolging",
+      "Administratief werk automatiseren",
     ],
     faq: [
-      { q: "Is Brainy een chatbot?", a: "Nee. Brainy werkt als een digitale medewerker: leads kwalificeren, 24/7 vragen beantwoorden, afspraken inplannen en administratie automatiseren. Het doel is repetitief werk weghalen, niet een chatbot op je site plakken." },
-      { q: "Waarmee kan ik beginnen?", a: "We beginnen met de ene taak die de meeste tijd of de meeste leads kost, bewijzen de waarde, en breiden daarna uit. Kleine, opeenstapelende winst werkt beter dan één grote risicovolle ingreep." },
+      { q: "Is Brainy een chatbot?", a: "Nee. Brainy neemt ondersteuning, afspraken, opvolging en administratie over. Het doel is repetitief werk weghalen, niet een chatbot op je site plakken." },
+      { q: "Waarmee kan ik beginnen?", a: "We beginnen met de ene taak die de meeste tijd kost, bewijzen de waarde, en breiden daarna uit. Kleine, opeenstapelende winst werkt beter dan één grote risicovolle ingreep." },
       { q: "Werkt dit ook voor mijn type bedrijf?", a: "AI-automatisering is breed toepasbaar, van dienstverleners tot e-commerce. In een gratis gesprek kijken we welke taken bij jou het meeste opleveren." },
     ],
   },

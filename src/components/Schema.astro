@@ -1,128 +1,195 @@
 ---
-// JSON-LD structured data so AI search engines (ChatGPT, Gemini, Claude,
-// Perplexity) and traditional crawlers can reliably understand and recommend
-// Webmaister. Supports LocalBusiness, Service and FAQPage graphs.
-import { site, solutionGroups, faqs } from "@/data/site";
+// One sitewide JSON-LD @graph: organization, founder, website, packages,
+// plus AboutPage, FAQPage and BreadcrumbList where the page shows them.
+import { site, businessAddress, schemaIds, core, packages, faqs, faqsNL, startPageFaqs } from "@/data/site";
 
 interface Props {
-  faq?: boolean;        // include FAQPage
-  services?: boolean;   // include Service entities
-  title?: string;       // current page title (for breadcrumb leaf)
+  faq?: boolean;
+  services?: boolean;
+  title?: string;
 }
-const { faq = false, services = false, title } = Astro.props;
+const { title } = Astro.props;
 
-// sameAs only lists profiles we actually have. Placeholders in site.ts
-// (e.g. an empty Instagram URL) are skipped rather than emitting a broken link.
-const sameAs = [site.social.linkedin, site.social.instagram].filter(Boolean);
+const path = Astro.url.pathname;
+const bare = path.replace(/\/$/, "") || "/";
+const isEnglish = bare === "/en" || bare.startsWith("/en/") || bare === "/start" || bare.startsWith("/start/") || bare.startsWith("/blog");
+const description = isEnglish ? core.en : core.nl;
+const canonical = new URL(path.endsWith("/") ? path : `${path}/`, site.url).href;
 
-// Geo coordinates are a placeholder in site.ts ([INVULLEN]). We only emit a
-// GeoCoordinates node once real values are filled in, so no fake coordinates
-// are ever published.
+// sameAs only lists profiles already in the repo. Never emit
+// linkedin.com/company/webmaister (a different Hungarian agency).
+// linkedin.com/company/webmaister-io would be allowed if it were in config.
+const safeSameAs = [site.social.linkedin, site.social.instagram].filter((url) => {
+  if (!url) return false;
+  return !/linkedin\.com\/company\/webmaister\/?(?:$|\?)/.test(url);
+});
+
+const areaServed = site.areaServed.map((name) => ({ "@type": "Place", name }));
+
 const hasGeo = Boolean(site.geo.lat && site.geo.lng);
 
-const onStart = Astro.url.pathname === "/start" || Astro.url.pathname.startsWith("/start/");
-
-const localBusiness = {
-  // ProfessionalService is a subtype of LocalBusiness and Organization; the
-  // explicit Organization keeps "Organization + ProfessionalService" legible
-  // to parsers that look for the base type.
+const organization = {
   "@type": ["ProfessionalService", "Organization"],
-  "@id": `${site.url}/#organization`,
+  "@id": schemaIds.organization,
   name: site.name,
   legalName: site.legalName,
-  description: onStart
-    ? "Webmaister builds websites that get you found on Google and AI, plus automation that takes the busywork off your plate. For growing businesses in Rotterdam and beyond."
-    : site.descriptionNL,
+  alternateName: site.alternateName,
   url: site.url,
-  email: site.email,
-  telephone: `+${site.whatsappHref}`,
-  foundingDate: site.founded,
-  image: `${site.url}/og.png`,
   logo: `${site.url}/logo.svg`,
-  priceRange: "€€€",
+  image: `${site.url}/og.png`,
+  description,
+  foundingDate: site.foundingDate,
+  email: site.email,
+  telephone: site.phone,
   currenciesAccepted: "EUR",
   identifier: {
     "@type": "PropertyValue",
     propertyID: "KvK",
     value: site.kvk,
   },
-  founder: {
-    "@type": "Person",
-    name: site.founder,
-    jobTitle: "Oprichter",
-    url: `${site.url}/over-ons/`,
-  },
+  founder: { "@id": schemaIds.founder },
   address: {
     "@type": "PostalAddress",
-    streetAddress: site.streetAddress,
-    postalCode: site.postalCode,
-    addressLocality: site.city,
-    addressRegion: site.region,
-    addressCountry: site.country,
+    streetAddress: businessAddress.streetAddress,
+    postalCode: businessAddress.postalCode,
+    addressLocality: businessAddress.addressLocality,
+    addressRegion: businessAddress.addressRegion,
+    addressCountry: businessAddress.addressCountry,
   },
   ...(hasGeo
     ? { geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng } }
     : {}),
-  areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
+  areaServed,
+  sameAs: safeSameAs,
+};
+
+const founder = {
+  "@type": "Person",
+  "@id": schemaIds.founder,
+  name: "Junalda Meiland",
+  jobTitle: "Founder",
+  worksFor: { "@id": schemaIds.organization },
   knowsAbout: [
-    "Website laten maken Rotterdam",
-    "Webdesign Rotterdam",
-    "SEO Rotterdam",
-    "AI Automatisering Rotterdam",
-    "AI Agent Rotterdam",
-    "Website Onderhoud Rotterdam",
-    "GEO optimalisatie",
+    "web development",
+    "software development",
+    "IT project management",
+    "SEO",
+    "AI search / generative engine optimization",
   ],
-  sameAs,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Rotterdam",
+    addressCountry: "NL",
+  },
+  sameAs: [site.social.founderLinkedin],
 };
 
-const serviceList = solutionGroups.flatMap((group) =>
-  group.items.map((item) => ({
+const website = {
+  "@type": "WebSite",
+  "@id": schemaIds.website,
+  url: site.url,
+  name: site.name,
+  description,
+  publisher: { "@id": schemaIds.organization },
+  inLanguage: ["nl", "en"],
+};
+
+const packageServices = packages.map((pkg) => {
+  const node: Record<string, unknown> = {
     "@type": "Service",
-    name: item.name,
-    serviceType: group.name,
-    description: item.outcome,
-    provider: { "@id": `${site.url}/#organization` },
-    areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
-  }))
-);
+    "@id": `https://webmaister.io/#service-${pkg.id}`,
+    name: pkg.name,
+    description: isEnglish ? pkg.description : pkg.descriptionNL,
+    provider: { "@id": schemaIds.organization },
+    areaServed,
+    url: `${site.url}/start/`,
+  };
+  if ("setup" in pkg && "monthly" in pkg) {
+    node.offers = [
+      {
+        "@type": "Offer",
+        name: `${pkg.name} setup`,
+        price: String(pkg.setup),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: `${site.url}/start/`,
+      },
+      {
+        "@type": "Offer",
+        name: `${pkg.name} monthly`,
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: `${site.url}/start/`,
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: String(pkg.monthly),
+          priceCurrency: "EUR",
+          unitCode: "P1M",
+          referenceQuantity: {
+            "@type": "QuantitativeValue",
+            value: 1,
+            unitCode: "MON",
+          },
+        },
+      },
+    ];
+  }
+  return node;
+});
 
-const faqPage = {
-  "@type": "FAQPage",
-  mainEntity: faqs.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+const isAbout = bare === "/over-ons" || bare === "/en/about";
+const aboutPage = isAbout
+  ? {
+      "@type": "AboutPage",
+      "@id": `${canonical}#aboutpage`,
+      url: canonical,
+      name: bare === "/en/about" ? "About Webmaister" : "Over Webmaister",
+      description,
+      inLanguage: bare === "/en/about" ? "en" : "nl",
+      mainEntity: { "@id": schemaIds.organization },
+      isPartOf: { "@id": schemaIds.website },
+    }
+  : null;
 
-// Breadcrumbs derived from the URL path (Home › … › current page) so AI and
-// search engines understand the site hierarchy. Locale prefixes like /nl/ are
-// not real pages, so they are skipped as crumbs.
+let faqItems: { q: string; a: string }[] | null = null;
+if (bare === "/" || bare === "/diensten") faqItems = faqsNL;
+else if (bare === "/en" || bare === "/en/solutions" || bare === "/en/contact") faqItems = faqs;
+else if (bare === "/start") faqItems = startPageFaqs;
+
+const faqPage = faqItems
+  ? {
+      "@type": "FAQPage",
+      "@id": `${canonical}#faq`,
+      mainEntity: faqItems.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  : null;
+
 const deslug = (s: string) => s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 const locales = new Set(["nl", "en"]);
-const parts = Astro.url.pathname.split("/").filter(Boolean);
-const crumbItems = [{ "@type": "ListItem", position: 1, name: "Home", item: `${site.url}/` }];
+const parts = path.split("/").filter(Boolean);
+const isEnPath = parts[0] === "en";
+const crumbItems: { "@type": string; position: number; name: string; item: string }[] = [
+  { "@type": "ListItem", position: 1, name: "Home", item: isEnPath ? `${site.url}/en/` : `${site.url}/` },
+];
 parts.forEach((seg, i) => {
-  if (locales.has(seg)) return; // language prefix, not a navigable page
+  if (locales.has(seg)) return;
   const isLast = i === parts.length - 1;
   crumbItems.push({
     "@type": "ListItem",
     position: crumbItems.length + 1,
-    name: isLast && title ? title.split(" · ")[0] : deslug(seg),
+    name: isLast && title ? title.split(" · ")[0].split(" | ")[0] : deslug(seg),
     item: `${site.url}/${parts.slice(0, i + 1).join("/")}/`,
   });
 });
-const breadcrumb = crumbItems.length > 1 ? { "@type": "BreadcrumbList", itemListElement: crumbItems } : null;
+const breadcrumb = crumbItems.length > 1
+  ? { "@type": "BreadcrumbList", itemListElement: crumbItems }
+  : null;
 
-const graph: object[] = [
-  { "@type": "WebSite", "@id": `${site.url}/#website`, url: site.url, name: site.name, publisher: { "@id": `${site.url}/#organization` } },
-  localBusiness,
-];
-if (services) graph.push(...serviceList);
-if (faq) graph.push(faqPage);
-if (breadcrumb) graph.push(breadcrumb);
-
+const graph = [website, organization, founder, ...packageServices, aboutPage, faqPage, breadcrumb].filter(Boolean);
 const data = { "@context": "https://schema.org", "@graph": graph };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(data)} is:inline />

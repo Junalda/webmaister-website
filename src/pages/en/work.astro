@@ -81,14 +81,6 @@ const linkFounders = (text: string, founders?: { name: string; href: string }[])
             </aside>
           </div>
 
-          {cs.quote && (
-            <blockquote class="case-quote">
-              <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-              <p>{cs.quote}</p>
-              <cite>{cs.company} · {cs.industry}</cite>
-            </blockquote>
-          )}
-
           {(cs.website || cs.founders) && (
             <div class="case-links" data-reveal>
               {cs.website && (
