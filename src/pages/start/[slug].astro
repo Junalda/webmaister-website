@@ -25,8 +25,8 @@ const { o } = Astro.props;
       )}
       {o.packages && (
         <div class="opt-price" data-reveal data-delay="180">
-          <span class="opt-price-value disp">from {o.packages[0].price}</span>
-          <span class="opt-price-note">per month + €2,700 setup · {o.packages.length} packages</span>
+          <span class="opt-price-value disp">{o.priceHeadline}</span>
+          <span class="opt-price-note">{o.priceHeadlineNote}</span>
         </div>
       )}
     </div>
@@ -56,7 +56,7 @@ const { o } = Astro.props;
                 <p class="pkg-tag">{pk.tagline}</p>
                 <div class="pkg-price">
                   <span class="disp pkg-amount">{pk.price}</span>
-                  <span class="pkg-per">{pk.priceNote}</span>
+                  {pk.priceNote && <span class="pkg-per">{pk.priceNote}</span>}
                 </div>
                 {pk.setup && <p class="pkg-setup">+ {pk.setup}</p>}
                 {pk.terms && <p class="pkg-terms">{pk.terms}</p>}

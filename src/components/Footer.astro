@@ -9,7 +9,10 @@ const { lang = "en" } = Astro.props;
 const year = new Date().getFullYear();
 const footerNav = lang === "nl" ? navNL : navEN;
 const cta = lang === "nl" ? ctaNL : ctaEN;
-const boilerplate = lang === "nl" ? site.descriptionNL : site.description;
+const onStart = Astro.url.pathname === "/start" || Astro.url.pathname.startsWith("/start/");
+const boilerplate = onStart
+  ? "Webmaister builds websites that get you found on Google and AI, plus automation that takes the busywork off your plate. For growing businesses in Rotterdam and beyond."
+  : lang === "nl" ? site.descriptionNL : site.description;
 // One unique URL per service (de-duplicated).
 const seo = [
   { label: "Website laten maken Rotterdam", href: "/nl/website-laten-maken-rotterdam/" },

@@ -6,6 +6,8 @@
     { "source": "/success-stories", "destination": "/cases/", "permanent": true },
     { "source": "/success-stories/", "destination": "/cases/", "permanent": true },
     { "source": "/about", "destination": "/over-ons/", "permanent": true },
-    { "source": "/about/", "destination": "/over-ons/", "permanent": true }
+    { "source": "/about/", "destination": "/over-ons/", "permanent": true },
+    { "source": "/start/growth", "destination": "/start/upgrade/", "permanent": true },
+    { "source": "/start/growth/", "destination": "/start/upgrade/", "permanent": true }
   ]
 }
