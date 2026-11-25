@@ -1,5 +1,6 @@
 ---
 title: "Wat is GEO en hoe word je aangeraden door ChatGPT?"
+seoTitle: "Wat is GEO? Gevonden in ChatGPT | Webmaister"
 description: "GEO (Generative Engine Optimization) zorgt dat je bedrijf wordt genoemd door ChatGPT, Claude, Gemini en Perplexity. Wat GEO is, hoe het verschilt van SEO en hoe je de kans vergroot om aangeraden te worden."
 answer: "GEO staat voor Generative Engine Optimization: het optimaliseren van je online aanwezigheid zodat AI-assistenten zoals ChatGPT, Claude, Gemini en Perplexity jouw bedrijf noemen als relevante optie. Waar SEO draait om posities in Google, draait GEO om duidelijk, betrouwbaar en citeerbaar zijn voor machines. Niemand kan een aanbeveling garanderen, maar je kunt de onderliggende signalen, heldere feiten, consistente gegevens, machine-leesbare structuur en goede content, wél sterk verbeteren."
 pubDate: 2026-02-10

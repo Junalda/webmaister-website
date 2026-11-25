@@ -3,7 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import FinalCta from "@/components/FinalCta.astro";
 import ShareButtons from "@/components/ShareButtons.astro";
-import { site } from "@/data/site";
+import { site, schemaIds } from "@/data/site";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -22,7 +22,8 @@ export async function getStaticPaths() {
 
 const { post, related } = Astro.props;
 const { Content } = await render(post);
-const { title, description, pubDate, updatedDate, author, tags, cover, heroAlt, faq } = post.data;
+const { title, seoTitle, description, pubDate, updatedDate, author, tags, cover, heroAlt, faq } = post.data;
+const documentTitle = seoTitle ?? `${title} | ${site.name}`;
 const routeSlug = post.data.slug ?? post.id;
 
 const fmt = (d: Date) =>
@@ -38,7 +39,7 @@ const graph: object[] = [
     datePublished: pubDate.toISOString(),
     dateModified: (updatedDate ?? pubDate).toISOString(),
     author: { "@type": "Organization", name: author, url: site.url },
-    publisher: { "@id": "https://webmaister.io/#organization" },
+    publisher: { "@id": schemaIds.organization },
     mainEntityOfPage: canonical,
     url: canonical,
     ...(cover ? { image: new URL(cover, site.url).href } : {}),
@@ -57,7 +58,7 @@ if (faq && faq.length) {
 }
 const jsonLd = { "@context": "https://schema.org", "@graph": graph };
 ---
-<Base title={`${title} · ${site.name} Blog`} description={description}>
+<Base title={documentTitle} description={description}>
   <article class="post">
     <div class="container container-narrow">
       <a href="/blog/" class="back-link" data-reveal><Icon name="arrow" class="flip" /> All articles</a>

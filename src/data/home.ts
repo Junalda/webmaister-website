@@ -45,7 +45,7 @@ export const homeEN = {
     intro: "Websites, findability on Google and AI, and automation. Separately they help. Together they are how customers find you and how the busywork gets done.",
     pillars: [
       { n: "01", title: "Where the business is going", desc: "We start from where the business wants to go, then decide what the website, findability and automation need to do.", items: ["Business goal", "Offer", "Who it is for", "What the site must do"] },
-      { n: "02", title: "Websites", desc: "Custom, fast, code-based websites. Not WordPress. A One-Pager is live within 7 days.", items: ["One-Pager", "Multi-page sites", "Mobile-first", "Clear contact path", "SEO foundations"] },
+      { n: "02", title: "Websites", desc: "Custom, fast, code-based websites. A One-Pager is live within 7 days.", items: ["One-Pager", "Multi-page sites", "Mobile-first", "Clear contact path", "SEO foundations"] },
       { n: "03", title: "Found on Google and AI", desc: "Get found on Google and in AI assistants like ChatGPT and Google AI Overviews.", items: ["Google visibility", "AI search", "Clear business facts", "Schema.org", "Pages that answer real questions"] },
       { n: "04", title: "Automation", desc: "Brainy handles support, bookings, follow-ups and admin.", items: ["Customer support", "Bookings", "Follow-ups", "Admin", "Tool connections"] },
     ],
@@ -71,7 +71,7 @@ export const homeEN = {
     kicker: "Why Webmaister",
     h2: 'Technology is the tool.<br /><span class="accent-head">Growth is the goal.</span>',
     copy: core.en,
-    differentiators: ["Start from where the business wants to go", "Custom, code-based sites, not WordPress", "Findability on Google and in AI assistants", "A One-Pager live within 7 days", "Monthly maintenance and findability", "Direct contact with the founder"],
+    differentiators: ["Start from where the business wants to go", "Custom, code-based sites", "Findability on Google and in AI assistants", "A One-Pager live within 7 days", "Monthly maintenance and findability", "Direct contact with the founder"],
     founderLabel: "The founder",
     founderRole: "Founder, Webmaister",
     founderBio: "Junalda Meiland has 10+ years in technology, a background in software development and IT project management, and has been an entrepreneur since 2016. She is based in Rotterdam. She starts from where the business wants to go, then builds the website, the findability and the automation.",
@@ -96,7 +96,7 @@ export const homeEN = {
 
 export const homeNL = {
   meta: {
-    title: "Website laten maken die gevonden wordt op Google & AI | Webmaister",
+    title: "Website laten maken, gevonden op Google & AI | Webmaister",
     description: core.nl,
   },
   whatsapp: "WhatsApp",
@@ -126,7 +126,7 @@ export const homeNL = {
     intro: "Websites, vindbaarheid op Google en in AI, en automatisering. Los van elkaar helpen ze. Samen zorgen ze dat klanten je vinden en dat het terugkerende werk gedaan wordt.",
     pillars: [
       { n: "01", title: "Waar het bedrijf naartoe wil", desc: "We beginnen bij waar het bedrijf naartoe wil, en bepalen daarna wat de website, de vindbaarheid en de automatisering moeten doen.", items: ["Bedrijfsdoel", "Aanbod", "Voor wie", "Wat de site moet doen"] },
-      { n: "02", title: "Websites", desc: "Maatwerk websites in code, snel, zonder WordPress. Een One-Pager staat binnen 7 dagen live.", items: ["One-Pager", "Meerdere pagina's", "Mobiel-first", "Duidelijke contactroute", "SEO-fundament"] },
+      { n: "02", title: "Websites", desc: "Maatwerk websites in code, snel. Een One-Pager staat binnen 7 dagen live.", items: ["One-Pager", "Meerdere pagina's", "Mobiel-first", "Duidelijke contactroute", "SEO-fundament"] },
       { n: "03", title: "Gevonden op Google en in AI", desc: "Gevonden worden op Google en in AI-assistenten zoals ChatGPT en Google AI Overviews.", items: ["Google", "AI-zoeken", "Heldere bedrijfsgegevens", "Schema.org", "Pagina's die echte vragen beantwoorden"] },
       { n: "04", title: "Automatisering", desc: "Brainy doet ondersteuning, afspraken, opvolging en administratie.", items: ["Ondersteuning", "Afspraken", "Opvolging", "Administratie", "Koppelingen"] },
     ],
@@ -152,7 +152,7 @@ export const homeNL = {
     kicker: "Waarom Webmaister",
     h2: 'Technologie is het middel.<br /><span class="accent-head">Groei is het doel.</span>',
     copy: core.nl,
-    differentiators: ["Eerst waar het bedrijf naartoe wil", "Maatwerk in code, geen WordPress", "Vindbaarheid op Google en in AI-assistenten", "Een One-Pager live binnen 7 dagen", "Maandelijks onderhoud en vindbaarheid", "Direct contact met de oprichter"],
+    differentiators: ["Eerst waar het bedrijf naartoe wil", "Maatwerk in code", "Vindbaarheid op Google en in AI-assistenten", "Een One-Pager live binnen 7 dagen", "Maandelijks onderhoud en vindbaarheid", "Direct contact met de oprichter"],
     founderLabel: "De oprichter",
     founderRole: "Oprichter, Webmaister",
     founderBio: "Junalda Meiland heeft meer dan 10 jaar ervaring in technologie, een achtergrond in softwareontwikkeling en IT-projectmanagement, en is ondernemer sinds 2016. Ze werkt vanuit Rotterdam. Ze begint bij waar het bedrijf naartoe wil, en bouwt daarna de website, de vindbaarheid en de automatisering.",

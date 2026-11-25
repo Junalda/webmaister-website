@@ -3,7 +3,7 @@ import Base from "@/layouts/Base.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
-import { site } from "@/data/site";
+import { site, schemaIds } from "@/data/site";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -25,7 +25,7 @@ const jsonLd = {
       headline: d.title,
       description: d.description,
       author: { "@type": "Person", name: site.founder, url: `${site.url}/over-ons/` },
-      publisher: { "@id": "https://webmaister.io/#organization" },
+      publisher: { "@id": schemaIds.organization },
       datePublished: d.pubDate.toISOString(),
       dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
       mainEntityOfPage: url,
@@ -42,7 +42,7 @@ const jsonLd = {
   ],
 };
 ---
-<Base lang="nl" title={`${d.title} | Webmaister`} description={d.description}>
+<Base lang="nl" title={d.seoTitle ?? `${d.title} | Webmaister`} description={d.description}>
   <section class="art-hero">
     <div class="container" style="max-width:760px">
       <a class="art-back" href="/gids/"><Icon name="arrow" /> Gids</a>

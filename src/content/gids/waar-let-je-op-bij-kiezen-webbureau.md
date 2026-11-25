@@ -1,5 +1,6 @@
 ---
 title: "Waar let je op bij het kiezen van een webbureau?"
+seoTitle: "Webbureau kiezen: waar let je op? | Webmaister"
 description: "Een webbureau kiezen in Rotterdam? Dit zijn de belangrijkste punten: strategie vóór design, eigenaarschap, onderhoud, transparante prijzen en bewijs. Plus de rode vlaggen die je moet vermijden."
 answer: "Let bij het kiezen van een webbureau vooral op of ze beginnen bij je bedrijfsdoel en niet bij design, of je eigenaar blijft van je domein en site, of er transparante prijzen en duidelijke afspraken zijn, en of ze denken in website, vindbaarheid op Google en in AI, en onderhoud samen. Vraag naar echte cases, naar wat er wél en niet inzit, en naar hoe het onderhoud na livegang geregeld is."
 pubDate: 2026-05-20

@@ -4,7 +4,7 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
-import { site, caseStudies } from "@/data/site";
+import { site, schemaIds, caseStudies } from "@/data/site";
 import { services } from "@/data/services";
 
 export function getStaticPaths() {
@@ -21,7 +21,7 @@ const jsonLd = {
       "@type": "Service",
       name: s.keyword,
       description: s.lead,
-      provider: { "@id": "https://webmaister.io/#organization" },
+      provider: { "@id": schemaIds.organization },
       areaServed: site.areaServed.map((a) => ({ "@type": "Place", name: a })),
       url,
       offers: s.pricing.items.map((i) => ({ "@type": "Offer", name: i.name, description: i.price })),

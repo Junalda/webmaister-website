@@ -4,10 +4,10 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
 import FaqAccordion from "@/components/FaqAccordion.astro";
-import { startOptions, startPageFaqs } from "@/data/site";
+import { core, startOptions, startPageFaqs } from "@/data/site";
 
-// /start copy is frozen here. Shared site arrays changed for the rest of the
-// site; this page keeps the English text it already showed.
+// Page-specific English copy for /start. Packages, FAQs and the core sentence
+// come from src/data/site.ts so they stay aligned with the rest of the site.
 const pains = [
   { title: "Customers can't find you.", text: "Your website might look good, but it doesn't show up on Google or in AI answers." },
   { title: "Processes are still manual", text: "Quotes, follow-ups and admin eat the hours that should go into growth." },
@@ -43,8 +43,8 @@ const bannerItems = [
 ---
 <Base
   lang="en"
-  title="Start here · What do you need help with?"
-  description="Websites from €500 setup + €150/mo, live within 7 days. Growth Essentials is €2,700 setup + €300/mo, with a 6-month results guarantee. Growth Partnership is price on request."
+  title="Start here: found on Google & AI | Webmaister"
+  description="One-Pager €500 + €150/mo, live in 7 days. Growth Essentials €2,700 + €300/mo with a 6-month guarantee. Partnership: price on request."
 >
   <!-- 01 · HERO -->
   <section class="s-hero">
@@ -53,7 +53,7 @@ const bannerItems = [
         <p class="kicker" data-reveal><span class="kicker-rule"></span>Start here</p>
         <h1 class="disp hero-h" data-reveal data-delay="60">More customers.<br /><span class="hl">Less manual work.</span></h1>
         <p class="hero-sub" data-reveal data-delay="120">
-          Webmaister builds websites that get you found on Google and AI, plus automation that takes the busywork off your plate. For growing businesses in Rotterdam and beyond.
+          {core.en}
         </p>
         <div class="hero-actions" data-reveal data-delay="180">
           <Button href="#offer" variant="brand" size="lg" arrow>See packages &amp; prices</Button>
@@ -165,7 +165,7 @@ const bannerItems = [
           </article>
         ))}
       </div>
-      <p class="deliver-note" data-reveal>Starter websites go live within <strong>7 days</strong>.</p>
+      <p class="deliver-note" data-reveal>A One-Pager goes live within <strong>7 days</strong>.</p>
     </div>
   </section>
 
@@ -280,7 +280,7 @@ const bannerItems = [
       <p class="final-sub" data-reveal data-delay="80">Tell us where your business stands and we'll point you to the right next step. No pressure.</p>
       <div class="final-actions" data-reveal data-delay="140">
         <WhatsAppButton label="WhatsApp us" />
-        <Button href="/contact/" variant="brand" size="lg" arrow>Book a call</Button>
+        <Button href="/en/contact/" variant="brand" size="lg" arrow>Book a call</Button>
       </div>
     </div>
   </section>

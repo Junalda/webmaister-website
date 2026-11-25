@@ -23,7 +23,18 @@ const {
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/og.png", site.url).href;
-const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+const brandedTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
+// Search titles stay within 60 characters. Hand-written titles already fit;
+// this only trims a future headline that arrives without a short seoTitle.
+const fullTitle = (() => {
+  if (brandedTitle.length <= 60) return brandedTitle;
+  const brand = ` | ${site.name}`;
+  const bare = brandedTitle.replace(/\s*[|·]\s*Webmaister(?: Blog)?\s*$/u, "").trim();
+  const room = 60 - brand.length;
+  let cut = bare.slice(0, room).replace(/\s+\S*$/u, "").replace(/[|:·\-–—,]\s*$/u, "").trim();
+  if (cut.length < 8) cut = bare.slice(0, room).trim();
+  return `${cut}${brand}`;
+})();
 const ogLocale = lang === "nl" ? "nl_NL" : "en_US";
 
 // Vercel sets VERCEL_ENV at build time: "production" for the production branch,

@@ -67,7 +67,7 @@ const founder = {
   "@type": "Person",
   "@id": schemaIds.founder,
   name: "Junalda Meiland",
-  jobTitle: "Founder",
+  jobTitle: isEnglish ? "Founder" : "Oprichter",
   worksFor: { "@id": schemaIds.organization },
   knowsAbout: [
     "web development",
@@ -97,7 +97,7 @@ const website = {
 const packageServices = packages.map((pkg) => {
   const node: Record<string, unknown> = {
     "@type": "Service",
-    "@id": `https://webmaister.io/#service-${pkg.id}`,
+    "@id": `${site.url}/#service-${pkg.id}`,
     name: pkg.name,
     description: isEnglish ? pkg.description : pkg.descriptionNL,
     provider: { "@id": schemaIds.organization },

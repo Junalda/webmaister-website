@@ -6,7 +6,7 @@
 
 Junalda Meiland is de oprichter van Webmaister. Ze heeft meer dan 10 jaar ervaring in technologie, een achtergrond in softwareontwikkeling en IT-projectmanagement, en is ondernemer sinds 2016. Ze werkt vanuit Rotterdam. Haar aanpak: eerst kijken waar het bedrijf naartoe wil, en daarna de website, de vindbaarheid en de automatisering bouwen.
 
-Webmaister bouwt geen WordPress-sites. De sites zijn maatwerk, snel en in code gebouwd. Automatisering (Brainy) gaat over ondersteuning, afspraken, opvolging en administratie.
+De sites zijn maatwerk, snel en in code gebouwd. Automatisering (Brainy) gaat over ondersteuning, afspraken, opvolging en administratie.
 
 ## Pakketten
 
@@ -45,7 +45,7 @@ Webmaister bouwt geen WordPress-sites. De sites zijn maatwerk, snel en in code g
 
 Junalda Meiland is the founder. She has 10+ years in technology, a background in software development and IT project management, and has been an entrepreneur since 2016. She is based in Rotterdam. Her approach: start from where the business wants to go, then build the website, the findability and the automation.
 
-Webmaister does not build WordPress sites. Sites are custom, fast and code-based. Automation (Brainy) covers support, bookings, follow-ups and admin.
+Sites are custom, fast and code-based. Automation (Brainy) covers support, bookings, follow-ups and admin.
 
 ### Packages
 

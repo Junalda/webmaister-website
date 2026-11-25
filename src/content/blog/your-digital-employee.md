@@ -1,6 +1,7 @@
 ---
 title: "Your Digital Employee: How AI Automation Helps Small Businesses Scale"
-description: "Brainy handles support, bookings, follow-ups and admin for entrepreneurs and SMEs. It is not a chatbot and it is not a WordPress plugin."
+description: "Brainy handles support, bookings, follow-ups and admin for entrepreneurs and SMEs. It is not a chatbot."
+seoTitle: "AI automation for small businesses | Webmaister"
 pubDate: 2026-05-26
 author: "Webmaister"
 tags: ["AI Automation", "Brainy", "Operations"]

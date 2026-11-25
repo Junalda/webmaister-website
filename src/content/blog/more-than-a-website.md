@@ -1,5 +1,6 @@
 ---
 title: "More Than a Website: Building a Digital Foundation That Grows"
+seoTitle: "More than a website | Webmaister"
 description: "Webmaister is a Rotterdam web agency building websites that get found on Google and in AI assistants like ChatGPT, for entrepreneurs and SMEs."
 pubDate: 2026-05-12
 author: "Webmaister"

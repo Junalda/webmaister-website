@@ -47,11 +47,14 @@ export default defineConfig({
         !page.includes("/start/growth") &&
         !page.includes("/acquisitiesysteem") &&
         !page.includes("leadgeneratiesysteem"),
-      // Attach hreflang alternates to bilingual pages so AI and search engines
-      // see NL and EN as the same page in two languages, with NL as x-default.
+      // Stamp every URL. The integration writes this onto each <url> before
+      // serialize runs; serialize keeps it and only adds hreflang where a
+      // NL/EN pair exists.
+      lastmod: new Date(),
       serialize(item) {
         const links = hreflangByUrl.get(item.url);
         if (links) item.links = links;
+        if (!item.lastmod) item.lastmod = new Date();
         return item;
       },
     }),
